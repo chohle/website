@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Navbar from "../components/Navbar.astro";
 
 interface Props {
   title?: string;
@@ -32,8 +33,9 @@ const {
     />
   </head>
   <body class="font-sans">
+    <Navbar />
     <slot />
-    <!-- We build this up incrementally: header first, then sections, then more pages. -->
+    <!-- We build this up incrementally: header done, sections next. -->
     <script>
       import "@tailwindplus/elements";
     </script>
