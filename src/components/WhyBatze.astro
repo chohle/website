@@ -1,0 +1,32 @@
+---
+const values = [
+  { stat: "Swiss-ready", text: "QR-bills and VAT handled the way Switzerland expects, right out of the box." },
+  { stat: "Self-hostable", text: "Run batze on your own server in minutes — your data never has to leave it." },
+  { stat: "No lock-in", text: "Open formats and full exports. Your invoices and clients are always yours." },
+];
+---
+
+<section id="why" class="py-16">
+  <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
+    <div class="relative flex flex-col gap-10 sm:gap-16">
+      <hr class="absolute inset-x-0 -top-16 border-t border-mauve-950/10 dark:border-white/10" />
+      <div class="grid grid-cols-1 gap-6 lg:grid-cols-2">
+        <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">Built to stay out of your way.</h2>
+        <div class="flex max-w-xl flex-col gap-4 text-base/7 text-mauve-700 dark:text-mauve-400">
+          <p>
+            batze gets the boring fundamentals right — open, Swiss-ready, and yours to run — so you can get back to the
+            work that actually pays.
+          </p>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-2 md:grid-cols-3">
+        {values.map((value) => (
+          <div class="rounded-xl bg-mauve-950/2.5 p-6 dark:bg-white/5">
+            <div class="text-2xl/10 tracking-tight text-mauve-950 dark:text-white">{value.stat}</div>
+            <p class="mt-2 text-sm/7 text-mauve-700 dark:text-mauve-400">{value.text}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
