@@ -1,0 +1,126 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const current = "/docs";
+
+const docsNav = [
+  {
+    title: "Getting started",
+    links: [
+      { title: "Introduction", href: "/docs" },
+      { title: "Quick start", href: "#quick-start" },
+      { title: "Self-hosting", href: "#" },
+      { title: "Configuration", href: "#" },
+    ],
+  },
+  {
+    title: "Guides",
+    links: [
+      { title: "Invoicing", href: "#" },
+      { title: "Projects", href: "#" },
+      { title: "Client email", href: "#" },
+      { title: "Swiss QR-bills", href: "#" },
+      { title: "VAT / MWST", href: "#" },
+      { title: "Exports", href: "#" },
+    ],
+  },
+  {
+    title: "Reference",
+    links: [
+      { title: "Docker & CLI", href: "#" },
+      { title: "Environment variables", href: "#" },
+      { title: "Backups", href: "#" },
+    ],
+  },
+];
+
+const quickLinks = [
+  { title: "Self-hosting", desc: "Get batze running on your own server in a few minutes.", href: "#" },
+  { title: "Invoicing", desc: "Create Swiss QR-bills, send them, and track payments.", href: "#" },
+  { title: "Projects", desc: "Track time and turn billable hours into invoices.", href: "#" },
+  { title: "Configuration", desc: "Environment variables, backups, and SMTP setup.", href: "#" },
+];
+---
+
+<Layout
+  title="batze — Docs"
+  description="Documentation for batze: getting started, self-hosting, and day-to-day use of the open-source invoicing, projects, and email tool."
+>
+  <div class="mx-auto w-full max-w-7xl px-6 py-10 lg:grid lg:grid-cols-[16rem_minmax(0,1fr)] lg:gap-12 lg:px-10 lg:py-16">
+    <!-- Sidebar -->
+    <aside class="hidden lg:block">
+      <nav class="sticky top-28">
+        <ul role="list" class="flex flex-col gap-8">
+          {docsNav.map((group) => (
+            <li>
+              <h2 class="text-xs font-semibold text-mauve-950 dark:text-white">{group.title}</h2>
+              <ul role="list" class="mt-3 flex flex-col border-l border-mauve-950/10 dark:border-white/10">
+                {group.links.map((link) => (
+                  <li>
+                    <a
+                      href={link.href}
+                      aria-current={link.href === current ? "page" : undefined}
+                      class={`-ml-px flex border-l py-1 pl-4 text-sm transition ${
+                        link.href === current
+                          ? "border-mauve-950 font-medium text-mauve-950 dark:border-white dark:text-white"
+                          : "border-transparent text-mauve-700 hover:border-mauve-950/30 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white"
+                      }`}
+                    >
+                      {link.title}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </aside>
+
+    <!-- Content -->
+    <article class="min-w-0 max-w-2xl">
+      <div class="text-sm/7 font-semibold text-mauve-700 dark:text-mauve-400">Getting started</div>
+      <h1 class="font-display mt-2 text-4xl font-medium tracking-tight text-balance text-mauve-950 dark:text-white">Introduction</h1>
+      <p class="mt-6 text-lg/8 text-mauve-700 dark:text-mauve-400">
+        Welcome to the batze docs. batze is an open-source tool for invoicing, projects, and client email, built to
+        run on your own server. These pages cover getting it running, day-to-day use, and the Swiss-specific bits.
+      </p>
+
+      <h2 id="quick-start" class="font-display mt-12 scroll-mt-28 text-2xl/8 font-medium tracking-tight text-mauve-950 dark:text-white">Quick start</h2>
+      <p class="mt-4 text-base/8 text-mauve-700 dark:text-mauve-400">
+        The fastest way to try batze is with Docker. Run the command below, then open
+        <code class="rounded bg-mauve-950/5 px-1.5 py-0.5 font-mono text-sm text-mauve-950 dark:bg-white/10 dark:text-white">http://localhost:3000</code>.
+      </p>
+
+      <!-- Terminal code block -->
+      <figure class="mt-6 overflow-hidden rounded-2xl bg-mauve-950 ring-1 ring-white/10">
+        <div class="flex items-center justify-between border-b border-white/10 px-4 py-2">
+          <span class="font-mono text-xs text-mauve-400">Terminal</span>
+          <button command="--copy" commandfor="docs-snippet" type="button" class="group flex size-7 items-center justify-center rounded-md text-mauve-400 hover:bg-white/10 hover:text-white">
+            <svg class="size-4 group-data-copied:hidden" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M16.5 8.25V6a2.25 2.25 0 0 0-2.25-2.25H6A2.25 2.25 0 0 0 3.75 6v8.25A2.25 2.25 0 0 0 6 16.5h2.25m8.25-8.25H18a2.25 2.25 0 0 1 2.25 2.25V18A2.25 2.25 0 0 1 18 20.25h-7.5A2.25 2.25 0 0 1 8.25 18v-1.5m8.25-8.25h-6a2.25 2.25 0 0 0-2.25 2.25v6" /></svg>
+            <svg class="size-4 not-group-data-copied:hidden" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M1.5 6.5L5.5 11.5L11.5 1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </button>
+        </div>
+        <pre class="overflow-x-auto px-4 py-4 font-mono text-sm/6 text-mauve-100"><code><span class="text-mauve-500 select-none">$ </span><el-copyable id="docs-snippet">docker run -p 3000:3000 batze/batze</el-copyable></code></pre>
+      </figure>
+
+      <h2 class="font-display mt-12 text-2xl/8 font-medium tracking-tight text-mauve-950 dark:text-white">What's inside</h2>
+      <p class="mt-4 text-base/8 text-mauve-700 dark:text-mauve-400">Jump straight to what you need.</p>
+      <div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+        {quickLinks.map((link) => (
+          <a href={link.href} class="group flex flex-col gap-1 rounded-2xl bg-mauve-950/2.5 p-5 ring-1 ring-mauve-950/5 transition hover:bg-mauve-950/5 dark:bg-white/5 dark:ring-white/10 dark:hover:bg-white/10">
+            <span class="inline-flex items-center gap-2 text-base/7 font-medium text-mauve-950 dark:text-white">
+              {link.title}
+              <svg class="inline-block transition group-hover:translate-x-0.5" width="13" height="7" viewBox="0 0 13 7" fill="none" stroke-width="1" role="image"><path d="M12.5049 3.49512L0.504883 3.49512" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /><path d="M9.5 6.5L12.5 3.5L9.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg>
+            </span>
+            <span class="text-sm/6 text-mauve-700 dark:text-mauve-400">{link.desc}</span>
+          </a>
+        ))}
+      </div>
+
+      <div class="mt-12 rounded-2xl border border-mauve-950/10 px-5 py-4 text-sm/7 text-mauve-700 dark:border-white/10 dark:text-mauve-400">
+        These docs are a work in progress — batze is built in the open, and the documentation grows alongside it.
+      </div>
+    </article>
+  </div>
+</Layout>
