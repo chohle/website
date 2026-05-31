@@ -1,0 +1,50 @@
+---
+import Screenshot from "./Screenshot.astro";
+
+// Placeholder for now — point at the live demo app once it exists.
+const demoUrl = "#";
+---
+
+<section id="hero" class="py-16">
+  <div class="mx-auto flex w-full max-w-2xl flex-col gap-16 px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
+    <div class="flex flex-col gap-32">
+      <div class="flex flex-col items-start gap-6">
+        <!-- Open-source announcement badge -->
+        <a href="#" class="group relative inline-flex max-w-full gap-x-3 overflow-hidden rounded-md px-3.5 py-2 text-sm/6 max-sm:flex-col sm:items-center sm:rounded-full sm:px-3 sm:py-0.5 bg-mauve-950/5 text-mauve-950 hover:bg-mauve-950/10 dark:bg-white/5 dark:text-white dark:inset-ring-1 dark:inset-ring-white/5 dark:hover:bg-white/10">
+          <span class="text-pretty sm:truncate">batze is open source</span>
+          <span class="h-3 w-px max-sm:hidden bg-mauve-950/20 dark:bg-white/10"></span>
+          <span class="inline-flex shrink-0 items-center gap-2 font-semibold text-mauve-950 dark:text-white">
+            Learn more
+            <svg class="inline-block shrink-0" width="5" height="8" viewBox="0 0 5 8" fill="currentColor" role="image"><path fill-rule="evenodd" clip-rule="evenodd" d="M.22.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06L1.28 7.78A.75.75 0 01.22 6.72L2.94 4 .22 1.28a.75.75 0 010-1.06z" /></svg>
+          </span>
+        </a>
+
+        <h1 class="font-display max-w-5xl text-5xl/12 font-medium tracking-tight text-balance sm:text-[3.5rem]/14 text-mauve-950 dark:text-white">Invoicing, projects, and email in one calm place.</h1>
+
+        <div class="flex max-w-3xl flex-col gap-4 text-lg/8 text-mauve-700 dark:text-mauve-400">
+          <p>
+            batze brings billing, project tracking, and client email together for Swiss freelancers and small teams.
+            Open source, and free to try — no account required.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-4">
+          <a href={demoUrl} class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-4 py-2 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">Try the demo</a>
+          <a href="#" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm/7 font-medium text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10">
+            See how it works
+            <svg class="inline-block" width="13" height="7" viewBox="0 0 13 7" fill="none" stroke-width="1" role="image"><path d="M12.5049 3.49512L0.504883 3.49512" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /><path d="M9.5 6.5L12.5 3.5L9.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Demo screenshot (placeholder image until a real app screenshot exists) -->
+      <Screenshot class="rounded-md lg:hidden" color="purple" placement="bottom-right">
+        <img src="https://placehold.co/1670x1408?text=batze" alt="" width="1670" height="1408" class="bg-white/75 md:hidden dark:bg-black/75" />
+        <img src="https://placehold.co/2000x1408?text=batze" alt="" width="2000" height="1408" class="bg-white/75 max-md:hidden dark:bg-black/75" />
+      </Screenshot>
+      <Screenshot class="rounded-lg max-lg:hidden" color="purple" placement="bottom">
+        <img src="https://placehold.co/3440x1990?text=batze" alt="" width="3440" height="1990" class="bg-white/75 dark:bg-black/75" />
+      </Screenshot>
+    </div>
+  </div>
+</section>

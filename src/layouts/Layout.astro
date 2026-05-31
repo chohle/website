@@ -34,8 +34,10 @@ const {
   </head>
   <body class="font-sans">
     <Navbar />
-    <slot />
-    <!-- We build this up incrementally: header done, sections next. -->
+    <main class="isolate overflow-clip">
+      <slot />
+    </main>
+    <!-- We build this up incrementally: header + hero done, more sections next. -->
     <script>
       import "@tailwindplus/elements";
     </script>
