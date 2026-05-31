@@ -1,0 +1,86 @@
+---
+// Header — built incrementally. Now: logo, nav links, a single "demo" CTA to
+// the live app, and a mobile slide-over menu. Deferred: dropdowns, search, etc.
+const links = [
+  { href: "/pricing", label: "Pricing" },
+  { href: "/about", label: "About" },
+  { href: "#", label: "Docs" },
+];
+
+// Placeholder for now — point this at the live demo app once it exists.
+const demoUrl = "#";
+
+const linkClass =
+  "group inline-flex items-center justify-between gap-2 text-3xl/10 font-medium text-mauve-950 lg:text-sm/7 dark:text-white";
+const demoBtn =
+  "inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-3 py-1 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200";
+---
+
+<header class="sticky top-0 z-10 bg-mauve-100 dark:bg-mauve-950">
+  <style>:root { --scroll-padding-top: 5.25rem }</style>
+  <nav>
+    <div class="mx-auto flex h-(--scroll-padding-top) max-w-7xl items-center gap-4 px-6 lg:px-10">
+      <div class="flex flex-1 gap-8 max-lg:hidden">
+        {links.map((link) => (
+          <a href={link.href} class={linkClass}>
+            {link.label}
+            <span class="inline-flex p-1.5 opacity-0 group-hover:opacity-100 lg:hidden" aria-hidden="true">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+            </span>
+          </a>
+        ))}
+      </div>
+
+      <div class="flex items-center">
+        <a href="/" class="inline-flex items-stretch" aria-label="batze home">
+          <span class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze</span>
+        </a>
+      </div>
+
+      <div class="flex flex-1 items-center justify-end gap-4">
+        <a href={demoUrl} class={`${demoBtn} max-lg:hidden`}>Try the demo</a>
+
+        <button
+          command="show-modal"
+          commandfor="mobile-menu"
+          aria-label="Toggle menu"
+          class="inline-flex rounded-full p-1.5 text-mauve-950 hover:bg-mauve-950/10 lg:hidden dark:text-white dark:hover:bg-white/10"
+        >
+          <svg viewBox="0 0 24 24" fill="currentColor" class="size-6">
+            <path fill-rule="evenodd" d="M3.748 8.248a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.748 15.75a.75.75 0 0 1 .75-.751h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <el-dialog class="lg:hidden">
+      <dialog id="mobile-menu" class="backdrop:bg-transparent">
+        <el-dialog-panel class="fixed inset-0 bg-mauve-100 px-6 py-6 lg:px-10 dark:bg-mauve-950">
+          <div class="flex justify-end">
+            <button
+              command="close"
+              commandfor="mobile-menu"
+              aria-label="Toggle menu"
+              class="inline-flex rounded-full p-1.5 text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+          <div class="mt-6 flex flex-col gap-6">
+            {links.map((link) => (
+              <a href={link.href} class={linkClass}>
+                {link.label}
+                <span class="inline-flex p-1.5 opacity-0 group-hover:opacity-100 lg:hidden" aria-hidden="true">
+                  <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
+                </span>
+              </a>
+            ))}
+            <a href={demoUrl} class={`${demoBtn} mt-2 self-start`}>Try the demo</a>
+          </div>
+        </el-dialog-panel>
+      </dialog>
+    </el-dialog>
+  </nav>
+</header>
