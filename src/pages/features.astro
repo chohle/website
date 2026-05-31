@@ -1,0 +1,131 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Screenshot from "../components/Screenshot.astro";
+import CallToAction from "../components/CallToAction.astro";
+
+const demoUrl = "#";
+
+const pillars = [
+  {
+    id: "invoicing",
+    eyebrow: "Invoicing",
+    headline: "Get paid faster, with less chasing.",
+    body: "Turn your work into a clean, Swiss-compliant invoice in seconds — then let batze handle the follow-up.",
+    color: "blue",
+    sub: [
+      { title: "Swiss QR-bills", desc: "Every invoice includes a scannable QR-bill that matches the Swiss standard." },
+      { title: "Payment tracking", desc: "See what's paid, pending, and overdue at a glance — no spreadsheet required." },
+      { title: "Automatic reminders", desc: "batze nudges late payers for you, politely, so you don't have to." },
+    ],
+  },
+  {
+    id: "projects",
+    eyebrow: "Projects",
+    headline: "Know where your time really goes.",
+    body: "Group work into projects, track your hours, and turn tracked time straight into an invoice.",
+    color: "purple",
+    sub: [
+      { title: "Time tracking", desc: "Log hours against a project with a click, or fill them in later." },
+      { title: "Rates & budgets", desc: "Set per-project or per-client rates and watch the budget as you go." },
+      { title: "Tracked time → invoice", desc: "Convert billable hours into a draft invoice in a single step." },
+    ],
+  },
+  {
+    id: "email",
+    eyebrow: "Email",
+    headline: "Client conversations, in context.",
+    body: "Keep every client email attached to the project and invoice it relates to.",
+    color: "brown",
+    sub: [
+      { title: "Unified inbox", desc: "Read and reply to client email without ever leaving batze." },
+      { title: "Linked to projects", desc: "Messages are filed against the right project automatically." },
+      { title: "Templates", desc: "Reusable replies for the things you find yourself sending again and again." },
+    ],
+  },
+] as const;
+
+const more = [
+  { title: "Multi-currency", desc: "Invoice in CHF, EUR, USD and more." },
+  { title: "VAT / MWST", desc: "Swiss VAT handled and reported correctly." },
+  { title: "Accounting exports", desc: "Export to CSV or your accounting tool." },
+  { title: "Expenses", desc: "Track project expenses and bill them on." },
+  { title: "Recurring invoices", desc: "Set it once for your retainer clients." },
+  { title: "Self-hosted or cloud", desc: "Run it yourself, or use the hosted demo." },
+];
+---
+
+<Layout
+  title="batze — Features"
+  description="Everything batze does: Swiss-ready invoicing, project & time tracking, and client email — in one open-source tool."
+>
+  <!-- Hero -->
+  <section id="hero" class="py-16">
+    <div class="mx-auto flex w-full max-w-2xl flex-col items-center gap-6 px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
+      <h1 class="font-display max-w-5xl text-center text-5xl/12 font-medium tracking-tight text-balance sm:text-[3.5rem]/14 text-mauve-950 dark:text-white">Everything batze does.</h1>
+      <div class="flex max-w-xl flex-col gap-4 text-center text-lg/8 text-mauve-700 dark:text-mauve-400">
+        <p>Invoicing, projects, and client email — documented in full. Here's what you get, whether you self-host or use the hosted demo.</p>
+      </div>
+      <a href={demoUrl} class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-4 py-2 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">Try the demo</a>
+    </div>
+  </section>
+
+  <!-- Pillar deep-dives -->
+  {pillars.map((pillar) => (
+    <section id={pillar.id} class="py-16">
+      <div class="mx-auto flex w-full max-w-2xl flex-col gap-10 px-6 sm:gap-16 md:max-w-3xl lg:max-w-7xl lg:px-10">
+        <div class="flex max-w-2xl flex-col gap-6">
+          <div class="flex flex-col gap-2">
+            <div class="text-sm/7 font-semibold text-mauve-700 dark:text-mauve-400">{pillar.eyebrow}</div>
+            <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">{pillar.headline}</h2>
+          </div>
+          <div class="text-base/7 text-pretty text-mauve-700 dark:text-mauve-400"><p>{pillar.body}</p></div>
+        </div>
+        <div>
+          <div class="flex flex-col gap-14">
+            <Screenshot class="rounded-lg" color={pillar.color} placement="bottom">
+              <img src="https://placehold.co/2400x1300?text=batze" alt="" width="2400" height="1300" class="bg-white/75 dark:bg-black/75" />
+            </Screenshot>
+            <div class="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
+              {pillar.sub.map((s) => (
+                <div class="flex flex-col gap-2 text-sm/7">
+                  <div class="flex items-center gap-3 text-mauve-950 dark:text-white">
+                    <svg class="h-lh size-3.25 shrink-0 stroke-mauve-950 dark:stroke-white" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1" role="image"><path d="M1.5 6.5L5.5 11.5L11.5 1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                    <h3 class="font-semibold">{s.title}</h3>
+                  </div>
+                  <div class="flex flex-col gap-4 text-mauve-700 dark:text-mauve-400"><p>{s.desc}</p></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+
+  <!-- And more -->
+  <section id="more" class="py-16">
+    <div class="mx-auto flex w-full max-w-2xl flex-col gap-10 px-6 sm:gap-16 md:max-w-3xl lg:max-w-7xl lg:px-10">
+      <div class="flex max-w-2xl flex-col gap-6">
+        <div class="flex flex-col gap-2">
+          <div class="text-sm/7 font-semibold text-mauve-700 dark:text-mauve-400">And more</div>
+          <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">The details that keep the admin away.</h2>
+        </div>
+      </div>
+      <div>
+        <div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {more.map((m) => (
+            <div class="flex flex-col gap-2 text-sm/7">
+              <div class="flex items-center gap-3 text-mauve-950 dark:text-white">
+                <svg class="h-lh size-3.25 shrink-0 stroke-mauve-950 dark:stroke-white" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1" role="image"><path d="M1.5 6.5L5.5 11.5L11.5 1.5" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                <h3 class="font-semibold">{m.title}</h3>
+              </div>
+              <div class="flex flex-col gap-4 text-mauve-700 dark:text-mauve-400"><p>{m.desc}</p></div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CallToAction />
+</Layout>
