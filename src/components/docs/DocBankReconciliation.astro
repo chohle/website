@@ -1,0 +1,95 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Bank reconciliation",
+    metaDescription: "Import a camt.053 bank statement and let chohle match incoming payments to open invoices by their QR reference.",
+    h1: "Bank reconciliation",
+    intro:
+      "Reconciliation closes the loop between “I sent the invoice” and “I got paid.” Import a camt.053 statement from your e-banking and chohle matches each incoming payment to the open invoice it pays, then marks it paid.",
+    importHeading: "Importing a statement",
+    importText:
+      "Drop a camt.053 XML file onto the page, or click to choose one. The statement's account number is checked against your sender IBAN, so a statement for the wrong account is rejected before anything is stored. Re-importing an overlapping period is safe, duplicate transactions are ignored.",
+    matchHeading: "Suggestions, not silent writes",
+    matchText:
+      "Payments are matched to invoices by their structured Swiss QR reference, with the end-to-end ID as a fallback. chohle suggests a match rather than writing it blindly: confirmed matches mark the invoice paid, while anything it can't place stays in “to review” for you to handle.",
+    remindHeading: "What it feeds",
+    remindBefore: "Once a payment is matched the invoice drops off your outstanding list and out of ",
+    remindLink: "reminders",
+    remindAfter: " automatically, no more chasing someone who already paid.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Bankabgleich",
+    metaDescription: "Importiere einen camt.053-Kontoauszug und lass chohle eingehende Zahlungen über die QR-Referenz offenen Rechnungen zuordnen.",
+    h1: "Bankabgleich",
+    intro:
+      "Der Abgleich schliesst die Lücke zwischen „Rechnung versendet“ und „Geld erhalten“. Importiere einen camt.053-Auszug aus deinem E-Banking, und chohle ordnet jede eingehende Zahlung der offenen Rechnung zu, die sie bezahlt, und markiert sie als bezahlt.",
+    importHeading: "Einen Auszug importieren",
+    importText:
+      "Zieh eine camt.053-XML-Datei auf die Seite oder wähle eine aus. Die Kontonummer des Auszugs wird gegen deine Sender-IBAN geprüft, sodass ein Auszug für das falsche Konto abgewiesen wird, bevor etwas gespeichert wird. Der erneute Import einer überlappenden Periode ist sicher, doppelte Transaktionen werden ignoriert.",
+    matchHeading: "Vorschläge statt stiller Buchungen",
+    matchText:
+      "Zahlungen werden über die strukturierte Schweizer QR-Referenz den Rechnungen zugeordnet, ersatzweise über die End-to-End-ID. chohle schlägt eine Zuordnung vor, statt sie blind zu buchen: bestätigte Treffer markieren die Rechnung als bezahlt, alles Unklare bleibt zur Prüfung liegen.",
+    remindHeading: "Was es speist",
+    remindBefore: "Sobald eine Zahlung zugeordnet ist, verschwindet die Rechnung aus deiner Liste offener Posten und aus den ",
+    remindLink: "Mahnungen",
+    remindAfter: ", kein Nachfassen mehr bei jemandem, der längst bezahlt hat.",
+  },
+  fr: {
+    metaTitle: "chohle docs: Rapprochement bancaire",
+    metaDescription: "Importez un relevé camt.053 et laissez chohle rapprocher les paiements entrants des factures ouvertes via leur référence QR.",
+    h1: "Rapprochement bancaire",
+    intro:
+      "Le rapprochement boucle la boucle entre « j'ai envoyé la facture » et « j'ai été payé ». Importez un relevé camt.053 depuis votre e-banking et chohle rapproche chaque paiement entrant de la facture ouverte qu'il règle, puis la marque payée.",
+    importHeading: "Importer un relevé",
+    importText:
+      "Déposez un fichier XML camt.053 sur la page, ou cliquez pour en choisir un. Le numéro de compte du relevé est vérifié par rapport à votre IBAN d'expéditeur, donc un relevé pour le mauvais compte est rejeté avant tout enregistrement. Réimporter une période qui se chevauche est sans risque, les transactions en double sont ignorées.",
+    matchHeading: "Des suggestions, pas des écritures silencieuses",
+    matchText:
+      "Les paiements sont rapprochés des factures via la référence QR suisse structurée, avec l'identifiant de bout en bout en secours. chohle propose un rapprochement plutôt que de l'inscrire aveuglément : les correspondances confirmées marquent la facture payée, tout ce qui reste incertain attend dans « à vérifier ».",
+    remindHeading: "Ce qu'il alimente",
+    remindBefore: "Dès qu'un paiement est rapproché, la facture sort de votre liste d'impayés et des ",
+    remindLink: "rappels",
+    remindAfter: " automatiquement, fini de relancer quelqu'un qui a déjà payé.",
+  },
+  it: {
+    metaTitle: "chohle docs: Riconciliazione bancaria",
+    metaDescription: "Importa un estratto camt.053 e lascia che chohle abbini i pagamenti in entrata alle fatture aperte tramite il riferimento QR.",
+    h1: "Riconciliazione bancaria",
+    intro:
+      "La riconciliazione chiude il cerchio tra « ho inviato la fattura » e « sono stato pagato ». Importa un estratto camt.053 dal tuo e-banking e chohle abbina ogni pagamento in entrata alla fattura aperta che salda, poi la segna come pagata.",
+    importHeading: "Importare un estratto",
+    importText:
+      "Trascina un file XML camt.053 sulla pagina, oppure clicca per sceglierlo. Il numero di conto dell'estratto viene confrontato con l'IBAN del mittente, così un estratto del conto sbagliato viene rifiutato prima di memorizzare qualsiasi cosa. Reimportare un periodo sovrapposto è sicuro, le transazioni duplicate vengono ignorate.",
+    matchHeading: "Suggerimenti, non scritture silenziose",
+    matchText:
+      "I pagamenti vengono abbinati alle fatture tramite il riferimento QR svizzero strutturato, con l'ID end-to-end come riserva. chohle propone un abbinamento invece di registrarlo alla cieca: gli abbinamenti confermati segnano la fattura come pagata, tutto ciò che resta incerto rimane in « da verificare ».",
+    remindHeading: "Cosa alimenta",
+    remindBefore: "Una volta abbinato un pagamento, la fattura esce dal tuo elenco di insoluti e dai ",
+    remindLink: "solleciti",
+    remindAfter: " automaticamente, niente più solleciti a chi ha già pagato.",
+  },
+} as const;
+
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/banking-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="import">{c.importHeading}</h2>
+  <p>{c.importText}</p>
+
+  <h2 id="matching">{c.matchHeading}</h2>
+  <p>{c.matchText}</p>
+
+  <h2 id="feeds">{c.remindHeading}</h2>
+  <p>{c.remindBefore}<a href={localize("/docs/reminders", lang)}>{c.remindLink}</a>{c.remindAfter}</p>
+</DocsLayout>
