@@ -1,0 +1,27 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import CodeBlock from "../../components/CodeBlock.astro";
+---
+
+<DocsLayout title="batze docs — Backups" description="How to back up and restore your batze data.">
+  <h1>Backups</h1>
+  <p>All of batze's data — invoices, projects, clients, settings — lives in <code>/data</code>. Back that up and you've backed up everything.</p>
+
+  <h2 id="snapshot">Create a backup</h2>
+  <p>The CLI writes a single timestamped archive you can copy anywhere:</p>
+  <CodeBlock prompt={false} label="bash" code={`docker exec -it batze batze backup
+# writes /data/backups/batze-YYYY-MM-DD.tar.gz`} />
+
+  <h2 id="volume">Or copy the volume</h2>
+  <p>If you'd rather grab the raw data directory:</p>
+  <CodeBlock code="docker cp batze:/data ./batze-data-backup" />
+
+  <h2 id="restore">Restore</h2>
+  <p>Stop batze, restore the archive into a fresh <code>/data</code> volume, and start it again:</p>
+  <CodeBlock prompt={false} label="bash" code={`docker stop batze
+docker exec -it batze batze restore /data/backups/batze-2025-01-01.tar.gz
+docker start batze`} />
+
+  <h2 id="schedule">Automate it</h2>
+  <p>Run the backup command on a schedule with <code>cron</code> and ship the archive off-box (S3, another server) so a dead disk never costs you your invoices.</p>
+</DocsLayout>
