@@ -1,0 +1,119 @@
+---
+import "../styles/global.css";
+import DocsNav from "../components/DocsNav.astro";
+import { docsFlat } from "../lib/docs-nav";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+const { title = "batze docs", description = "Documentation for batze." } = Astro.props;
+
+const current = (Astro.url.pathname.replace(/\/+$/, "") || "/docs");
+const idx = docsFlat.findIndex((l) => l.href === current);
+const prev = idx > 0 ? docsFlat[idx - 1] : null;
+const next = idx >= 0 && idx < docsFlat.length - 1 ? docsFlat[idx + 1] : null;
+
+const prose =
+  "text-base/8 text-mauve-700 dark:text-mauve-400 " +
+  "[&>h1]:font-display [&>h1]:mb-2 [&>h1]:text-4xl [&>h1]:font-medium [&>h1]:tracking-tight [&>h1]:text-balance [&>h1]:text-mauve-950 dark:[&>h1]:text-white " +
+  "[&>h2]:font-display [&>h2]:mt-12 [&>h2]:mb-4 [&>h2]:scroll-mt-24 [&>h2]:text-2xl/8 [&>h2]:font-medium [&>h2]:tracking-tight [&>h2]:text-mauve-950 dark:[&>h2]:text-white " +
+  "[&>h3]:mt-8 [&>h3]:mb-2 [&>h3]:text-lg/7 [&>h3]:font-medium [&>h3]:text-mauve-950 dark:[&>h3]:text-white " +
+  "[&>p]:mt-4 [&>ul]:mt-4 [&>ul]:list-disc [&>ul]:space-y-2 [&>ul]:pl-6 [&>ul]:marker:text-mauve-400 [&>ol]:mt-4 [&>ol]:list-decimal [&>ol]:space-y-2 [&>ol]:pl-6 " +
+  "[&_a]:font-medium [&_a]:text-mauve-950 [&_a]:underline [&_a]:underline-offset-4 dark:[&_a]:text-white " +
+  "[&_strong]:font-semibold [&_strong]:text-mauve-950 dark:[&_strong]:text-white " +
+  "[&_:not(pre)>code]:rounded [&_:not(pre)>code]:bg-mauve-950/5 [&_:not(pre)>code]:px-1.5 [&_:not(pre)>code]:py-0.5 [&_:not(pre)>code]:font-mono [&_:not(pre)>code]:text-[0.9em] [&_:not(pre)>code]:text-mauve-950 dark:[&_:not(pre)>code]:bg-white/10 dark:[&_:not(pre)>code]:text-white";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="data:," />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Mona+Sans:ital,wdth,wght@0,112.5,200..900;1,112.5,200..900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+  </head>
+  <body class="font-sans">
+    <!-- Mobile top bar -->
+    <div class="sticky top-0 z-40 flex h-16 items-center justify-between border-b border-mauve-950/10 bg-mauve-100 px-4 lg:hidden dark:border-white/10 dark:bg-mauve-950">
+      <a href="/docs" class="font-display text-xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze <span class="text-mauve-500">docs</span></a>
+      <button command="show-modal" commandfor="docs-menu" aria-label="Open docs menu" class="inline-flex rounded-full p-1.5 text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10">
+        <svg viewBox="0 0 24 24" fill="currentColor" class="size-6"><path fill-rule="evenodd" d="M3.748 8.248a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.748 15.75a.75.75 0 0 1 .75-.751h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" /></svg>
+      </button>
+    </div>
+
+    <!-- Mobile nav dialog -->
+    <el-dialog class="lg:hidden">
+      <dialog id="docs-menu" class="backdrop:bg-mauve-950/30">
+        <el-dialog-panel class="fixed inset-y-0 left-0 w-80 max-w-[80%] overflow-y-auto bg-mauve-100 px-6 py-6 dark:bg-mauve-950">
+          <div class="flex items-center justify-between">
+            <a href="/docs" class="font-display text-xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze <span class="text-mauve-500">docs</span></a>
+            <button command="close" commandfor="docs-menu" aria-label="Close docs menu" class="inline-flex rounded-full p-1.5 text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10">
+              <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
+            </button>
+          </div>
+          <nav class="mt-8"><DocsNav current={current} /></nav>
+        </el-dialog-panel>
+      </dialog>
+    </el-dialog>
+
+    <!-- Desktop fixed sidebar -->
+    <div class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-72 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-mauve-950/10 lg:bg-mauve-100 lg:px-6 lg:py-8 dark:lg:border-white/10 dark:lg:bg-mauve-950">
+      <a href="/docs" class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze <span class="text-mauve-500">docs</span></a>
+      <a href="/" class="mt-2 inline-flex items-center gap-1 text-sm/6 text-mauve-600 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white">
+        <svg class="size-4" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+        Back to site
+      </a>
+      <nav class="mt-10"><DocsNav current={current} /></nav>
+    </div>
+
+    <!-- Content -->
+    <div class="lg:pl-72">
+      <main class="mx-auto max-w-3xl px-6 py-10 lg:px-12 lg:py-16">
+        <article class={prose}>
+          <slot />
+        </article>
+
+        {(prev || next) && (
+          <div class="mt-16 flex justify-between gap-6 border-t border-mauve-950/10 pt-8 dark:border-white/10">
+            {prev ? (
+              <a href={prev.href} class="group flex flex-col gap-1">
+                <span class="text-xs/5 text-mauve-500">Previous</span>
+                <span class="inline-flex items-center gap-2 text-sm/6 font-medium text-mauve-950 dark:text-white">
+                  <svg class="size-4 transition group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+                  {prev.title}
+                </span>
+              </a>
+            ) : <span />}
+            {next && (
+              <a href={next.href} class="group flex flex-col items-end gap-1 text-right">
+                <span class="text-xs/5 text-mauve-500">Next</span>
+                <span class="inline-flex items-center gap-2 text-sm/6 font-medium text-mauve-950 dark:text-white">
+                  {next.title}
+                  <svg class="size-4 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                </span>
+              </a>
+            )}
+          </div>
+        )}
+
+        <footer class="mt-16 flex items-center justify-between gap-6 text-sm/6 text-mauve-500">
+          <span>© 2025 batze</span>
+          <div class="flex items-center gap-6">
+            <a href="/" class="hover:text-mauve-950 dark:hover:text-white">batze.ch</a>
+            <a href="#" class="hover:text-mauve-950 dark:hover:text-white">GitHub</a>
+          </div>
+        </footer>
+      </main>
+    </div>
+
+    <script>
+      import "@tailwindplus/elements";
+    </script>
+  </body>
+</html>

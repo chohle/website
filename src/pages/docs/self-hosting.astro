@@ -1,0 +1,25 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import CodeBlock from "../../components/CodeBlock.astro";
+---
+
+<DocsLayout title="batze docs — Self-hosting" description="Run batze on your own server with Docker or from source.">
+  <h1>Self-hosting</h1>
+  <p>batze is designed to run on your own server. All you need is Docker, or Node.js 20+ if you'd rather run from source.</p>
+
+  <h2 id="docker">With Docker</h2>
+  <p>Run it detached, and mount a volume so your data survives restarts:</p>
+  <CodeBlock code="docker run -d -p 3000:3000 -v batze-data:/data batze/batze" />
+  <p>Put it behind a reverse proxy (Caddy, nginx, Traefik) to add HTTPS and your own domain.</p>
+
+  <h2 id="from-source">From source</h2>
+  <p>batze is a Node.js + Nuxt app, so any Node host works:</p>
+  <CodeBlock prompt={false} label="bash" code={`git clone https://github.com/batze/batze
+cd batze
+npm install
+npm run build
+npm start`} />
+
+  <h2 id="updating">Updating</h2>
+  <p>Pull the latest image (or <code>git pull</code> and rebuild) and restart. Your data in the volume is left untouched.</p>
+</DocsLayout>
