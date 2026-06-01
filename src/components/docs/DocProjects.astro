@@ -1,0 +1,81 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "batze docs — Projects",
+    metaDescription: "Organize work into projects, track time, and turn hours into invoices.",
+    h1: "Projects",
+    intro: "Group work into projects per client, track your time against them, and see what's actually worth your while.",
+    timeHeading: "Time tracking",
+    time: "Start a timer while you work, or enter hours after the fact. Each entry is attached to a project and marked billable or not.",
+    ratesHeading: "Rates & budgets",
+    rates: "Set a rate per project or per client, and give a project a budget so you can watch how much of it you've used as you go.",
+    toInvoiceHeading: "Turning time into an invoice",
+    toInvoiceBefore: "When you're ready to bill, batze rolls a project's billable hours into a draft ",
+    toInvoiceLink: "invoice",
+    toInvoiceAfter: " you can review and send.",
+  },
+  de: {
+    metaTitle: "batze Doku — Projekte",
+    metaDescription: "Organisieren Sie Arbeit in Projekten, erfassen Sie Zeit und verwandeln Sie Stunden in Rechnungen.",
+    h1: "Projekte",
+    intro: "Fassen Sie Arbeit in Projekte pro Kunde zusammen, erfassen Sie Ihre Zeit darauf und sehen Sie, was sich wirklich lohnt.",
+    timeHeading: "Zeiterfassung",
+    time: "Starten Sie einen Timer während der Arbeit oder tragen Sie Stunden nachträglich ein. Jeder Eintrag ist einem Projekt zugeordnet und wird als verrechenbar oder nicht markiert.",
+    ratesHeading: "Tarife & Budgets",
+    rates: "Legen Sie einen Tarif pro Projekt oder pro Kunde fest und geben Sie einem Projekt ein Budget, damit Sie laufend sehen, wie viel davon Sie verbraucht haben.",
+    toInvoiceHeading: "Zeit in eine Rechnung umwandeln",
+    toInvoiceBefore: "Wenn Sie bereit sind abzurechnen, fasst batze die verrechenbaren Stunden eines Projekts zu einem Entwurf für eine ",
+    toInvoiceLink: "Rechnung",
+    toInvoiceAfter: " zusammen, die Sie prüfen und versenden können.",
+  },
+  fr: {
+    metaTitle: "batze docs — Projets",
+    metaDescription: "Organisez le travail en projets, suivez le temps et transformez les heures en factures.",
+    h1: "Projets",
+    intro: "Regroupez le travail en projets par client, suivez votre temps sur ceux-ci et voyez ce qui en vaut vraiment la peine.",
+    timeHeading: "Suivi du temps",
+    time: "Lancez un minuteur pendant que vous travaillez, ou saisissez les heures après coup. Chaque entrée est rattachée à un projet et marquée comme facturable ou non.",
+    ratesHeading: "Tarifs & budgets",
+    rates: "Définissez un tarif par projet ou par client, et attribuez un budget à un projet pour suivre au fur et à mesure la part que vous en avez utilisée.",
+    toInvoiceHeading: "Transformer le temps en facture",
+    toInvoiceBefore: "Lorsque vous êtes prêt à facturer, batze regroupe les heures facturables d'un projet dans un brouillon de ",
+    toInvoiceLink: "facture",
+    toInvoiceAfter: " que vous pouvez vérifier et envoyer.",
+  },
+  it: {
+    metaTitle: "batze docs — Progetti",
+    metaDescription: "Organizza il lavoro in progetti, registra il tempo e trasforma le ore in fatture.",
+    h1: "Progetti",
+    intro: "Raggruppa il lavoro in progetti per cliente, registra il tuo tempo su di essi e vedi cosa vale davvero la pena.",
+    timeHeading: "Registrazione del tempo",
+    time: "Avvia un timer mentre lavori, oppure inserisci le ore in un secondo momento. Ogni voce è collegata a un progetto e contrassegnata come fatturabile o no.",
+    ratesHeading: "Tariffe & budget",
+    rates: "Imposta una tariffa per progetto o per cliente e assegna a un progetto un budget, così puoi tenere d'occhio quanto ne hai usato man mano.",
+    toInvoiceHeading: "Trasformare il tempo in una fattura",
+    toInvoiceBefore: "Quando sei pronto a fatturare, batze raccoglie le ore fatturabili di un progetto in una bozza di ",
+    toInvoiceLink: "fattura",
+    toInvoiceAfter: " che puoi rivedere e inviare.",
+  },
+} as const;
+
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <h2 id="time">{c.timeHeading}</h2>
+  <p>{c.time}</p>
+
+  <h2 id="rates">{c.ratesHeading}</h2>
+  <p>{c.rates}</p>
+
+  <h2 id="to-invoice">{c.toInvoiceHeading}</h2>
+  <p>{c.toInvoiceBefore}<a href={localize("/docs/invoicing", lang)}>{c.toInvoiceLink}</a>{c.toInvoiceAfter}</p>
+</DocsLayout>

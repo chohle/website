@@ -1,0 +1,87 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "batze docs — Client email",
+    metaDescription: "Connect a mailbox and keep client conversations next to the work they belong to.",
+    h1: "Client email",
+    intro: "Read and reply to client email without leaving batze — every message filed against the project it belongs to.",
+    connectHeading: "Connecting a mailbox",
+    connectBefore: "Point batze at your mailbox over IMAP/SMTP and set ",
+    connectMiddle: " in your ",
+    connectLink: "configuration",
+    connectAfter: ". From then on, mail you send and receive shows up in batze.",
+    linkedHeading: "Linked to projects",
+    linked: "Messages are matched to the right client and project, so the conversation always sits next to the work it's about.",
+    templatesHeading: "Templates",
+    templates: "Save the replies you send again and again as templates, and drop them in with a click.",
+  },
+  de: {
+    metaTitle: "batze Doku — Kunden-E-Mail",
+    metaDescription: "Verbinden Sie ein Postfach und halten Sie Kundengespräche neben der zugehörigen Arbeit.",
+    h1: "Kunden-E-Mail",
+    intro: "Lesen und beantworten Sie Kunden-E-Mails, ohne batze zu verlassen — jede Nachricht wird beim zugehörigen Projekt abgelegt.",
+    connectHeading: "Ein Postfach verbinden",
+    connectBefore: "Verbinden Sie batze über IMAP/SMTP mit Ihrem Postfach und setzen Sie ",
+    connectMiddle: " in Ihrer ",
+    connectLink: "Konfiguration",
+    connectAfter: ". Ab dann erscheinen die E-Mails, die Sie senden und empfangen, in batze.",
+    linkedHeading: "Mit Projekten verknüpft",
+    linked: "Nachrichten werden dem richtigen Kunden und Projekt zugeordnet, sodass das Gespräch immer neben der zugehörigen Arbeit steht.",
+    templatesHeading: "Vorlagen",
+    templates: "Speichern Sie Antworten, die Sie immer wieder verschicken, als Vorlagen und fügen Sie sie mit einem Klick ein.",
+  },
+  fr: {
+    metaTitle: "batze docs — E-mails clients",
+    metaDescription: "Connectez une boîte mail et gardez les conversations clients à côté du travail auquel elles se rapportent.",
+    h1: "E-mails clients",
+    intro: "Lisez et répondez aux e-mails de vos clients sans quitter batze — chaque message classé auprès du projet auquel il appartient.",
+    connectHeading: "Connecter une boîte mail",
+    connectBefore: "Reliez batze à votre boîte mail via IMAP/SMTP et définissez ",
+    connectMiddle: " dans votre ",
+    connectLink: "configuration",
+    connectAfter: ". Dès lors, les e-mails que vous envoyez et recevez apparaissent dans batze.",
+    linkedHeading: "Lié aux projets",
+    linked: "Les messages sont associés au bon client et au bon projet, de sorte que la conversation reste toujours à côté du travail concerné.",
+    templatesHeading: "Modèles",
+    templates: "Enregistrez en tant que modèles les réponses que vous envoyez encore et encore, et insérez-les d'un clic.",
+  },
+  it: {
+    metaTitle: "batze docs — Email clienti",
+    metaDescription: "Collega una casella di posta e tieni le conversazioni con i clienti accanto al lavoro a cui appartengono.",
+    h1: "Email clienti",
+    intro: "Leggi e rispondi alle email dei clienti senza uscire da batze — ogni messaggio archiviato presso il progetto a cui appartiene.",
+    connectHeading: "Collegare una casella di posta",
+    connectBefore: "Punta batze alla tua casella di posta tramite IMAP/SMTP e imposta ",
+    connectMiddle: " nella tua ",
+    connectLink: "configurazione",
+    connectAfter: ". Da quel momento, le email che invii e ricevi compaiono in batze.",
+    linkedHeading: "Collegate ai progetti",
+    linked: "I messaggi vengono abbinati al cliente e al progetto giusti, così la conversazione resta sempre accanto al lavoro di cui tratta.",
+    templatesHeading: "Modelli",
+    templates: "Salva come modelli le risposte che invii più e più volte e inseriscile con un clic.",
+  },
+} as const;
+
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <h2 id="connect">{c.connectHeading}</h2>
+  <p>
+    {c.connectBefore}<code>SMTP_URL</code>{c.connectMiddle}<a href={localize("/docs/configuration", lang)}>{c.connectLink}</a>{c.connectAfter}
+  </p>
+
+  <h2 id="linked">{c.linkedHeading}</h2>
+  <p>{c.linked}</p>
+
+  <h2 id="templates">{c.templatesHeading}</h2>
+  <p>{c.templates}</p>
+</DocsLayout>

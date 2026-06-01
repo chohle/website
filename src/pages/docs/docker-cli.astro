@@ -1,27 +1,4 @@
 ---
-import DocsLayout from "../../layouts/DocsLayout.astro";
-import CodeBlock from "../../components/CodeBlock.astro";
+import DocDockerCli from "../../components/docs/DocDockerCli.astro";
 ---
-
-<DocsLayout title="batze docs — Docker & CLI" description="The Docker image and command-line tasks for running and maintaining batze.">
-  <h1>Docker &amp; CLI</h1>
-  <p>The official image is <code>batze/batze</code>. It bundles everything batze needs to run, with your data kept in <code>/data</code>.</p>
-
-  <h2 id="running">Running</h2>
-  <p>The typical production command — detached, with a persistent volume and your environment file:</p>
-  <CodeBlock code="docker run -d --name batze -p 3000:3000 -v batze-data:/data --env-file .env batze/batze" />
-
-  <h2 id="logs">Logs &amp; status</h2>
-  <CodeBlock prompt={false} label="bash" code={`docker logs -f batze
-docker restart batze
-docker stop batze`} />
-
-  <h2 id="cli">CLI tasks</h2>
-  <p>Admin tasks run through the bundled CLI inside the container with <code>docker exec</code>:</p>
-  <CodeBlock prompt={false} label="bash" code={`# create the first admin user
-docker exec -it batze batze user:create
-
-# run a one-off backup (see Backups)
-docker exec -it batze batze backup`} />
-  <p>Run <code>docker exec -it batze batze --help</code> to see every available command.</p>
-</DocsLayout>
+<DocDockerCli />

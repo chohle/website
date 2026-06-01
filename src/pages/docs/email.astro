@@ -1,20 +1,4 @@
 ---
-import DocsLayout from "../../layouts/DocsLayout.astro";
+import DocEmail from "../../components/docs/DocEmail.astro";
 ---
-
-<DocsLayout title="batze docs — Client email" description="Connect a mailbox and keep client conversations next to the work they belong to.">
-  <h1>Client email</h1>
-  <p>Read and reply to client email without leaving batze — every message filed against the project it belongs to.</p>
-
-  <h2 id="connect">Connecting a mailbox</h2>
-  <p>
-    Point batze at your mailbox over IMAP/SMTP and set <code>SMTP_URL</code> in your
-    <a href="/docs/configuration">configuration</a>. From then on, mail you send and receive shows up in batze.
-  </p>
-
-  <h2 id="linked">Linked to projects</h2>
-  <p>Messages are matched to the right client and project, so the conversation always sits next to the work it's about.</p>
-
-  <h2 id="templates">Templates</h2>
-  <p>Save the replies you send again and again as templates, and drop them in with a click.</p>
-</DocsLayout>
+<DocEmail />

@@ -1,0 +1,105 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "batze docs — Invoicing",
+    metaDescription: "Create Swiss QR-bills, send invoices, and track payments in batze.",
+    h1: "Invoicing",
+    intro: "Create a Swiss-compliant invoice in seconds, send it, and let batze keep track of what's been paid.",
+    qrHeading: "Swiss QR-bills",
+    qrBefore: "Every invoice can include a ",
+    qrStrong: "QR-bill",
+    qrAfter:
+      " that follows the Swiss QR-bill standard, so your clients can scan and pay it directly from their banking app. Your IBAN/QR-IBAN and address are filled in from your settings.",
+    fromHeading: "From tracked time",
+    fromBefore: "If the work lives in a ",
+    fromLink: "project",
+    fromAfter:
+      ", batze can turn its billable hours into a draft invoice in one step — no re-typing line items.",
+    remindersHeading: "Payment tracking & reminders",
+    reminders:
+      "Mark invoices as sent and paid, see what's overdue at a glance, and let batze send polite reminders on a schedule you choose.",
+  },
+  de: {
+    metaTitle: "batze Doku — Rechnungsstellung",
+    metaDescription: "Erstellen Sie Schweizer QR-Rechnungen, versenden Sie Rechnungen und behalten Sie Zahlungen in batze im Blick.",
+    h1: "Rechnungsstellung",
+    intro: "Erstellen Sie in Sekunden eine schweizkonforme Rechnung, versenden Sie sie und lassen Sie batze nachverfolgen, was bezahlt wurde.",
+    qrHeading: "Schweizer QR-Rechnungen",
+    qrBefore: "Jede Rechnung kann eine ",
+    qrStrong: "QR-Rechnung",
+    qrAfter:
+      " enthalten, die dem Schweizer QR-Rechnungsstandard entspricht, damit Ihre Kundinnen und Kunden sie direkt aus ihrer Banking-App scannen und bezahlen können. Ihre IBAN/QR-IBAN und Ihre Adresse werden aus Ihren Einstellungen übernommen.",
+    fromHeading: "Aus erfasster Zeit",
+    fromBefore: "Wenn die Arbeit in einem ",
+    fromLink: "Projekt",
+    fromAfter:
+      " liegt, kann batze deren verrechenbare Stunden in einem Schritt in einen Rechnungsentwurf umwandeln — ohne Positionen neu zu erfassen.",
+    remindersHeading: "Zahlungsverfolgung & Erinnerungen",
+    reminders:
+      "Markieren Sie Rechnungen als versendet und bezahlt, sehen Sie auf einen Blick, was überfällig ist, und lassen Sie batze nach einem von Ihnen gewählten Zeitplan freundliche Erinnerungen verschicken.",
+  },
+  fr: {
+    metaTitle: "batze docs — Facturation",
+    metaDescription: "Créez des QR-factures suisses, envoyez des factures et suivez les paiements dans batze.",
+    h1: "Facturation",
+    intro: "Créez en quelques secondes une facture conforme aux normes suisses, envoyez-la et laissez batze suivre ce qui a été payé.",
+    qrHeading: "QR-factures suisses",
+    qrBefore: "Chaque facture peut inclure une ",
+    qrStrong: "QR-facture",
+    qrAfter:
+      " conforme à la norme suisse de la QR-facture, afin que vos clients puissent la scanner et la payer directement depuis leur application bancaire. Votre IBAN/QR-IBAN et votre adresse sont repris de vos paramètres.",
+    fromHeading: "À partir du temps suivi",
+    fromBefore: "Si le travail se trouve dans un ",
+    fromLink: "projet",
+    fromAfter:
+      ", batze peut convertir ses heures facturables en un brouillon de facture en une seule étape — sans ressaisir les lignes.",
+    remindersHeading: "Suivi des paiements & relances",
+    reminders:
+      "Marquez les factures comme envoyées et payées, voyez d'un coup d'œil ce qui est en retard et laissez batze envoyer des relances courtoises selon le calendrier que vous choisissez.",
+  },
+  it: {
+    metaTitle: "batze docs — Fatturazione",
+    metaDescription: "Crea QR-fatture svizzere, invia fatture e tieni traccia dei pagamenti in batze.",
+    h1: "Fatturazione",
+    intro: "Crea in pochi secondi una fattura conforme alle norme svizzere, inviala e lascia che batze tenga traccia di ciò che è stato pagato.",
+    qrHeading: "QR-fatture svizzere",
+    qrBefore: "Ogni fattura può includere una ",
+    qrStrong: "QR-fattura",
+    qrAfter:
+      " conforme allo standard svizzero della QR-fattura, così i tuoi clienti possono scansionarla e pagarla direttamente dalla loro app bancaria. Il tuo IBAN/QR-IBAN e il tuo indirizzo vengono compilati dalle tue impostazioni.",
+    fromHeading: "Dal tempo registrato",
+    fromBefore: "Se il lavoro si trova in un ",
+    fromLink: "progetto",
+    fromAfter:
+      ", batze può trasformare le sue ore fatturabili in una bozza di fattura in un solo passaggio — senza riscrivere le voci.",
+    remindersHeading: "Monitoraggio dei pagamenti e solleciti",
+    reminders:
+      "Segna le fatture come inviate e pagate, vedi a colpo d'occhio cosa è scaduto e lascia che batze invii solleciti cortesi secondo la pianificazione che scegli.",
+  },
+} as const;
+
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <h2 id="qr-bills">{c.qrHeading}</h2>
+  <p>
+    {c.qrBefore}<strong>{c.qrStrong}</strong>{c.qrAfter}
+  </p>
+
+  <h2 id="from-projects">{c.fromHeading}</h2>
+  <p>
+    {c.fromBefore}<a href={localize("/docs/projects", lang)}>{c.fromLink}</a>{c.fromAfter}
+  </p>
+
+  <h2 id="reminders">{c.remindersHeading}</h2>
+  <p>{c.reminders}</p>
+</DocsLayout>

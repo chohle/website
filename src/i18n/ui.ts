@@ -20,6 +20,10 @@ export const ui = {
     "cta.seePricing": "See pricing",
     "cta.title": "Ready to get your admin under control?",
     "cta.body": "Try the live demo — no account needed — or grab the code and run batze yourself.",
+    "docs.previous": "Previous",
+    "docs.next": "Next",
+    "docs.onThisPage": "On this page",
+    "docs.home": "Home",
     "lang.label": "Language",
   },
   de: {
@@ -40,6 +44,10 @@ export const ui = {
     "cta.seePricing": "Preise ansehen",
     "cta.title": "Bereit, deinen Papierkram in den Griff zu bekommen?",
     "cta.body": "Teste die Live-Demo – ganz ohne Konto – oder hol dir den Code und betreibe batze selbst.",
+    "docs.previous": "Zurück",
+    "docs.next": "Weiter",
+    "docs.onThisPage": "Auf dieser Seite",
+    "docs.home": "Startseite",
     "lang.label": "Sprache",
   },
   fr: {
@@ -60,6 +68,10 @@ export const ui = {
     "cta.seePricing": "Voir les tarifs",
     "cta.title": "Prêt à reprendre le contrôle de votre administratif ?",
     "cta.body": "Essayez la démo en ligne — sans compte — ou récupérez le code et hébergez batze vous-même.",
+    "docs.previous": "Précédent",
+    "docs.next": "Suivant",
+    "docs.onThisPage": "Sur cette page",
+    "docs.home": "Accueil",
     "lang.label": "Langue",
   },
   it: {
@@ -80,6 +92,10 @@ export const ui = {
     "cta.seePricing": "Vedi i prezzi",
     "cta.title": "Pronto a mettere ordine nella burocrazia?",
     "cta.body": "Prova la demo dal vivo — senza account — oppure scarica il codice ed esegui batze da solo.",
+    "docs.previous": "Precedente",
+    "docs.next": "Successivo",
+    "docs.onThisPage": "In questa pagina",
+    "docs.home": "Home",
     "lang.label": "Lingua",
   },
 } as const;
