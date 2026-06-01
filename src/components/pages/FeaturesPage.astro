@@ -1,0 +1,100 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import BentoCard from "../BentoCard.astro";
+import CallToAction from "../CallToAction.astro";
+import { defaultLang, type Lang } from "../../i18n/config";
+import { getFeatures } from "../../i18n/features";
+import { useTranslations } from "../../i18n/ui";
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const c = getFeatures(lang);
+const t = useTranslations(lang);
+
+const demoUrl = "#";
+
+// Placeholder graphics until real app screenshots exist.
+const g = (w: number, h: number) => `https://placehold.co/${w}x${h}/ece7f1/8a7a90?text=batze`;
+const gd = (w: number, h: number) => `https://placehold.co/${w}x${h}/241c33/8f82a6?text=batze`;
+
+// Per-card layout (graphic/fade/class), paired with dictionary text in order.
+type Fade = ("top" | "bottom")[];
+const lightLayout: { graphic: string; fade?: Fade; class: string }[] = [
+  { graphic: g(900, 640), fade: ["bottom"], class: "max-lg:rounded-t-4xl lg:col-span-3 lg:rounded-tl-4xl" },
+  { graphic: g(900, 640), fade: ["bottom"], class: "lg:col-span-3 lg:rounded-tr-4xl" },
+  { graphic: g(640, 640), class: "lg:col-span-2 lg:rounded-bl-4xl" },
+  { graphic: g(640, 640), class: "lg:col-span-2" },
+  { graphic: g(640, 640), class: "max-lg:rounded-b-4xl lg:col-span-2 lg:rounded-br-4xl" },
+];
+
+const darkLayout: { graphic: string; fade?: Fade; class: string }[] = [
+  { graphic: gd(1100, 640), fade: ["top"], class: "max-lg:rounded-t-4xl lg:col-span-4 lg:rounded-tl-4xl" },
+  { graphic: gd(640, 640), class: "lg:col-span-2 lg:rounded-tr-4xl" },
+  { graphic: gd(640, 640), class: "lg:col-span-2 lg:rounded-bl-4xl" },
+  { graphic: gd(1100, 640), fade: ["top"], class: "max-lg:rounded-b-4xl lg:col-span-4 lg:rounded-br-4xl" },
+];
+
+const lightCards = c.lightCards.map((card, i) => ({ ...card, ...lightLayout[i] }));
+const darkCards = c.darkCards.map((card, i) => ({ ...card, ...darkLayout[i] }));
+---
+
+<Layout title={c.meta.title} description={c.meta.description} lang={lang}>
+  <!-- Gradient hero -->
+  <section class="py-16">
+    <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
+      <div class="relative isolate overflow-hidden rounded-4xl px-6 py-24 text-center sm:px-16">
+        <div class="absolute inset-0 -z-10 rounded-4xl bg-linear-130 from-mauve-100 from-10% via-[#e0b9ea] via-65% to-[#b78ae6] ring-1 ring-black/5 ring-inset"></div>
+        <h1 class="font-display mx-auto max-w-3xl text-4xl font-medium tracking-tighter text-balance text-mauve-950 sm:text-6xl">{c.hero.headline}</h1>
+        <p class="mx-auto mt-6 max-w-xl text-lg/8 text-mauve-800">{c.hero.sub}</p>
+        <div class="mt-10 flex justify-center">
+          <a href={demoUrl} class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-4 py-2 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800">{t("cta.tryDemo")}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Light bento: the essentials -->
+  <section id="essentials" class="py-16">
+    <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
+      <h2 class="font-mono text-xs/5 font-semibold tracking-widest text-mauve-500 uppercase">{c.lightSection.eyebrow}</h2>
+      <p class="mt-2 max-w-3xl font-display text-4xl font-medium tracking-tighter text-pretty text-mauve-950 sm:text-5xl">{c.lightSection.heading}</p>
+
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
+        {lightCards.map((card) => (
+          <BentoCard
+            eyebrow={card.eyebrow}
+            title={card.title}
+            description={card.description}
+            graphic={card.graphic}
+            fade={card.fade}
+            class={card.class}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Dark bento: open by design -->
+  <div class="mx-2 mt-2 rounded-4xl bg-mauve-950 py-32 dark:ring-1 dark:ring-white/10">
+    <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
+      <h2 class="font-mono text-xs/5 font-semibold tracking-widest text-mauve-400 uppercase">{c.darkSection.eyebrow}</h2>
+      <p class="mt-2 max-w-3xl font-display text-4xl font-medium tracking-tighter text-pretty text-white sm:text-5xl">{c.darkSection.heading}</p>
+
+      <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
+        {darkCards.map((card) => (
+          <BentoCard
+            dark
+            eyebrow={card.eyebrow}
+            title={card.title}
+            description={card.description}
+            graphic={card.graphic}
+            fade={card.fade}
+            class={card.class}
+          />
+        ))}
+      </div>
+    </div>
+  </div>
+
+  <CallToAction lang={lang} />
+</Layout>
