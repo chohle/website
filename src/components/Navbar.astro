@@ -3,6 +3,7 @@ import { langs, languages, defaultLang, type Lang } from "../i18n/config";
 import { localize, switchLocalePath } from "../i18n/utils";
 import { useTranslations } from "../i18n/ui";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
+import Logo from "./Logo.astro";
 
 interface Props {
   lang?: Lang;
@@ -40,8 +41,8 @@ const demoBtn =
       </div>
 
       <div class="flex items-center">
-        <a href={localize("/", lang)} class="inline-flex items-stretch" aria-label="chohle home">
-          <span class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">chohle</span>
+        <a href={localize("/", lang)} class="inline-flex items-center text-mauve-950 dark:text-white" aria-label="chohle home">
+          <Logo class="h-5 w-auto" />
         </a>
       </div>
 

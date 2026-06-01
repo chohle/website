@@ -1,10 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import BentoCard from "../BentoCard.astro";
+import Screenshot from "../Screenshot.astro";
 import CallToAction from "../CallToAction.astro";
 import { defaultLang, type Lang } from "../../i18n/config";
 import { getFeatures } from "../../i18n/features";
 import { useTranslations } from "../../i18n/ui";
+import { localize } from "../../i18n/utils";
 
 interface Props { lang?: Lang }
 const { lang = defaultLang } = Astro.props;
@@ -12,85 +13,88 @@ const c = getFeatures(lang);
 const t = useTranslations(lang);
 
 const demoUrl = "#";
+const docsUrl = localize("/docs", lang);
 
-// Placeholder graphics until real app screenshots exist.
-const g = (w: number, h: number) => `https://placehold.co/${w}x${h}/ece7f1/8a7a90?text=chohle`;
-const gd = (w: number, h: number) => `https://placehold.co/${w}x${h}/241c33/8f82a6?text=chohle`;
+// Placeholder app screenshots until real ones are captured from the demo.
+// Swap these src values (or drop files in /public) once screenshots exist.
+const shot = (w: number, h: number, label: string) =>
+  `https://placehold.co/${w}x${h}/ece7f1/8a7a90?text=${encodeURIComponent(label)}`;
 
-// Per-card layout (graphic/fade/class), paired with dictionary text in order.
-type Fade = ("top" | "bottom")[];
-const lightLayout: { graphic: string; fade?: Fade; class: string }[] = [
-  { graphic: g(900, 640), fade: ["bottom"], class: "max-lg:rounded-t-4xl lg:col-span-3 lg:rounded-tl-4xl" },
-  { graphic: g(900, 640), fade: ["bottom"], class: "lg:col-span-3 lg:rounded-tr-4xl" },
-  { graphic: g(640, 640), class: "lg:col-span-2 lg:rounded-bl-4xl" },
-  { graphic: g(640, 640), class: "lg:col-span-2" },
-  { graphic: g(640, 640), class: "max-lg:rounded-b-4xl lg:col-span-2 lg:rounded-br-4xl" },
-];
+const frame = [
+  { color: "purple", placement: "bottom-right" },
+  { color: "blue", placement: "bottom-left" },
+  { color: "brown", placement: "bottom-right" },
+  { color: "green", placement: "bottom-left" },
+  { color: "purple", placement: "bottom-right" },
+] as const;
 
-const darkLayout: { graphic: string; fade?: Fade; class: string }[] = [
-  { graphic: gd(1100, 640), fade: ["top"], class: "max-lg:rounded-t-4xl lg:col-span-4 lg:rounded-tl-4xl" },
-  { graphic: gd(640, 640), class: "lg:col-span-2 lg:rounded-tr-4xl" },
-  { graphic: gd(640, 640), class: "lg:col-span-2 lg:rounded-bl-4xl" },
-  { graphic: gd(1100, 640), fade: ["top"], class: "max-lg:rounded-b-4xl lg:col-span-4 lg:rounded-br-4xl" },
-];
-
-const lightCards = c.lightCards.map((card, i) => ({ ...card, ...lightLayout[i] }));
-const darkCards = c.darkCards.map((card, i) => ({ ...card, ...darkLayout[i] }));
+const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length] }));
 ---
 
 <Layout title={c.meta.title} description={c.meta.description} lang={lang}>
   <!-- Gradient hero -->
   <section class="py-16">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <div class="relative isolate overflow-hidden rounded-4xl px-6 py-24 text-center sm:px-16">
+      <div class="relative isolate overflow-hidden rounded-4xl px-6 py-24 text-center sm:px-16" data-reveal>
         <div class="absolute inset-0 -z-10 rounded-4xl bg-linear-130 from-mauve-100 from-10% via-[#e0b9ea] via-65% to-[#b78ae6] ring-1 ring-black/5 ring-inset"></div>
         <h1 class="font-display mx-auto max-w-3xl text-4xl font-medium tracking-tighter text-balance text-mauve-950 sm:text-6xl">{c.hero.headline}</h1>
         <p class="mx-auto mt-6 max-w-xl text-lg/8 text-mauve-800">{c.hero.sub}</p>
-        <div class="mt-10 flex justify-center">
-          <a href={demoUrl} class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-4 py-2 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800">{t("cta.tryDemo")}</a>
+        <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <a href={demoUrl} class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-5 py-2.5 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800">{t("cta.tryDemo")}</a>
+          <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-5 py-2.5 text-sm/7 font-medium text-mauve-950 ring-1 ring-inset ring-mauve-950/15 hover:bg-mauve-950/5">{t("cta.readDocs")}</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Light bento: the essentials -->
-  <section id="essentials" class="py-16">
+  <!-- Alternating feature walkthrough -->
+  <section id="walkthrough" class="py-16 sm:py-24">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <h2 class="font-mono text-xs/5 font-semibold tracking-widest text-mauve-500 uppercase">{c.lightSection.eyebrow}</h2>
-      <p class="mt-2 max-w-3xl font-display text-4xl font-medium tracking-tighter text-pretty text-mauve-950 sm:text-5xl">{c.lightSection.heading}</p>
+      <div class="flex max-w-3xl flex-col gap-3" data-reveal>
+        <h2 class="font-mono text-xs/5 font-semibold tracking-widest text-accent uppercase dark:text-accent-light">{c.lightSection.eyebrow}</h2>
+        <p class="font-display text-4xl font-medium tracking-tighter text-pretty text-mauve-950 sm:text-5xl dark:text-white">{c.lightSection.heading}</p>
+      </div>
 
-      <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
-        {lightCards.map((card) => (
-          <BentoCard
-            eyebrow={card.eyebrow}
-            title={card.title}
-            description={card.description}
-            graphic={card.graphic}
-            fade={card.fade}
-            class={card.class}
-          />
+      <div class="mt-16 flex flex-col gap-20 sm:gap-28">
+        {rows.map((card, i) => (
+          <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16" data-reveal>
+            <div class={`flex flex-col gap-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
+              <span class="font-mono text-xs/6 font-semibold tracking-widest text-accent uppercase dark:text-accent-light">{card.eyebrow}</span>
+              <h3 class="font-display text-2xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-3xl/10 dark:text-white">{card.title}</h3>
+              <p class="max-w-xl text-base/7 text-pretty text-mauve-700 dark:text-mauve-400">{card.description}</p>
+              <div class="mt-1 flex items-center gap-5">
+                <a href={demoUrl} class="group/link inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950 dark:text-white">
+                  {t("cta.tryDemo")}
+                  <svg class="inline-block transition-transform group-hover/link:translate-x-0.5" width="13" height="7" viewBox="0 0 13 7" fill="none" stroke-width="1" role="image"><path d="M12.5049 3.49512L0.504883 3.49512" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /><path d="M9.5 6.5L12.5 3.5L9.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg>
+                </a>
+                <a href={docsUrl} target="_blank" rel="noopener" class="text-sm/7 font-medium text-mauve-600 transition-colors hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white">{t("cta.readDocs")}</a>
+              </div>
+            </div>
+            <div class={`relative overflow-hidden rounded-xl dark:after:absolute dark:after:inset-0 dark:after:rounded-xl dark:after:outline-1 dark:after:-outline-offset-1 dark:after:outline-white/10 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
+              <Screenshot color={card.color} placement={card.placement}>
+                <img src={shot(1600, 1000, card.eyebrow)} alt={card.title} width="1600" height="1000" class="bg-white/75 dark:bg-black/75" />
+              </Screenshot>
+            </div>
+          </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Dark bento: open by design -->
-  <div class="mx-2 mt-2 rounded-4xl bg-mauve-950 py-32 dark:ring-1 dark:ring-white/10">
+  <!-- Dark "open by design" panel -->
+  <div class="mx-2 mt-2 rounded-4xl bg-mauve-950 py-24 sm:py-32 dark:ring-1 dark:ring-white/10">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <h2 class="font-mono text-xs/5 font-semibold tracking-widest text-mauve-400 uppercase">{c.darkSection.eyebrow}</h2>
-      <p class="mt-2 max-w-3xl font-display text-4xl font-medium tracking-tighter text-pretty text-white sm:text-5xl">{c.darkSection.heading}</p>
-
-      <div class="mt-10 grid grid-cols-1 gap-4 sm:mt-16 lg:grid-cols-6 lg:grid-rows-2">
-        {darkCards.map((card) => (
-          <BentoCard
-            dark
-            eyebrow={card.eyebrow}
-            title={card.title}
-            description={card.description}
-            graphic={card.graphic}
-            fade={card.fade}
-            class={card.class}
-          />
+      <div class="flex max-w-3xl flex-col gap-3" data-reveal>
+        <h2 class="font-mono text-xs/5 font-semibold tracking-widest text-accent-light uppercase">{c.darkSection.eyebrow}</h2>
+        <p class="font-display text-4xl font-medium tracking-tighter text-pretty text-white sm:text-5xl">{c.darkSection.heading}</p>
+      </div>
+      <div class="mt-12 grid grid-cols-1 gap-x-8 gap-y-10 sm:mt-16 sm:grid-cols-2">
+        {c.darkCards.map((card) => (
+          <div class="flex flex-col gap-3 border-t border-white/10 pt-6" data-reveal>
+            <span class="font-mono text-xs/6 font-semibold tracking-widest text-accent-light uppercase">{card.eyebrow}</span>
+            <h3 class="font-display text-xl/8 font-medium tracking-tight text-white">{card.title}</h3>
+            <p class="text-sm/7 text-pretty text-mauve-400">{card.description}</p>
+          </div>
         ))}
       </div>
     </div>

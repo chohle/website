@@ -1,0 +1,9 @@
+---
+// Consistent section label: small uppercase mono, accent color.
+interface Props { class?: string }
+const { class: className = "" } = Astro.props;
+---
+
+<span class={`font-mono text-xs/6 font-semibold tracking-widest text-accent uppercase dark:text-accent-light ${className}`}>
+  <slot />
+</span>
