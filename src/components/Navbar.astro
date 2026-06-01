@@ -2,6 +2,7 @@
 import { langs, languages, defaultLang, type Lang } from "../i18n/config";
 import { localize, switchLocalePath } from "../i18n/utils";
 import { useTranslations } from "../i18n/ui";
+import LanguageSwitcher from "./LanguageSwitcher.astro";
 
 interface Props {
   lang?: Lang;
@@ -39,26 +40,17 @@ const demoBtn =
       </div>
 
       <div class="flex items-center">
-        <a href={localize("/", lang)} class="inline-flex items-stretch" aria-label="batze home">
-          <span class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze</span>
+        <a href={localize("/", lang)} class="inline-flex items-stretch" aria-label="chohle home">
+          <span class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">chohle</span>
         </a>
       </div>
 
       <div class="flex flex-1 items-center justify-end gap-4">
-        <div class="flex items-center gap-2 text-xs font-medium max-lg:hidden" aria-label={t("lang.label")}>
-          {langs.map((l) => (
-            <a
-              href={switchLocalePath(Astro.url, l)}
-              hreflang={l}
-              aria-current={l === lang ? "true" : undefined}
-              class={l === lang ? "text-mauve-950 dark:text-white" : "text-mauve-500 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white"}
-            >
-              {l.toUpperCase()}
-            </a>
-          ))}
-        </div>
-
         <a href={demoUrl} class={`${demoBtn} max-lg:hidden`}>{t("cta.tryDemo")}</a>
+
+        <div class="max-lg:hidden">
+          <LanguageSwitcher lang={lang} />
+        </div>
 
         <button
           command="show-modal"

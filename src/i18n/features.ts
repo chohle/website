@@ -12,12 +12,12 @@ export interface FeaturesContent {
 const features: Partial<Record<Lang, FeaturesContent>> = {
   en: {
     meta: {
-      title: "batze — Features",
+      title: "chohle — Features",
       description:
-        "Everything batze does: Swiss-ready invoicing, project & time tracking, and client email — in one open-source tool.",
+        "Everything chohle does: Swiss-ready invoicing, project & time tracking, and client email — in one open-source tool.",
     },
     hero: {
-      headline: "Everything batze does.",
+      headline: "Everything chohle does.",
       sub: "Invoicing, projects, and client email — in one open-source tool. Self-host it, or try the hosted demo.",
     },
     lightSection: {
@@ -29,7 +29,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Invoicing",
         title: "Get paid faster",
         description:
-          "Create a Swiss QR-bill in seconds, send it, and let batze track what's paid and gently chase what's overdue.",
+          "Create a Swiss QR-bill in seconds, send it, and let chohle track what's paid and gently chase what's overdue.",
       },
       {
         eyebrow: "Projects",
@@ -41,7 +41,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Email",
         title: "Conversations in context",
         description:
-          "Read and reply to client email without leaving batze — filed against the right project.",
+          "Read and reply to client email without leaving chohle — filed against the right project.",
       },
       {
         eyebrow: "Time tracking",
@@ -65,7 +65,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Self-hostable",
         title: "Run it on your own server",
         description:
-          "batze is built to self-host. Spin it up with a single command and keep everything in-house.",
+          "chohle is built to self-host. Spin it up with a single command and keep everything in-house.",
       },
       {
         eyebrow: "No lock-in",
@@ -89,12 +89,12 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
   },
   de: {
     meta: {
-      title: "batze — Funktionen",
+      title: "chohle — Funktionen",
       description:
-        "Alles, was batze kann: Schweiz-taugliche Rechnungsstellung, Projekt- & Zeiterfassung und Kunden-E-Mail — in einem Open-Source-Tool.",
+        "Alles, was chohle kann: Schweiz-taugliche Rechnungsstellung, Projekt- & Zeiterfassung und Kunden-E-Mail — in einem Open-Source-Tool.",
     },
     hero: {
-      headline: "Alles, was batze kann.",
+      headline: "Alles, was chohle kann.",
       sub: "Rechnungen, Projekte und Kunden-E-Mail — in einem Open-Source-Tool. Selbst hosten oder die gehostete Demo testen.",
     },
     lightSection: {
@@ -106,7 +106,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Rechnungen",
         title: "Schneller bezahlt werden",
         description:
-          "Erstelle in Sekunden eine Schweizer QR-Rechnung, verschicke sie und lass batze verfolgen, was bezahlt ist, und überfällige Beträge dezent nachfassen.",
+          "Erstelle in Sekunden eine Schweizer QR-Rechnung, verschicke sie und lass chohle verfolgen, was bezahlt ist, und überfällige Beträge dezent nachfassen.",
       },
       {
         eyebrow: "Projekte",
@@ -118,7 +118,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "E-Mail",
         title: "Konversationen im Kontext",
         description:
-          "Lies und beantworte Kunden-E-Mails, ohne batze zu verlassen — abgelegt beim richtigen Projekt.",
+          "Lies und beantworte Kunden-E-Mails, ohne chohle zu verlassen — abgelegt beim richtigen Projekt.",
       },
       {
         eyebrow: "Zeiterfassung",
@@ -142,7 +142,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Self-hostable",
         title: "Auf deinem eigenen Server betreiben",
         description:
-          "batze ist fürs Self-Hosting gebaut. Starte es mit einem einzigen Befehl und behalte alles im Haus.",
+          "chohle ist fürs Self-Hosting gebaut. Starte es mit einem einzigen Befehl und behalte alles im Haus.",
       },
       {
         eyebrow: "Kein Lock-in",
@@ -166,12 +166,12 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
   },
   fr: {
     meta: {
-      title: "batze — Fonctionnalités",
+      title: "chohle — Fonctionnalités",
       description:
-        "Tout ce que fait batze : facturation prête pour la Suisse, suivi des projets & du temps, et e-mail clients — dans un seul outil open source.",
+        "Tout ce que fait chohle : facturation prête pour la Suisse, suivi des projets & du temps, et e-mail clients — dans un seul outil open source.",
     },
     hero: {
-      headline: "Tout ce que fait batze.",
+      headline: "Tout ce que fait chohle.",
       sub: "Facturation, projets et e-mail clients — dans un seul outil open source. Auto-hébergez-le, ou essayez la démo en ligne.",
     },
     lightSection: {
@@ -183,7 +183,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Facturation",
         title: "Soyez payé plus vite",
         description:
-          "Créez une QR-facture suisse en quelques secondes, envoyez-la, et laissez batze suivre ce qui est payé et relancer en douceur ce qui est en retard.",
+          "Créez une QR-facture suisse en quelques secondes, envoyez-la, et laissez chohle suivre ce qui est payé et relancer en douceur ce qui est en retard.",
       },
       {
         eyebrow: "Projets",
@@ -195,7 +195,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "E-mail",
         title: "Des conversations en contexte",
         description:
-          "Lisez et répondez aux e-mails clients sans quitter batze — classés sous le bon projet.",
+          "Lisez et répondez aux e-mails clients sans quitter chohle — classés sous le bon projet.",
       },
       {
         eyebrow: "Suivi du temps",
@@ -219,7 +219,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Auto-hébergeable",
         title: "Faites-le tourner sur votre propre serveur",
         description:
-          "batze est conçu pour l'auto-hébergement. Lancez-le avec une seule commande et gardez tout en interne.",
+          "chohle est conçu pour l'auto-hébergement. Lancez-le avec une seule commande et gardez tout en interne.",
       },
       {
         eyebrow: "Sans verrouillage",
@@ -243,12 +243,12 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
   },
   it: {
     meta: {
-      title: "batze — Funzionalità",
+      title: "chohle — Funzionalità",
       description:
-        "Tutto ciò che fa batze: fatturazione pronta per la Svizzera, gestione di progetti e tempo, ed e-mail dei clienti — in un unico strumento open source.",
+        "Tutto ciò che fa chohle: fatturazione pronta per la Svizzera, gestione di progetti e tempo, ed e-mail dei clienti — in un unico strumento open source.",
     },
     hero: {
-      headline: "Tutto ciò che fa batze.",
+      headline: "Tutto ciò che fa chohle.",
       sub: "Fatturazione, progetti ed e-mail dei clienti — in un unico strumento open source. Ospitalo da te, o prova la demo ospitata.",
     },
     lightSection: {
@@ -260,7 +260,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Fatturazione",
         title: "Fatti pagare più in fretta",
         description:
-          "Crea una QR-fattura svizzera in pochi secondi, inviala e lascia che batze tenga traccia di ciò che è pagato e solleciti con discrezione gli importi scaduti.",
+          "Crea una QR-fattura svizzera in pochi secondi, inviala e lascia che chohle tenga traccia di ciò che è pagato e solleciti con discrezione gli importi scaduti.",
       },
       {
         eyebrow: "Progetti",
@@ -272,7 +272,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "E-mail",
         title: "Conversazioni nel contesto",
         description:
-          "Leggi e rispondi alle e-mail dei clienti senza uscire da batze — archiviate sotto il progetto giusto.",
+          "Leggi e rispondi alle e-mail dei clienti senza uscire da chohle — archiviate sotto il progetto giusto.",
       },
       {
         eyebrow: "Monitoraggio del tempo",
@@ -296,7 +296,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
         eyebrow: "Self-hosting",
         title: "Eseguilo sul tuo server",
         description:
-          "batze è progettato per il self-hosting. Avvialo con un solo comando e tieni tutto in casa.",
+          "chohle è progettato per il self-hosting. Avvialo con un solo comando e tieni tutto in casa.",
       },
       {
         eyebrow: "Nessun lock-in",

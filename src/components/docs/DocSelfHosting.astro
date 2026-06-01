@@ -7,71 +7,71 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "batze docs — Self-hosting",
-    metaDescription: "Run batze on your own server with Docker or from source.",
+    metaTitle: "chohle docs — Self-hosting",
+    metaDescription: "Run chohle on your own server with Docker or from source.",
     h1: "Self-hosting",
     intro:
-      "batze is designed to run on your own server. All you need is Docker, or Node.js 20+ if you'd rather run from source.",
+      "chohle is designed to run on your own server. All you need is Docker, or Node.js 20+ if you'd rather run from source.",
     dockerHeading: "With Docker",
     dockerIntro: "Run it detached, and mount a volume so your data survives restarts:",
     dockerProxy:
       "Put it behind a reverse proxy (Caddy, nginx, Traefik) to add HTTPS and your own domain.",
     sourceHeading: "From source",
-    sourceIntro: "batze is a Node.js + Nuxt app, so any Node host works:",
+    sourceIntro: "chohle is a Node.js + Nuxt app, so any Node host works:",
     updatingHeading: "Updating",
     updatingA: "Pull the latest image (or",
     updatingB:
       "and rebuild) and restart. Your data in the volume is left untouched.",
   },
   de: {
-    metaTitle: "batze Doku — Self-Hosting",
-    metaDescription: "Betreibe batze auf deinem eigenen Server mit Docker oder aus dem Quellcode.",
+    metaTitle: "chohle Doku — Self-Hosting",
+    metaDescription: "Betreibe chohle auf deinem eigenen Server mit Docker oder aus dem Quellcode.",
     h1: "Self-Hosting",
     intro:
-      "batze ist für den Betrieb auf dem eigenen Server gemacht. Du brauchst nur Docker oder Node.js 20+, falls du lieber aus dem Quellcode startest.",
+      "chohle ist für den Betrieb auf dem eigenen Server gemacht. Du brauchst nur Docker oder Node.js 20+, falls du lieber aus dem Quellcode startest.",
     dockerHeading: "Mit Docker",
     dockerIntro:
       "Starte es im Hintergrund und binde ein Volume ein, damit deine Daten Neustarts überstehen:",
     dockerProxy:
       "Stell es hinter einen Reverse-Proxy (Caddy, nginx, Traefik) für HTTPS und deine eigene Domain.",
     sourceHeading: "Aus dem Quellcode",
-    sourceIntro: "batze ist eine Node.js- + Nuxt-App, also läuft jeder Node-Host:",
+    sourceIntro: "chohle ist eine Node.js- + Nuxt-App, also läuft jeder Node-Host:",
     updatingHeading: "Aktualisieren",
     updatingA: "Hol das neueste Image (oder",
     updatingB:
       "und neu bauen) und starte neu. Deine Daten im Volume bleiben unangetastet.",
   },
   fr: {
-    metaTitle: "Doc batze — Auto-hébergement",
-    metaDescription: "Faites tourner batze sur votre propre serveur avec Docker ou depuis les sources.",
+    metaTitle: "Doc chohle — Auto-hébergement",
+    metaDescription: "Faites tourner chohle sur votre propre serveur avec Docker ou depuis les sources.",
     h1: "Auto-hébergement",
     intro:
-      "batze est conçu pour tourner sur votre propre serveur. Il vous suffit de Docker, ou de Node.js 20+ si vous préférez partir des sources.",
+      "chohle est conçu pour tourner sur votre propre serveur. Il vous suffit de Docker, ou de Node.js 20+ si vous préférez partir des sources.",
     dockerHeading: "Avec Docker",
     dockerIntro:
       "Lancez-le en arrière-plan et montez un volume pour que vos données survivent aux redémarrages :",
     dockerProxy:
       "Placez-le derrière un reverse proxy (Caddy, nginx, Traefik) pour ajouter HTTPS et votre propre domaine.",
     sourceHeading: "Depuis les sources",
-    sourceIntro: "batze est une application Node.js + Nuxt, donc n'importe quel hôte Node convient :",
+    sourceIntro: "chohle est une application Node.js + Nuxt, donc n'importe quel hôte Node convient :",
     updatingHeading: "Mise à jour",
     updatingA: "Récupérez la dernière image (ou",
     updatingB:
       "et reconstruisez) puis redémarrez. Vos données dans le volume restent intactes.",
   },
   it: {
-    metaTitle: "Doc batze — Auto-hosting",
-    metaDescription: "Esegui batze sul tuo server con Docker o dai sorgenti.",
+    metaTitle: "Doc chohle — Auto-hosting",
+    metaDescription: "Esegui chohle sul tuo server con Docker o dai sorgenti.",
     h1: "Auto-hosting",
     intro:
-      "batze è progettato per girare sul tuo server. Ti serve solo Docker, oppure Node.js 20+ se preferisci partire dai sorgenti.",
+      "chohle è progettato per girare sul tuo server. Ti serve solo Docker, oppure Node.js 20+ se preferisci partire dai sorgenti.",
     dockerHeading: "Con Docker",
     dockerIntro:
       "Eseguilo in background e monta un volume affinché i tuoi dati sopravvivano ai riavvii:",
     dockerProxy:
       "Mettilo dietro un reverse proxy (Caddy, nginx, Traefik) per aggiungere HTTPS e il tuo dominio.",
     sourceHeading: "Dai sorgenti",
-    sourceIntro: "batze è un'app Node.js + Nuxt, quindi va bene qualsiasi host Node:",
+    sourceIntro: "chohle è un'app Node.js + Nuxt, quindi va bene qualsiasi host Node:",
     updatingHeading: "Aggiornamento",
     updatingA: "Scarica l'immagine più recente (oppure",
     updatingB:
@@ -87,13 +87,13 @@ const c = content[lang] ?? content.en;
 
   <h2 id="docker">{c.dockerHeading}</h2>
   <p>{c.dockerIntro}</p>
-  <CodeBlock code="docker run -d -p 3000:3000 -v batze-data:/data batze/batze" />
+  <CodeBlock code="docker run -d -p 3000:3000 -v chohle-data:/data chohle/chohle" />
   <p>{c.dockerProxy}</p>
 
   <h2 id="from-source">{c.sourceHeading}</h2>
   <p>{c.sourceIntro}</p>
-  <CodeBlock prompt={false} label="bash" code={`git clone https://github.com/batze/batze
-cd batze
+  <CodeBlock prompt={false} label="bash" code={`git clone https://github.com/chohle/chohle
+cd chohle
 npm install
 npm run build
 npm start`} />

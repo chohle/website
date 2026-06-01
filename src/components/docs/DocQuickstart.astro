@@ -7,12 +7,12 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "batze docs — Quick start",
-    metaDescription: "Try batze in one command with Docker.",
+    metaTitle: "chohle docs — Quick start",
+    metaDescription: "Try chohle in one command with Docker.",
     h1: "Quick start",
-    intro: "The fastest way to try batze is with Docker. One command and you're running:",
+    intro: "The fastest way to try chohle is with Docker. One command and you're running:",
     openA: "Then open",
-    openB: "in your browser. That's it — you've got a local batze.",
+    openB: "in your browser. That's it — you've got a local chohle.",
     nextHeading: "What's next",
     next1Start: "Set it up to stay running in the",
     next1Link: "self-hosting guide",
@@ -22,12 +22,12 @@ const content = {
     next3Link: "invoice",
   },
   de: {
-    metaTitle: "batze Doku — Schnellstart",
-    metaDescription: "Probier batze mit einem einzigen Docker-Befehl aus.",
+    metaTitle: "chohle Doku — Schnellstart",
+    metaDescription: "Probier chohle mit einem einzigen Docker-Befehl aus.",
     h1: "Schnellstart",
-    intro: "Am schnellsten probierst du batze mit Docker aus. Ein Befehl und es läuft:",
+    intro: "Am schnellsten probierst du chohle mit Docker aus. Ein Befehl und es läuft:",
     openA: "Öffne dann",
-    openB: "im Browser. Das war's — du hast ein lokales batze.",
+    openB: "im Browser. Das war's — du hast ein lokales chohle.",
     nextHeading: "Wie geht's weiter",
     next1Start: "Richte es für den Dauerbetrieb ein in der",
     next1Link: "Self-Hosting-Anleitung",
@@ -37,12 +37,12 @@ const content = {
     next3Link: "Rechnung",
   },
   fr: {
-    metaTitle: "Doc batze — Démarrage rapide",
-    metaDescription: "Essayez batze en une seule commande avec Docker.",
+    metaTitle: "Doc chohle — Démarrage rapide",
+    metaDescription: "Essayez chohle en une seule commande avec Docker.",
     h1: "Démarrage rapide",
-    intro: "Le plus rapide pour essayer batze, c'est avec Docker. Une commande et c'est lancé :",
+    intro: "Le plus rapide pour essayer chohle, c'est avec Docker. Une commande et c'est lancé :",
     openA: "Ouvrez ensuite",
-    openB: "dans votre navigateur. Voilà — vous avez un batze local.",
+    openB: "dans votre navigateur. Voilà — vous avez un chohle local.",
     nextHeading: "Et ensuite",
     next1Start: "Configurez-le pour qu'il reste en service dans le",
     next1Link: "guide d'auto-hébergement",
@@ -52,12 +52,12 @@ const content = {
     next3Link: "facture",
   },
   it: {
-    metaTitle: "Doc batze — Avvio rapido",
-    metaDescription: "Prova batze con un solo comando Docker.",
+    metaTitle: "Doc chohle — Avvio rapido",
+    metaDescription: "Prova chohle con un solo comando Docker.",
     h1: "Avvio rapido",
-    intro: "Il modo più rapido per provare batze è con Docker. Un comando ed è in esecuzione:",
+    intro: "Il modo più rapido per provare chohle è con Docker. Un comando ed è in esecuzione:",
     openA: "Poi apri",
-    openB: "nel browser. Tutto qui — hai un batze locale.",
+    openB: "nel browser. Tutto qui — hai un chohle locale.",
     nextHeading: "Cosa fare dopo",
     next1Start: "Impostalo per restare in esecuzione nella",
     next1Link: "guida all'auto-hosting",
@@ -74,7 +74,7 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <CodeBlock code="docker run -p 3000:3000 batze/batze" />
+  <CodeBlock code="docker run -p 3000:3000 chohle/chohle" />
 
   <p>{c.openA} <code>http://localhost:3000</code> {c.openB}</p>
 

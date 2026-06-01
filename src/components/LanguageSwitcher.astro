@@ -1,0 +1,37 @@
+---
+import { langs, languages, type Lang } from "../i18n/config";
+import { switchLocalePath } from "../i18n/utils";
+import { useTranslations } from "../i18n/ui";
+
+interface Props { lang: Lang }
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+---
+
+<el-dropdown class="relative inline-block">
+  <button
+    aria-label={t("lang.label")}
+    class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm/6 font-semibold text-mauve-950 ring-1 ring-mauve-950/15 transition hover:bg-mauve-950/5 dark:text-white dark:ring-white/15 dark:hover:bg-white/10"
+  >
+    {lang.toUpperCase()}
+    <svg class="size-4 transition in-aria-expanded:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
+  </button>
+
+  <el-menu
+    anchor="bottom end"
+    popover
+    class="w-48 rounded-xl bg-white p-1 text-sm shadow-lg ring-1 ring-mauve-950/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:opacity-0 dark:bg-mauve-900 dark:ring-white/10"
+  >
+    {langs.map((l) => (
+      <a
+        href={switchLocalePath(Astro.url, l)}
+        hreflang={l}
+        aria-current={l === lang ? "true" : undefined}
+        class="flex items-center gap-3 rounded-lg px-3 py-2 text-mauve-700 hover:bg-mauve-950/5 aria-[current]:font-medium aria-[current]:text-mauve-950 dark:text-mauve-300 dark:hover:bg-white/5 dark:aria-[current]:text-white"
+      >
+        <span class="w-5 text-xs font-semibold text-mauve-500">{l.toUpperCase()}</span>
+        <span>{languages[l]}</span>
+      </a>
+    ))}
+  </el-menu>
+</el-dropdown>
