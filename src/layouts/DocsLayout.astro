@@ -16,6 +16,8 @@ const idx = docsFlat.findIndex((l) => l.href === current);
 const prev = idx > 0 ? docsFlat[idx - 1] : null;
 const next = idx >= 0 && idx < docsFlat.length - 1 ? docsFlat[idx + 1] : null;
 
+const year = new Date().getFullYear();
+
 const prose =
   "text-base/8 text-mauve-700 dark:text-mauve-400 " +
   "[&>h1]:font-display [&>h1]:mb-2 [&>h1]:text-4xl [&>h1]:font-medium [&>h1]:tracking-tight [&>h1]:text-balance [&>h1]:text-mauve-950 dark:[&>h1]:text-white " +
@@ -116,9 +118,9 @@ const prose =
         )}
 
         <footer class="mt-16 flex items-center justify-between gap-6 text-sm/6 text-mauve-500">
-          <span>© 2025 batze</span>
+          <span>© {year} batze</span>
           <div class="flex items-center gap-6">
-            <a href="/" class="hover:text-mauve-950 dark:hover:text-white">batze.ch</a>
+            <a href="/" class="hover:text-mauve-950 dark:hover:text-white">Home</a>
             <a href="#" class="hover:text-mauve-950 dark:hover:text-white">GitHub</a>
           </div>
         </footer>

@@ -10,6 +10,8 @@ const links = [
 // Placeholders until the accounts exist.
 const githubUrl = "#";
 const xUrl = "#";
+
+const year = new Date().getFullYear();
 ---
 
 <footer id="footer" class="pt-16">
@@ -28,7 +30,7 @@ const xUrl = "#";
           <a href={xUrl} target="_blank" aria-label="X" class="text-mauve-950 *:size-6 dark:text-white"><svg class="inline-block" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" role="image"><path d="M13.6833 10.6218L20.2401 3H18.6864L12.9931 9.61788L8.44583 3H3.20117L10.0775 13.0074L3.20117 21H4.75501L10.7673 14.0113L15.5695 21H20.8141L13.6833 10.6218ZM11.5551 13.0956L10.8584 12.0991L5.31488 4.16971H7.7015L12.1752 10.5689L12.8719 11.5655L18.6871 19.8835H16.3005L11.5551 13.0956Z" /></svg></a>
         </div>
       </div>
-      <div class="text-mauve-600 dark:text-mauve-500">© 2025 batze</div>
+      <div class="text-mauve-600 dark:text-mauve-500">© {year} batze</div>
     </div>
   </div>
 </footer>
