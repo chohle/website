@@ -6,64 +6,88 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "chohle docs — Client email",
-    metaDescription: "Connect a mailbox and keep client conversations next to the work they belong to.",
+    metaTitle: "chohle docs: Client email",
+    metaDescription: "Connect a Gmail, Outlook or IMAP mailbox and keep client conversations next to the work they belong to.",
     h1: "Client email",
-    intro: "Read and reply to client email without leaving chohle — every message filed against the project it belongs to.",
+    intro: "Read and reply to client email without leaving chohle, every message filed against the project it belongs to.",
     connectHeading: "Connecting a mailbox",
-    connectBefore: "Point chohle at your mailbox over IMAP/SMTP and set ",
-    connectMiddle: " in your ",
-    connectLink: "configuration",
-    connectAfter: ". From then on, mail you send and receive shows up in chohle.",
+    connectBefore: "Open ",
+    connectLink: "Settings → Mail sync",
+    connectAfter: " and pick a provider. chohle can connect a mailbox three ways:",
+    p1: "Google / Gmail, one-click OAuth for a Google Workspace or personal Gmail account.",
+    p2: "Outlook / Microsoft 365, OAuth for a Microsoft 365 or personal Outlook account.",
+    p3: "IMAP, host, username and password for Proton Bridge, Fastmail, iCloud or any IMAP server.",
+    syncText:
+      "Once connected, chohle syncs incoming mail and, when you send from a project, replies land back in that project's conversation automatically. You can sync on demand or disconnect a mailbox at any time.",
     linkedHeading: "Linked to projects",
-    linked: "Messages are matched to the right client and project, so the conversation always sits next to the work it's about.",
-    templatesHeading: "Templates",
-    templates: "Save the replies you send again and again as templates, and drop them in with a click.",
+    linked: "Messages are matched to the right client and project, so the conversation always sits next to the work it's about, no separate inbox to dig through.",
+    templatesHeading: "Sending & templates",
+    templatesBefore: "Outgoing invoice and reminder mail uses the SMTP settings from your ",
+    templatesLink: "configuration",
+    templatesAfter: ", and the cover message and reminder text are editable templates in Settings.",
   },
   de: {
-    metaTitle: "chohle Doku — Kunden-E-Mail",
-    metaDescription: "Verbinden Sie ein Postfach und halten Sie Kundengespräche neben der zugehörigen Arbeit.",
+    metaTitle: "chohle Doku: Kunden-E-Mail",
+    metaDescription: "Verbinden Sie ein Gmail-, Outlook- oder IMAP-Postfach und halten Sie Kundengespräche neben der zugehörigen Arbeit.",
     h1: "Kunden-E-Mail",
-    intro: "Lesen und beantworten Sie Kunden-E-Mails, ohne chohle zu verlassen — jede Nachricht wird beim zugehörigen Projekt abgelegt.",
+    intro: "Lesen und beantworten Sie Kunden-E-Mails, ohne chohle zu verlassen, jede Nachricht wird beim zugehörigen Projekt abgelegt.",
     connectHeading: "Ein Postfach verbinden",
-    connectBefore: "Verbinden Sie chohle über IMAP/SMTP mit Ihrem Postfach und setzen Sie ",
-    connectMiddle: " in Ihrer ",
-    connectLink: "Konfiguration",
-    connectAfter: ". Ab dann erscheinen die E-Mails, die Sie senden und empfangen, in chohle.",
+    connectBefore: "Öffnen Sie ",
+    connectLink: "Einstellungen → Mail-Sync",
+    connectAfter: " und wählen Sie einen Anbieter. chohle verbindet ein Postfach auf drei Arten:",
+    p1: "Google / Gmail, OAuth mit einem Klick für ein Google-Workspace- oder privates Gmail-Konto.",
+    p2: "Outlook / Microsoft 365, OAuth für ein Microsoft-365- oder privates Outlook-Konto.",
+    p3: "IMAP, Host, Benutzername und Passwort für Proton Bridge, Fastmail, iCloud oder einen beliebigen IMAP-Server.",
+    syncText:
+      "Nach dem Verbinden synchronisiert chohle eingehende Mails, und wenn Sie aus einem Projekt senden, kommen Antworten automatisch in dessen Konversation zurück. Sie können bei Bedarf synchronisieren oder ein Postfach jederzeit trennen.",
     linkedHeading: "Mit Projekten verknüpft",
-    linked: "Nachrichten werden dem richtigen Kunden und Projekt zugeordnet, sodass das Gespräch immer neben der zugehörigen Arbeit steht.",
-    templatesHeading: "Vorlagen",
-    templates: "Speichern Sie Antworten, die Sie immer wieder verschicken, als Vorlagen und fügen Sie sie mit einem Klick ein.",
+    linked: "Nachrichten werden dem richtigen Kunden und Projekt zugeordnet, sodass das Gespräch immer neben der zugehörigen Arbeit steht, kein separater Posteingang zum Durchwühlen.",
+    templatesHeading: "Versand & Vorlagen",
+    templatesBefore: "Ausgehende Rechnungs- und Mahnungs-Mails nutzen die SMTP-Einstellungen aus Ihrer ",
+    templatesLink: "Konfiguration",
+    templatesAfter: ", und Begleit-Nachricht sowie Mahnungstext sind bearbeitbare Vorlagen in den Einstellungen.",
   },
   fr: {
-    metaTitle: "chohle docs — E-mails clients",
-    metaDescription: "Connectez une boîte mail et gardez les conversations clients à côté du travail auquel elles se rapportent.",
+    metaTitle: "chohle docs: E-mails clients",
+    metaDescription: "Connectez une boîte Gmail, Outlook ou IMAP et gardez les conversations clients à côté du travail concerné.",
     h1: "E-mails clients",
-    intro: "Lisez et répondez aux e-mails de vos clients sans quitter chohle — chaque message classé auprès du projet auquel il appartient.",
+    intro: "Lisez et répondez aux e-mails de vos clients sans quitter chohle, chaque message classé auprès du projet auquel il appartient.",
     connectHeading: "Connecter une boîte mail",
-    connectBefore: "Reliez chohle à votre boîte mail via IMAP/SMTP et définissez ",
-    connectMiddle: " dans votre ",
-    connectLink: "configuration",
-    connectAfter: ". Dès lors, les e-mails que vous envoyez et recevez apparaissent dans chohle.",
+    connectBefore: "Ouvrez ",
+    connectLink: "Paramètres → Mail sync",
+    connectAfter: " et choisissez un fournisseur. chohle connecte une boîte de trois façons :",
+    p1: "Google / Gmail, OAuth en un clic pour un compte Google Workspace ou Gmail personnel.",
+    p2: "Outlook / Microsoft 365, OAuth pour un compte Microsoft 365 ou Outlook personnel.",
+    p3: "IMAP, hôte, identifiant et mot de passe pour Proton Bridge, Fastmail, iCloud ou n'importe quel serveur IMAP.",
+    syncText:
+      "Une fois connectée, chohle synchronise le courrier entrant et, quand vous envoyez depuis un projet, les réponses reviennent automatiquement dans la conversation de ce projet. Vous pouvez synchroniser à la demande ou déconnecter une boîte à tout moment.",
     linkedHeading: "Lié aux projets",
-    linked: "Les messages sont associés au bon client et au bon projet, de sorte que la conversation reste toujours à côté du travail concerné.",
-    templatesHeading: "Modèles",
-    templates: "Enregistrez en tant que modèles les réponses que vous envoyez encore et encore, et insérez-les d'un clic.",
+    linked: "Les messages sont associés au bon client et au bon projet, de sorte que la conversation reste toujours à côté du travail concerné, pas de boîte de réception séparée à fouiller.",
+    templatesHeading: "Envoi & modèles",
+    templatesBefore: "Les e-mails sortants de facture et de rappel utilisent les réglages SMTP de votre ",
+    templatesLink: "configuration",
+    templatesAfter: ", et le message d'accompagnement et le texte de rappel sont des modèles modifiables dans les Paramètres.",
   },
   it: {
-    metaTitle: "chohle docs — Email clienti",
-    metaDescription: "Collega una casella di posta e tieni le conversazioni con i clienti accanto al lavoro a cui appartengono.",
+    metaTitle: "chohle docs: Email clienti",
+    metaDescription: "Collega una casella Gmail, Outlook o IMAP e tieni le conversazioni con i clienti accanto al lavoro a cui appartengono.",
     h1: "Email clienti",
-    intro: "Leggi e rispondi alle email dei clienti senza uscire da chohle — ogni messaggio archiviato presso il progetto a cui appartiene.",
+    intro: "Leggi e rispondi alle email dei clienti senza uscire da chohle, ogni messaggio archiviato presso il progetto a cui appartiene.",
     connectHeading: "Collegare una casella di posta",
-    connectBefore: "Punta chohle alla tua casella di posta tramite IMAP/SMTP e imposta ",
-    connectMiddle: " nella tua ",
-    connectLink: "configurazione",
-    connectAfter: ". Da quel momento, le email che invii e ricevi compaiono in chohle.",
+    connectBefore: "Apri ",
+    connectLink: "Impostazioni → Mail sync",
+    connectAfter: " e scegli un provider. chohle collega una casella in tre modi:",
+    p1: "Google / Gmail, OAuth con un clic per un account Google Workspace o Gmail personale.",
+    p2: "Outlook / Microsoft 365, OAuth per un account Microsoft 365 o Outlook personale.",
+    p3: "IMAP, host, nome utente e password per Proton Bridge, Fastmail, iCloud o qualsiasi server IMAP.",
+    syncText:
+      "Una volta collegata, chohle sincronizza la posta in entrata e, quando invii da un progetto, le risposte tornano automaticamente nella conversazione di quel progetto. Puoi sincronizzare su richiesta o scollegare una casella in qualsiasi momento.",
     linkedHeading: "Collegate ai progetti",
-    linked: "I messaggi vengono abbinati al cliente e al progetto giusti, così la conversazione resta sempre accanto al lavoro di cui tratta.",
-    templatesHeading: "Modelli",
-    templates: "Salva come modelli le risposte che invii più e più volte e inseriscile con un clic.",
+    linked: "I messaggi vengono abbinati al cliente e al progetto giusti, così la conversazione resta sempre accanto al lavoro di cui tratta, niente casella separata da setacciare.",
+    templatesHeading: "Invio & modelli",
+    templatesBefore: "Le email in uscita di fattura e sollecito usano le impostazioni SMTP della tua ",
+    templatesLink: "configurazione",
+    templatesAfter: ", e il messaggio di accompagnamento e il testo del sollecito sono modelli modificabili nelle Impostazioni.",
   },
 } as const;
 
@@ -74,14 +98,37 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
+  <img
+    src={`/screenshots/conversations-${lang}.jpg`}
+    alt="chohle client email conversations"
+    width="1456"
+    height="1080"
+    loading="lazy"
+    class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10"
+  />
+
   <h2 id="connect">{c.connectHeading}</h2>
-  <p>
-    {c.connectBefore}<code>SMTP_URL</code>{c.connectMiddle}<a href={localize("/docs/configuration", lang)}>{c.connectLink}</a>{c.connectAfter}
-  </p>
+  <p>{c.connectBefore}<a href={localize("/docs/settings", lang)}>{c.connectLink}</a>{c.connectAfter}</p>
+  <ul>
+    <li>{c.p1}</li>
+    <li>{c.p2}</li>
+    <li>{c.p3}</li>
+  </ul>
+
+  <img
+    src={`/screenshots/email-setup-${lang}.jpg`}
+    alt="Connect a Gmail, Outlook or IMAP mailbox in chohle"
+    width="1456"
+    height="1080"
+    loading="lazy"
+    class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10"
+  />
+
+  <p>{c.syncText}</p>
 
   <h2 id="linked">{c.linkedHeading}</h2>
   <p>{c.linked}</p>
 
   <h2 id="templates">{c.templatesHeading}</h2>
-  <p>{c.templates}</p>
+  <p>{c.templatesBefore}<a href={localize("/docs/configuration", lang)}>{c.templatesLink}</a>{c.templatesAfter}</p>
 </DocsLayout>

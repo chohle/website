@@ -7,11 +7,11 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "chohle docs — Configuration",
+    metaTitle: "chohle docs: Configuration",
     metaDescription:
       "Configure chohle with environment variables: port, currency, database, and email.",
     h1: "Configuration",
-    introA: "chohle is configured entirely with environment variables — drop them in a",
+    introA: "chohle is configured entirely with environment variables, drop them in a",
     introB: "file or pass them to the container.",
     commonHeading: "Common settings",
     port: "the port chohle listens on (default",
@@ -27,11 +27,11 @@ const content = {
     emailEnd: "for connecting an inbox as well.",
   },
   de: {
-    metaTitle: "chohle Doku — Konfiguration",
+    metaTitle: "chohle Doku: Konfiguration",
     metaDescription:
       "Konfiguriere chohle mit Umgebungsvariablen: Port, Währung, Datenbank und E-Mail.",
     h1: "Konfiguration",
-    introA: "chohle wird vollständig über Umgebungsvariablen konfiguriert — leg sie in eine",
+    introA: "chohle wird vollständig über Umgebungsvariablen konfiguriert, leg sie in eine",
     introB: "Datei oder übergib sie dem Container.",
     commonHeading: "Häufige Einstellungen",
     port: "der Port, auf dem chohle lauscht (Standard",
@@ -47,11 +47,11 @@ const content = {
     emailEnd: "auch zum Anbinden eines Posteingangs.",
   },
   fr: {
-    metaTitle: "Doc chohle — Configuration",
+    metaTitle: "Doc chohle: Configuration",
     metaDescription:
       "Configurez chohle avec des variables d'environnement : port, devise, base de données et e-mail.",
     h1: "Configuration",
-    introA: "chohle se configure entièrement avec des variables d'environnement — placez-les dans un fichier",
+    introA: "chohle se configure entièrement avec des variables d'environnement, placez-les dans un fichier",
     introB: "ou passez-les au conteneur.",
     commonHeading: "Réglages courants",
     port: "le port sur lequel chohle écoute (par défaut",
@@ -67,11 +67,11 @@ const content = {
     emailEnd: "pour connecter aussi une boîte de réception.",
   },
   it: {
-    metaTitle: "Doc chohle — Configurazione",
+    metaTitle: "Doc chohle: Configurazione",
     metaDescription:
       "Configura chohle con variabili d'ambiente: porta, valuta, database ed e-mail.",
     h1: "Configurazione",
-    introA: "chohle si configura interamente con variabili d'ambiente — mettile in un file",
+    introA: "chohle si configura interamente con variabili d'ambiente, mettile in un file",
     introB: "oppure passale al container.",
     commonHeading: "Impostazioni comuni",
     port: "la porta su cui chohle è in ascolto (predefinita",
@@ -96,10 +96,10 @@ const c = content[lang] ?? content.en;
 
   <h2 id="common">{c.commonHeading}</h2>
   <ul>
-    <li><code>PORT</code> — {c.port} <code>3000</code>{c.portEnd}</li>
-    <li><code>BASE_CURRENCY</code> — {c.currency} <code>CHF</code></li>
-    <li><code>DATABASE_URL</code> — {c.database}</li>
-    <li><code>SMTP_URL</code> — {c.smtp}</li>
+    <li><code>PORT</code>, {c.port} <code>3000</code>{c.portEnd}</li>
+    <li><code>BASE_CURRENCY</code>, {c.currency} <code>CHF</code></li>
+    <li><code>DATABASE_URL</code>, {c.database}</li>
+    <li><code>SMTP_URL</code>, {c.smtp}</li>
   </ul>
 
   <CodeBlock prompt={false} label=".env" code={`PORT=3000
