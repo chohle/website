@@ -7,76 +7,76 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "batze docs — Backups",
-    metaDescription: "How to back up and restore your batze data.",
+    metaTitle: "chohle docs — Backups",
+    metaDescription: "How to back up and restore your chohle data.",
     h1: "Backups",
-    introP1: "All of batze's data — invoices, projects, clients, settings — lives in",
+    introP1: "All of chohle's data — invoices, projects, clients, settings — lives in",
     introP2: ". Back that up and you've backed up everything.",
     snapshotH2: "Create a backup",
     snapshotP: "The CLI writes a single timestamped archive you can copy anywhere:",
-    snapshotComment: `docker exec -it batze batze backup
-# writes /data/backups/batze-YYYY-MM-DD.tar.gz`,
+    snapshotComment: `docker exec -it chohle chohle backup
+# writes /data/backups/chohle-YYYY-MM-DD.tar.gz`,
     volumeH2: "Or copy the volume",
     volumeP: "If you'd rather grab the raw data directory:",
     restoreH2: "Restore",
-    restoreP1: "Stop batze, restore the archive into a fresh",
+    restoreP1: "Stop chohle, restore the archive into a fresh",
     restoreP2: "volume, and start it again:",
     scheduleH2: "Automate it",
     scheduleP1: "Run the backup command on a schedule with",
     scheduleP2: "and ship the archive off-box (S3, another server) so a dead disk never costs you your invoices.",
   },
   de: {
-    metaTitle: "batze Doku — Backups",
-    metaDescription: "Wie du deine batze-Daten sicherst und wiederherstellst.",
+    metaTitle: "chohle Doku — Backups",
+    metaDescription: "Wie du deine chohle-Daten sicherst und wiederherstellst.",
     h1: "Backups",
-    introP1: "Alle Daten von batze — Rechnungen, Projekte, Kunden, Einstellungen — liegen in",
+    introP1: "Alle Daten von chohle — Rechnungen, Projekte, Kunden, Einstellungen — liegen in",
     introP2: ". Sichere das und du hast alles gesichert.",
     snapshotH2: "Backup erstellen",
     snapshotP: "Die CLI schreibt ein einzelnes Archiv mit Zeitstempel, das du überallhin kopieren kannst:",
-    snapshotComment: `docker exec -it batze batze backup
-# schreibt /data/backups/batze-YYYY-MM-DD.tar.gz`,
+    snapshotComment: `docker exec -it chohle chohle backup
+# schreibt /data/backups/chohle-YYYY-MM-DD.tar.gz`,
     volumeH2: "Oder das Volume kopieren",
     volumeP: "Wenn du lieber das rohe Datenverzeichnis nimmst:",
     restoreH2: "Wiederherstellen",
-    restoreP1: "Stoppe batze, stelle das Archiv in ein frisches",
+    restoreP1: "Stoppe chohle, stelle das Archiv in ein frisches",
     restoreP2: "Volume wieder her und starte es erneut:",
     scheduleH2: "Automatisieren",
     scheduleP1: "Führe den Backup-Befehl planmässig mit",
     scheduleP2: "aus und lagere das Archiv ausserhalb (S3, ein anderer Server), damit eine defekte Festplatte dich nie deine Rechnungen kostet.",
   },
   fr: {
-    metaTitle: "Doc batze — Sauvegardes",
-    metaDescription: "Comment sauvegarder et restaurer vos données batze.",
+    metaTitle: "Doc chohle — Sauvegardes",
+    metaDescription: "Comment sauvegarder et restaurer vos données chohle.",
     h1: "Sauvegardes",
-    introP1: "Toutes les données de batze — factures, projets, clients, paramètres — se trouvent dans",
+    introP1: "Toutes les données de chohle — factures, projets, clients, paramètres — se trouvent dans",
     introP2: ". Sauvegardez-le et vous avez tout sauvegardé.",
     snapshotH2: "Créer une sauvegarde",
     snapshotP: "La CLI écrit une seule archive horodatée que vous pouvez copier n'importe où :",
-    snapshotComment: `docker exec -it batze batze backup
-# écrit /data/backups/batze-YYYY-MM-DD.tar.gz`,
+    snapshotComment: `docker exec -it chohle chohle backup
+# écrit /data/backups/chohle-YYYY-MM-DD.tar.gz`,
     volumeH2: "Ou copier le volume",
     volumeP: "Si vous préférez récupérer le répertoire de données brut :",
     restoreH2: "Restaurer",
-    restoreP1: "Arrêtez batze, restaurez l'archive dans un nouveau volume",
+    restoreP1: "Arrêtez chohle, restaurez l'archive dans un nouveau volume",
     restoreP2: ", puis redémarrez-le :",
     scheduleH2: "Automatiser",
     scheduleP1: "Lancez la commande de sauvegarde de façon planifiée avec",
     scheduleP2: "et expédiez l'archive hors machine (S3, un autre serveur) afin qu'un disque mort ne vous coûte jamais vos factures.",
   },
   it: {
-    metaTitle: "Documentazione batze — Backup",
-    metaDescription: "Come eseguire il backup e ripristinare i tuoi dati batze.",
+    metaTitle: "Documentazione chohle — Backup",
+    metaDescription: "Come eseguire il backup e ripristinare i tuoi dati chohle.",
     h1: "Backup",
-    introP1: "Tutti i dati di batze — fatture, progetti, clienti, impostazioni — si trovano in",
+    introP1: "Tutti i dati di chohle — fatture, progetti, clienti, impostazioni — si trovano in",
     introP2: ". Fanne il backup e avrai salvato tutto.",
     snapshotH2: "Crea un backup",
     snapshotP: "La CLI scrive un unico archivio con marca temporale che puoi copiare ovunque:",
-    snapshotComment: `docker exec -it batze batze backup
-# scrive /data/backups/batze-YYYY-MM-DD.tar.gz`,
+    snapshotComment: `docker exec -it chohle chohle backup
+# scrive /data/backups/chohle-YYYY-MM-DD.tar.gz`,
     volumeH2: "Oppure copia il volume",
     volumeP: "Se preferisci prendere la directory dei dati grezzi:",
     restoreH2: "Ripristina",
-    restoreP1: "Ferma batze, ripristina l'archivio in un nuovo volume",
+    restoreP1: "Ferma chohle, ripristina l'archivio in un nuovo volume",
     restoreP2: "e riavvialo:",
     scheduleH2: "Automatizzalo",
     scheduleP1: "Esegui il comando di backup in modo pianificato con",
@@ -96,13 +96,13 @@ const c = content[lang] ?? content.en;
 
   <h2 id="volume">{c.volumeH2}</h2>
   <p>{c.volumeP}</p>
-  <CodeBlock code="docker cp batze:/data ./batze-data-backup" />
+  <CodeBlock code="docker cp chohle:/data ./chohle-data-backup" />
 
   <h2 id="restore">{c.restoreH2}</h2>
   <p>{c.restoreP1} <code>/data</code> {c.restoreP2}</p>
-  <CodeBlock prompt={false} label="bash" code={`docker stop batze
-docker exec -it batze batze restore /data/backups/batze-2025-01-01.tar.gz
-docker start batze`} />
+  <CodeBlock prompt={false} label="bash" code={`docker stop chohle
+docker exec -it chohle chohle restore /data/backups/chohle-2025-01-01.tar.gz
+docker start chohle`} />
 
   <h2 id="schedule">{c.scheduleH2}</h2>
   <p>{c.scheduleP1} <code>cron</code> {c.scheduleP2}</p>

@@ -13,7 +13,7 @@ interface Props {
   description?: string;
   lang?: Lang;
 }
-const { title = "batze docs", description = "Documentation for batze.", lang = getLangFromUrl(Astro.url) } = Astro.props;
+const { title = "chohle docs", description = "Documentation for chohle.", lang = getLangFromUrl(Astro.url) } = Astro.props;
 const t = useTranslations(lang);
 
 const current = stripLang(Astro.url.pathname); // canonical slug, e.g. "/docs/quickstart"
@@ -51,7 +51,7 @@ const prose =
       <dialog id="docs-menu" class="backdrop:bg-mauve-950/30">
         <el-dialog-panel class="fixed inset-y-0 left-0 w-80 max-w-[80%] overflow-y-auto bg-mauve-100 px-6 py-6 dark:bg-mauve-950">
           <div class="flex items-center justify-between">
-            <a href={localize("/", lang)} class="font-display text-xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze <span class="text-mauve-500">docs</span></a>
+            <a href={localize("/", lang)} class="font-display text-xl font-semibold tracking-tight text-mauve-950 dark:text-white">chohle <span class="text-mauve-500">docs</span></a>
             <button command="close" commandfor="docs-menu" aria-label="Close docs menu" class="inline-flex rounded-full p-1.5 text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10">
               <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
             </button>
@@ -63,7 +63,7 @@ const prose =
 
     <!-- Desktop fixed sidebar -->
     <div class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-72 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-mauve-950/10 lg:bg-mauve-100 lg:px-6 lg:py-8 dark:lg:border-white/10 dark:lg:bg-mauve-950">
-      <a href={localize("/", lang)} aria-label="batze" class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze <span class="text-mauve-500">docs</span></a>
+      <a href={localize("/", lang)} aria-label="chohle" class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">chohle <span class="text-mauve-500">docs</span></a>
       <nav class="mt-8"><DocsNav lang={lang} current={current} /></nav>
     </div>
 
@@ -74,7 +74,7 @@ const prose =
         <button command="show-modal" commandfor="docs-menu" aria-label="Open docs menu" class="inline-flex shrink-0 rounded-md p-1.5 text-mauve-700 hover:bg-mauve-950/10 lg:hidden dark:text-mauve-300 dark:hover:bg-white/10">
           <svg viewBox="0 0 24 24" fill="currentColor" class="size-5"><path fill-rule="evenodd" d="M3.748 8.248a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.748 15.75a.75.75 0 0 1 .75-.751h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" /></svg>
         </button>
-        <a href={localize("/", lang)} class="font-display shrink-0 text-lg font-semibold tracking-tight text-mauve-950 lg:hidden dark:text-white">batze <span class="text-mauve-500">docs</span></a>
+        <a href={localize("/", lang)} class="font-display shrink-0 text-lg font-semibold tracking-tight text-mauve-950 lg:hidden dark:text-white">chohle <span class="text-mauve-500">docs</span></a>
         <DocsSearch class="max-w-xs flex-1 max-lg:hidden" />
         <div class="ml-auto flex items-center gap-3 sm:gap-5">
           <button type="button" data-open-search aria-label="Search the docs" class="inline-flex shrink-0 rounded-md p-1.5 text-mauve-700 hover:bg-mauve-950/10 lg:hidden dark:text-mauve-300 dark:hover:bg-white/10">
@@ -118,7 +118,7 @@ const prose =
         )}
 
         <footer class="mt-16 flex items-center justify-between gap-6 text-sm/6 text-mauve-500">
-          <span>© {year} batze</span>
+          <span>© {year} chohle</span>
           <div class="flex items-center gap-6">
             <a href="/" class="hover:text-mauve-950 dark:hover:text-white">{t("docs.home")}</a>
             <a href="#" class="hover:text-mauve-950 dark:hover:text-white">GitHub</a>

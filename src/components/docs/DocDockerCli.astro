@@ -7,11 +7,11 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "batze docs — Docker & CLI",
-    metaDescription: "The Docker image and command-line tasks for running and maintaining batze.",
+    metaTitle: "chohle docs — Docker & CLI",
+    metaDescription: "The Docker image and command-line tasks for running and maintaining chohle.",
     h1: "Docker & CLI",
     intro1: "The official image is",
-    intro2: ". It bundles everything batze needs to run, with your data kept in",
+    intro2: ". It bundles everything chohle needs to run, with your data kept in",
     intro3: ".",
     runningH2: "Running",
     runningP: "The typical production command — detached, with a persistent volume and your environment file:",
@@ -19,19 +19,19 @@ const content = {
     cliH2: "CLI tasks",
     cliP: "Admin tasks run through the bundled CLI inside the container with",
     cliComments: `# create the first admin user
-docker exec -it batze batze user:create
+docker exec -it chohle chohle user:create
 
 # run a one-off backup (see Backups)
-docker exec -it batze batze backup`,
+docker exec -it chohle chohle backup`,
     cliHelpP1: "Run",
     cliHelpP2: "to see every available command.",
   },
   de: {
-    metaTitle: "batze Doku — Docker & CLI",
-    metaDescription: "Das Docker-Image und die Befehlszeilen-Tasks zum Betrieb und zur Wartung von batze.",
+    metaTitle: "chohle Doku — Docker & CLI",
+    metaDescription: "Das Docker-Image und die Befehlszeilen-Tasks zum Betrieb und zur Wartung von chohle.",
     h1: "Docker & CLI",
     intro1: "Das offizielle Image ist",
-    intro2: ". Es enthält alles, was batze zum Laufen braucht, wobei deine Daten in",
+    intro2: ". Es enthält alles, was chohle zum Laufen braucht, wobei deine Daten in",
     intro3: "gespeichert werden.",
     runningH2: "Betrieb",
     runningP: "Der typische Produktivbefehl — losgelöst, mit einem persistenten Volume und deiner Umgebungsdatei:",
@@ -39,19 +39,19 @@ docker exec -it batze batze backup`,
     cliH2: "CLI-Tasks",
     cliP: "Admin-Tasks laufen über die mitgelieferte CLI im Container mit",
     cliComments: `# ersten Admin-Benutzer erstellen
-docker exec -it batze batze user:create
+docker exec -it chohle chohle user:create
 
 # einmaliges Backup ausführen (siehe Backups)
-docker exec -it batze batze backup`,
+docker exec -it chohle chohle backup`,
     cliHelpP1: "Führe",
     cliHelpP2: "aus, um alle verfügbaren Befehle zu sehen.",
   },
   fr: {
-    metaTitle: "Doc batze — Docker & CLI",
-    metaDescription: "L'image Docker et les tâches en ligne de commande pour exécuter et maintenir batze.",
+    metaTitle: "Doc chohle — Docker & CLI",
+    metaDescription: "L'image Docker et les tâches en ligne de commande pour exécuter et maintenir chohle.",
     h1: "Docker & CLI",
     intro1: "L'image officielle est",
-    intro2: ". Elle regroupe tout ce dont batze a besoin pour fonctionner, vos données étant conservées dans",
+    intro2: ". Elle regroupe tout ce dont chohle a besoin pour fonctionner, vos données étant conservées dans",
     intro3: ".",
     runningH2: "Exécution",
     runningP: "La commande de production typique — en arrière-plan, avec un volume persistant et votre fichier d'environnement :",
@@ -59,19 +59,19 @@ docker exec -it batze batze backup`,
     cliH2: "Tâches CLI",
     cliP: "Les tâches d'administration s'exécutent via la CLI intégrée dans le conteneur avec",
     cliComments: `# créer le premier utilisateur administrateur
-docker exec -it batze batze user:create
+docker exec -it chohle chohle user:create
 
 # lancer une sauvegarde ponctuelle (voir Sauvegardes)
-docker exec -it batze batze backup`,
+docker exec -it chohle chohle backup`,
     cliHelpP1: "Exécutez",
     cliHelpP2: "pour voir toutes les commandes disponibles.",
   },
   it: {
-    metaTitle: "Documentazione batze — Docker & CLI",
-    metaDescription: "L'immagine Docker e le attività da riga di comando per eseguire e mantenere batze.",
+    metaTitle: "Documentazione chohle — Docker & CLI",
+    metaDescription: "L'immagine Docker e le attività da riga di comando per eseguire e mantenere chohle.",
     h1: "Docker & CLI",
     intro1: "L'immagine ufficiale è",
-    intro2: ". Racchiude tutto ciò di cui batze ha bisogno per funzionare, con i tuoi dati conservati in",
+    intro2: ". Racchiude tutto ciò di cui chohle ha bisogno per funzionare, con i tuoi dati conservati in",
     intro3: ".",
     runningH2: "Esecuzione",
     runningP: "Il tipico comando di produzione — in background, con un volume persistente e il tuo file di ambiente:",
@@ -79,10 +79,10 @@ docker exec -it batze batze backup`,
     cliH2: "Attività CLI",
     cliP: "Le attività di amministrazione vengono eseguite tramite la CLI integrata nel container con",
     cliComments: `# crea il primo utente amministratore
-docker exec -it batze batze user:create
+docker exec -it chohle chohle user:create
 
 # esegui un backup una tantum (vedi Backup)
-docker exec -it batze batze backup`,
+docker exec -it chohle chohle backup`,
     cliHelpP1: "Esegui",
     cliHelpP2: "per vedere tutti i comandi disponibili.",
   },
@@ -92,19 +92,19 @@ const c = content[lang] ?? content.en;
 
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
-  <p>{c.intro1} <code>batze/batze</code>{c.intro2} <code>/data</code>{c.intro3}</p>
+  <p>{c.intro1} <code>chohle/chohle</code>{c.intro2} <code>/data</code>{c.intro3}</p>
 
   <h2 id="running">{c.runningH2}</h2>
   <p>{c.runningP}</p>
-  <CodeBlock code="docker run -d --name batze -p 3000:3000 -v batze-data:/data --env-file .env batze/batze" />
+  <CodeBlock code="docker run -d --name chohle -p 3000:3000 -v chohle-data:/data --env-file .env chohle/chohle" />
 
   <h2 id="logs">{c.logsH2}</h2>
-  <CodeBlock prompt={false} label="bash" code={`docker logs -f batze
-docker restart batze
-docker stop batze`} />
+  <CodeBlock prompt={false} label="bash" code={`docker logs -f chohle
+docker restart chohle
+docker stop chohle`} />
 
   <h2 id="cli">{c.cliH2}</h2>
   <p>{c.cliP} <code>docker exec</code>:</p>
   <CodeBlock prompt={false} label="bash" code={c.cliComments} />
-  <p>{c.cliHelpP1} <code>docker exec -it batze batze --help</code> {c.cliHelpP2}</p>
+  <p>{c.cliHelpP1} <code>docker exec -it chohle chohle --help</code> {c.cliHelpP2}</p>
 </DocsLayout>
