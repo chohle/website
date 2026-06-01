@@ -69,6 +69,18 @@
 }
 
 /* Drifting aurora background — slow, calm motion behind all content. */
+/* Square corners everywhere — matches the web app. No rounded UI. */
+*,
+::before,
+::after {
+  border-radius: 0 !important;
+}
+
+/* Exception: the decorative background glow stays round (it's a soft glow, not a cornered UI element). */
+.aurora-blob {
+  border-radius: 9999px !important;
+}
+
 @keyframes aurora-drift-1 {
   0%, 100% { transform: translate(-8%, -4%) scale(1); }
   50% { transform: translate(10%, 8%) scale(1.18); }

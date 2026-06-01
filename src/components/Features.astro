@@ -16,6 +16,9 @@ const style = [
   { color: "purple", placement: "top-left" },
   { color: "brown", placement: "bottom-left" },
 ] as const;
+// Real per-locale screenshots, matched to the three home feature items.
+const shots = ["invoice-pdf", "pipeline", "conversations"] as const;
+const shotSrc = (s: string) => `/screenshots/${s}-${lang}.jpg`;
 const featuresPage = localize("/features", lang);
 ---
 
@@ -48,9 +51,8 @@ const featuresPage = localize("/features", lang);
               </a>
             </div>
             <div class="relative overflow-hidden rounded-sm lg:group-even:col-start-1 dark:after:absolute dark:after:inset-0 dark:after:rounded-sm dark:after:outline-1 dark:after:-outline-offset-1 dark:after:outline-white/10">
-              <Screenshot color={style[i].color} placement={style[i].placement}>
-                <img src="https://placehold.co/1200x760?text=chohle" alt="" width="1200" height="760" class="bg-white/75 sm:hidden dark:bg-black/75" />
-                <img src="https://placehold.co/1600x900?text=chohle" alt="" width="1600" height="900" class="bg-white/75 max-sm:hidden dark:bg-black/75" />
+              <Screenshot color={style[i % style.length].color} placement={style[i % style.length].placement}>
+                <img src={shotSrc(shots[i % shots.length])} alt={item.title} width="1456" height="1080" loading="lazy" class="bg-white" />
               </Screenshot>
             </div>
           </div>
