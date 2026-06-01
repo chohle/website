@@ -15,10 +15,9 @@ const t = useTranslations(lang);
 const demoUrl = "#";
 const docsUrl = localize("/docs", lang);
 
-// Placeholder app screenshots until real ones are captured from the demo.
-// Swap these src values (or drop files in /public) once screenshots exist.
-const shot = (w: number, h: number, label: string) =>
-  `https://placehold.co/${w}x${h}/ece7f1/8a7a90?text=${encodeURIComponent(label)}`;
+// Real app screenshots captured per locale from the running app, stored under
+// /public/screenshots as `<shot>-<lang>.jpg`.
+const shotSrc = (shot: string) => `/screenshots/${shot}-${lang}.jpg`;
 
 const frame = [
   { color: "purple", placement: "bottom-right" },
@@ -72,7 +71,7 @@ const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length
             </div>
             <div class={`relative overflow-hidden rounded-xl dark:after:absolute dark:after:inset-0 dark:after:rounded-xl dark:after:outline-1 dark:after:-outline-offset-1 dark:after:outline-white/10 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
               <Screenshot color={card.color} placement={card.placement}>
-                <img src={shot(1600, 1000, card.eyebrow)} alt={card.title} width="1600" height="1000" class="bg-white/75 dark:bg-black/75" />
+                <img src={shotSrc(card.shot)} alt={card.title} width="1456" height="1080" loading="lazy" class="bg-white" />
               </Screenshot>
             </div>
           </div>

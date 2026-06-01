@@ -39,12 +39,12 @@ const serverIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.2
       <div class="mx-auto grid max-w-5xl grid-cols-1 gap-6 lg:grid-cols-2 lg:items-stretch">
         <!-- Self-hosted -->
         <div class="flex flex-col gap-6 rounded-3xl bg-mauve-950/2.5 p-8 ring-1 ring-mauve-950/10 sm:p-10 dark:bg-white/5 dark:ring-white/15" data-reveal>
-          <div class="flex items-center justify-between gap-3">
+          <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
             <div class="flex items-center gap-2.5 text-mauve-950 dark:text-white">
               <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={serverIcon} />
               <span class="font-mono text-xs/6 font-semibold tracking-widest uppercase">{c.selector.selfHosted.name}</span>
             </div>
-            <span class="rounded-full bg-mauve-950 px-2.5 py-0.5 text-xs/6 font-medium text-white dark:bg-white dark:text-mauve-950">{c.selector.selfHosted.tagline}</span>
+            <span class="bg-accent/15 px-2.5 py-1 text-xs/6 font-medium text-accent dark:bg-accent/25 dark:text-accent-light">{c.selector.selfHosted.tagline}</span>
           </div>
           <div class="flex flex-col gap-3">
             <p class="inline-flex items-baseline gap-2">
@@ -73,12 +73,12 @@ const serverIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.2
 
         <!-- Cloud (coming soon) -->
         <div class="flex flex-col gap-6 rounded-3xl bg-mauve-950/2.5 p-8 ring-1 ring-mauve-950/5 sm:p-10 dark:bg-white/5 dark:ring-white/10" data-reveal>
-          <div class="flex items-center justify-between gap-3">
+          <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
             <div class="flex items-center gap-2.5 text-mauve-950 dark:text-white">
               <svg class="size-5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={cloudIcon} />
               <span class="font-mono text-xs/6 font-semibold tracking-widest uppercase">{c.selector.cloud.name}</span>
             </div>
-            <span class="rounded-full bg-mauve-950/10 px-2.5 py-0.5 text-xs/6 font-medium text-mauve-700 dark:bg-white/10 dark:text-mauve-300">{c.cloud.badge}</span>
+            <span class="bg-mauve-950/10 px-2.5 py-1 text-xs/6 font-medium text-mauve-700 dark:bg-white/10 dark:text-mauve-300">{c.cloud.badge}</span>
           </div>
           <div class="flex flex-col gap-3">
             <h2 class="font-display text-2xl/9 font-medium tracking-tight text-pretty text-mauve-950 dark:text-white">{c.cloud.headline}</h2>

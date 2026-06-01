@@ -30,9 +30,9 @@ const {
   <body class="font-sans">
     <!-- Drifting aurora background -->
     <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
-      <div class="absolute -top-1/4 -left-1/5 size-[60vw] rounded-full bg-[#b78ae6] opacity-40 blur-[100px] motion-safe:animate-[aurora-drift-1_22s_ease-in-out_infinite] dark:opacity-[0.28]"></div>
-      <div class="absolute top-1/4 -right-1/5 size-[55vw] rounded-full bg-[#e0b9ea] opacity-35 blur-[100px] motion-safe:animate-[aurora-drift-2_27s_ease-in-out_infinite] dark:opacity-[0.22]"></div>
-      <div class="absolute -bottom-1/4 left-1/4 size-[55vw] rounded-full bg-[#8f6ad6] opacity-35 blur-[110px] motion-safe:animate-[aurora-drift-3_31s_ease-in-out_infinite] dark:opacity-[0.22]"></div>
+      <div class="aurora-blob absolute -top-1/4 -left-1/5 size-[60vw] bg-[#b78ae6] opacity-40 blur-[100px] motion-safe:animate-[aurora-drift-1_22s_ease-in-out_infinite] dark:opacity-[0.28]"></div>
+      <div class="aurora-blob absolute top-1/4 -right-1/5 size-[55vw] bg-[#e0b9ea] opacity-35 blur-[100px] motion-safe:animate-[aurora-drift-2_27s_ease-in-out_infinite] dark:opacity-[0.22]"></div>
+      <div class="aurora-blob absolute -bottom-1/4 left-1/4 size-[55vw] bg-[#8f6ad6] opacity-35 blur-[110px] motion-safe:animate-[aurora-drift-3_31s_ease-in-out_infinite] dark:opacity-[0.22]"></div>
     </div>
     <Navbar lang={lang} />
     <main class="isolate overflow-clip">
