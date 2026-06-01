@@ -1,0 +1,95 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Reminders",
+    metaDescription: "Send escalating Swiss payment reminders, 1st, 2nd and final notice, each with a fresh invoice PDF attached.",
+    h1: "Reminders",
+    intro:
+      "When an invoice goes past due, chohle helps you chase it the Swiss way: three escalating reminder levels, 1. Mahnung, 2. Mahnung and letzte Mahnung (final notice), each sent as its own email with the invoice PDF attached.",
+    eligibleHeading: "Ready vs. waiting",
+    eligibleText:
+      "The page splits overdue invoices into “ready to send,” where the next level's wait window has elapsed, and “waiting,” which shows when each one becomes due. Wait days default to 7 / 14 / 30 and are configurable per level in Settings. Paid and draft invoices are never eligible.",
+    templatesHeading: "Templates & placeholders",
+    templatesBefore: "Each level has its own subject and body, edited in ",
+    templatesLink: "Settings",
+    templatesAfter: ". Placeholders like {customer}, {number}, {amount}, {due} and {days_overdue} are filled in at send time, and a header and footer are added automatically.",
+    pdfHeading: "A fresh PDF every time",
+    pdfText:
+      "Each reminder regenerates the invoice PDF from the current rows, so any correction you made since the original send reaches the customer. Before sending, chohle checks your sender block has a valid IBAN and address, the same gate as a regular invoice.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Mahnungen",
+    metaDescription: "Versende eskalierende Schweizer Zahlungserinnerungen, 1., 2. und letzte Mahnung, je mit frischem Rechnungs-PDF.",
+    h1: "Mahnungen",
+    intro:
+      "Wird eine Rechnung überfällig, hilft chohle beim Nachfassen nach Schweizer Art: drei Eskalationsstufen, 1. Mahnung, 2. Mahnung und letzte Mahnung, jeweils als eigene E-Mail mit angehängtem Rechnungs-PDF.",
+    eligibleHeading: "Bereit vs. wartend",
+    eligibleText:
+      "Die Seite teilt überfällige Rechnungen in „bereit zum Versenden“, wenn das Wartefenster der nächsten Stufe abgelaufen ist, und „wartend“, das zeigt, wann jede fällig wird. Die Wartetage sind standardmässig 7 / 14 / 30 und pro Stufe in den Einstellungen konfigurierbar. Bezahlte und Entwurfs-Rechnungen sind nie fällig.",
+    templatesHeading: "Vorlagen & Platzhalter",
+    templatesBefore: "Jede Stufe hat einen eigenen Betreff und Text, bearbeitet in den ",
+    templatesLink: "Einstellungen",
+    templatesAfter: ". Platzhalter wie {customer}, {number}, {amount}, {due} und {days_overdue} werden beim Versand gefüllt, und Kopf- und Fusszeile werden automatisch ergänzt.",
+    pdfHeading: "Jedes Mal ein frisches PDF",
+    pdfText:
+      "Jede Mahnung erzeugt das Rechnungs-PDF aus den aktuellen Positionen neu, sodass jede Korrektur seit dem Erstversand beim Kunden ankommt. Vor dem Versand prüft chohle, ob dein Sender-Block eine gültige IBAN und Adresse hat, dieselbe Hürde wie beim regulären Rechnungsversand.",
+  },
+  fr: {
+    metaTitle: "chohle docs: Rappels",
+    metaDescription: "Envoyez des rappels de paiement suisses progressifs, 1er, 2e et dernier rappel, chacun avec un nouveau PDF de facture.",
+    h1: "Rappels",
+    intro:
+      "Lorsqu'une facture dépasse son échéance, chohle vous aide à la relancer à la suisse : trois niveaux progressifs, 1er, 2e et dernier rappel, chacun envoyé comme un e-mail à part avec le PDF de la facture en pièce jointe.",
+    eligibleHeading: "Prêt vs. en attente",
+    eligibleText:
+      "La page sépare les factures en retard entre « prêt à envoyer », quand le délai d'attente du niveau suivant est écoulé, et « en attente », qui montre quand chacune devient due. Les délais sont par défaut de 7 / 14 / 30 jours et configurables par niveau dans les Paramètres. Les factures payées et les brouillons ne sont jamais éligibles.",
+    templatesHeading: "Modèles & variables",
+    templatesBefore: "Chaque niveau a son propre objet et corps, modifiés dans les ",
+    templatesLink: "Paramètres",
+    templatesAfter: ". Des variables comme {customer}, {number}, {amount}, {due} et {days_overdue} sont remplies à l'envoi, et un en-tête et un pied de page sont ajoutés automatiquement.",
+    pdfHeading: "Un nouveau PDF à chaque fois",
+    pdfText:
+      "Chaque rappel régénère le PDF de la facture à partir des lignes actuelles, pour que toute correction faite depuis l'envoi initial parvienne au client. Avant l'envoi, chohle vérifie que votre bloc expéditeur a un IBAN et une adresse valides, le même contrôle que pour une facture ordinaire.",
+  },
+  it: {
+    metaTitle: "chohle docs: Solleciti",
+    metaDescription: "Invia solleciti di pagamento svizzeri progressivi, 1°, 2° e ultimo sollecito, ciascuno con un nuovo PDF della fattura.",
+    h1: "Solleciti",
+    intro:
+      "Quando una fattura supera la scadenza, chohle ti aiuta a sollecitarla all'uso svizzero: tre livelli progressivi, 1°, 2° e ultimo sollecito, ciascuno inviato come e-mail a sé con il PDF della fattura allegato.",
+    eligibleHeading: "Pronto vs. in attesa",
+    eligibleText:
+      "La pagina divide le fatture scadute tra « pronto da inviare », quando la finestra di attesa del livello successivo è trascorsa, e « in attesa », che mostra quando ciascuna diventa dovuta. I giorni di attesa sono per impostazione predefinita 7 / 14 / 30 e configurabili per livello nelle Impostazioni. Le fatture pagate e le bozze non sono mai idonee.",
+    templatesHeading: "Modelli & segnaposto",
+    templatesBefore: "Ogni livello ha il proprio oggetto e corpo, modificati nelle ",
+    templatesLink: "Impostazioni",
+    templatesAfter: ". Segnaposto come {customer}, {number}, {amount}, {due} e {days_overdue} vengono compilati all'invio, e un'intestazione e un piè di pagina vengono aggiunti automaticamente.",
+    pdfHeading: "Un PDF nuovo ogni volta",
+    pdfText:
+      "Ogni sollecito rigenera il PDF della fattura dalle righe attuali, così ogni correzione fatta dall'invio originale arriva al cliente. Prima dell'invio, chohle verifica che il blocco mittente abbia un IBAN e un indirizzo validi, lo stesso controllo di una fattura normale.",
+  },
+} as const;
+
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/reminders-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="eligibility">{c.eligibleHeading}</h2>
+  <p>{c.eligibleText}</p>
+
+  <h2 id="templates">{c.templatesHeading}</h2>
+  <p>{c.templatesBefore}<a href={localize("/docs/settings", lang)}>{c.templatesLink}</a>{c.templatesAfter}</p>
+
+  <h2 id="pdf">{c.pdfHeading}</h2>
+  <p>{c.pdfText}</p>
+</DocsLayout>

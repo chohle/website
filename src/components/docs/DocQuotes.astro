@@ -1,0 +1,95 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Quotes",
+    metaDescription: "Send Swiss quotes, track them from draft to accepted, and convert them into an invoice in one click.",
+    h1: "Quotes",
+    intro:
+      "A quote (Offerte) is a pre-sale proposal that turns into an invoice once the customer accepts. It has the same shape as an invoice, minus the payment parts: no QR slip on the PDF, no due date, and a validity window instead.",
+    flowHeading: "The status workflow",
+    flow: "Every quote moves through a clear set of states, draft, sent, accepted and declined, shown as a KPI strip and a status filter on the list. You can mark a quote accepted with or without sending it first.",
+    convertHeading: "From quote to invoice",
+    convertBefore: "Once a quote is accepted, ",
+    convertLink: "convert",
+    convertAfter: " it into an invoice in one click. The line items carry over, the quote is linked to the new invoice, and a banner shows it has been converted so you never bill the same work twice.",
+    itemsHeading: "Line items & articles",
+    itemsBefore: "Quotes are built from the same reusable ",
+    itemsLink: "articles",
+    itemsAfter: " as invoices, with per-line quantities, units, discounts and 8.1 % MWST, so a quote prices itself as you add rows.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Offerten",
+    metaDescription: "Schweizer Offerten versenden, von Entwurf bis angenommen verfolgen und mit einem Klick in eine Rechnung umwandeln.",
+    h1: "Offerten",
+    intro:
+      "Eine Offerte ist ein Vorschlag vor dem Verkauf, der zur Rechnung wird, sobald der Kunde annimmt. Sie hat dieselbe Form wie eine Rechnung, ohne die Zahlungs-Teile: kein QR-Einzahlschein auf dem PDF, kein Fälligkeitsdatum, dafür eine Gültigkeitsfrist.",
+    flowHeading: "Der Status-Workflow",
+    flow: "Jede Offerte durchläuft klare Zustände, Entwurf, versendet, angenommen und abgelehnt, als KPI-Leiste und Status-Filter in der Liste. Du kannst eine Offerte mit oder ohne vorheriges Versenden als angenommen markieren.",
+    convertHeading: "Von der Offerte zur Rechnung",
+    convertBefore: "Sobald eine Offerte angenommen ist, ",
+    convertLink: "wandelst du sie um",
+    convertAfter: ", mit einem Klick in eine Rechnung. Die Positionen werden übernommen, die Offerte mit der neuen Rechnung verknüpft, und ein Banner zeigt die Umwandlung, damit du dieselbe Arbeit nie doppelt verrechnest.",
+    itemsHeading: "Positionen & Artikel",
+    itemsBefore: "Offerten werden aus denselben wiederverwendbaren ",
+    itemsLink: "Artikeln",
+    itemsAfter: " wie Rechnungen aufgebaut, mit Mengen, Einheiten, Rabatten und 8.1 % MWST pro Zeile, so bepreist sich eine Offerte beim Hinzufügen von selbst.",
+  },
+  fr: {
+    metaTitle: "chohle docs: Devis",
+    metaDescription: "Envoyez des devis suisses, suivez-les du brouillon à l'acceptation et convertissez-les en facture d'un clic.",
+    h1: "Devis",
+    intro:
+      "Un devis est une proposition avant-vente qui devient une facture dès que le client l'accepte. Il a la même forme qu'une facture, sans les éléments de paiement : pas de bulletin QR sur le PDF, pas d'échéance, mais une période de validité.",
+    flowHeading: "Le flux des statuts",
+    flow: "Chaque devis passe par des états clairs, brouillon, envoyé, accepté et refusé, affichés sous forme d'indicateurs et d'un filtre de statut dans la liste. Vous pouvez marquer un devis comme accepté avec ou sans l'avoir envoyé d'abord.",
+    convertHeading: "Du devis à la facture",
+    convertBefore: "Une fois un devis accepté, ",
+    convertLink: "convertissez-le",
+    convertAfter: " en facture d'un seul clic. Les lignes sont reprises, le devis est relié à la nouvelle facture, et une bannière indique qu'il a été converti pour ne jamais facturer deux fois le même travail.",
+    itemsHeading: "Lignes & articles",
+    itemsBefore: "Les devis se construisent à partir des mêmes ",
+    itemsLink: "articles",
+    itemsAfter: " réutilisables que les factures, avec quantités, unités, remises et TVA à 8,1 % par ligne, un devis se chiffre tout seul à mesure que vous ajoutez des lignes.",
+  },
+  it: {
+    metaTitle: "chohle docs: Preventivi",
+    metaDescription: "Invia preventivi svizzeri, seguili dalla bozza all'accettazione e convertili in fattura con un clic.",
+    h1: "Preventivi",
+    intro:
+      "Un preventivo è una proposta pre-vendita che diventa una fattura non appena il cliente accetta. Ha la stessa forma di una fattura, senza le parti di pagamento: niente polizza QR sul PDF, nessuna scadenza, ma una finestra di validità.",
+    flowHeading: "Il flusso degli stati",
+    flow: "Ogni preventivo attraversa stati chiari, bozza, inviato, accettato e rifiutato, mostrati come indicatori e come filtro di stato nell'elenco. Puoi segnare un preventivo come accettato con o senza averlo prima inviato.",
+    convertHeading: "Dal preventivo alla fattura",
+    convertBefore: "Una volta accettato un preventivo, ",
+    convertLink: "convertilo",
+    convertAfter: " in fattura con un solo clic. Le voci vengono riportate, il preventivo viene collegato alla nuova fattura e un banner indica che è stato convertito, così non fatturi mai due volte lo stesso lavoro.",
+    itemsHeading: "Voci & articoli",
+    itemsBefore: "I preventivi si costruiscono dagli stessi ",
+    itemsLink: "articoli",
+    itemsAfter: " riutilizzabili delle fatture, con quantità, unità, sconti e IVA all'8,1 % per riga, un preventivo si prezza da solo man mano che aggiungi righe.",
+  },
+} as const;
+
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/quotes-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="workflow">{c.flowHeading}</h2>
+  <p>{c.flow}</p>
+
+  <h2 id="convert">{c.convertHeading}</h2>
+  <p>{c.convertBefore}<a href={localize("/docs/invoicing", lang)}>{c.convertLink}</a>{c.convertAfter}</p>
+
+  <h2 id="articles">{c.itemsHeading}</h2>
+  <p>{c.itemsBefore}<a href={localize("/docs/customers-articles", lang)}>{c.itemsLink}</a>{c.itemsAfter}</p>
+</DocsLayout>

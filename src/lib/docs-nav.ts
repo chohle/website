@@ -13,13 +13,25 @@ export interface DocsGroup {
 
 const structure: { id: string; slugs: string[] }[] = [
   { id: "getting-started", slugs: ["/docs", "/docs/quickstart", "/docs/self-hosting", "/docs/configuration"] },
-  { id: "guides", slugs: ["/docs/invoicing", "/docs/projects", "/docs/email"] },
-  { id: "reference", slugs: ["/docs/docker-cli", "/docs/environment-variables", "/docs/backups"] },
+  {
+    id: "features",
+    slugs: [
+      "/docs/invoicing",
+      "/docs/quotes",
+      "/docs/projects",
+      "/docs/email",
+      "/docs/expenses-income",
+      "/docs/bank-reconciliation",
+      "/docs/reminders",
+      "/docs/customers-articles",
+    ],
+  },
+  { id: "reference", slugs: ["/docs/settings", "/docs/docker-cli", "/docs/environment-variables", "/docs/backups"] },
 ];
 
 const groupTitles: Record<string, Record<Lang, string>> = {
   "getting-started": { en: "Getting started", de: "Erste Schritte", fr: "Premiers pas", it: "Per iniziare" },
-  guides: { en: "Guides", de: "Anleitungen", fr: "Guides", it: "Guide" },
+  features: { en: "Features", de: "Funktionen", fr: "Fonctionnalités", it: "Funzionalità" },
   reference: { en: "Reference", de: "Referenz", fr: "Référence", it: "Riferimento" },
 };
 
@@ -29,8 +41,14 @@ const linkTitles: Record<string, Record<Lang, string>> = {
   "/docs/self-hosting": { en: "Self-hosting", de: "Self-Hosting", fr: "Auto-hébergement", it: "Self-hosting" },
   "/docs/configuration": { en: "Configuration", de: "Konfiguration", fr: "Configuration", it: "Configurazione" },
   "/docs/invoicing": { en: "Invoicing", de: "Rechnungen", fr: "Facturation", it: "Fatturazione" },
-  "/docs/projects": { en: "Projects", de: "Projekte", fr: "Projets", it: "Progetti" },
+  "/docs/quotes": { en: "Quotes", de: "Offerten", fr: "Devis", it: "Preventivi" },
+  "/docs/projects": { en: "Projects & pipeline", de: "Projekte & Pipeline", fr: "Projets & pipeline", it: "Progetti & pipeline" },
   "/docs/email": { en: "Client email", de: "Kunden-E-Mail", fr: "E-mail clients", it: "E-mail dei clienti" },
+  "/docs/expenses-income": { en: "Expenses & income", de: "Ausgaben & Einnahmen", fr: "Dépenses & revenus", it: "Uscite & entrate" },
+  "/docs/bank-reconciliation": { en: "Bank reconciliation", de: "Bankabgleich", fr: "Rapprochement bancaire", it: "Riconciliazione bancaria" },
+  "/docs/reminders": { en: "Reminders", de: "Mahnungen", fr: "Rappels", it: "Solleciti" },
+  "/docs/customers-articles": { en: "Customers & articles", de: "Kunden & Artikel", fr: "Clients & articles", it: "Clienti & articoli" },
+  "/docs/settings": { en: "Settings", de: "Einstellungen", fr: "Paramètres", it: "Impostazioni" },
   "/docs/docker-cli": { en: "Docker & CLI", de: "Docker & CLI", fr: "Docker & CLI", it: "Docker & CLI" },
   "/docs/environment-variables": { en: "Environment variables", de: "Umgebungsvariablen", fr: "Variables d'environnement", it: "Variabili d'ambiente" },
   "/docs/backups": { en: "Backups", de: "Backups", fr: "Sauvegardes", it: "Backup" },

@@ -1,0 +1,8 @@
+---
+import DocExpensesIncome from "../../../components/docs/DocExpensesIncome.astro";
+import { langs, defaultLang, type Lang } from "../../../i18n/config";
+export function getStaticPaths() {
+  return langs.filter((l) => l !== defaultLang).map((l) => ({ params: { lang: l } }));
+}
+---
+<DocExpensesIncome />
