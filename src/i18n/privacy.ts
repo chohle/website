@@ -22,7 +22,7 @@ export interface PrivacyContent {
 const privacy: Partial<Record<Lang, PrivacyContent>> = {
   en: {
     meta: {
-      title: "chohle — Privacy",
+      title: "chohle: Privacy",
       description:
         "How chohle handles your data: when you self-host, it stays on your server. This site collects very little.",
     },
@@ -36,7 +36,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "When you self-host chohle, everything you put into it — invoices, clients, projects, and email — lives <strong>entirely on your own server</strong>. We never receive it, see it, or store it. You're in control of that data, where it's hosted, and how it's protected.",
+            text: "When you self-host chohle, everything you put into it, invoices, clients, projects, and email, lives <strong>entirely on your own server</strong>. We never receive it, see it, or store it. You're in control of that data, where it's hosted, and how it's protected.",
           },
         ],
       },
@@ -69,7 +69,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "A fully managed <strong>chohle Cloud</strong> is on the way. When it launches it will handle data on your behalf, and this policy will be updated to cover exactly how — before you're asked to put anything real into it.",
+            text: "A fully managed <strong>chohle Cloud</strong> is on the way. When it launches it will handle data on your behalf, and this policy will be updated to cover exactly how, before you're asked to put anything real into it.",
           },
         ],
       },
@@ -95,7 +95,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
   },
   de: {
     meta: {
-      title: "chohle — Datenschutz",
+      title: "chohle: Datenschutz",
       description:
         "Wie chohle mit deinen Daten umgeht: Wenn du selbst hostest, bleiben sie auf deinem Server. Diese Website erfasst sehr wenig.",
     },
@@ -109,7 +109,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Wenn du chohle selbst hostest, bleibt alles, was du eingibst — Rechnungen, Kunden, Projekte und E-Mails — <strong>vollständig auf deinem eigenen Server</strong>. Wir erhalten es nie, sehen es nie und speichern es nie. Du hast die Kontrolle über diese Daten, darüber, wo sie liegen, und darüber, wie sie geschützt werden.",
+            text: "Wenn du chohle selbst hostest, bleibt alles, was du eingibst, Rechnungen, Kunden, Projekte und E-Mails, <strong>vollständig auf deinem eigenen Server</strong>. Wir erhalten es nie, sehen es nie und speichern es nie. Du hast die Kontrolle über diese Daten, darüber, wo sie liegen, und darüber, wie sie geschützt werden.",
           },
         ],
       },
@@ -142,7 +142,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Eine vollständig verwaltete <strong>chohle Cloud</strong> ist in Arbeit. Beim Start wird sie Daten in deinem Auftrag verarbeiten, und diese Erklärung wird genau dazu aktualisiert — bevor du gebeten wirst, etwas Echtes hineinzugeben.",
+            text: "Eine vollständig verwaltete <strong>chohle Cloud</strong> ist in Arbeit. Beim Start wird sie Daten in deinem Auftrag verarbeiten, und diese Erklärung wird genau dazu aktualisiert, bevor du gebeten wirst, etwas Echtes hineinzugeben.",
           },
         ],
       },
@@ -168,7 +168,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
   },
   fr: {
     meta: {
-      title: "chohle — Confidentialité",
+      title: "chohle: Confidentialité",
       description:
         "Comment chohle gère vos données : en auto-hébergement, elles restent sur votre serveur. Ce site collecte très peu de choses.",
     },
@@ -182,7 +182,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Lorsque vous auto-hébergez chohle, tout ce que vous y saisissez — factures, clients, projets et e-mails — réside <strong>entièrement sur votre propre serveur</strong>. Nous ne le recevons jamais, ne le voyons jamais et ne le stockons jamais. Vous contrôlez ces données, leur hébergement et leur protection.",
+            text: "Lorsque vous auto-hébergez chohle, tout ce que vous y saisissez, factures, clients, projets et e-mails, réside <strong>entièrement sur votre propre serveur</strong>. Nous ne le recevons jamais, ne le voyons jamais et ne le stockons jamais. Vous contrôlez ces données, leur hébergement et leur protection.",
           },
         ],
       },
@@ -215,7 +215,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Un <strong>chohle Cloud</strong> entièrement géré est en préparation. À son lancement, il traitera des données pour votre compte, et cette politique sera mise à jour pour expliquer précisément comment — avant qu'on vous demande d'y saisir quoi que ce soit de réel.",
+            text: "Un <strong>chohle Cloud</strong> entièrement géré est en préparation. À son lancement, il traitera des données pour votre compte, et cette politique sera mise à jour pour expliquer précisément comment, avant qu'on vous demande d'y saisir quoi que ce soit de réel.",
           },
         ],
       },
@@ -241,7 +241,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
   },
   it: {
     meta: {
-      title: "chohle — Privacy",
+      title: "chohle: Privacy",
       description:
         "Come chohle gestisce i tuoi dati: in self-hosting restano sul tuo server. Questo sito raccoglie pochissimo.",
     },
@@ -255,7 +255,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Quando ospiti chohle autonomamente, tutto ciò che inserisci — fatture, clienti, progetti ed e-mail — risiede <strong>interamente sul tuo server</strong>. Noi non lo riceviamo mai, non lo vediamo mai e non lo memorizziamo mai. Hai il controllo di questi dati, di dove sono ospitati e di come sono protetti.",
+            text: "Quando ospiti chohle autonomamente, tutto ciò che inserisci, fatture, clienti, progetti ed e-mail, risiede <strong>interamente sul tuo server</strong>. Noi non lo riceviamo mai, non lo vediamo mai e non lo memorizziamo mai. Hai il controllo di questi dati, di dove sono ospitati e di come sono protetti.",
           },
         ],
       },
@@ -288,7 +288,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Un <strong>chohle Cloud</strong> completamente gestito è in arrivo. Al lancio tratterà i dati per tuo conto e questa informativa verrà aggiornata per spiegare esattamente come — prima che ti venga chiesto di inserire qualcosa di reale.",
+            text: "Un <strong>chohle Cloud</strong> completamente gestito è in arrivo. Al lancio tratterà i dati per tuo conto e questa informativa verrà aggiornata per spiegare esattamente come, prima che ti venga chiesto di inserire qualcosa di reale.",
           },
         ],
       },
