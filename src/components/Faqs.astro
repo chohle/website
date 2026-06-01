@@ -1,49 +1,32 @@
 ---
-const faqs = [
-  {
-    id: "faq-1",
-    question: "Is batze really free?",
-    answer: "Yes. batze is open source — self-host it for free, for as long as you like. We also offer a paid hosted plan for people who'd rather not run a server themselves.",
-  },
-  {
-    id: "faq-2",
-    question: "Can I self-host it?",
-    answer: "Absolutely. batze is built to run on your own server, and the self-hosting guide walks you through it. Your data never has to leave your infrastructure.",
-  },
-  {
-    id: "faq-3",
-    question: "Does it do Swiss QR-bills?",
-    answer: "Yes. batze generates invoices with a QR-bill that follows the Swiss QR-bill standard, ready for your clients to scan and pay.",
-  },
-  {
-    id: "faq-4",
-    question: "Who owns my data?",
-    answer: "You do. When you self-host, your data stays entirely on your server. On the hosted plan it's still yours — and you can export everything at any time.",
-  },
-];
+import { defaultLang, type Lang } from "../i18n/config";
+import { getHome } from "../i18n/home";
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const c = getHome(lang);
 ---
 
 <section id="faqs" class="py-16">
   <div class="mx-auto grid w-full max-w-2xl grid-cols-1 gap-x-2 gap-y-8 px-6 md:max-w-3xl lg:max-w-7xl lg:grid-cols-2 lg:px-10">
     <div class="flex flex-col gap-6">
-      <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">Questions &amp; Answers</h2>
+      <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">{c.faqsTitle}</h2>
     </div>
     <div class="divide-y divide-mauve-950/10 border-y border-mauve-950/10 dark:divide-white/10 dark:border-white/10">
-      {faqs.map((faq) => (
-        <div id={faq.id}>
+      {c.faqs.map((faq, i) => (
+        <div id={`faq-${i}`}>
           <button
             type="button"
-            id={`${faq.id}-question`}
             command="--toggle"
-            commandfor={`${faq.id}-answer`}
+            commandfor={`faq-${i}-answer`}
             class="flex w-full items-start justify-between gap-6 py-4 text-left text-base/7 text-mauve-950 dark:text-white"
           >
-            {faq.question}
+            {faq.q}
             <svg class="inline-block h-lh in-aria-expanded:hidden" width="13" height="13" viewBox="0 0 13 13" fill="none" stroke="currentColor" stroke-width="1" role="image"><path d="M6.5 0.5V12.5" stroke-linecap="round" stroke-linejoin="round" /><path d="M12.5049 6.49512L0.504883 6.49512" stroke-linecap="round" stroke-linejoin="round" /></svg>
             <svg class="inline-block h-lh not-in-aria-expanded:hidden" width="13" height="1" viewBox="0 0 13 1" fill="none" stroke="currentColor" stroke-width="1" role="image"><path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" d="M12.505.5h-12" /></svg>
           </button>
-          <el-disclosure id={`${faq.id}-answer`} hidden class="-mt-2 flex flex-col gap-2 pr-12 pb-4 text-sm/7 text-mauve-700 dark:text-mauve-400">
-            <p>{faq.answer}</p>
+          <el-disclosure id={`faq-${i}-answer`} hidden class="-mt-2 flex flex-col gap-2 pr-12 pb-4 text-sm/7 text-mauve-700 dark:text-mauve-400">
+            <p>{faq.a}</p>
           </el-disclosure>
         </div>
       ))}

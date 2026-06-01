@@ -1,10 +1,20 @@
 ---
+import { defaultLang, type Lang } from "../i18n/config";
+import { localize } from "../i18n/utils";
+import { useTranslations } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
 const links = [
-  { href: "/features", label: "Features" },
-  { href: "/pricing", label: "Pricing" },
-  { href: "/about", label: "About" },
-  { href: "/docs", label: "Docs", blank: true },
-  { href: "/privacy", label: "Privacy" },
+  { href: localize("/features", lang), label: t("label.features") },
+  { href: localize("/pricing", lang), label: t("nav.pricing") },
+  { href: localize("/about", lang), label: t("nav.about") },
+  { href: localize("/docs", lang), label: t("nav.docs"), blank: true },
+  { href: localize("/privacy", lang), label: t("label.privacy") },
 ];
 
 // Placeholders until the accounts exist.
