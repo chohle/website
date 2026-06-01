@@ -26,6 +26,14 @@ export const docsNav: DocsGroup[] = [
       { title: "Client email", href: "/docs/email" },
     ],
   },
+  {
+    title: "Reference",
+    links: [
+      { title: "Docker & CLI", href: "/docs/docker-cli" },
+      { title: "Environment variables", href: "/docs/environment-variables" },
+      { title: "Backups", href: "/docs/backups" },
+    ],
+  },
 ];
 
 // Flattened, in sidebar order — used for prev/next links.

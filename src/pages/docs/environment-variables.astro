@@ -1,0 +1,47 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import CodeBlock from "../../components/CodeBlock.astro";
+
+const vars = [
+  { name: "PORT", default: "3000", desc: "Port batze listens on." },
+  { name: "BASE_URL", default: "http://localhost:3000", desc: "Public URL batze is served from. Used in links and emails." },
+  { name: "BASE_CURRENCY", default: "CHF", desc: "Default currency for new invoices." },
+  { name: "DATABASE_URL", default: "file:/data/batze.db", desc: "Where batze stores its data." },
+  { name: "SMTP_URL", default: "—", desc: "Connection string for sending email." },
+  { name: "SECRET_KEY", default: "—", desc: "Random string used to sign sessions. Required in production." },
+];
+---
+
+<DocsLayout title="batze docs — Environment variables" description="Every environment variable batze reads, with defaults and descriptions.">
+  <h1>Environment variables</h1>
+  <p>batze is configured entirely through environment variables. Set them in a <code>.env</code> file or pass them to the container with <code>--env-file</code>.</p>
+
+  <h2 id="reference">Reference</h2>
+  <div class="not-prose mt-6 overflow-x-auto rounded-2xl ring-1 ring-mauve-950/10 dark:ring-white/10">
+    <table class="w-full border-collapse text-left text-sm/6">
+      <thead>
+        <tr class="border-b border-mauve-950/10 text-mauve-950 dark:border-white/10 dark:text-white">
+          <th class="px-4 py-3 font-medium">Variable</th>
+          <th class="px-4 py-3 font-medium">Default</th>
+          <th class="px-4 py-3 font-medium">Description</th>
+        </tr>
+      </thead>
+      <tbody class="text-mauve-700 dark:text-mauve-400">
+        {vars.map((v) => (
+          <tr class="border-b border-mauve-950/5 last:border-0 dark:border-white/5">
+            <td class="px-4 py-3 align-top"><code class="rounded bg-mauve-950/5 px-1.5 py-0.5 font-mono text-[0.85em] text-mauve-950 dark:bg-white/10 dark:text-white">{v.name}</code></td>
+            <td class="px-4 py-3 align-top font-mono text-[0.85em]">{v.default}</td>
+            <td class="px-4 py-3 align-top">{v.desc}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="example">Example</h2>
+  <CodeBlock prompt={false} label=".env" code={`PORT=3000
+BASE_URL=https://batze.example.com
+BASE_CURRENCY=CHF
+SMTP_URL=smtp://user:pass@smtp.example.com:587
+SECRET_KEY=change-me-to-a-long-random-string`} />
+</DocsLayout>
