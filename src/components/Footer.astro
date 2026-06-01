@@ -3,7 +3,7 @@ const links = [
   { href: "/features", label: "Features" },
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
-  { href: "/docs", label: "Docs" },
+  { href: "/docs", label: "Docs", blank: true },
   { href: "/privacy", label: "Privacy" },
 ];
 
@@ -21,7 +21,7 @@ const year = new Date().getFullYear();
         <nav>
           <ul class="flex flex-wrap items-center justify-center gap-x-10 gap-y-2">
             {links.map((link) => (
-              <li class="text-mauve-700 dark:text-mauve-400"><a href={link.href}>{link.label}</a></li>
+              <li class="text-mauve-700 dark:text-mauve-400"><a href={link.href} target={link.blank ? "_blank" : undefined} rel={link.blank ? "noopener" : undefined}>{link.label}</a></li>
             ))}
           </ul>
         </nav>

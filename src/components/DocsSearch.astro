@@ -5,8 +5,10 @@ interface Props {
 const { class: className = "" } = Astro.props;
 ---
 
+<!-- Trigger (search field look) -->
 <button
   type="button"
+  data-open-search
   aria-label="Search the docs"
   class={`flex h-8 items-center gap-2 rounded-lg bg-mauve-950/5 px-3 text-sm text-mauve-500 ring-1 ring-mauve-950/10 ring-inset transition hover:ring-mauve-950/20 dark:bg-white/5 dark:ring-white/10 dark:hover:ring-white/20 ${className}`}
 >
@@ -14,3 +16,145 @@ const { class: className = "" } = Astro.props;
   <span class="flex-auto text-left">Search the docs…</span>
   <kbd class="hidden font-mono text-[0.65rem] text-mauve-400 sm:block">⌘K</kbd>
 </button>
+
+<!-- Search dialog -->
+<dialog
+  id="docs-search-dialog"
+  class="fixed top-[12vh] left-1/2 m-0 w-[calc(100%-2rem)] max-w-xl -translate-x-1/2 overflow-hidden rounded-xl bg-mauve-100 p-0 shadow-2xl ring-1 ring-mauve-950/10 backdrop:bg-mauve-950/40 backdrop:backdrop-blur-sm dark:bg-mauve-900 dark:ring-white/10"
+>
+  <div class="relative flex h-12 items-center border-b border-mauve-950/10 dark:border-white/10">
+    <svg class="pointer-events-none absolute left-4 size-5 stroke-mauve-500" fill="none" viewBox="0 0 20 20" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m17 17-3.5-3.5M15 9a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" /></svg>
+    <input
+      id="docs-search-input"
+      type="search"
+      placeholder="Search the docs…"
+      autocomplete="off"
+      class="h-12 w-full appearance-none bg-transparent pr-4 pl-11 text-sm text-mauve-950 outline-hidden placeholder:text-mauve-500 dark:text-white [&::-webkit-search-cancel-button]:hidden"
+    />
+  </div>
+  <div id="docs-search-results" class="max-h-[60vh] overflow-y-auto"></div>
+</dialog>
+
+<script>
+  const dialog = document.getElementById("docs-search-dialog") as HTMLDialogElement | null;
+  const input = document.getElementById("docs-search-input") as HTMLInputElement | null;
+  const resultsEl = document.getElementById("docs-search-results");
+
+  if (dialog && input && resultsEl) {
+    let pagefind: any = null;
+    let selected = 0;
+    let items: { url: string; title: string }[] = [];
+
+    const escapeHtml = (s: string) =>
+      s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c] as string);
+
+    async function loadPagefind() {
+      if (pagefind) return pagefind;
+      try {
+        const mod = "/pagefind/pagefind.js";
+        pagefind = await import(/* @vite-ignore */ mod);
+        await pagefind.options?.({ excerptLength: 18 });
+        return pagefind;
+      } catch {
+        pagefind = false;
+        return false;
+      }
+    }
+
+    function setSelected(i: number) {
+      const els = Array.from(resultsEl!.querySelectorAll<HTMLElement>("[data-result]"));
+      if (!els.length) return;
+      selected = (i + els.length) % els.length;
+      els.forEach((el, idx) => {
+        const on = idx === selected;
+        el.setAttribute("aria-selected", on ? "true" : "false");
+        if (on) el.scrollIntoView({ block: "nearest" });
+      });
+    }
+
+    function renderMessage(html: string) {
+      resultsEl!.innerHTML = `<div class="p-6 text-center text-sm text-mauve-500">${html}</div>`;
+      items = [];
+    }
+
+    async function runSearch(query: string) {
+      if (!query.trim()) {
+        resultsEl!.innerHTML = "";
+        items = [];
+        return;
+      }
+      const pf = await loadPagefind();
+      if (!pf) {
+        renderMessage("Search is only available in a built site.");
+        return;
+      }
+      const search = await pf.search(query);
+      const data = await Promise.all(search.results.slice(0, 6).map((r: any) => r.data()));
+      items = data.map((d: any) => ({ url: d.url, title: d.meta?.title || d.url }));
+      if (!data.length) {
+        renderMessage(`No results for <strong class="font-semibold text-mauve-900 dark:text-white">${escapeHtml(query)}</strong>.`);
+        return;
+      }
+      resultsEl!.innerHTML = data
+        .map(
+          (d: any) => `
+        <a href="${d.url}" data-result aria-selected="false" class="block border-t border-mauve-950/5 px-4 py-3 first:border-t-0 aria-selected:bg-mauve-950/5 dark:border-white/5 dark:aria-selected:bg-white/10 [&_mark]:bg-transparent [&_mark]:font-semibold [&_mark]:text-mauve-950 dark:[&_mark]:text-white">
+          <div class="text-sm font-medium text-mauve-950 dark:text-white">${escapeHtml(d.meta?.title || "Untitled")}</div>
+          <div class="mt-1 line-clamp-1 text-xs text-mauve-500">${d.excerpt || ""}</div>
+        </a>`,
+        )
+        .join("");
+      setSelected(0);
+      resultsEl!.querySelectorAll<HTMLElement>("[data-result]").forEach((el, idx) => {
+        el.addEventListener("mousemove", () => setSelected(idx));
+      });
+    }
+
+    let timer: ReturnType<typeof setTimeout>;
+    input.addEventListener("input", () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => runSearch(input.value), 120);
+    });
+
+    input.addEventListener("keydown", (e) => {
+      if (e.key === "ArrowDown") { e.preventDefault(); setSelected(selected + 1); }
+      else if (e.key === "ArrowUp") { e.preventDefault(); setSelected(selected - 1); }
+      else if (e.key === "Enter") {
+        const item = items[selected];
+        if (item) { e.preventDefault(); window.location.href = item.url; }
+      }
+    });
+
+    function open() {
+      if (dialog!.open) return;
+      dialog!.showModal();
+      loadPagefind();
+      requestAnimationFrame(() => input!.focus());
+    }
+
+    document.querySelectorAll("[data-open-search]").forEach((btn) => btn.addEventListener("click", open));
+
+    window.addEventListener("keydown", (e) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
+        e.preventDefault();
+        open();
+      }
+    });
+
+    // Close when clicking the backdrop
+    dialog.addEventListener("click", (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+
+    // Deep link: #search or #search=query opens (and runs) the search.
+    if (location.hash.startsWith("#search")) {
+      open();
+      const eq = location.hash.indexOf("=");
+      if (eq > -1) {
+        const q = decodeURIComponent(location.hash.slice(eq + 1));
+        input.value = q;
+        runSearch(q);
+      }
+    }
+  }
+</script>

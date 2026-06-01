@@ -4,7 +4,7 @@
 const links = [
   { href: "/pricing", label: "Pricing" },
   { href: "/about", label: "About" },
-  { href: "/docs", label: "Docs" },
+  { href: "/docs", label: "Docs", blank: true },
 ];
 
 // Placeholder for now — point this at the live demo app once it exists.
@@ -22,7 +22,7 @@ const demoBtn =
     <div class="mx-auto flex h-(--scroll-padding-top) max-w-7xl items-center gap-4 px-6 lg:px-10">
       <div class="flex flex-1 gap-8 max-lg:hidden">
         {links.map((link) => (
-          <a href={link.href} class={linkClass}>
+          <a href={link.href} target={link.blank ? "_blank" : undefined} rel={link.blank ? "noopener" : undefined} class={linkClass}>
             {link.label}
             <span class="inline-flex p-1.5 opacity-0 group-hover:opacity-100 lg:hidden" aria-hidden="true">
               <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
@@ -70,7 +70,7 @@ const demoBtn =
           </div>
           <div class="mt-6 flex flex-col gap-6">
             {links.map((link) => (
-              <a href={link.href} class={linkClass}>
+              <a href={link.href} target={link.blank ? "_blank" : undefined} rel={link.blank ? "noopener" : undefined} class={linkClass}>
                 {link.label}
                 <span class="inline-flex p-1.5 opacity-0 group-hover:opacity-100 lg:hidden" aria-hidden="true">
                   <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
