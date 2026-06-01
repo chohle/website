@@ -1,0 +1,114 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Settings",
+    metaDescription: "Configure chohle: appearance and language, your business identity, connected mailboxes, reminder templates and the invoice cover email.",
+    h1: "Settings",
+    intro:
+      "Settings is where you tailor chohle to your business. It's organised into a few tabs, each focused on one part of the setup.",
+    appearanceHeading: "Appearance & language",
+    appearanceText:
+      "Switch between light and dark, and choose your interface language, English, German, French or Italian. Your choice is saved to your account, so the app comes back in the same language on every device.",
+    identityHeading: "Business identity",
+    identityText:
+      "Your sender block, company name, address, IBAN, UID and MWST number, appears on every invoice and drives the Swiss QR-bill. chohle checks it's complete before letting you send, so a half-filled address can never reach a customer.",
+    mailHeading: "Connected mailboxes",
+    mailBefore: "The Mail sync tab is where you ",
+    mailLink: "connect a mailbox",
+    mailAfter: " (Gmail, Outlook or IMAP) so replies to project emails land back in chohle automatically.",
+    templatesHeading: "Reminder & email templates",
+    templatesBefore: "The Reminders tab holds the three escalation ",
+    templatesLink: "reminder templates",
+    templatesAfter: ", and the Email template tab sets the cover message that goes out with every invoice, both with placeholders that are filled in at send time.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Einstellungen",
+    metaDescription: "chohle konfigurieren: Aussehen und Sprache, Geschäftsidentität, verbundene Postfächer, Mahnungsvorlagen und Begleit-E-Mail.",
+    h1: "Einstellungen",
+    intro:
+      "In den Einstellungen passt du chohle an dein Geschäft an. Sie sind in einige Tabs gegliedert, jeder auf einen Teil der Einrichtung fokussiert.",
+    appearanceHeading: "Aussehen & Sprache",
+    appearanceText:
+      "Wechsle zwischen hell und dunkel und wähle deine Oberflächensprache, Englisch, Deutsch, Französisch oder Italienisch. Deine Wahl wird im Konto gespeichert, sodass die App auf jedem Gerät in derselben Sprache erscheint.",
+    identityHeading: "Geschäftsidentität",
+    identityText:
+      "Dein Sender-Block, Firmenname, Adresse, IBAN, UID und MWST-Nummer, erscheint auf jeder Rechnung und steuert die Schweizer QR-Rechnung. chohle prüft die Vollständigkeit vor dem Versand, sodass eine halb ausgefüllte Adresse nie beim Kunden landet.",
+    mailHeading: "Verbundene Postfächer",
+    mailBefore: "Im Tab Mail-Sync ",
+    mailLink: "verbindest du ein Postfach",
+    mailAfter: " (Gmail, Outlook oder IMAP), damit Antworten auf Projekt-E-Mails automatisch in chohle zurückkommen.",
+    templatesHeading: "Mahnungs- & E-Mail-Vorlagen",
+    templatesBefore: "Der Tab Mahnungen enthält die drei eskalierenden ",
+    templatesLink: "Mahnungsvorlagen",
+    templatesAfter: ", und der Tab E-Mail-Vorlage legt die Begleit-Nachricht fest, die mit jeder Rechnung mitgeht, beide mit Platzhaltern, die beim Versand gefüllt werden.",
+  },
+  fr: {
+    metaTitle: "chohle docs: Paramètres",
+    metaDescription: "Configurez chohle : apparence et langue, identité de votre entreprise, boîtes connectées, modèles de rappel et e-mail d'accompagnement.",
+    h1: "Paramètres",
+    intro:
+      "Les Paramètres sont l'endroit où vous adaptez chohle à votre activité. Ils sont organisés en quelques onglets, chacun centré sur une partie de la configuration.",
+    appearanceHeading: "Apparence & langue",
+    appearanceText:
+      "Basculez entre clair et sombre, et choisissez la langue de l'interface, anglais, allemand, français ou italien. Votre choix est enregistré sur votre compte, l'application revient donc dans la même langue sur chaque appareil.",
+    identityHeading: "Identité de l'entreprise",
+    identityText:
+      "Votre bloc expéditeur, nom de l'entreprise, adresse, IBAN, IDE et numéro de TVA, figure sur chaque facture et alimente la QR-facture suisse. chohle vérifie qu'il est complet avant de vous laisser envoyer, pour qu'une adresse à moitié remplie n'atteigne jamais un client.",
+    mailHeading: "Boîtes connectées",
+    mailBefore: "L'onglet Mail sync est l'endroit où vous ",
+    mailLink: "connectez une boîte",
+    mailAfter: " (Gmail, Outlook ou IMAP) pour que les réponses aux e-mails de projet reviennent automatiquement dans chohle.",
+    templatesHeading: "Modèles de rappel & d'e-mail",
+    templatesBefore: "L'onglet Rappels contient les trois ",
+    templatesLink: "modèles de rappel",
+    templatesAfter: " progressifs, et l'onglet Modèle d'e-mail définit le message d'accompagnement envoyé avec chaque facture, tous deux avec des variables remplies à l'envoi.",
+  },
+  it: {
+    metaTitle: "chohle docs: Impostazioni",
+    metaDescription: "Configura chohle: aspetto e lingua, identità aziendale, caselle collegate, modelli di sollecito ed e-mail di accompagnamento.",
+    h1: "Impostazioni",
+    intro:
+      "Le Impostazioni sono il posto in cui adatti chohle alla tua attività. Sono organizzate in alcune schede, ciascuna dedicata a una parte della configurazione.",
+    appearanceHeading: "Aspetto & lingua",
+    appearanceText:
+      "Passa tra chiaro e scuro e scegli la lingua dell'interfaccia, inglese, tedesco, francese o italiano. La tua scelta viene salvata sull'account, così l'app torna nella stessa lingua su ogni dispositivo.",
+    identityHeading: "Identità aziendale",
+    identityText:
+      "Il tuo blocco mittente, nome dell'azienda, indirizzo, IBAN, IDI e numero IVA, compare su ogni fattura e alimenta la QR-fattura svizzera. chohle verifica che sia completo prima di lasciarti inviare, così un indirizzo incompleto non raggiunge mai un cliente.",
+    mailHeading: "Caselle collegate",
+    mailBefore: "La scheda Mail sync è dove ",
+    mailLink: "colleghi una casella",
+    mailAfter: " (Gmail, Outlook o IMAP) così le risposte alle e-mail di progetto tornano automaticamente in chohle.",
+    templatesHeading: "Modelli di sollecito & e-mail",
+    templatesBefore: "La scheda Solleciti contiene i tre ",
+    templatesLink: "modelli di sollecito",
+    templatesAfter: " progressivi, e la scheda Modello e-mail imposta il messaggio di accompagnamento inviato con ogni fattura, entrambi con segnaposto compilati all'invio.",
+  },
+} as const;
+
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/settings-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="appearance">{c.appearanceHeading}</h2>
+  <p>{c.appearanceText}</p>
+
+  <h2 id="identity">{c.identityHeading}</h2>
+  <p>{c.identityText}</p>
+
+  <h2 id="mailboxes">{c.mailHeading}</h2>
+  <p>{c.mailBefore}<a href={localize("/docs/email", lang)}>{c.mailLink}</a>{c.mailAfter}</p>
+
+  <h2 id="templates">{c.templatesHeading}</h2>
+  <p>{c.templatesBefore}<a href={localize("/docs/reminders", lang)}>{c.templatesLink}</a>{c.templatesAfter}</p>
+</DocsLayout>
