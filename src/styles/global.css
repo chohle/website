@@ -1,8 +1,12 @@
 @import "tailwindcss";
 
+/* Self-hosted fonts (no Google Fonts) */
+@import "@fontsource-variable/inter/index.css";
+@import "@fontsource-variable/mona-sans/wdth.css";
+
 @theme {
-  --font-display: "Mona Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Mona Sans Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
 
   --color-mauve-50: oklch(98.5% 0 0);
   --color-mauve-100: oklch(96% 0.003 325.6);
