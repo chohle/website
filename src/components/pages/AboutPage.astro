@@ -1,6 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 import CallToAction from "../CallToAction.astro";
+import Eyebrow from "../Eyebrow.astro";
 import { defaultLang, type Lang } from "../../i18n/config";
 import { useTranslations } from "../../i18n/ui";
 import { localize } from "../../i18n/utils";
@@ -29,8 +30,8 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
   <!-- Hero: two-column with photo -->
   <section id="hero" class="py-16">
     <div class="mx-auto flex w-full max-w-2xl gap-16 px-6 max-xl:flex-col md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <div class="flex flex-1 flex-col items-start justify-center gap-6">
-        <div class="text-sm/7 font-semibold text-mauve-700 dark:text-mauve-400">{c.hero.eyebrow}</div>
+      <div class="flex flex-1 flex-col items-start justify-center gap-6" data-reveal>
+        <Eyebrow>{c.hero.eyebrow}</Eyebrow>
         <h1 class="font-display max-w-2xl text-5xl/12 font-medium tracking-tight text-balance sm:text-[3.5rem]/14 text-mauve-950 dark:text-white">{c.hero.headline}</h1>
         <div class="flex max-w-2xl flex-col gap-4 text-lg/8 text-mauve-700 dark:text-mauve-400">
           <p>{c.hero.intro}</p>
@@ -43,7 +44,7 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
           </a>
         </div>
       </div>
-      <div class="flex flex-1 overflow-hidden rounded-xl outline -outline-offset-1 outline-black/5 *:object-cover dark:outline-white/5">
+      <div class="flex flex-1 overflow-hidden rounded-xl outline -outline-offset-1 outline-black/5 *:object-cover dark:outline-white/5" data-reveal>
         <img src="https://placehold.co/1000x1200/ece7f1/8a7a90?text=me" alt="" width="1000" height="1200" class="not-dark:bg-white/75 dark:bg-black/75" />
       </div>
     </div>
@@ -51,7 +52,7 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
 
   <!-- Story -->
   <section id="story" class="py-16">
-    <div class="mx-auto flex w-full max-w-2xl flex-col gap-6 px-6 text-base/8 text-mauve-700 md:max-w-3xl lg:px-10 dark:text-mauve-400 [&_strong]:font-semibold [&_strong]:text-mauve-950 dark:[&_strong]:text-white">
+    <div class="mx-auto flex w-full max-w-2xl flex-col gap-6 px-6 text-base/8 text-mauve-700 md:max-w-3xl lg:px-10 dark:text-mauve-400 [&_strong]:font-semibold [&_strong]:text-mauve-950 dark:[&_strong]:text-white" data-reveal>
       {c.story.map((p) => <p set:html={p} />)}
     </div>
   </section>
@@ -59,16 +60,16 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
   <!-- Principles -->
   <section id="principles" class="py-16">
     <div class="mx-auto flex w-full max-w-2xl flex-col gap-10 px-6 sm:gap-16 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <div class="flex max-w-2xl flex-col gap-6">
-        <div class="flex flex-col gap-2">
-          <div class="text-sm/7 font-semibold text-mauve-700 dark:text-mauve-400">{c.principlesEyebrow}</div>
+      <div class="flex max-w-2xl flex-col gap-6" data-reveal>
+        <div class="flex flex-col gap-3">
+          <Eyebrow>{c.principlesEyebrow}</Eyebrow>
           <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">{c.principlesHeading}</h2>
         </div>
       </div>
       <div>
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 sm:grid-cols-2">
           {principles.map((p) => (
-            <div class="flex flex-col gap-4">
+            <div class="flex flex-col gap-4" data-reveal>
               <div class="flex size-10 items-center justify-center rounded-lg bg-mauve-950/5 text-mauve-950 dark:bg-white/10 dark:text-white">
                 <svg class="size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" set:html={p.icon} />
               </div>
@@ -83,19 +84,19 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
     </div>
   </section>
 
-  <!-- Personal panel (dark accent) -->
-  <section id="open" class="py-16">
+  <!-- Mission: large centered statement (light, so it doesn't double up with the CTA) -->
+  <section id="open" class="py-16 sm:py-24">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <div class="flex flex-col items-center gap-10 rounded-4xl bg-mauve-950 px-6 py-20 text-center sm:px-16 dark:ring-1 dark:ring-white/10">
-        <p class="font-display mx-auto max-w-3xl text-2xl/9 font-medium tracking-tight text-balance text-white sm:text-3xl/10">
+      <div class="mx-auto flex max-w-3xl flex-col items-center gap-10 text-center" data-reveal>
+        <p class="font-display text-2xl/9 font-medium tracking-tight text-balance text-mauve-950 sm:text-3xl/11 dark:text-white">
           {c.mission.statement}
         </p>
         <div class="flex flex-col items-center gap-4 sm:flex-row">
-          <a href={githubUrl} class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm/7 font-medium bg-mauve-300 text-mauve-950 hover:bg-mauve-200">
+          <a href={githubUrl} class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">
             <svg class="size-4" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" role="image"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
             {t("cta.viewOnGitHub")}
           </a>
-          <a href={docsUrl} class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm/7 font-medium text-white hover:bg-white/10">{t("cta.readDocs")}</a>
+          <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-4 py-2 text-sm/7 font-medium text-mauve-950 ring-1 ring-inset ring-mauve-950/15 hover:bg-mauve-950/5 dark:text-white dark:ring-white/15 dark:hover:bg-white/10">{t("cta.readDocs")}</a>
         </div>
       </div>
     </div>

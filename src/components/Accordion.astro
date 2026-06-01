@@ -1,0 +1,30 @@
+---
+// Shared FAQ accordion — same look on every page (home, pricing, …).
+// Native <details> with a shared `name` ⇒ only one item open at a time, no JS.
+// No border/ring — just a card background that deepens on hover/open.
+interface Props {
+  items: { q: string; a: string }[];
+  idPrefix?: string;
+  class?: string;
+}
+const { items, idPrefix = "faq", class: className = "" } = Astro.props;
+---
+
+<div class={`flex flex-col gap-3 ${className}`}>
+  {items.map((faq) => (
+    <details
+      name={idPrefix}
+      class="group rounded-2xl bg-mauve-950/2.5 transition-colors hover:bg-mauve-950/4 open:bg-mauve-950/4 dark:bg-white/5 dark:hover:bg-white/8 dark:open:bg-white/8"
+    >
+      <summary class="flex cursor-pointer list-none items-center justify-between gap-6 px-5 py-5 text-left text-base/7 font-medium text-mauve-950 select-none [&::-webkit-details-marker]:hidden dark:text-white">
+        {faq.q}
+        <span class="grid size-8 shrink-0 place-items-center rounded-full bg-mauve-950/5 text-mauve-950 transition-transform group-open:rotate-180 dark:bg-white/10 dark:text-white">
+          <svg class="size-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" role="image"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        </span>
+      </summary>
+      <div class="-mt-1 flex flex-col gap-2 px-5 pr-12 pb-5 text-sm/7 text-mauve-700 dark:text-mauve-400">
+        <p>{faq.a}</p>
+      </div>
+    </details>
+  ))}
+</div>

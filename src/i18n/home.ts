@@ -8,6 +8,7 @@ export interface HomeContent {
   open: { eyebrow: string; headline: string; body: string };
   pricing: { headline: string; body: string };
   faqsTitle: string;
+  faqsSub: string;
   faqs: { q: string; a: string }[];
 }
 
@@ -49,6 +50,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
       body: "Free forever if you self-host. A hosted plan for when you'd rather not run a server yourself.",
     },
     faqsTitle: "Questions & Answers",
+    faqsSub: "Everything worth knowing before you try chohle. Can't find your answer? The docs go deeper.",
     faqs: [
       { q: "Is chohle really free?", a: "Yes. chohle is open source — self-host it for free, for as long as you like. We also offer a paid hosted plan for people who'd rather not run a server themselves." },
       { q: "Can I self-host it?", a: "Absolutely. chohle is built to run on your own server, and the self-hosting guide walks you through it. Your data never has to leave your infrastructure." },
@@ -93,6 +95,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
       body: "Für immer kostenlos, wenn du selbst hostest. Ein gehosteter Plan, wenn du keinen Server betreiben möchtest.",
     },
     faqsTitle: "Fragen & Antworten",
+    faqsSub: "Alles Wissenswerte, bevor du chohle ausprobierst. Nichts gefunden? Die Doku geht tiefer.",
     faqs: [
       { q: "Ist chohle wirklich kostenlos?", a: "Ja. chohle ist Open Source – hoste es kostenlos, so lange du möchtest. Es gibt zusätzlich einen kostenpflichtigen gehosteten Plan für alle, die keinen eigenen Server betreiben wollen." },
       { q: "Kann ich es selbst hosten?", a: "Auf jeden Fall. chohle ist dafür gebaut, auf deinem eigenen Server zu laufen, und die Self-Hosting-Anleitung führt dich Schritt für Schritt durch. Deine Daten müssen deine Infrastruktur nie verlassen." },
@@ -137,6 +140,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
       body: "Gratuit pour toujours en auto-hébergement. Une offre hébergée si vous préférez ne pas gérer de serveur.",
     },
     faqsTitle: "Questions & réponses",
+    faqsSub: "Tout ce qu'il faut savoir avant d'essayer chohle. Vous ne trouvez pas ? La documentation va plus loin.",
     faqs: [
       { q: "chohle est-il vraiment gratuit ?", a: "Oui. chohle est open source — auto-hébergez-le gratuitement, aussi longtemps que vous voulez. Nous proposons aussi une offre hébergée payante pour ceux qui préfèrent ne pas gérer de serveur." },
       { q: "Puis-je l'auto-héberger ?", a: "Tout à fait. chohle est conçu pour tourner sur votre propre serveur, et le guide d'auto-hébergement vous accompagne pas à pas. Vos données n'ont jamais à quitter votre infrastructure." },
@@ -181,6 +185,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
       body: "Gratis per sempre in self-hosting. Un piano ospitato per quando preferisci non gestire un server.",
     },
     faqsTitle: "Domande e risposte",
+    faqsSub: "Tutto quello che vale la pena sapere prima di provare chohle. Non trovi la risposta? La documentazione approfondisce.",
     faqs: [
       { q: "chohle è davvero gratuito?", a: "Sì. chohle è open source — ospitalo gratis, per tutto il tempo che vuoi. Offriamo anche un piano ospitato a pagamento per chi preferisce non gestire un server." },
       { q: "Posso ospitarlo da solo?", a: "Assolutamente. chohle è fatto per girare sul tuo server e la guida al self-hosting ti accompagna passo dopo passo. I tuoi dati non devono mai lasciare la tua infrastruttura." },

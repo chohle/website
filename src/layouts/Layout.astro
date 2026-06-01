@@ -22,11 +22,18 @@ const {
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="data:," />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    <script is:inline>document.documentElement.classList.add("reveal-ready");</script>
   </head>
   <body class="font-sans">
+    <!-- Drifting aurora background -->
+    <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden" aria-hidden="true">
+      <div class="absolute -top-1/4 -left-1/5 size-[60vw] rounded-full bg-[#b78ae6] opacity-40 blur-[100px] motion-safe:animate-[aurora-drift-1_22s_ease-in-out_infinite] dark:opacity-[0.28]"></div>
+      <div class="absolute top-1/4 -right-1/5 size-[55vw] rounded-full bg-[#e0b9ea] opacity-35 blur-[100px] motion-safe:animate-[aurora-drift-2_27s_ease-in-out_infinite] dark:opacity-[0.22]"></div>
+      <div class="absolute -bottom-1/4 left-1/4 size-[55vw] rounded-full bg-[#8f6ad6] opacity-35 blur-[110px] motion-safe:animate-[aurora-drift-3_31s_ease-in-out_infinite] dark:opacity-[0.22]"></div>
+    </div>
     <Navbar lang={lang} />
     <main class="isolate overflow-clip">
       <slot />
@@ -34,6 +41,33 @@ const {
     <Footer lang={lang} />
     <script>
       import "@tailwindplus/elements";
+    </script>
+    <script is:inline>
+      (function () {
+        if (!("IntersectionObserver" in window)) {
+          document.documentElement.classList.remove("reveal-ready");
+          return;
+        }
+        var io = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { rootMargin: "0px 0px -8% 0px", threshold: 0.08 }
+        );
+        function run() {
+          document.querySelectorAll("[data-reveal]").forEach(function (el) {
+            io.observe(el);
+          });
+        }
+        if (document.readyState === "loading")
+          document.addEventListener("DOMContentLoaded", run);
+        else run();
+      })();
     </script>
   </body>
 </html>
