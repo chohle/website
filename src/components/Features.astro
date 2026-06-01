@@ -1,60 +1,49 @@
 ---
 import Screenshot from "./Screenshot.astro";
+import { defaultLang, type Lang } from "../i18n/config";
+import { useTranslations } from "../i18n/ui";
+import { localize } from "../i18n/utils";
+import { getHome } from "../i18n/home";
 
-// Full feature docs live on /features — these rows are the showcase.
-const featuresPage = "/features";
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+const c = getHome(lang).features;
 
-const features = [
-  {
-    title: "Invoicing",
-    body: "Create a Swiss QR-bill in seconds, send it, and let batze track what's paid and gently chase what's overdue.",
-    color: "blue",
-    placement: "bottom-right",
-  },
-  {
-    title: "Projects",
-    body: "Group work into projects, log your hours, and know which clients are actually worth it before you take on more.",
-    color: "purple",
-    placement: "top-left",
-  },
-  {
-    title: "Email",
-    body: "Keep client conversations right next to the work they're about — no more digging through a separate inbox.",
-    color: "brown",
-    placement: "bottom-left",
-  },
+const style = [
+  { color: "blue", placement: "bottom-right" },
+  { color: "purple", placement: "top-left" },
+  { color: "brown", placement: "bottom-left" },
 ] as const;
+const featuresPage = localize("/features", lang);
 ---
 
 <section id="features" class="py-16">
   <div class="mx-auto flex w-full max-w-2xl flex-col gap-10 px-6 sm:gap-16 md:max-w-3xl lg:max-w-7xl lg:px-10">
     <div class="flex max-w-2xl flex-col gap-6">
       <div class="flex flex-col gap-2">
-        <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">From the first quote to the final payment.</h2>
+        <h2 class="font-display text-3xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-[2rem]/10 dark:text-white">{c.headline}</h2>
       </div>
       <div class="text-base/7 text-pretty text-mauve-700 dark:text-mauve-400">
-        <p>
-          Most tools make you stitch together invoicing, project tracking, and email. batze keeps all three in one
-          calm place, so nothing falls through the cracks.
-        </p>
+        <p>{c.sub}</p>
       </div>
     </div>
     <div>
       <div class="grid grid-cols-1 gap-6">
-        {features.map((feature) => (
+        {c.items.map((item, i) => (
           <div class="group grid grid-flow-dense grid-cols-1 gap-2 rounded-lg bg-mauve-950/2.5 p-2 lg:grid-cols-2 dark:bg-white/5">
             <div class="flex flex-col justify-between gap-6 p-6 sm:gap-10 sm:p-10 lg:p-6 lg:group-even:col-start-2">
               <div class="text-xl/8 sm:text-2xl/9">
-                <h3 class="text-mauve-950 dark:text-white">{feature.title}</h3>
-                <div class="flex flex-col gap-4 text-mauve-500"><p>{feature.body}</p></div>
+                <h3 class="text-mauve-950 dark:text-white">{item.title}</h3>
+                <div class="flex flex-col gap-4 text-mauve-500"><p>{item.body}</p></div>
               </div>
               <a href={featuresPage} class="inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950 dark:text-white">
-                Learn more
+                {t("cta.learnMore")}
                 <svg class="inline-block" width="5" height="8" viewBox="0 0 5 8" fill="currentColor" role="image"><path fill-rule="evenodd" clip-rule="evenodd" d="M.22.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06L1.28 7.78A.75.75 0 01.22 6.72L2.94 4 .22 1.28a.75.75 0 010-1.06z" /></svg>
               </a>
             </div>
             <div class="relative overflow-hidden rounded-sm lg:group-even:col-start-1 dark:after:absolute dark:after:inset-0 dark:after:rounded-sm dark:after:outline-1 dark:after:-outline-offset-1 dark:after:outline-white/10">
-              <Screenshot color={feature.color} placement={feature.placement}>
+              <Screenshot color={style[i].color} placement={style[i].placement}>
                 <img src="https://placehold.co/1200x760?text=batze" alt="" width="1200" height="760" class="bg-white/75 sm:hidden dark:bg-black/75" />
                 <img src="https://placehold.co/1600x900?text=batze" alt="" width="1600" height="900" class="bg-white/75 max-sm:hidden dark:bg-black/75" />
               </Screenshot>

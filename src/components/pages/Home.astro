@@ -1,0 +1,26 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import Hero from "../Hero.astro";
+import Features from "../Features.astro";
+import WhyBatze from "../WhyBatze.astro";
+import OpenSource from "../OpenSource.astro";
+import PricingTeaser from "../PricingTeaser.astro";
+import Faqs from "../Faqs.astro";
+import CallToAction from "../CallToAction.astro";
+import { defaultLang, type Lang } from "../../i18n/config";
+import { getHome } from "../../i18n/home";
+
+interface Props { lang?: Lang }
+const { lang = defaultLang } = Astro.props;
+const meta = getHome(lang).meta;
+---
+
+<Layout title={meta.title} description={meta.description} lang={lang}>
+  <Hero lang={lang} />
+  <Features lang={lang} />
+  <WhyBatze lang={lang} />
+  <OpenSource lang={lang} />
+  <PricingTeaser lang={lang} />
+  <Faqs lang={lang} />
+  <CallToAction lang={lang} />
+</Layout>

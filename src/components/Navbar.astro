@@ -1,13 +1,20 @@
 ---
-// Header — built incrementally. Now: logo, nav links, a single "demo" CTA to
-// the live app, and a mobile slide-over menu. Deferred: dropdowns, search, etc.
+import { langs, languages, defaultLang, type Lang } from "../i18n/config";
+import { localize, switchLocalePath } from "../i18n/utils";
+import { useTranslations } from "../i18n/ui";
+
+interface Props {
+  lang?: Lang;
+}
+const { lang = defaultLang } = Astro.props;
+const t = useTranslations(lang);
+
 const links = [
-  { href: "/pricing", label: "Pricing" },
-  { href: "/about", label: "About" },
-  { href: "/docs", label: "Docs", blank: true },
+  { href: "/pricing", label: t("nav.pricing") },
+  { href: "/about", label: t("nav.about") },
+  { href: "/docs", label: t("nav.docs"), blank: true },
 ];
 
-// Placeholder for now — point this at the live demo app once it exists.
 const demoUrl = "#";
 
 const linkClass =
@@ -22,7 +29,7 @@ const demoBtn =
     <div class="mx-auto flex h-(--scroll-padding-top) max-w-7xl items-center gap-4 px-6 lg:px-10">
       <div class="flex flex-1 gap-8 max-lg:hidden">
         {links.map((link) => (
-          <a href={link.href} target={link.blank ? "_blank" : undefined} rel={link.blank ? "noopener" : undefined} class={linkClass}>
+          <a href={link.blank ? link.href : localize(link.href, lang)} target={link.blank ? "_blank" : undefined} rel={link.blank ? "noopener" : undefined} class={linkClass}>
             {link.label}
             <span class="inline-flex p-1.5 opacity-0 group-hover:opacity-100 lg:hidden" aria-hidden="true">
               <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
@@ -32,13 +39,26 @@ const demoBtn =
       </div>
 
       <div class="flex items-center">
-        <a href="/" class="inline-flex items-stretch" aria-label="batze home">
+        <a href={localize("/", lang)} class="inline-flex items-stretch" aria-label="batze home">
           <span class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">batze</span>
         </a>
       </div>
 
       <div class="flex flex-1 items-center justify-end gap-4">
-        <a href={demoUrl} class={`${demoBtn} max-lg:hidden`}>Try the demo</a>
+        <div class="flex items-center gap-2 text-xs font-medium max-lg:hidden" aria-label={t("lang.label")}>
+          {langs.map((l) => (
+            <a
+              href={switchLocalePath(Astro.url, l)}
+              hreflang={l}
+              aria-current={l === lang ? "true" : undefined}
+              class={l === lang ? "text-mauve-950 dark:text-white" : "text-mauve-500 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white"}
+            >
+              {l.toUpperCase()}
+            </a>
+          ))}
+        </div>
+
+        <a href={demoUrl} class={`${demoBtn} max-lg:hidden`}>{t("cta.tryDemo")}</a>
 
         <button
           command="show-modal"
@@ -70,14 +90,26 @@ const demoBtn =
           </div>
           <div class="mt-6 flex flex-col gap-6">
             {links.map((link) => (
-              <a href={link.href} target={link.blank ? "_blank" : undefined} rel={link.blank ? "noopener" : undefined} class={linkClass}>
+              <a href={link.blank ? link.href : localize(link.href, lang)} target={link.blank ? "_blank" : undefined} rel={link.blank ? "noopener" : undefined} class={linkClass}>
                 {link.label}
                 <span class="inline-flex p-1.5 opacity-0 group-hover:opacity-100 lg:hidden" aria-hidden="true">
                   <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" /></svg>
                 </span>
               </a>
             ))}
-            <a href={demoUrl} class={`${demoBtn} mt-2 self-start`}>Try the demo</a>
+            <a href={demoUrl} class={`${demoBtn} mt-2 self-start`}>{t("cta.tryDemo")}</a>
+            <div class="mt-2 flex items-center gap-4 text-sm font-medium" aria-label={t("lang.label")}>
+              {langs.map((l) => (
+                <a
+                  href={switchLocalePath(Astro.url, l)}
+                  hreflang={l}
+                  aria-current={l === lang ? "true" : undefined}
+                  class={l === lang ? "text-mauve-950 dark:text-white" : "text-mauve-500 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white"}
+                >
+                  {languages[l]}
+                </a>
+              ))}
+            </div>
           </div>
         </el-dialog-panel>
       </dialog>

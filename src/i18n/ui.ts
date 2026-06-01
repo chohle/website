@@ -1,0 +1,93 @@
+import { defaultLang, type Lang } from "./config";
+
+// Shared chrome + common strings (navbar, footer, buttons, shared CTA).
+export const ui = {
+  en: {
+    "nav.pricing": "Pricing",
+    "nav.about": "About",
+    "nav.docs": "Docs",
+    "label.features": "Features",
+    "label.privacy": "Privacy",
+    "badge.openSource": "batze is open source",
+    "cta.tryDemo": "Try the demo",
+    "cta.viewOnGitHub": "View on GitHub",
+    "cta.readDocs": "Read the docs",
+    "cta.seeHowItWorks": "See how it works",
+    "cta.learnMore": "Learn more",
+    "cta.joinWaitlist": "Join the waitlist",
+    "cta.chatWithUs": "Chat with us",
+    "cta.bookDemo": "Book a demo",
+    "cta.seePricing": "See pricing",
+    "cta.title": "Ready to get your admin under control?",
+    "cta.body": "Try the live demo — no account needed — or grab the code and run batze yourself.",
+    "lang.label": "Language",
+  },
+  de: {
+    "nav.pricing": "Preise",
+    "nav.about": "Über uns",
+    "nav.docs": "Doku",
+    "label.features": "Funktionen",
+    "label.privacy": "Datenschutz",
+    "badge.openSource": "batze ist Open Source",
+    "cta.tryDemo": "Demo testen",
+    "cta.viewOnGitHub": "Auf GitHub ansehen",
+    "cta.readDocs": "Doku lesen",
+    "cta.seeHowItWorks": "So funktioniert's",
+    "cta.learnMore": "Mehr erfahren",
+    "cta.joinWaitlist": "Auf die Warteliste",
+    "cta.chatWithUs": "Schreib uns",
+    "cta.bookDemo": "Demo buchen",
+    "cta.seePricing": "Preise ansehen",
+    "cta.title": "Bereit, deinen Papierkram in den Griff zu bekommen?",
+    "cta.body": "Teste die Live-Demo – ganz ohne Konto – oder hol dir den Code und betreibe batze selbst.",
+    "lang.label": "Sprache",
+  },
+  fr: {
+    "nav.pricing": "Tarifs",
+    "nav.about": "À propos",
+    "nav.docs": "Docs",
+    "label.features": "Fonctionnalités",
+    "label.privacy": "Confidentialité",
+    "badge.openSource": "batze est open source",
+    "cta.tryDemo": "Tester la démo",
+    "cta.viewOnGitHub": "Voir sur GitHub",
+    "cta.readDocs": "Lire la documentation",
+    "cta.seeHowItWorks": "Voir comment ça marche",
+    "cta.learnMore": "En savoir plus",
+    "cta.joinWaitlist": "Rejoindre la liste d'attente",
+    "cta.chatWithUs": "Discuter avec nous",
+    "cta.bookDemo": "Réserver une démo",
+    "cta.seePricing": "Voir les tarifs",
+    "cta.title": "Prêt à reprendre le contrôle de votre administratif ?",
+    "cta.body": "Essayez la démo en ligne — sans compte — ou récupérez le code et hébergez batze vous-même.",
+    "lang.label": "Langue",
+  },
+  it: {
+    "nav.pricing": "Prezzi",
+    "nav.about": "Chi siamo",
+    "nav.docs": "Docs",
+    "label.features": "Funzionalità",
+    "label.privacy": "Privacy",
+    "badge.openSource": "batze è open source",
+    "cta.tryDemo": "Prova la demo",
+    "cta.viewOnGitHub": "Vedi su GitHub",
+    "cta.readDocs": "Leggi la documentazione",
+    "cta.seeHowItWorks": "Scopri come funziona",
+    "cta.learnMore": "Scopri di più",
+    "cta.joinWaitlist": "Iscriviti alla lista d'attesa",
+    "cta.chatWithUs": "Scrivici",
+    "cta.bookDemo": "Prenota una demo",
+    "cta.seePricing": "Vedi i prezzi",
+    "cta.title": "Pronto a mettere ordine nella burocrazia?",
+    "cta.body": "Prova la demo dal vivo — senza account — oppure scarica il codice ed esegui batze da solo.",
+    "lang.label": "Lingua",
+  },
+} as const;
+
+export type UIKey = keyof (typeof ui)["en"];
+
+export function useTranslations(lang: Lang) {
+  return function t(key: UIKey): string {
+    return (ui[lang] as Record<string, string>)[key] ?? ui[defaultLang][key];
+  };
+}
