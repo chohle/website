@@ -1,27 +1,4 @@
 ---
-import DocsLayout from "../../layouts/DocsLayout.astro";
-import CodeBlock from "../../components/CodeBlock.astro";
+import DocConfiguration from "../../components/docs/DocConfiguration.astro";
 ---
-
-<DocsLayout title="batze docs — Configuration" description="Configure batze with environment variables: port, currency, database, and email.">
-  <h1>Configuration</h1>
-  <p>batze is configured entirely with environment variables — drop them in a <code>.env</code> file or pass them to the container.</p>
-
-  <h2 id="common">Common settings</h2>
-  <ul>
-    <li><code>PORT</code> — the port batze listens on (default <code>3000</code>)</li>
-    <li><code>BASE_CURRENCY</code> — your default invoice currency, e.g. <code>CHF</code></li>
-    <li><code>DATABASE_URL</code> — where to store data (defaults to a local file)</li>
-    <li><code>SMTP_URL</code> — connection string for sending email</li>
-  </ul>
-
-  <CodeBlock prompt={false} label=".env" code={`PORT=3000
-BASE_CURRENCY=CHF
-SMTP_URL=smtp://user:pass@smtp.example.com:587`} />
-
-  <h2 id="email">Sending email</h2>
-  <p>
-    Set <code>SMTP_URL</code> to your provider's connection string and batze will use it to send invoices and replies.
-    See <a href="/docs/email">Client email</a> for connecting an inbox as well.
-  </p>
-</DocsLayout>
+<DocConfiguration />

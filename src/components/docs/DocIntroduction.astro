@@ -1,0 +1,135 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "batze docs — Introduction",
+    metaDescription:
+      "Introduction to batze: open-source invoicing, projects, and client email you can self-host.",
+    h1: "Introduction",
+    introA: "Welcome to the batze docs. batze is an open-source tool for",
+    introAStrong: "invoicing, projects, and client email",
+    introAEnd: ", built to run on your own server.",
+    introBStart: "It's a Node.js and Nuxt app. Head to the",
+    quickStart: "Quick start",
+    introBMid: "to try it with Docker, or the",
+    selfHosting: "self-hosting guide",
+    introBEnd: "to run a proper copy.",
+    whatHeading: "What batze does",
+    what1: "Swiss-ready",
+    what1Strong: "invoicing",
+    what1End: "with QR-bills and VAT",
+    what2Strong: "Projects",
+    what2End: "and time tracking, billable straight to an invoice",
+    what3: "Client",
+    what3Strong: "email",
+    what3End: ", kept right next to the work it relates to",
+    statusHeading: "Project status",
+    status:
+      "batze is built in the open and still evolving — it started as a learning project and grew into something usable. These docs grow alongside it, so expect a few gaps for now.",
+  },
+  de: {
+    metaTitle: "batze Doku — Einführung",
+    metaDescription:
+      "Einführung in batze: Open-Source-Rechnungsstellung, Projekte und Kunden-E-Mail zum Selbsthosten.",
+    h1: "Einführung",
+    introA: "Willkommen bei der batze-Doku. batze ist ein Open-Source-Tool für",
+    introAStrong: "Rechnungsstellung, Projekte und Kunden-E-Mail",
+    introAEnd: ", gebaut für den Betrieb auf dem eigenen Server.",
+    introBStart: "Es ist eine Node.js- und Nuxt-App. Geh zum",
+    quickStart: "Schnellstart",
+    introBMid: "um es mit Docker auszuprobieren, oder zur",
+    selfHosting: "Self-Hosting-Anleitung",
+    introBEnd: "für eine richtige Installation.",
+    whatHeading: "Was batze macht",
+    what1Strong: "Rechnungsstellung",
+    what1: "Schweiz-taugliche",
+    what1End: "mit QR-Rechnungen und MWST",
+    what2Strong: "Projekte",
+    what2End: "und Zeiterfassung, direkt auf eine Rechnung verrechenbar",
+    what3: "Kunden-",
+    what3Strong: "E-Mail",
+    what3End: ", direkt bei der zugehörigen Arbeit abgelegt",
+    statusHeading: "Projektstatus",
+    status:
+      "batze wird offen entwickelt und ist weiterhin in Bewegung — es begann als Lernprojekt und wuchs zu etwas Brauchbarem. Diese Doku wächst mit, also rechne vorerst mit ein paar Lücken.",
+  },
+  fr: {
+    metaTitle: "Doc batze — Introduction",
+    metaDescription:
+      "Introduction à batze : facturation, projets et e-mail client open source que vous pouvez auto-héberger.",
+    h1: "Introduction",
+    introA: "Bienvenue dans la doc batze. batze est un outil open source pour la",
+    introAStrong: "facturation, les projets et l'e-mail client",
+    introAEnd: ", conçu pour tourner sur votre propre serveur.",
+    introBStart: "C'est une application Node.js et Nuxt. Rendez-vous sur le",
+    quickStart: "Démarrage rapide",
+    introBMid: "pour l'essayer avec Docker, ou sur le",
+    selfHosting: "guide d'auto-hébergement",
+    introBEnd: "pour une installation complète.",
+    whatHeading: "Ce que fait batze",
+    what1Strong: "facturation",
+    what1: "Prête pour la Suisse,",
+    what1End: "avec QR-factures et TVA",
+    what2Strong: "Projets",
+    what2End: "et suivi du temps, facturables directement sur une facture",
+    what3: "E-mail",
+    what3Strong: "client",
+    what3End: ", gardé juste à côté du travail concerné",
+    statusHeading: "État du projet",
+    status:
+      "batze est développé ouvertement et évolue encore — il a commencé comme un projet d'apprentissage avant de devenir réellement utilisable. Cette doc grandit avec lui, attendez-vous donc à quelques lacunes pour l'instant.",
+  },
+  it: {
+    metaTitle: "Doc batze — Introduzione",
+    metaDescription:
+      "Introduzione a batze: fatturazione, progetti ed e-mail clienti open source che puoi auto-ospitare.",
+    h1: "Introduzione",
+    introA: "Benvenuto nella doc di batze. batze è uno strumento open source per la",
+    introAStrong: "fatturazione, i progetti e l'e-mail clienti",
+    introAEnd: ", pensato per girare sul tuo server.",
+    introBStart: "È un'app Node.js e Nuxt. Vai alla",
+    quickStart: "Avvio rapido",
+    introBMid: "per provarla con Docker, oppure alla",
+    selfHosting: "guida all'auto-hosting",
+    introBEnd: "per un'installazione completa.",
+    whatHeading: "Cosa fa batze",
+    what1Strong: "fatturazione",
+    what1: "Pronta per la Svizzera,",
+    what1End: "con QR-fatture e IVA",
+    what2Strong: "Progetti",
+    what2End: "e monitoraggio del tempo, fatturabili direttamente su una fattura",
+    what3: "E-mail",
+    what3Strong: "clienti",
+    what3End: ", tenuta proprio accanto al lavoro a cui si riferisce",
+    statusHeading: "Stato del progetto",
+    status:
+      "batze è sviluppato in modo aperto ed è ancora in evoluzione — è nato come progetto di apprendimento ed è cresciuto fino a diventare qualcosa di utilizzabile. Questa doc cresce insieme ad esso, quindi per ora aspettati qualche lacuna.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>
+    {c.introA} <strong>{c.introAStrong}</strong>{c.introAEnd}
+  </p>
+  <p>
+    {c.introBStart} <a href={localize("/docs/quickstart", lang)}>{c.quickStart}</a> {c.introBMid}
+    <a href={localize("/docs/self-hosting", lang)}>{c.selfHosting}</a> {c.introBEnd}
+  </p>
+
+  <h2 id="what-batze-does">{c.whatHeading}</h2>
+  <ul>
+    <li>{c.what1} <strong>{c.what1Strong}</strong> {c.what1End}</li>
+    <li><strong>{c.what2Strong}</strong> {c.what2End}</li>
+    <li>{c.what3} <strong>{c.what3Strong}</strong>{c.what3End}</li>
+  </ul>
+
+  <h2 id="status">{c.statusHeading}</h2>
+  <p>{c.status}</p>
+</DocsLayout>

@@ -1,0 +1,114 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import CodeBlock from "../../components/CodeBlock.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "batze docs — Configuration",
+    metaDescription:
+      "Configure batze with environment variables: port, currency, database, and email.",
+    h1: "Configuration",
+    introA: "batze is configured entirely with environment variables — drop them in a",
+    introB: "file or pass them to the container.",
+    commonHeading: "Common settings",
+    port: "the port batze listens on (default",
+    portEnd: ")",
+    currency: "your default invoice currency, e.g.",
+    database: "where to store data (defaults to a local file)",
+    smtp: "connection string for sending email",
+    emailHeading: "Sending email",
+    emailA: "Set",
+    emailB:
+      "to your provider's connection string and batze will use it to send invoices and replies. See",
+    emailLink: "Client email",
+    emailEnd: "for connecting an inbox as well.",
+  },
+  de: {
+    metaTitle: "batze Doku — Konfiguration",
+    metaDescription:
+      "Konfiguriere batze mit Umgebungsvariablen: Port, Währung, Datenbank und E-Mail.",
+    h1: "Konfiguration",
+    introA: "batze wird vollständig über Umgebungsvariablen konfiguriert — leg sie in eine",
+    introB: "Datei oder übergib sie dem Container.",
+    commonHeading: "Häufige Einstellungen",
+    port: "der Port, auf dem batze lauscht (Standard",
+    portEnd: ")",
+    currency: "deine Standard-Rechnungswährung, z. B.",
+    database: "wo die Daten gespeichert werden (standardmässig eine lokale Datei)",
+    smtp: "Verbindungs-String zum Versenden von E-Mails",
+    emailHeading: "E-Mail versenden",
+    emailA: "Setze",
+    emailB:
+      "auf den Verbindungs-String deines Anbieters, und batze verschickt damit Rechnungen und Antworten. Siehe",
+    emailLink: "Kunden-E-Mail",
+    emailEnd: "auch zum Anbinden eines Posteingangs.",
+  },
+  fr: {
+    metaTitle: "Doc batze — Configuration",
+    metaDescription:
+      "Configurez batze avec des variables d'environnement : port, devise, base de données et e-mail.",
+    h1: "Configuration",
+    introA: "batze se configure entièrement avec des variables d'environnement — placez-les dans un fichier",
+    introB: "ou passez-les au conteneur.",
+    commonHeading: "Réglages courants",
+    port: "le port sur lequel batze écoute (par défaut",
+    portEnd: ")",
+    currency: "votre devise de facturation par défaut, p. ex.",
+    database: "où stocker les données (par défaut un fichier local)",
+    smtp: "chaîne de connexion pour l'envoi d'e-mails",
+    emailHeading: "Envoi d'e-mails",
+    emailA: "Définissez",
+    emailB:
+      "sur la chaîne de connexion de votre fournisseur et batze l'utilisera pour envoyer factures et réponses. Voir",
+    emailLink: "E-mail client",
+    emailEnd: "pour connecter aussi une boîte de réception.",
+  },
+  it: {
+    metaTitle: "Doc batze — Configurazione",
+    metaDescription:
+      "Configura batze con variabili d'ambiente: porta, valuta, database ed e-mail.",
+    h1: "Configurazione",
+    introA: "batze si configura interamente con variabili d'ambiente — mettile in un file",
+    introB: "oppure passale al container.",
+    commonHeading: "Impostazioni comuni",
+    port: "la porta su cui batze è in ascolto (predefinita",
+    portEnd: ")",
+    currency: "la tua valuta di fatturazione predefinita, ad es.",
+    database: "dove memorizzare i dati (per impostazione predefinita un file locale)",
+    smtp: "stringa di connessione per l'invio delle e-mail",
+    emailHeading: "Invio delle e-mail",
+    emailA: "Imposta",
+    emailB:
+      "sulla stringa di connessione del tuo provider e batze la userà per inviare fatture e risposte. Vedi",
+    emailLink: "E-mail clienti",
+    emailEnd: "anche per collegare una casella di posta.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.introA} <code>.env</code> {c.introB}</p>
+
+  <h2 id="common">{c.commonHeading}</h2>
+  <ul>
+    <li><code>PORT</code> — {c.port} <code>3000</code>{c.portEnd}</li>
+    <li><code>BASE_CURRENCY</code> — {c.currency} <code>CHF</code></li>
+    <li><code>DATABASE_URL</code> — {c.database}</li>
+    <li><code>SMTP_URL</code> — {c.smtp}</li>
+  </ul>
+
+  <CodeBlock prompt={false} label=".env" code={`PORT=3000
+BASE_CURRENCY=CHF
+SMTP_URL=smtp://user:pass@smtp.example.com:587`} />
+
+  <h2 id="email">{c.emailHeading}</h2>
+  <p>
+    {c.emailA} <code>SMTP_URL</code> {c.emailB}
+    <a href={localize("/docs/email", lang)}>{c.emailLink}</a> {c.emailEnd}
+  </p>
+</DocsLayout>

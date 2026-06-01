@@ -1,0 +1,87 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import CodeBlock from "../../components/CodeBlock.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "batze docs — Quick start",
+    metaDescription: "Try batze in one command with Docker.",
+    h1: "Quick start",
+    intro: "The fastest way to try batze is with Docker. One command and you're running:",
+    openA: "Then open",
+    openB: "in your browser. That's it — you've got a local batze.",
+    nextHeading: "What's next",
+    next1Start: "Set it up to stay running in the",
+    next1Link: "self-hosting guide",
+    next2Start: "Point it at your mailbox and currency in",
+    next2Link: "Configuration",
+    next3Start: "Send your first",
+    next3Link: "invoice",
+  },
+  de: {
+    metaTitle: "batze Doku — Schnellstart",
+    metaDescription: "Probier batze mit einem einzigen Docker-Befehl aus.",
+    h1: "Schnellstart",
+    intro: "Am schnellsten probierst du batze mit Docker aus. Ein Befehl und es läuft:",
+    openA: "Öffne dann",
+    openB: "im Browser. Das war's — du hast ein lokales batze.",
+    nextHeading: "Wie geht's weiter",
+    next1Start: "Richte es für den Dauerbetrieb ein in der",
+    next1Link: "Self-Hosting-Anleitung",
+    next2Start: "Verbinde Postfach und Währung unter",
+    next2Link: "Konfiguration",
+    next3Start: "Verschick deine erste",
+    next3Link: "Rechnung",
+  },
+  fr: {
+    metaTitle: "Doc batze — Démarrage rapide",
+    metaDescription: "Essayez batze en une seule commande avec Docker.",
+    h1: "Démarrage rapide",
+    intro: "Le plus rapide pour essayer batze, c'est avec Docker. Une commande et c'est lancé :",
+    openA: "Ouvrez ensuite",
+    openB: "dans votre navigateur. Voilà — vous avez un batze local.",
+    nextHeading: "Et ensuite",
+    next1Start: "Configurez-le pour qu'il reste en service dans le",
+    next1Link: "guide d'auto-hébergement",
+    next2Start: "Reliez votre boîte mail et votre devise dans la",
+    next2Link: "Configuration",
+    next3Start: "Envoyez votre première",
+    next3Link: "facture",
+  },
+  it: {
+    metaTitle: "Doc batze — Avvio rapido",
+    metaDescription: "Prova batze con un solo comando Docker.",
+    h1: "Avvio rapido",
+    intro: "Il modo più rapido per provare batze è con Docker. Un comando ed è in esecuzione:",
+    openA: "Poi apri",
+    openB: "nel browser. Tutto qui — hai un batze locale.",
+    nextHeading: "Cosa fare dopo",
+    next1Start: "Impostalo per restare in esecuzione nella",
+    next1Link: "guida all'auto-hosting",
+    next2Start: "Collega la casella di posta e la valuta in",
+    next2Link: "Configurazione",
+    next3Start: "Invia la tua prima",
+    next3Link: "fattura",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <CodeBlock code="docker run -p 3000:3000 batze/batze" />
+
+  <p>{c.openA} <code>http://localhost:3000</code> {c.openB}</p>
+
+  <h2 id="whats-next">{c.nextHeading}</h2>
+  <ul>
+    <li>{c.next1Start} <a href={localize("/docs/self-hosting", lang)}>{c.next1Link}</a></li>
+    <li>{c.next2Start} <a href={localize("/docs/configuration", lang)}>{c.next2Link}</a></li>
+    <li>{c.next3Start} <a href={localize("/docs/invoicing", lang)}>{c.next3Link}</a></li>
+  </ul>
+</DocsLayout>
