@@ -6,7 +6,7 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "chohle docs — Introduction",
+    metaTitle: "chohle docs: Introduction",
     metaDescription:
       "Introduction to chohle: open-source invoicing, projects, and client email you can self-host.",
     h1: "Introduction",
@@ -23,16 +23,16 @@ const content = {
     what1Strong: "invoicing",
     what1End: "with QR-bills and VAT",
     what2Strong: "Projects",
-    what2End: "and time tracking, billable straight to an invoice",
+    what2End: "on a sales & purchasing pipeline, with quotes, invoices and email attached",
     what3: "Client",
     what3Strong: "email",
     what3End: ", kept right next to the work it relates to",
     statusHeading: "Project status",
     status:
-      "chohle is built in the open and still evolving — it started as a learning project and grew into something usable. These docs grow alongside it, so expect a few gaps for now.",
+      "chohle is built in the open and still evolving, it started as a learning project and grew into something usable. These docs grow alongside it, so expect a few gaps for now.",
   },
   de: {
-    metaTitle: "chohle Doku — Einführung",
+    metaTitle: "chohle Doku: Einführung",
     metaDescription:
       "Einführung in chohle: Open-Source-Rechnungsstellung, Projekte und Kunden-E-Mail zum Selbsthosten.",
     h1: "Einführung",
@@ -49,16 +49,16 @@ const content = {
     what1: "Schweiz-taugliche",
     what1End: "mit QR-Rechnungen und MWST",
     what2Strong: "Projekte",
-    what2End: "und Zeiterfassung, direkt auf eine Rechnung verrechenbar",
+    what2End: "auf einer Vertriebs- & Einkaufs-Pipeline, mit Offerten, Rechnungen und E-Mails verknüpft",
     what3: "Kunden-",
     what3Strong: "E-Mail",
     what3End: ", direkt bei der zugehörigen Arbeit abgelegt",
     statusHeading: "Projektstatus",
     status:
-      "chohle wird offen entwickelt und ist weiterhin in Bewegung — es begann als Lernprojekt und wuchs zu etwas Brauchbarem. Diese Doku wächst mit, also rechne vorerst mit ein paar Lücken.",
+      "chohle wird offen entwickelt und ist weiterhin in Bewegung, es begann als Lernprojekt und wuchs zu etwas Brauchbarem. Diese Doku wächst mit, also rechne vorerst mit ein paar Lücken.",
   },
   fr: {
-    metaTitle: "Doc chohle — Introduction",
+    metaTitle: "Doc chohle: Introduction",
     metaDescription:
       "Introduction à chohle : facturation, projets et e-mail client open source que vous pouvez auto-héberger.",
     h1: "Introduction",
@@ -75,16 +75,16 @@ const content = {
     what1: "Prête pour la Suisse,",
     what1End: "avec QR-factures et TVA",
     what2Strong: "Projets",
-    what2End: "et suivi du temps, facturables directement sur une facture",
+    what2End: "sur un pipeline de ventes et d'achats, avec devis, factures et e-mails rattachés",
     what3: "E-mail",
     what3Strong: "client",
     what3End: ", gardé juste à côté du travail concerné",
     statusHeading: "État du projet",
     status:
-      "chohle est développé ouvertement et évolue encore — il a commencé comme un projet d'apprentissage avant de devenir réellement utilisable. Cette doc grandit avec lui, attendez-vous donc à quelques lacunes pour l'instant.",
+      "chohle est développé ouvertement et évolue encore, il a commencé comme un projet d'apprentissage avant de devenir réellement utilisable. Cette doc grandit avec lui, attendez-vous donc à quelques lacunes pour l'instant.",
   },
   it: {
-    metaTitle: "Doc chohle — Introduzione",
+    metaTitle: "Doc chohle: Introduzione",
     metaDescription:
       "Introduzione a chohle: fatturazione, progetti ed e-mail clienti open source che puoi auto-ospitare.",
     h1: "Introduzione",
@@ -101,13 +101,13 @@ const content = {
     what1: "Pronta per la Svizzera,",
     what1End: "con QR-fatture e IVA",
     what2Strong: "Progetti",
-    what2End: "e monitoraggio del tempo, fatturabili direttamente su una fattura",
+    what2End: "su una pipeline di vendita e acquisti, con preventivi, fatture ed e-mail collegati",
     what3: "E-mail",
     what3Strong: "clienti",
     what3End: ", tenuta proprio accanto al lavoro a cui si riferisce",
     statusHeading: "Stato del progetto",
     status:
-      "chohle è sviluppato in modo aperto ed è ancora in evoluzione — è nato come progetto di apprendimento ed è cresciuto fino a diventare qualcosa di utilizzabile. Questa doc cresce insieme ad esso, quindi per ora aspettati qualche lacuna.",
+      "chohle è sviluppato in modo aperto ed è ancora in evoluzione, è nato come progetto di apprendimento ed è cresciuto fino a diventare qualcosa di utilizzabile. Questa doc cresce insieme ad esso, quindi per ora aspettati qualche lacuna.",
   },
 } as const;
 const c = content[lang] ?? content.en;
@@ -122,6 +122,15 @@ const c = content[lang] ?? content.en;
     {c.introBStart} <a href={localize("/docs/quickstart", lang)}>{c.quickStart}</a> {c.introBMid}
     <a href={localize("/docs/self-hosting", lang)}>{c.selfHosting}</a> {c.introBEnd}
   </p>
+
+  <img
+    src={`/screenshots/dashboard-${lang}.jpg`}
+    alt="chohle dashboard"
+    width="1456"
+    height="1080"
+    loading="lazy"
+    class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10"
+  />
 
   <h2 id="what-chohle-does">{c.whatHeading}</h2>
   <ul>

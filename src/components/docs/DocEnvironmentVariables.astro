@@ -7,7 +7,7 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "chohle docs — Environment variables",
+    metaTitle: "chohle docs: Environment variables",
     metaDescription: "Every environment variable chohle reads, with defaults and descriptions.",
     h1: "Environment variables",
     introP1: "chohle is configured entirely through environment variables. Set them in a",
@@ -28,7 +28,7 @@ const content = {
     ],
   },
   de: {
-    metaTitle: "chohle Doku — Umgebungsvariablen",
+    metaTitle: "chohle Doku: Umgebungsvariablen",
     metaDescription: "Jede Umgebungsvariable, die chohle liest, mit Standardwerten und Beschreibungen.",
     h1: "Umgebungsvariablen",
     introP1: "chohle wird vollständig über Umgebungsvariablen konfiguriert. Setze sie in einer",
@@ -49,7 +49,7 @@ const content = {
     ],
   },
   fr: {
-    metaTitle: "Doc chohle — Variables d'environnement",
+    metaTitle: "Doc chohle: Variables d'environnement",
     metaDescription: "Toutes les variables d'environnement lues par chohle, avec valeurs par défaut et descriptions.",
     h1: "Variables d'environnement",
     introP1: "chohle se configure entièrement via des variables d'environnement. Définissez-les dans un fichier",
@@ -70,7 +70,7 @@ const content = {
     ],
   },
   it: {
-    metaTitle: "Documentazione chohle — Variabili d'ambiente",
+    metaTitle: "Documentazione chohle: Variabili d'ambiente",
     metaDescription: "Tutte le variabili d'ambiente lette da chohle, con valori predefiniti e descrizioni.",
     h1: "Variabili d'ambiente",
     introP1: "chohle è configurato interamente tramite variabili d'ambiente. Impostale in un file",
@@ -94,7 +94,7 @@ const content = {
 const c = content[lang] ?? content.en;
 
 const names = ["PORT", "BASE_URL", "BASE_CURRENCY", "DATABASE_URL", "SMTP_URL", "SECRET_KEY"];
-const defaults = ["3000", "http://localhost:3000", "CHF", "file:/data/chohle.db", "—", "—"];
+const defaults = ["3000", "http://localhost:3000", "CHF", "file:/data/chohle.db", "(none)", "(none)"];
 const vars = names.map((name, i) => ({ name, default: defaults[i], desc: c.descs[i] }));
 ---
 

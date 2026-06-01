@@ -6,7 +6,7 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "chohle docs — Invoicing",
+    metaTitle: "chohle docs: Invoicing",
     metaDescription: "Create Swiss QR-bills, send invoices, and track payments in chohle.",
     h1: "Invoicing",
     intro: "Create a Swiss-compliant invoice in seconds, send it, and let chohle keep track of what's been paid.",
@@ -19,13 +19,13 @@ const content = {
     fromBefore: "If the work lives in a ",
     fromLink: "project",
     fromAfter:
-      ", chohle can turn its billable hours into a draft invoice in one step — no re-typing line items.",
+      ", chohle can turn its billable hours into a draft invoice in one step, no re-typing line items.",
     remindersHeading: "Payment tracking & reminders",
     reminders:
       "Mark invoices as sent and paid, see what's overdue at a glance, and let chohle send polite reminders on a schedule you choose.",
   },
   de: {
-    metaTitle: "chohle Doku — Rechnungsstellung",
+    metaTitle: "chohle Doku: Rechnungsstellung",
     metaDescription: "Erstellen Sie Schweizer QR-Rechnungen, versenden Sie Rechnungen und behalten Sie Zahlungen in chohle im Blick.",
     h1: "Rechnungsstellung",
     intro: "Erstellen Sie in Sekunden eine schweizkonforme Rechnung, versenden Sie sie und lassen Sie chohle nachverfolgen, was bezahlt wurde.",
@@ -38,13 +38,13 @@ const content = {
     fromBefore: "Wenn die Arbeit in einem ",
     fromLink: "Projekt",
     fromAfter:
-      " liegt, kann chohle deren verrechenbare Stunden in einem Schritt in einen Rechnungsentwurf umwandeln — ohne Positionen neu zu erfassen.",
+      " liegt, kann chohle deren verrechenbare Stunden in einem Schritt in einen Rechnungsentwurf umwandeln, ohne Positionen neu zu erfassen.",
     remindersHeading: "Zahlungsverfolgung & Erinnerungen",
     reminders:
       "Markieren Sie Rechnungen als versendet und bezahlt, sehen Sie auf einen Blick, was überfällig ist, und lassen Sie chohle nach einem von Ihnen gewählten Zeitplan freundliche Erinnerungen verschicken.",
   },
   fr: {
-    metaTitle: "chohle docs — Facturation",
+    metaTitle: "chohle docs: Facturation",
     metaDescription: "Créez des QR-factures suisses, envoyez des factures et suivez les paiements dans chohle.",
     h1: "Facturation",
     intro: "Créez en quelques secondes une facture conforme aux normes suisses, envoyez-la et laissez chohle suivre ce qui a été payé.",
@@ -57,13 +57,13 @@ const content = {
     fromBefore: "Si le travail se trouve dans un ",
     fromLink: "projet",
     fromAfter:
-      ", chohle peut convertir ses heures facturables en un brouillon de facture en une seule étape — sans ressaisir les lignes.",
+      ", chohle peut convertir ses heures facturables en un brouillon de facture en une seule étape, sans ressaisir les lignes.",
     remindersHeading: "Suivi des paiements & relances",
     reminders:
       "Marquez les factures comme envoyées et payées, voyez d'un coup d'œil ce qui est en retard et laissez chohle envoyer des relances courtoises selon le calendrier que vous choisissez.",
   },
   it: {
-    metaTitle: "chohle docs — Fatturazione",
+    metaTitle: "chohle docs: Fatturazione",
     metaDescription: "Crea QR-fatture svizzere, invia fatture e tieni traccia dei pagamenti in chohle.",
     h1: "Fatturazione",
     intro: "Crea in pochi secondi una fattura conforme alle norme svizzere, inviala e lascia che chohle tenga traccia di ciò che è stato pagato.",
@@ -76,7 +76,7 @@ const content = {
     fromBefore: "Se il lavoro si trova in un ",
     fromLink: "progetto",
     fromAfter:
-      ", chohle può trasformare le sue ore fatturabili in una bozza di fattura in un solo passaggio — senza riscrivere le voci.",
+      ", chohle può trasformare le sue ore fatturabili in una bozza di fattura in un solo passaggio, senza riscrivere le voci.",
     remindersHeading: "Monitoraggio dei pagamenti e solleciti",
     reminders:
       "Segna le fatture come inviate e pagate, vedi a colpo d'occhio cosa è scaduto e lascia che chohle invii solleciti cortesi secondo la pianificazione che scegli.",
@@ -89,6 +89,15 @@ const c = content[lang] ?? content.en;
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
+
+  <img
+    src={`/screenshots/invoice-pdf-${lang}.jpg`}
+    alt="chohle invoice with Swiss QR-bill"
+    width="1456"
+    height="1182"
+    loading="lazy"
+    class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10"
+  />
 
   <h2 id="qr-bills">{c.qrHeading}</h2>
   <p>

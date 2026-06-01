@@ -6,60 +6,76 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "chohle docs — Projects",
-    metaDescription: "Organize work into projects, track time, and turn hours into invoices.",
-    h1: "Projects",
-    intro: "Group work into projects per client, track your time against them, and see what's actually worth your while.",
-    timeHeading: "Time tracking",
-    time: "Start a timer while you work, or enter hours after the fact. Each entry is attached to a project and marked billable or not.",
-    ratesHeading: "Rates & budgets",
-    rates: "Set a rate per project or per client, and give a project a budget so you can watch how much of it you've used as you go.",
-    toInvoiceHeading: "Turning time into an invoice",
-    toInvoiceBefore: "When you're ready to bill, chohle rolls a project's billable hours into a draft ",
-    toInvoiceLink: "invoice",
-    toInvoiceAfter: " you can review and send.",
+    metaTitle: "chohle docs: Projects & pipeline",
+    metaDescription:
+      "Organize work into projects on a sales and purchasing pipeline, with budgets, rates, and the quotes, invoices and email attached.",
+    h1: "Projects & pipeline",
+    intro:
+      "Group work into projects per client. Every project lives on a pipeline board, carries its own budget, and ties together the quotes, invoices and email that belong to it.",
+    pipelineHeading: "The pipeline board",
+    pipeline:
+      "Projects move across stages on a drag-and-drop board. A project is either sales or purchasing: sales projects run from lead to contacted, proposal, won and active; purchasing projects run from need to requested, received and accepted, so your client work and your buying stay on separate boards.",
+    ratesHeading: "Budgets & rates",
+    rates:
+      "Give a project a fixed-price or hourly budget so you can see what's at stake at a glance, and set per-customer rates and discounts so its quotes and invoices price themselves.",
+    toInvoiceHeading: "Quotes, invoices & email in one place",
+    toInvoiceBefore: "Everything a project touches lives with it, its quote, the ",
+    toInvoiceLink: "invoices",
+    toInvoiceAfter: " it bills, and the full email thread with the client, all reachable from the project.",
   },
   de: {
-    metaTitle: "chohle Doku — Projekte",
-    metaDescription: "Organisieren Sie Arbeit in Projekten, erfassen Sie Zeit und verwandeln Sie Stunden in Rechnungen.",
-    h1: "Projekte",
-    intro: "Fassen Sie Arbeit in Projekte pro Kunde zusammen, erfassen Sie Ihre Zeit darauf und sehen Sie, was sich wirklich lohnt.",
-    timeHeading: "Zeiterfassung",
-    time: "Starten Sie einen Timer während der Arbeit oder tragen Sie Stunden nachträglich ein. Jeder Eintrag ist einem Projekt zugeordnet und wird als verrechenbar oder nicht markiert.",
-    ratesHeading: "Tarife & Budgets",
-    rates: "Legen Sie einen Tarif pro Projekt oder pro Kunde fest und geben Sie einem Projekt ein Budget, damit Sie laufend sehen, wie viel davon Sie verbraucht haben.",
-    toInvoiceHeading: "Zeit in eine Rechnung umwandeln",
-    toInvoiceBefore: "Wenn Sie bereit sind abzurechnen, fasst chohle die verrechenbaren Stunden eines Projekts zu einem Entwurf für eine ",
-    toInvoiceLink: "Rechnung",
-    toInvoiceAfter: " zusammen, die Sie prüfen und versenden können.",
+    metaTitle: "chohle Doku: Projekte & Pipeline",
+    metaDescription:
+      "Organisieren Sie Arbeit in Projekten auf einer Vertriebs- und Einkaufs-Pipeline, mit Budgets, Tarifen sowie verknüpften Offerten, Rechnungen und E-Mails.",
+    h1: "Projekte & Pipeline",
+    intro:
+      "Fassen Sie Arbeit in Projekte pro Kunde zusammen. Jedes Projekt liegt auf einem Pipeline-Board, trägt sein eigenes Budget und verbindet die Offerten, Rechnungen und E-Mails, die dazugehören.",
+    pipelineHeading: "Das Pipeline-Board",
+    pipeline:
+      "Projekte wandern über Stufen auf einem Drag-and-Drop-Board. Ein Projekt ist entweder Vertrieb oder Einkauf: Vertriebsprojekte laufen von Lead über kontaktiert, Offerte, gewonnen bis aktiv; Einkaufsprojekte laufen von Bedarf über angefragt, erhalten bis angenommen, so bleiben Kundenarbeit und Einkauf auf getrennten Boards.",
+    ratesHeading: "Budgets & Tarife",
+    rates:
+      "Geben Sie einem Projekt ein Fixpreis- oder Stunden-Budget, damit Sie auf einen Blick sehen, worum es geht, und legen Sie kundenspezifische Ansätze und Rabatte fest, damit sich Offerten und Rechnungen von selbst bepreisen.",
+    toInvoiceHeading: "Offerten, Rechnungen & E-Mail an einem Ort",
+    toInvoiceBefore: "Alles, was ein Projekt berührt, liegt bei ihm, seine Offerte, die ",
+    toInvoiceLink: "Rechnungen",
+    toInvoiceAfter: ", die es abrechnet, und der gesamte E-Mail-Verlauf mit dem Kunden, alles vom Projekt aus erreichbar.",
   },
   fr: {
-    metaTitle: "chohle docs — Projets",
-    metaDescription: "Organisez le travail en projets, suivez le temps et transformez les heures en factures.",
-    h1: "Projets",
-    intro: "Regroupez le travail en projets par client, suivez votre temps sur ceux-ci et voyez ce qui en vaut vraiment la peine.",
-    timeHeading: "Suivi du temps",
-    time: "Lancez un minuteur pendant que vous travaillez, ou saisissez les heures après coup. Chaque entrée est rattachée à un projet et marquée comme facturable ou non.",
-    ratesHeading: "Tarifs & budgets",
-    rates: "Définissez un tarif par projet ou par client, et attribuez un budget à un projet pour suivre au fur et à mesure la part que vous en avez utilisée.",
-    toInvoiceHeading: "Transformer le temps en facture",
-    toInvoiceBefore: "Lorsque vous êtes prêt à facturer, chohle regroupe les heures facturables d'un projet dans un brouillon de ",
-    toInvoiceLink: "facture",
-    toInvoiceAfter: " que vous pouvez vérifier et envoyer.",
+    metaTitle: "chohle docs: Projets & pipeline",
+    metaDescription:
+      "Organisez le travail en projets sur un pipeline de ventes et d'achats, avec budgets, tarifs et les devis, factures et e-mails rattachés.",
+    h1: "Projets & pipeline",
+    intro:
+      "Regroupez le travail en projets par client. Chaque projet vit sur un tableau de pipeline, porte son propre budget et relie les devis, factures et e-mails qui lui appartiennent.",
+    pipelineHeading: "Le tableau de pipeline",
+    pipeline:
+      "Les projets passent d'une étape à l'autre sur un tableau glisser-déposer. Un projet relève soit des ventes, soit des achats : les projets de vente vont du prospect au contacté, à la proposition, au gagné et à l'actif ; les projets d'achat vont du besoin au demandé, au reçu et à l'accepté, votre travail client et vos achats restent ainsi sur des tableaux distincts.",
+    ratesHeading: "Budgets & tarifs",
+    rates:
+      "Attribuez à un projet un budget au forfait ou horaire pour voir l'enjeu d'un coup d'œil, et définissez des tarifs et remises par client pour que ses devis et factures se chiffrent d'eux-mêmes.",
+    toInvoiceHeading: "Devis, factures & e-mail au même endroit",
+    toInvoiceBefore: "Tout ce qu'un projet touche reste avec lui, son devis, les ",
+    toInvoiceLink: "factures",
+    toInvoiceAfter: " qu'il facture, et tout le fil d'e-mails avec le client, le tout accessible depuis le projet.",
   },
   it: {
-    metaTitle: "chohle docs — Progetti",
-    metaDescription: "Organizza il lavoro in progetti, registra il tempo e trasforma le ore in fatture.",
-    h1: "Progetti",
-    intro: "Raggruppa il lavoro in progetti per cliente, registra il tuo tempo su di essi e vedi cosa vale davvero la pena.",
-    timeHeading: "Registrazione del tempo",
-    time: "Avvia un timer mentre lavori, oppure inserisci le ore in un secondo momento. Ogni voce è collegata a un progetto e contrassegnata come fatturabile o no.",
-    ratesHeading: "Tariffe & budget",
-    rates: "Imposta una tariffa per progetto o per cliente e assegna a un progetto un budget, così puoi tenere d'occhio quanto ne hai usato man mano.",
-    toInvoiceHeading: "Trasformare il tempo in una fattura",
-    toInvoiceBefore: "Quando sei pronto a fatturare, chohle raccoglie le ore fatturabili di un progetto in una bozza di ",
-    toInvoiceLink: "fattura",
-    toInvoiceAfter: " che puoi rivedere e inviare.",
+    metaTitle: "chohle docs: Progetti & pipeline",
+    metaDescription:
+      "Organizza il lavoro in progetti su una pipeline di vendita e acquisti, con budget, tariffe e i preventivi, le fatture e le e-mail collegati.",
+    h1: "Progetti & pipeline",
+    intro:
+      "Raggruppa il lavoro in progetti per cliente. Ogni progetto vive su una lavagna pipeline, porta il proprio budget e collega i preventivi, le fatture e le e-mail che gli appartengono.",
+    pipelineHeading: "La lavagna pipeline",
+    pipeline:
+      "I progetti si spostano tra le fasi su una lavagna drag-and-drop. Un progetto è di vendita o di acquisto: i progetti di vendita vanno da opportunità a contattato, proposta, vinto e attivo; i progetti di acquisto vanno da necessità a richiesto, ricevuto e accettato, così il lavoro con i clienti e i tuoi acquisti restano su lavagne separate.",
+    ratesHeading: "Budget & tariffe",
+    rates:
+      "Assegna a un progetto un budget a forfait o orario per vedere la posta in gioco a colpo d'occhio, e imposta tariffe e sconti per cliente così che i suoi preventivi e le sue fatture si prezzino da soli.",
+    toInvoiceHeading: "Preventivi, fatture & e-mail in un unico posto",
+    toInvoiceBefore: "Tutto ciò che un progetto tocca resta con esso, il suo preventivo, le ",
+    toInvoiceLink: "fatture",
+    toInvoiceAfter: " che fattura e l'intero scambio di e-mail con il cliente, il tutto raggiungibile dal progetto.",
   },
 } as const;
 
@@ -70,8 +86,17 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <h2 id="time">{c.timeHeading}</h2>
-  <p>{c.time}</p>
+  <img
+    src={`/screenshots/pipeline-${lang}.jpg`}
+    alt={c.pipelineHeading}
+    width="1456"
+    height="1080"
+    loading="lazy"
+    class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10"
+  />
+
+  <h2 id="pipeline">{c.pipelineHeading}</h2>
+  <p>{c.pipeline}</p>
 
   <h2 id="rates">{c.ratesHeading}</h2>
   <p>{c.rates}</p>
