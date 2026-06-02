@@ -22,7 +22,6 @@ const serverIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.2
 ---
 
 <Layout title={c.meta.title} description={c.meta.description} lang={lang}>
-  <!-- Hero -->
   <section class="py-16 sm:py-24">
     <div class="mx-auto w-full max-w-2xl px-6 text-center md:max-w-3xl lg:max-w-7xl lg:px-10">
       <h1 class="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-[-0.03em] text-balance text-white sm:text-6xl">{c.hero.headline}</h1>
@@ -30,11 +29,9 @@ const serverIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.2
     </div>
   </section>
 
-  <!-- Plans: Self-hosted (available) + Cloud (coming soon), side by side -->
   <section id="plans" class="py-16 sm:py-24">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
       <div class="mx-auto grid max-w-5xl grid-cols-1 gap-6 lg:grid-cols-2 lg:items-stretch">
-        <!-- Self-hosted -->
         <div class="flex flex-col gap-6 rounded-3xl bg-mauve-950/2.5 p-8 ring-1 ring-mauve-950/10 sm:p-10 dark:bg-white/5 dark:ring-white/15" data-reveal>
           <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
             <div class="flex items-center gap-2.5 text-mauve-950 dark:text-white">
@@ -68,7 +65,6 @@ const serverIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.2
           </div>
         </div>
 
-        <!-- Cloud (coming soon) -->
         <div class="flex flex-col gap-6 rounded-3xl bg-mauve-950/2.5 p-8 ring-1 ring-mauve-950/5 sm:p-10 dark:bg-white/5 dark:ring-white/10" data-reveal>
           <div class="flex flex-col items-start gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-3">
             <div class="flex items-center gap-2.5 text-mauve-950 dark:text-white">
@@ -90,7 +86,6 @@ const serverIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.2
     </div>
   </section>
 
-  <!-- Pricing FAQ -->
   <section id="faqs" class="py-16 sm:py-24">
     <div class="mx-auto grid w-full max-w-2xl grid-cols-1 gap-x-16 gap-y-10 px-6 md:max-w-3xl lg:max-w-7xl lg:grid-cols-[minmax(0,1fr)_1.4fr] lg:px-10">
       <div class="flex flex-col gap-6 lg:sticky lg:top-28 lg:self-start" data-reveal>

@@ -47,7 +47,6 @@ const prose =
   </head>
   <body class="font-sans">
 
-    <!-- Mobile nav dialog -->
     <el-dialog class="lg:hidden">
       <dialog id="docs-menu" class="backdrop:bg-mauve-950/30">
         <el-dialog-panel class="fixed inset-y-0 left-0 w-80 max-w-[80%] overflow-y-auto bg-mauve-100 px-6 py-6 dark:bg-mauve-950">
@@ -62,15 +61,12 @@ const prose =
       </dialog>
     </el-dialog>
 
-    <!-- Desktop fixed sidebar -->
     <div class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-72 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-mauve-950/10 lg:bg-mauve-100 lg:px-6 lg:py-8 dark:lg:border-white/10 dark:lg:bg-mauve-950">
       <a href={localize("/", lang)} aria-label="chohle docs" class="inline-flex items-center gap-2.5 text-mauve-950 dark:text-white"><Logo class="h-7 w-auto" /><span class="font-display text-xl font-semibold tracking-tight text-mauve-500">docs</span></a>
       <nav class="mt-8"><DocsNav lang={lang} current={current} /></nav>
     </div>
 
-    <!-- Content -->
     <div class="lg:pl-72">
-      <!-- Header bar -->
       <header class="fixed inset-x-0 top-0 z-30 flex h-14 items-center gap-4 border-b border-mauve-950/10 bg-mauve-100/80 px-4 backdrop-blur-md sm:px-6 lg:left-72 lg:px-8 dark:border-white/10 dark:bg-mauve-950/80">
         <button command="show-modal" commandfor="docs-menu" aria-label="Open docs menu" class="inline-flex shrink-0 rounded-md p-1.5 text-mauve-700 hover:bg-mauve-950/10 lg:hidden dark:text-mauve-300 dark:hover:bg-white/10">
           <svg viewBox="0 0 24 24" fill="currentColor" class="size-5"><path fill-rule="evenodd" d="M3.748 8.248a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.748 15.75a.75.75 0 0 1 .75-.751h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" /></svg>
