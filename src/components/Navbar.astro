@@ -90,12 +90,15 @@ const demoBtn =
     <el-dialog class="lg:hidden">
       <dialog id="mobile-menu" class="backdrop:bg-transparent">
         <el-dialog-panel class="fixed inset-0 bg-mauve-100 px-6 py-6 lg:px-10 dark:bg-mauve-950">
-          <div class="flex justify-end">
+          <div class="flex items-center justify-between">
+            <a href={localize("/", lang)} class="inline-flex items-center text-mauve-950 dark:text-white" aria-label="chohle home">
+              <Logo class="h-5 w-auto" />
+            </a>
             <button
               command="close"
               commandfor="mobile-menu"
               aria-label="Toggle menu"
-              class="inline-flex rounded-full p-1.5 text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10"
+              class="inline-flex p-1.5 text-mauve-950 hover:bg-mauve-950/10 focus:outline-none focus-visible:outline-none dark:text-white dark:hover:bg-white/10"
             >
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
