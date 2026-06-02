@@ -36,7 +36,7 @@ const featuresPage = localize("/features", lang);
     <div>
       <div class="grid grid-cols-1 gap-6">
         {c.items.map((item, i) => (
-          <div class="group grid grid-flow-dense grid-cols-1 gap-2 rounded-lg bg-mauve-950/2.5 p-2 ring-1 ring-inset ring-transparent transition-colors hover:bg-mauve-950/4 hover:ring-mauve-950/5 lg:grid-cols-2 dark:bg-white/5 dark:hover:bg-white/8 dark:hover:ring-white/10" data-reveal>
+          <a href={featuresPage} class="group grid grid-flow-dense grid-cols-1 gap-2 rounded-lg bg-mauve-950/2.5 p-2 no-underline ring-1 ring-inset ring-transparent transition-colors hover:bg-mauve-950/4 hover:ring-mauve-950/5 lg:grid-cols-2 dark:bg-white/5 dark:hover:bg-white/8 dark:hover:ring-white/10" data-reveal>
             <div class="flex flex-col justify-between gap-6 p-6 sm:gap-10 sm:p-10 lg:p-6 lg:group-even:col-start-2">
               <div class="flex flex-col gap-4">
                 <span class="font-mono text-xs/6 font-semibold tracking-[0.2em] text-accent dark:text-accent-light">{(i + 1).toString().padStart(2, "0")}</span>
@@ -45,17 +45,17 @@ const featuresPage = localize("/features", lang);
                   <div class="mt-2 flex flex-col gap-4 text-base/7 text-mauve-500"><p>{item.body}</p></div>
                 </div>
               </div>
-              <a href={featuresPage} class="group/link inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950 dark:text-white">
+              <span class="group/link inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950 dark:text-white">
                 {t("cta.learnMore")}
-                <svg class="inline-block transition-transform group-hover/link:translate-x-0.5" width="5" height="8" viewBox="0 0 5 8" fill="currentColor" role="image"><path fill-rule="evenodd" clip-rule="evenodd" d="M.22.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06L1.28 7.78A.75.75 0 01.22 6.72L2.94 4 .22 1.28a.75.75 0 010-1.06z" /></svg>
-              </a>
+                <svg class="inline-block transition-transform group-hover:translate-x-0.5" width="5" height="8" viewBox="0 0 5 8" fill="currentColor" role="image"><path fill-rule="evenodd" clip-rule="evenodd" d="M.22.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06L1.28 7.78A.75.75 0 01.22 6.72L2.94 4 .22 1.28a.75.75 0 010-1.06z" /></svg>
+              </span>
             </div>
             <div class="relative overflow-hidden rounded-sm lg:group-even:col-start-1 dark:after:absolute dark:after:inset-0 dark:after:rounded-sm dark:after:outline-1 dark:after:-outline-offset-1 dark:after:outline-white/10">
               <Screenshot color={style[i % style.length].color} placement={style[i % style.length].placement}>
                 <img src={shotSrc(shots[i % shots.length])} alt={item.title} width="1456" height="1080" loading="lazy" class="bg-white" />
               </Screenshot>
             </div>
-          </div>
+          </a>
         ))}
       </div>
     </div>
