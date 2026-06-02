@@ -7,10 +7,13 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build && pagefind --site dist",
-    "preview": "astro preview",
-    "astro": "astro"
+    "preview": "npm run build && wrangler dev",
+    "astro": "astro",
+    "deploy": "npm run build && wrangler deploy",
+    "cf-typegen": "wrangler types"
   },
   "dependencies": {
+    "@astrojs/cloudflare": "12",
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource-variable/mona-sans": "^5.2.8",
     "@tailwindcss/vite": "^4.1.0",
@@ -19,6 +22,7 @@
     "tailwindcss": "^4.1.0"
   },
   "devDependencies": {
-    "pagefind": "^1.5.2"
+    "pagefind": "^1.5.2",
+    "wrangler": "^4.96.0"
   }
 }
