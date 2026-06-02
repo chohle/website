@@ -1,0 +1,90 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Dashboard",
+    metaDescription: "The dashboard gives you the whole month at a glance: net, income, expenses, what's outstanding and a six-month trend.",
+    h1: "Dashboard",
+    intro: "The dashboard is the first thing you see: your month at a glance. It answers the only questions that matter day to day, what came in, what went out, and what's still owed to you.",
+    monthHeading: "The month at a glance",
+    monthText:
+      "The big number is your net for the month, income minus expenses. Around it sit what you've billed from customers, what's expected this month (including the amount still outstanding), and your expenses out, each compared to last month so you can see the direction at a glance.",
+    breakdownHeading: "Trends and breakdowns",
+    breakdownText:
+      "A six-month trend chart plots income against expenses, a cashflow total sums up the year, and an expenses-by-category breakdown shows where the money actually went. Use the month switcher at the top to look back at any past month.",
+    recurringHeading: "Recurring income",
+    recurringBefore: "A panel lists your recurring ",
+    recurringLink: "income",
+    recurringAfter: " sources with their pay date, and marks each one received or still pending, so you always know what's already landed and what's on the way.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Dashboard",
+    metaDescription: "Das Dashboard zeigt den ganzen Monat auf einen Blick: Netto, Einnahmen, Ausgaben, Offenes und einen 6-Monats-Trend.",
+    h1: "Dashboard",
+    intro: "Das Dashboard ist das Erste, was du siehst: dein Monat auf einen Blick. Es beantwortet die Fragen, die täglich zählen, was reinkam, was rausging und was dir noch geschuldet wird.",
+    monthHeading: "Der Monat auf einen Blick",
+    monthText:
+      "Die grosse Zahl ist dein Netto für den Monat, Einnahmen minus Ausgaben. Darum herum stehen, was du Kunden verrechnet hast, was diesen Monat erwartet wird (inklusive des noch offenen Betrags) und deine Ausgaben, jeweils im Vergleich zum Vormonat, damit du die Richtung sofort siehst.",
+    breakdownHeading: "Trends und Aufteilungen",
+    breakdownText:
+      "Ein 6-Monats-Trend stellt Einnahmen gegen Ausgaben, eine Cashflow-Summe fasst das Jahr zusammen, und eine Aufteilung der Ausgaben nach Kategorie zeigt, wohin das Geld wirklich floss. Mit dem Monatswechsler oben schaust du in jeden vergangenen Monat.",
+    recurringHeading: "Wiederkehrende Einnahmen",
+    recurringBefore: "Ein Panel listet deine wiederkehrenden ",
+    recurringLink: "Einnahmequellen",
+    recurringAfter: " mit Zahltag und markiert jede als erhalten oder noch ausstehend, sodass du immer weisst, was schon da ist und was unterwegs ist.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Tableau de bord",
+    metaDescription: "Le tableau de bord montre tout le mois en un coup d'œil : net, revenus, dépenses, impayés et une tendance sur six mois.",
+    h1: "Tableau de bord",
+    intro: "Le tableau de bord est la première chose que vous voyez : votre mois en un coup d'œil. Il répond aux seules questions qui comptent au quotidien : ce qui est entré, ce qui est sorti, et ce qu'on vous doit encore.",
+    monthHeading: "Le mois en un coup d'œil",
+    monthText:
+      "Le grand chiffre est votre net du mois, revenus moins dépenses. Autour figurent ce que vous avez facturé aux clients, ce qui est attendu ce mois-ci (y compris le montant encore dû) et vos dépenses, chacun comparé au mois précédent pour voir la tendance d'un regard.",
+    breakdownHeading: "Tendances et répartitions",
+    breakdownText:
+      "Une tendance sur six mois trace les revenus contre les dépenses, un total de trésorerie résume l'année, et une répartition des dépenses par catégorie montre où l'argent est vraiment allé. Le sélecteur de mois en haut permet de revoir n'importe quel mois passé.",
+    recurringHeading: "Revenus récurrents",
+    recurringBefore: "Un panneau liste vos sources de ",
+    recurringLink: "revenus",
+    recurringAfter: " récurrents avec leur date de paie, et marque chacune comme reçue ou encore en attente, pour toujours savoir ce qui est arrivé et ce qui arrive.",
+  },
+  it: {
+    metaTitle: "Doc chohle: Dashboard",
+    metaDescription: "La dashboard mostra tutto il mese in un colpo d'occhio: netto, entrate, uscite, insoluti e un andamento a sei mesi.",
+    h1: "Dashboard",
+    intro: "La dashboard è la prima cosa che vedi: il tuo mese in un colpo d'occhio. Risponde alle uniche domande che contano ogni giorno: cosa è entrato, cosa è uscito e cosa ti devono ancora.",
+    monthHeading: "Il mese in un colpo d'occhio",
+    monthText:
+      "Il numero grande è il tuo netto del mese, entrate meno uscite. Attorno trovi quanto hai fatturato ai clienti, quanto è previsto questo mese (incluso l'importo ancora dovuto) e le tue uscite, ciascuno confrontato con il mese scorso per vedere la direzione a colpo d'occhio.",
+    breakdownHeading: "Andamenti e suddivisioni",
+    breakdownText:
+      "Un andamento a sei mesi mette le entrate contro le uscite, un totale di cassa riassume l'anno e una suddivisione delle uscite per categoria mostra dove sono andati davvero i soldi. Usa il selettore del mese in alto per rivedere qualsiasi mese passato.",
+    recurringHeading: "Entrate ricorrenti",
+    recurringBefore: "Un pannello elenca le tue fonti di ",
+    recurringLink: "entrate",
+    recurringAfter: " ricorrenti con la data di pagamento, e segna ciascuna come ricevuta o ancora in attesa, così sai sempre cosa è già arrivato e cosa sta arrivando.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/dashboard-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="month">{c.monthHeading}</h2>
+  <p>{c.monthText}</p>
+
+  <h2 id="trends">{c.breakdownHeading}</h2>
+  <p>{c.breakdownText}</p>
+
+  <h2 id="recurring">{c.recurringHeading}</h2>
+  <p>{c.recurringBefore}<a href={localize("/docs/expenses-income", lang)}>{c.recurringLink}</a>{c.recurringAfter}</p>
+</DocsLayout>

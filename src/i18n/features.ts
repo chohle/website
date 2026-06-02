@@ -6,7 +6,7 @@ export interface FeaturesContent {
   lightSection: { eyebrow: string; heading: string };
   // `shot` is the screenshot key under /public/screenshots; the page appends
   // `-<lang>.jpg` so each locale shows the app in its own language.
-  lightCards: Array<{ shot: string; eyebrow: string; title: string; description: string }>;
+  lightCards: Array<{ shot: string; eyebrow: string; title: string; description: string; tag?: string }>;
   darkSection: { eyebrow: string; heading: string };
   darkCards: Array<{ eyebrow: string; title: string; description: string }>;
 }
@@ -58,6 +58,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
       {
         shot: "banking",
         eyebrow: "Bank reconciliation",
+        tag: "Experimental",
         title: "Match payments automatically",
         description:
           "Import a camt.053 statement from your bank and chohle matches incoming payments to open invoices by their QR reference, then marks them paid for you.",
@@ -161,6 +162,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
       {
         shot: "banking",
         eyebrow: "Bankabgleich",
+        tag: "Experimentell",
         title: "Zahlungen automatisch zuordnen",
         description:
           "Importier ein camt.053 deiner Bank, und chohle ordnet eingehende Zahlungen über die QR-Referenz den offenen Rechnungen zu und markiert sie als bezahlt.",
@@ -264,6 +266,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
       {
         shot: "banking",
         eyebrow: "Rapprochement bancaire",
+        tag: "Expérimental",
         title: "Rapprochez les paiements automatiquement",
         description:
           "Importez un relevé camt.053 de votre banque et chohle rapproche les paiements entrants des factures ouvertes via la référence QR, puis les marque comme payées.",
@@ -367,6 +370,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
       {
         shot: "banking",
         eyebrow: "Riconciliazione bancaria",
+        tag: "Sperimentale",
         title: "Abbina i pagamenti automaticamente",
         description:
           "Importa un estratto camt.053 della tua banca e chohle abbina i pagamenti in entrata alle fatture aperte tramite il riferimento QR, poi le segna come pagate.",

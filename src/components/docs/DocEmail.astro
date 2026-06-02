@@ -131,4 +131,11 @@ const c = content[lang] ?? content.en;
 
   <h2 id="templates">{c.templatesHeading}</h2>
   <p>{c.templatesBefore}<a href={localize("/docs/configuration", lang)}>{c.templatesLink}</a>{c.templatesAfter}</p>
+  <h2 id="security">{({ en: "Kept private", de: "Privat gehalten", fr: "Gardé privé", it: "Tenuto privato" })[lang]}</h2>
+  <p>{({
+    en: "Mailbox credentials, OAuth tokens and IMAP passwords, are stored encrypted, never in plain text. By default chohle won't connect to an IMAP server on a private or LAN address; flip one setting only if you self-host your own mail server.",
+    de: "Postfach-Zugangsdaten, OAuth-Tokens und IMAP-Passwörter werden verschlüsselt gespeichert, nie im Klartext. Standardmässig verbindet sich chohle nicht mit einem IMAP-Server auf einer privaten oder LAN-Adresse; ändere eine einzige Einstellung nur, wenn du deinen eigenen Mailserver betreibst.",
+    fr: "Les identifiants des boîtes, jetons OAuth et mots de passe IMAP, sont stockés chiffrés, jamais en clair. Par défaut, chohle ne se connecte pas à un serveur IMAP sur une adresse privée ou LAN ; ne changez ce réglage que si vous hébergez votre propre serveur de mail.",
+    it: "Le credenziali delle caselle, token OAuth e password IMAP, sono memorizzate cifrate, mai in chiaro. Per impostazione predefinita chohle non si collega a un server IMAP su un indirizzo privato o LAN; cambia una sola impostazione solo se ospiti il tuo server di posta.",
+  })[lang]}</p>
 </DocsLayout>

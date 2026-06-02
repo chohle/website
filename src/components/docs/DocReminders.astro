@@ -92,4 +92,11 @@ const c = content[lang] ?? content.en;
 
   <h2 id="pdf">{c.pdfHeading}</h2>
   <p>{c.pdfText}</p>
+  <h2 id="history">{({ en: "History picks the next level", de: "Der Verlauf wählt die nächste Stufe", fr: "L'historique choisit le niveau suivant", it: "La cronologia sceglie il livello successivo" })[lang]}</h2>
+  <p>{({
+    en: "Every reminder you send is logged with its level, the rendered subject and body, and the time it went out. chohle uses that history to pick the next level automatically and to enforce each level's wait window, so you never double-send.",
+    de: "Jede gesendete Mahnung wird mit Stufe, gerendertem Betreff und Text sowie Versandzeit protokolliert. chohle nutzt diesen Verlauf, um automatisch die nächste Stufe zu wählen und das Wartefenster jeder Stufe einzuhalten, sodass du nie doppelt versendest.",
+    fr: "Chaque rappel envoyé est journalisé avec son niveau, l'objet et le corps rendus, et l'heure d'envoi. chohle utilise cet historique pour choisir automatiquement le niveau suivant et respecter le délai d'attente de chaque niveau, pour ne jamais envoyer en double.",
+    it: "Ogni sollecito inviato viene registrato con il suo livello, l'oggetto e il corpo generati e l'ora di invio. chohle usa questa cronologia per scegliere automaticamente il livello successivo e rispettare la finestra di attesa di ogni livello, così non invii mai due volte.",
+  })[lang]}</p>
 </DocsLayout>

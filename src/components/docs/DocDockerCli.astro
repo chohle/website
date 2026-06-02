@@ -7,84 +7,76 @@ const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
-    metaTitle: "chohle docs: Docker & CLI",
-    metaDescription: "The Docker image and command-line tasks for running and maintaining chohle.",
-    h1: "Docker & CLI",
-    intro1: "The official image is",
-    intro2: ". It bundles everything chohle needs to run, with your data kept in",
-    intro3: ".",
-    runningH2: "Running",
-    runningP: "The typical production command, detached, with a persistent volume and your environment file:",
+    metaTitle: "chohle docs: Docker & commands",
+    metaDescription: "The everyday Docker Compose commands for running and maintaining chohle.",
+    h1: "Docker & commands",
+    intro1: "chohle runs as a small Docker Compose stack: the Nuxt app plus a Mailpit mail server for development. Your data lives in the",
+    intro2: "folder next to the compose file.",
+    runningH2: "Start and stop",
+    runningP: "Run it in the foreground while you try it, or detached to keep it running:",
     logsH2: "Logs & status",
-    cliH2: "CLI tasks",
-    cliP: "Admin tasks run through the bundled CLI inside the container with",
-    cliComments: `# create the first admin user
-docker exec -it chohle chohle user:create
+    tasksH2: "Common tasks",
+    tasksP: "Run one-off commands inside the app container with docker compose exec:",
+    tasksComments: `# fill the database with demo data
+docker compose exec app npm run seed
 
-# run a one-off backup (see Backups)
-docker exec -it chohle chohle backup`,
-    cliHelpP1: "Run",
-    cliHelpP2: "to see every available command.",
+# open a shell in the container
+docker compose exec app sh`,
+    note: "There is no separate admin tool to learn. Your owner account is created from the environment variables on first launch, and everything else happens in the app itself.",
   },
   de: {
-    metaTitle: "chohle Doku: Docker & CLI",
-    metaDescription: "Das Docker-Image und die Befehlszeilen-Tasks zum Betrieb und zur Wartung von chohle.",
-    h1: "Docker & CLI",
-    intro1: "Das offizielle Image ist",
-    intro2: ". Es enthält alles, was chohle zum Laufen braucht, wobei deine Daten in",
-    intro3: "gespeichert werden.",
-    runningH2: "Betrieb",
-    runningP: "Der typische Produktivbefehl, losgelöst, mit einem persistenten Volume und deiner Umgebungsdatei:",
+    metaTitle: "chohle Doku: Docker & Befehle",
+    metaDescription: "Die alltäglichen Docker-Compose-Befehle zum Betrieb und zur Wartung von chohle.",
+    h1: "Docker & Befehle",
+    intro1: "chohle läuft als kleiner Docker-Compose-Stack: die Nuxt-App plus ein Mailpit-Mailserver für die Entwicklung. Deine Daten liegen im Ordner",
+    intro2: "neben der Compose-Datei.",
+    runningH2: "Starten und stoppen",
+    runningP: "Starte es im Vordergrund zum Ausprobieren oder losgelöst für den Dauerbetrieb:",
     logsH2: "Logs & Status",
-    cliH2: "CLI-Tasks",
-    cliP: "Admin-Tasks laufen über die mitgelieferte CLI im Container mit",
-    cliComments: `# ersten Admin-Benutzer erstellen
-docker exec -it chohle chohle user:create
+    tasksH2: "Häufige Aufgaben",
+    tasksP: "Führe einmalige Befehle im App-Container mit docker compose exec aus:",
+    tasksComments: `# Datenbank mit Demo-Daten füllen
+docker compose exec app npm run seed
 
-# einmaliges Backup ausführen (siehe Backups)
-docker exec -it chohle chohle backup`,
-    cliHelpP1: "Führe",
-    cliHelpP2: "aus, um alle verfügbaren Befehle zu sehen.",
+# eine Shell im Container öffnen
+docker compose exec app sh`,
+    note: "Es gibt kein separates Admin-Tool zu lernen. Dein Owner-Konto wird beim ersten Start aus den Umgebungsvariablen erstellt, alles andere passiert in der App selbst.",
   },
   fr: {
-    metaTitle: "Doc chohle: Docker & CLI",
-    metaDescription: "L'image Docker et les tâches en ligne de commande pour exécuter et maintenir chohle.",
-    h1: "Docker & CLI",
-    intro1: "L'image officielle est",
-    intro2: ". Elle regroupe tout ce dont chohle a besoin pour fonctionner, vos données étant conservées dans",
-    intro3: ".",
-    runningH2: "Exécution",
-    runningP: "La commande de production typique, en arrière-plan, avec un volume persistant et votre fichier d'environnement :",
+    metaTitle: "Doc chohle: Docker & commandes",
+    metaDescription: "Les commandes Docker Compose du quotidien pour exécuter et maintenir chohle.",
+    h1: "Docker & commandes",
+    intro1: "chohle tourne comme une petite stack Docker Compose : l'application Nuxt plus un serveur de mail Mailpit pour le développement. Vos données vivent dans le dossier",
+    intro2: "à côté du fichier compose.",
+    runningH2: "Démarrer et arrêter",
+    runningP: "Lancez-le au premier plan pour l'essayer, ou en arrière-plan pour le garder en service :",
     logsH2: "Journaux & statut",
-    cliH2: "Tâches CLI",
-    cliP: "Les tâches d'administration s'exécutent via la CLI intégrée dans le conteneur avec",
-    cliComments: `# créer le premier utilisateur administrateur
-docker exec -it chohle chohle user:create
+    tasksH2: "Tâches courantes",
+    tasksP: "Exécutez des commandes ponctuelles dans le conteneur de l'application avec docker compose exec :",
+    tasksComments: `# remplir la base avec des données de démo
+docker compose exec app npm run seed
 
-# lancer une sauvegarde ponctuelle (voir Sauvegardes)
-docker exec -it chohle chohle backup`,
-    cliHelpP1: "Exécutez",
-    cliHelpP2: "pour voir toutes les commandes disponibles.",
+# ouvrir un shell dans le conteneur
+docker compose exec app sh`,
+    note: "Il n'y a pas d'outil d'administration séparé à apprendre. Votre compte propriétaire est créé à partir des variables d'environnement au premier lancement, et tout le reste se passe dans l'application.",
   },
   it: {
-    metaTitle: "Documentazione chohle: Docker & CLI",
-    metaDescription: "L'immagine Docker e le attività da riga di comando per eseguire e mantenere chohle.",
-    h1: "Docker & CLI",
-    intro1: "L'immagine ufficiale è",
-    intro2: ". Racchiude tutto ciò di cui chohle ha bisogno per funzionare, con i tuoi dati conservati in",
-    intro3: ".",
-    runningH2: "Esecuzione",
-    runningP: "Il tipico comando di produzione, in background, con un volume persistente e il tuo file di ambiente:",
+    metaTitle: "Documentazione chohle: Docker & comandi",
+    metaDescription: "I comandi Docker Compose di tutti i giorni per eseguire e mantenere chohle.",
+    h1: "Docker & comandi",
+    intro1: "chohle gira come un piccolo stack Docker Compose: l'app Nuxt più un server di posta Mailpit per lo sviluppo. I tuoi dati vivono nella cartella",
+    intro2: "accanto al file compose.",
+    runningH2: "Avvio e arresto",
+    runningP: "Avvialo in primo piano per provarlo, o in background per tenerlo in esecuzione:",
     logsH2: "Log & stato",
-    cliH2: "Attività CLI",
-    cliP: "Le attività di amministrazione vengono eseguite tramite la CLI integrata nel container con",
-    cliComments: `# crea il primo utente amministratore
-docker exec -it chohle chohle user:create
+    tasksH2: "Attività comuni",
+    tasksP: "Esegui comandi una tantum nel container dell'app con docker compose exec:",
+    tasksComments: `# riempi il database con dati demo
+docker compose exec app npm run seed
 
-# esegui un backup una tantum (vedi Backup)
-docker exec -it chohle chohle backup`,
-    cliHelpP1: "Esegui",
-    cliHelpP2: "per vedere tutti i comandi disponibili.",
+# apri una shell nel container
+docker compose exec app sh`,
+    note: "Non c'è uno strumento di amministrazione separato da imparare. Il tuo account proprietario viene creato dalle variabili d'ambiente al primo avvio, e tutto il resto avviene nell'app stessa.",
   },
 } as const;
 const c = content[lang] ?? content.en;
@@ -92,19 +84,21 @@ const c = content[lang] ?? content.en;
 
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
-  <p>{c.intro1} <code>chohle/chohle</code>{c.intro2} <code>/data</code>{c.intro3}</p>
+  <p>{c.intro1} <code>data/</code> {c.intro2}</p>
 
   <h2 id="running">{c.runningH2}</h2>
   <p>{c.runningP}</p>
-  <CodeBlock code="docker run -d --name chohle -p 3000:3000 -v chohle-data:/data --env-file .env chohle/chohle" />
+  <CodeBlock prompt={false} label="bash" code={`docker compose up        # foreground
+docker compose up -d     # detached
+docker compose down      # stop`} />
 
   <h2 id="logs">{c.logsH2}</h2>
-  <CodeBlock prompt={false} label="bash" code={`docker logs -f chohle
-docker restart chohle
-docker stop chohle`} />
+  <CodeBlock prompt={false} label="bash" code={`docker compose logs -f app
+docker compose restart app
+docker compose ps`} />
 
-  <h2 id="cli">{c.cliH2}</h2>
-  <p>{c.cliP} <code>docker exec</code>:</p>
-  <CodeBlock prompt={false} label="bash" code={c.cliComments} />
-  <p>{c.cliHelpP1} <code>docker exec -it chohle chohle --help</code> {c.cliHelpP2}</p>
+  <h2 id="tasks">{c.tasksH2}</h2>
+  <p>{c.tasksP}</p>
+  <CodeBlock prompt={false} label="bash" code={c.tasksComments} />
+  <p>{c.note}</p>
 </DocsLayout>

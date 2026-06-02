@@ -8,79 +8,63 @@ const lang = getLangFromUrl(Astro.url);
 const content = {
   en: {
     metaTitle: "chohle docs: Backups",
-    metaDescription: "How to back up and restore your chohle data.",
+    metaDescription: "How to back up and restore your chohle data: it's all one folder.",
     h1: "Backups",
-    introP1: "All of chohle's data, invoices, projects, clients, settings, lives in",
-    introP2: ". Back that up and you've backed up everything.",
+    introP1: "All of chohle's data, the SQLite database and your uploaded receipts and logos, lives in the",
+    introP2: "folder. Back up that folder and you've backed up everything.",
     snapshotH2: "Create a backup",
-    snapshotP: "The CLI writes a single timestamped archive you can copy anywhere:",
-    snapshotComment: `docker exec -it chohle chohle backup
-# writes /data/backups/chohle-YYYY-MM-DD.tar.gz`,
-    volumeH2: "Or copy the volume",
-    volumeP: "If you'd rather grab the raw data directory:",
+    snapshotP: "Stop the app so the database isn't mid-write, copy the folder, then start it again:",
+    runningP: "If you can't stop it, copying the folder while it runs is usually fine for SQLite, but a brief stop is the safe choice.",
     restoreH2: "Restore",
-    restoreP1: "Stop chohle, restore the archive into a fresh",
-    restoreP2: "volume, and start it again:",
+    restoreP: "Stop the app, put your saved folder back in place, and start it again:",
     scheduleH2: "Automate it",
-    scheduleP1: "Run the backup command on a schedule with",
-    scheduleP2: "and ship the archive off-box (S3, another server) so a dead disk never costs you your invoices.",
+    scheduleP1: "Run a copy on a schedule with",
+    scheduleP2: "and send it off the machine (another disk, another server, or object storage) so a dead drive never costs you your invoices.",
   },
   de: {
     metaTitle: "chohle Doku: Backups",
-    metaDescription: "Wie du deine chohle-Daten sicherst und wiederherstellst.",
+    metaDescription: "Wie du deine chohle-Daten sicherst und wiederherstellst: alles in einem Ordner.",
     h1: "Backups",
-    introP1: "Alle Daten von chohle, Rechnungen, Projekte, Kunden, Einstellungen, liegen in",
-    introP2: ". Sichere das und du hast alles gesichert.",
+    introP1: "Alle Daten von chohle, die SQLite-Datenbank und deine hochgeladenen Belege und Logos, liegen im Ordner",
+    introP2: ". Sichere diesen Ordner und du hast alles gesichert.",
     snapshotH2: "Backup erstellen",
-    snapshotP: "Die CLI schreibt ein einzelnes Archiv mit Zeitstempel, das du überallhin kopieren kannst:",
-    snapshotComment: `docker exec -it chohle chohle backup
-# schreibt /data/backups/chohle-YYYY-MM-DD.tar.gz`,
-    volumeH2: "Oder das Volume kopieren",
-    volumeP: "Wenn du lieber das rohe Datenverzeichnis nimmst:",
+    snapshotP: "Stoppe die App, damit die Datenbank nicht mitten im Schreiben ist, kopiere den Ordner und starte sie wieder:",
+    runningP: "Wenn du nicht stoppen kannst, ist das Kopieren im laufenden Betrieb bei SQLite meist in Ordnung, aber ein kurzer Stopp ist die sichere Wahl.",
     restoreH2: "Wiederherstellen",
-    restoreP1: "Stoppe chohle, stelle das Archiv in ein frisches",
-    restoreP2: "Volume wieder her und starte es erneut:",
+    restoreP: "Stoppe die App, leg deinen gesicherten Ordner zurück und starte sie wieder:",
     scheduleH2: "Automatisieren",
-    scheduleP1: "Führe den Backup-Befehl planmässig mit",
-    scheduleP2: "aus und lagere das Archiv ausserhalb (S3, ein anderer Server), damit eine defekte Festplatte dich nie deine Rechnungen kostet.",
+    scheduleP1: "Führe eine Kopie planmässig mit",
+    scheduleP2: "aus und schick sie von der Maschine weg (andere Festplatte, anderer Server oder Object Storage), damit eine defekte Platte dich nie deine Rechnungen kostet.",
   },
   fr: {
     metaTitle: "Doc chohle: Sauvegardes",
-    metaDescription: "Comment sauvegarder et restaurer vos données chohle.",
+    metaDescription: "Comment sauvegarder et restaurer vos données chohle : tout tient dans un seul dossier.",
     h1: "Sauvegardes",
-    introP1: "Toutes les données de chohle, factures, projets, clients, paramètres, se trouvent dans",
-    introP2: ". Sauvegardez-le et vous avez tout sauvegardé.",
+    introP1: "Toutes les données de chohle, la base SQLite et vos justificatifs et logos téléversés, vivent dans le dossier",
+    introP2: ". Sauvegardez ce dossier et vous avez tout sauvegardé.",
     snapshotH2: "Créer une sauvegarde",
-    snapshotP: "La CLI écrit une seule archive horodatée que vous pouvez copier n'importe où :",
-    snapshotComment: `docker exec -it chohle chohle backup
-# écrit /data/backups/chohle-YYYY-MM-DD.tar.gz`,
-    volumeH2: "Ou copier le volume",
-    volumeP: "Si vous préférez récupérer le répertoire de données brut :",
+    snapshotP: "Arrêtez l'application pour que la base ne soit pas en pleine écriture, copiez le dossier, puis redémarrez :",
+    runningP: "Si vous ne pouvez pas l'arrêter, copier le dossier pendant qu'il tourne convient généralement à SQLite, mais un bref arrêt est le choix sûr.",
     restoreH2: "Restaurer",
-    restoreP1: "Arrêtez chohle, restaurez l'archive dans un nouveau volume",
-    restoreP2: ", puis redémarrez-le :",
+    restoreP: "Arrêtez l'application, remettez votre dossier sauvegardé en place et redémarrez :",
     scheduleH2: "Automatiser",
-    scheduleP1: "Lancez la commande de sauvegarde de façon planifiée avec",
-    scheduleP2: "et expédiez l'archive hors machine (S3, un autre serveur) afin qu'un disque mort ne vous coûte jamais vos factures.",
+    scheduleP1: "Lancez une copie de façon planifiée avec",
+    scheduleP2: "et envoyez-la hors de la machine (autre disque, autre serveur ou stockage objet) afin qu'un disque mort ne vous coûte jamais vos factures.",
   },
   it: {
     metaTitle: "Documentazione chohle: Backup",
-    metaDescription: "Come eseguire il backup e ripristinare i tuoi dati chohle.",
+    metaDescription: "Come eseguire il backup e ripristinare i tuoi dati chohle: è tutto in una cartella.",
     h1: "Backup",
-    introP1: "Tutti i dati di chohle, fatture, progetti, clienti, impostazioni, si trovano in",
-    introP2: ". Fanne il backup e avrai salvato tutto.",
+    introP1: "Tutti i dati di chohle, il database SQLite e le ricevute e i loghi caricati, vivono nella cartella",
+    introP2: ". Fai il backup di quella cartella e avrai salvato tutto.",
     snapshotH2: "Crea un backup",
-    snapshotP: "La CLI scrive un unico archivio con marca temporale che puoi copiare ovunque:",
-    snapshotComment: `docker exec -it chohle chohle backup
-# scrive /data/backups/chohle-YYYY-MM-DD.tar.gz`,
-    volumeH2: "Oppure copia il volume",
-    volumeP: "Se preferisci prendere la directory dei dati grezzi:",
+    snapshotP: "Ferma l'app così il database non è a metà scrittura, copia la cartella, poi riavvia:",
+    runningP: "Se non puoi fermarla, copiare la cartella mentre gira di solito va bene per SQLite, ma un breve arresto è la scelta sicura.",
     restoreH2: "Ripristina",
-    restoreP1: "Ferma chohle, ripristina l'archivio in un nuovo volume",
-    restoreP2: "e riavvialo:",
+    restoreP: "Ferma l'app, rimetti al suo posto la cartella salvata e riavvia:",
     scheduleH2: "Automatizzalo",
-    scheduleP1: "Esegui il comando di backup in modo pianificato con",
-    scheduleP2: "e invia l'archivio fuori dalla macchina (S3, un altro server) così un disco guasto non ti costerà mai le tue fatture.",
+    scheduleP1: "Esegui una copia in modo pianificato con",
+    scheduleP2: "e inviala fuori dalla macchina (un altro disco, un altro server o object storage) così un disco guasto non ti costerà mai le tue fatture.",
   },
 } as const;
 const c = content[lang] ?? content.en;
@@ -88,21 +72,20 @@ const c = content[lang] ?? content.en;
 
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
-  <p>{c.introP1} <code>/data</code>{c.introP2}</p>
+  <p>{c.introP1} <code>data/</code> {c.introP2}</p>
 
   <h2 id="snapshot">{c.snapshotH2}</h2>
   <p>{c.snapshotP}</p>
-  <CodeBlock prompt={false} label="bash" code={c.snapshotComment} />
-
-  <h2 id="volume">{c.volumeH2}</h2>
-  <p>{c.volumeP}</p>
-  <CodeBlock code="docker cp chohle:/data ./chohle-data-backup" />
+  <CodeBlock prompt={false} label="bash" code={`docker compose stop app
+cp -r data "backup-data-$(date +%F)"
+docker compose start app`} />
+  <p>{c.runningP}</p>
 
   <h2 id="restore">{c.restoreH2}</h2>
-  <p>{c.restoreP1} <code>/data</code> {c.restoreP2}</p>
-  <CodeBlock prompt={false} label="bash" code={`docker stop chohle
-docker exec -it chohle chohle restore /data/backups/chohle-2025-01-01.tar.gz
-docker start chohle`} />
+  <p>{c.restoreP}</p>
+  <CodeBlock prompt={false} label="bash" code={`docker compose down
+rm -rf data && cp -r backup-data-2026-01-01 data
+docker compose up -d`} />
 
   <h2 id="schedule">{c.scheduleH2}</h2>
   <p>{c.scheduleP1} <code>cron</code> {c.scheduleP2}</p>

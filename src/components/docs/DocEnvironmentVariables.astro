@@ -10,97 +10,114 @@ const content = {
     metaTitle: "chohle docs: Environment variables",
     metaDescription: "Every environment variable chohle reads, with defaults and descriptions.",
     h1: "Environment variables",
-    introP1: "chohle is configured entirely through environment variables. Set them in a",
-    introP2: "file or pass them to the container with",
-    introP3: ".",
+    introP1: "chohle is configured with environment variables. Copy",
+    introP2: "to",
+    introP3: "and adjust the values. Docker Compose loads the file for you.",
     referenceH2: "Reference",
     colVariable: "Variable",
     colDefault: "Default",
     colDescription: "Description",
     exampleH2: "Example",
     descs: [
-      "Port chohle listens on.",
-      "Public URL chohle is served from. Used in links and emails.",
-      "Default currency for new invoices.",
-      "Where chohle stores its data.",
-      "Connection string for sending email.",
-      "Random string used to sign sessions. Required in production.",
+      "Owner login, seeded on first launch.",
+      "Owner password, seeded on first launch. Set your own.",
+      "Secret that seals the session cookie. Use a random string of 32 or more characters.",
+      "Encryption key for connected mailbox credentials (OAuth tokens, IMAP passwords). 32 or more random characters.",
+      "SMTP host used to send invoice and reminder email. In development this is Mailpit.",
+      "SMTP port.",
+      "Path to the SQLite database file.",
+      "Set to 1 to allow connecting an IMAP server on a private or LAN address. Off by default as a safety guard.",
     ],
   },
   de: {
     metaTitle: "chohle Doku: Umgebungsvariablen",
     metaDescription: "Jede Umgebungsvariable, die chohle liest, mit Standardwerten und Beschreibungen.",
     h1: "Umgebungsvariablen",
-    introP1: "chohle wird vollständig über Umgebungsvariablen konfiguriert. Setze sie in einer",
-    introP2: "Datei oder übergib sie dem Container mit",
-    introP3: ".",
+    introP1: "chohle wird über Umgebungsvariablen konfiguriert. Kopiere",
+    introP2: "nach",
+    introP3: "und passe die Werte an. Docker Compose lädt die Datei für dich.",
     referenceH2: "Referenz",
     colVariable: "Variable",
     colDefault: "Standard",
     colDescription: "Beschreibung",
     exampleH2: "Beispiel",
     descs: [
-      "Port, auf dem chohle lauscht.",
-      "Öffentliche URL, unter der chohle ausgeliefert wird. Wird in Links und E-Mails verwendet.",
-      "Standardwährung für neue Rechnungen.",
-      "Wo chohle seine Daten speichert.",
-      "Verbindungszeichenfolge für den E-Mail-Versand.",
-      "Zufällige Zeichenfolge zum Signieren von Sessions. In der Produktion erforderlich.",
+      "Owner-Login, beim ersten Start angelegt.",
+      "Owner-Passwort, beim ersten Start angelegt. Setze dein eigenes.",
+      "Geheimnis, das das Session-Cookie versiegelt. Verwende eine zufällige Zeichenfolge mit 32 oder mehr Zeichen.",
+      "Schlüssel zur Verschlüsselung verbundener Postfach-Zugangsdaten (OAuth-Tokens, IMAP-Passwörter). 32 oder mehr zufällige Zeichen.",
+      "SMTP-Host zum Versand von Rechnungs- und Mahnungs-E-Mails. In der Entwicklung ist das Mailpit.",
+      "SMTP-Port.",
+      "Pfad zur SQLite-Datenbankdatei.",
+      "Auf 1 setzen, um einen IMAP-Server unter einer privaten oder LAN-Adresse zu verbinden. Standardmässig aus, als Schutzmassnahme.",
     ],
   },
   fr: {
     metaTitle: "Doc chohle: Variables d'environnement",
     metaDescription: "Toutes les variables d'environnement lues par chohle, avec valeurs par défaut et descriptions.",
     h1: "Variables d'environnement",
-    introP1: "chohle se configure entièrement via des variables d'environnement. Définissez-les dans un fichier",
-    introP2: "ou transmettez-les au conteneur avec",
-    introP3: ".",
+    introP1: "chohle se configure avec des variables d'environnement. Copiez",
+    introP2: "vers",
+    introP3: "et ajustez les valeurs. Docker Compose charge le fichier pour vous.",
     referenceH2: "Référence",
     colVariable: "Variable",
     colDefault: "Valeur par défaut",
     colDescription: "Description",
     exampleH2: "Exemple",
     descs: [
-      "Port sur lequel chohle écoute.",
-      "URL publique depuis laquelle chohle est servi. Utilisée dans les liens et les e-mails.",
-      "Devise par défaut pour les nouvelles factures.",
-      "Emplacement où chohle stocke ses données.",
-      "Chaîne de connexion pour l'envoi d'e-mails.",
-      "Chaîne aléatoire utilisée pour signer les sessions. Requise en production.",
+      "Identifiant du propriétaire, créé au premier lancement.",
+      "Mot de passe du propriétaire, créé au premier lancement. Définissez le vôtre.",
+      "Secret qui scelle le cookie de session. Utilisez une chaîne aléatoire de 32 caractères ou plus.",
+      "Clé de chiffrement des identifiants des boîtes connectées (jetons OAuth, mots de passe IMAP). 32 caractères aléatoires ou plus.",
+      "Hôte SMTP utilisé pour envoyer les e-mails de facture et de rappel. En développement, c'est Mailpit.",
+      "Port SMTP.",
+      "Chemin du fichier de base de données SQLite.",
+      "Mettez à 1 pour connecter un serveur IMAP sur une adresse privée ou LAN. Désactivé par défaut, par sécurité.",
     ],
   },
   it: {
     metaTitle: "Documentazione chohle: Variabili d'ambiente",
     metaDescription: "Tutte le variabili d'ambiente lette da chohle, con valori predefiniti e descrizioni.",
     h1: "Variabili d'ambiente",
-    introP1: "chohle è configurato interamente tramite variabili d'ambiente. Impostale in un file",
-    introP2: "oppure passale al container con",
-    introP3: ".",
+    introP1: "chohle si configura con variabili d'ambiente. Copia",
+    introP2: "in",
+    introP3: "e regola i valori. Docker Compose carica il file per te.",
     referenceH2: "Riferimento",
     colVariable: "Variabile",
     colDefault: "Predefinito",
     colDescription: "Descrizione",
     exampleH2: "Esempio",
     descs: [
-      "Porta su cui chohle è in ascolto.",
-      "URL pubblico da cui chohle viene servito. Usato nei link e nelle e-mail.",
-      "Valuta predefinita per le nuove fatture.",
-      "Dove chohle memorizza i suoi dati.",
-      "Stringa di connessione per l'invio di e-mail.",
-      "Stringa casuale usata per firmare le sessioni. Richiesta in produzione.",
+      "Login del proprietario, creato al primo avvio.",
+      "Password del proprietario, creata al primo avvio. Imposta la tua.",
+      "Segreto che sigilla il cookie di sessione. Usa una stringa casuale di 32 o più caratteri.",
+      "Chiave di cifratura per le credenziali delle caselle collegate (token OAuth, password IMAP). 32 o più caratteri casuali.",
+      "Host SMTP usato per inviare le e-mail di fattura e sollecito. In sviluppo è Mailpit.",
+      "Porta SMTP.",
+      "Percorso del file di database SQLite.",
+      "Imposta a 1 per collegare un server IMAP su un indirizzo privato o LAN. Disattivato per impostazione predefinita, per sicurezza.",
     ],
   },
 } as const;
 const c = content[lang] ?? content.en;
 
-const names = ["PORT", "BASE_URL", "BASE_CURRENCY", "DATABASE_URL", "SMTP_URL", "SECRET_KEY"];
-const defaults = ["3000", "http://localhost:3000", "CHF", "file:/data/chohle.db", "(none)", "(none)"];
+const names = [
+  "NUXT_ADMIN_USERNAME",
+  "NUXT_ADMIN_PASSWORD",
+  "NUXT_SESSION_PASSWORD",
+  "CHOHLE_SECRET",
+  "NUXT_SMTP_HOST",
+  "NUXT_SMTP_PORT",
+  "DATABASE_PATH",
+  "IMAP_ALLOW_PRIVATE_HOSTS",
+];
+const defaults = ["owner", "(set your own)", "(required)", "(required)", "localhost", "1125", "data/chohle.db", "(unset)"];
 const vars = names.map((name, i) => ({ name, default: defaults[i], desc: c.descs[i] }));
 ---
 
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
-  <p>{c.introP1} <code>.env</code> {c.introP2} <code>--env-file</code>{c.introP3}</p>
+  <p>{c.introP1} <code>.env.example</code> {c.introP2} <code>.env</code> {c.introP3}</p>
 
   <h2 id="reference">{c.referenceH2}</h2>
   <div class="not-prose mt-6 overflow-x-auto rounded-2xl ring-1 ring-mauve-950/10 dark:ring-white/10">
@@ -125,9 +142,10 @@ const vars = names.map((name, i) => ({ name, default: defaults[i], desc: c.descs
   </div>
 
   <h2 id="example">{c.exampleH2}</h2>
-  <CodeBlock prompt={false} label=".env" code={`PORT=3000
-BASE_URL=https://chohle.example.com
-BASE_CURRENCY=CHF
-SMTP_URL=smtp://user:pass@smtp.example.com:587
-SECRET_KEY=change-me-to-a-long-random-string`} />
+  <CodeBlock prompt={false} label=".env" code={`NUXT_ADMIN_USERNAME=owner
+NUXT_ADMIN_PASSWORD=change-me
+NUXT_SESSION_PASSWORD=change-me-to-a-long-random-string
+CHOHLE_SECRET=change-me-to-a-long-random-string
+NUXT_SMTP_HOST=localhost
+NUXT_SMTP_PORT=1125`} />
 </DocsLayout>
