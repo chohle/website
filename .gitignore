@@ -17,3 +17,9 @@ pnpm-debug.log*
 # editors
 .idea
 random-testing
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
