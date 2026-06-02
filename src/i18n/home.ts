@@ -5,7 +5,7 @@ export interface HomeContent {
   hero: { headline: string; sub: string; keywords: string[] };
   features: { headline: string; sub: string; items: { title: string; body: string }[] };
   why: { heading: string; body: string; values: { stat: string; text: string }[] };
-  open: { eyebrow: string; headline: string; body: string };
+  open: { eyebrow: string; headline: string; body: string; items: { tag: string; title: string; desc: string }[] };
   pricing: { headline: string; body: string };
   faqsTitle: string;
   faqsSub: string;
@@ -42,9 +42,15 @@ const home: Partial<Record<Lang, HomeContent>> = {
       ],
     },
     open: {
-      eyebrow: "Open source",
-      headline: "Free, transparent and yours to run.",
+      eyebrow: "Open by design",
+      headline: "Yours to run, end to end.",
       body: "chohle is open source. Use the hosted demo, or self-host the whole thing on your own server so your data stays with you. No lock-in, no black boxes, no surprises.",
+      items: [
+        { tag: "Self-hostable", title: "Run it on your own server", desc: "chohle is built to self-host. Spin it up with Docker in a single command and keep everything in-house." },
+        { tag: "No lock-in", title: "Open formats", desc: "Your data lives in a plain SQLite file you can back up or export. Your invoices and clients are always yours to take." },
+        { tag: "Private", title: "Your data stays put", desc: "When you self-host, nothing ever leaves your infrastructure. No third parties, no subscription, no surprises." },
+        { tag: "Open source", title: "Read every line", desc: "The whole codebase is public under the MIT licence. Audit it, extend it, or contribute back. It's yours to shape." },
+      ],
     },
     pricing: {
       headline: "Simple pricing, open by default.",
@@ -88,9 +94,15 @@ const home: Partial<Record<Lang, HomeContent>> = {
       ],
     },
     open: {
-      eyebrow: "Open Source",
-      headline: "Kostenlos, transparent und selbst betreibbar.",
+      eyebrow: "Offen konzipiert",
+      headline: "Deins, von A bis Z selbst betreibbar.",
       body: "chohle ist Open Source. Nutze die gehostete Demo oder betreibe alles selbst auf deinem Server, damit deine Daten bei dir bleiben. Kein Lock-in, keine Blackbox, keine Überraschungen.",
+      items: [
+        { tag: "Selbst hostbar", title: "Auf deinem eigenen Server", desc: "chohle ist fürs Self-Hosting gebaut. Starte es mit Docker in einem einzigen Befehl und behalte alles im Haus." },
+        { tag: "Kein Lock-in", title: "Offene Formate", desc: "Deine Daten liegen in einer einfachen SQLite-Datei, die du sichern oder exportieren kannst. Deine Rechnungen und Kunden gehören immer dir." },
+        { tag: "Privat", title: "Deine Daten bleiben, wo sie sind", desc: "Beim Self-Hosting verlässt nichts je deine Infrastruktur. Keine Dritten, kein Abo, keine Überraschungen." },
+        { tag: "Open Source", title: "Lies jede Zeile", desc: "Der gesamte Code ist öffentlich unter der MIT-Lizenz. Prüfe ihn, erweitere ihn oder trag etwas bei. Er gehört dir zum Gestalten." },
+      ],
     },
     pricing: {
       headline: "Einfache Preise, offen von Haus aus.",
@@ -134,9 +146,15 @@ const home: Partial<Record<Lang, HomeContent>> = {
       ],
     },
     open: {
-      eyebrow: "Open source",
-      headline: "Gratuit, transparent et hébergeable par vous.",
+      eyebrow: "Ouvert par conception",
+      headline: "À vous de l'exécuter, de bout en bout.",
       body: "chohle est open source. Utilisez la démo hébergée, ou hébergez le tout sur votre propre serveur pour que vos données restent chez vous. Aucun verrouillage, aucune boîte noire, aucune surprise.",
+      items: [
+        { tag: "Auto-hébergeable", title: "Sur votre propre serveur", desc: "chohle est conçu pour l'auto-hébergement. Lancez-le avec Docker en une seule commande et gardez tout en interne." },
+        { tag: "Aucun verrouillage", title: "Formats ouverts", desc: "Vos données vivent dans un simple fichier SQLite que vous pouvez sauvegarder ou exporter. Vos factures et vos clients sont toujours à vous." },
+        { tag: "Privé", title: "Vos données restent chez vous", desc: "Quand vous auto-hébergez, rien ne quitte jamais votre infrastructure. Pas de tiers, pas d'abonnement, pas de surprises." },
+        { tag: "Open source", title: "Lisez chaque ligne", desc: "Tout le code est public sous licence MIT. Auditez-le, étendez-le ou contribuez. Il est à vous de le façonner." },
+      ],
     },
     pricing: {
       headline: "Des tarifs simples, ouverts par défaut.",
@@ -180,9 +198,15 @@ const home: Partial<Record<Lang, HomeContent>> = {
       ],
     },
     open: {
-      eyebrow: "Open source",
-      headline: "Gratuito, trasparente e gestibile da te.",
+      eyebrow: "Aperto per scelta",
+      headline: "Tuo da gestire, dall'inizio alla fine.",
       body: "chohle è open source. Usa la demo ospitata oppure esegui tutto sul tuo server, così i tuoi dati restano con te. Nessun lock-in, nessuna scatola nera, nessuna sorpresa.",
+      items: [
+        { tag: "Auto-ospitabile", title: "Sul tuo server", desc: "chohle è pensato per il self-hosting. Avvialo con Docker in un solo comando e tieni tutto in casa." },
+        { tag: "Nessun lock-in", title: "Formati aperti", desc: "I tuoi dati vivono in un semplice file SQLite che puoi salvare o esportare. Le tue fatture e i tuoi clienti restano sempre tuoi." },
+        { tag: "Privato", title: "I tuoi dati restano al loro posto", desc: "Quando fai self-hosting, nulla lascia mai la tua infrastruttura. Nessun terzo, nessun abbonamento, nessuna sorpresa." },
+        { tag: "Open source", title: "Leggi ogni riga", desc: "L'intero codice è pubblico sotto licenza MIT. Verificalo, estendilo o contribuisci. È tuo da plasmare." },
+      ],
     },
     pricing: {
       headline: "Prezzi semplici, aperti per natura.",
