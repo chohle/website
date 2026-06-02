@@ -12,6 +12,7 @@ const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 
 const links = [
+  { href: "/features", label: t("label.features") },
   { href: "/pricing", label: t("nav.pricing") },
   { href: "/about", label: t("nav.about") },
   { href: "/docs", label: t("nav.docs"), blank: true },
@@ -25,8 +26,28 @@ const demoBtn =
   "inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-3.5 py-1.5 font-mono text-[0.72rem]/6 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200";
 ---
 
-<header class="sticky top-0 z-10 bg-mauve-100 dark:bg-mauve-950">
-  <style>:root { --scroll-padding-top: 5.25rem }</style>
+<header id="site-header" class="sticky top-0 z-20 transition-colors duration-300">
+  <style>
+    :root { --scroll-padding-top: 5.25rem }
+    /* Transparent over the hero; solid + blurred once scrolled past it. */
+    #site-header.is-scrolled {
+      background-color: color-mix(in oklab, var(--color-mauve-950) 80%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid color-mix(in oklab, white 8%, transparent);
+    }
+  </style>
+  <script is:inline>
+    (function () {
+      var h = document.getElementById("site-header");
+      if (!h) return;
+      var onScroll = function () {
+        h.classList.toggle("is-scrolled", window.scrollY > 40);
+      };
+      onScroll();
+      window.addEventListener("scroll", onScroll, { passive: true });
+    })();
+  </script>
   <nav>
     <div class="mx-auto flex h-(--scroll-padding-top) max-w-7xl items-center gap-4 px-6 lg:px-10">
       <div class="flex flex-1 gap-8 max-lg:hidden">
