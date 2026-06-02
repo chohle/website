@@ -4,6 +4,8 @@ interface Props { class?: string }
 const { class: className = "" } = Astro.props;
 ---
 
-<span class={`font-mono text-xs/6 font-semibold tracking-widest text-accent uppercase dark:text-accent-light ${className}`}>
+<span class={`inline-flex items-center gap-1.5 font-mono text-[0.7rem]/6 font-medium tracking-[0.25em] text-accent-light uppercase ${className}`}>
+  <span aria-hidden="true" class="text-accent-light/50">[</span>
   <slot />
+  <span aria-hidden="true" class="text-accent-light/50">]</span>
 </span>

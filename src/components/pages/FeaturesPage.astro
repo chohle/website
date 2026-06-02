@@ -20,28 +20,25 @@ const docsUrl = localize("/docs", lang);
 const shotSrc = (shot: string) => `/screenshots/${shot}-${lang}.jpg`;
 
 const frame = [
-  { color: "purple", placement: "bottom-right" },
+  { color: "green", placement: "bottom-right" },
   { color: "blue", placement: "bottom-left" },
   { color: "brown", placement: "bottom-right" },
   { color: "green", placement: "bottom-left" },
-  { color: "purple", placement: "bottom-right" },
+  { color: "blue", placement: "bottom-right" },
 ] as const;
 
 const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length] }));
 ---
 
 <Layout title={c.meta.title} description={c.meta.description} lang={lang}>
-  <!-- Gradient hero -->
-  <section class="py-16">
-    <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <div class="relative isolate overflow-hidden rounded-4xl px-6 py-24 text-center sm:px-16" data-reveal>
-        <div class="absolute inset-0 -z-10 rounded-4xl bg-linear-130 from-mauve-100 from-10% via-[#e0b9ea] via-65% to-[#b78ae6] ring-1 ring-black/5 ring-inset"></div>
-        <h1 class="font-display mx-auto max-w-3xl text-4xl font-medium tracking-tighter text-balance text-mauve-950 sm:text-6xl">{c.hero.headline}</h1>
-        <p class="mx-auto mt-6 max-w-xl text-lg/8 text-mauve-800">{c.hero.sub}</p>
-        <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href={demoUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800">{t("cta.tryDemo")}</a>
-          <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-mauve-950 ring-1 ring-inset ring-mauve-950/15 hover:bg-mauve-950/5">{t("cta.readDocs")}</a>
-        </div>
+  <!-- Hero -->
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto w-full max-w-2xl px-6 text-center md:max-w-3xl lg:max-w-7xl lg:px-10" data-reveal>
+      <h1 class="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-[-0.03em] text-balance text-white sm:text-6xl">{c.hero.headline}</h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg/8 text-mauve-400">{c.hero.sub}</p>
+      <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
+        <a href={demoUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full bg-accent px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-mauve-950 hover:bg-accent-light">{t("cta.tryDemo")}</a>
+        <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-white inset-ring-1 inset-ring-white/15 hover:bg-white/5">{t("cta.readDocs")}</a>
       </div>
     </div>
   </section>

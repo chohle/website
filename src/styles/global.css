@@ -4,6 +4,10 @@
 @import "@fontsource-variable/inter/index.css";
 @import "@fontsource-variable/mona-sans/wdth.css";
 
+/* Dark-first: drive the `dark:` variant from a class on <html>, not the OS.
+   Layout adds `class="dark"`, so the whole site renders its dark styles. */
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --font-display: "Mona Sans Variable", ui-sans-serif, system-ui, sans-serif;
   --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
@@ -20,9 +24,10 @@
   --color-mauve-900: oklch(21.2% 0.019 322.12);
   --color-mauve-950: oklch(14.5% 0.008 326);
 
-  /* One strategic accent, drawn from the aurora purple. */
-  --color-accent: oklch(56% 0.19 308);
-  --color-accent-light: oklch(74% 0.15 308);
+  /* Strategic accent: a calm emerald (mindmarket-style). Lower chroma than the
+     old electric violet so the solid blocks read confident, not loud. */
+  --color-accent: oklch(72% 0.15 162);
+  --color-accent-light: oklch(83% 0.13 164);
 }
 
 .font-display {
@@ -34,15 +39,11 @@
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--color-mauve-100);
+    /* Dark-first — no light fallback flash. */
+    background-color: var(--color-mauve-950);
+    color-scheme: dark;
     --scroll-padding-top: 0;
     scroll-padding-top: var(--scroll-padding-top);
-  }
-
-  @media (prefers-color-scheme: dark) {
-    html {
-      background-color: var(--color-mauve-950);
-    }
   }
 
   :focus-visible {
@@ -79,6 +80,17 @@
 /* Exception: the decorative background glow stays round (it's a soft glow, not a cornered UI element). */
 .aurora-blob {
   border-radius: 9999px !important;
+}
+
+/* Terminal caret blink for the hero prompt motif. */
+@media (prefers-reduced-motion: no-preference) {
+  .caret-blink {
+    animation: caret-blink 1.1s steps(1) infinite;
+  }
+}
+@keyframes caret-blink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
 }
 
 @keyframes aurora-drift-1 {

@@ -13,7 +13,7 @@ const c = getHome(lang).features;
 
 const style = [
   { color: "blue", placement: "bottom-right" },
-  { color: "purple", placement: "top-left" },
+  { color: "green", placement: "top-left" },
   { color: "brown", placement: "bottom-left" },
 ] as const;
 // Real per-locale screenshots, matched to the three home feature items.
@@ -39,7 +39,7 @@ const featuresPage = localize("/features", lang);
           <a href={featuresPage} class="group grid grid-flow-dense grid-cols-1 gap-2 rounded-lg bg-mauve-950/2.5 p-2 no-underline ring-1 ring-inset ring-transparent transition-colors hover:bg-mauve-950/4 hover:ring-mauve-950/5 lg:grid-cols-2 dark:bg-white/5 dark:hover:bg-white/8 dark:hover:ring-white/10" data-reveal>
             <div class="flex flex-col justify-between gap-6 p-6 sm:gap-10 sm:p-10 lg:p-6 lg:group-even:col-start-2">
               <div class="flex flex-col gap-4">
-                <span class="font-mono text-xs/6 font-semibold tracking-[0.2em] text-accent dark:text-accent-light">{(i + 1).toString().padStart(2, "0")}</span>
+                <span class="inline-flex items-center gap-2 font-mono text-xs/6 font-medium tracking-[0.2em] text-accent-light"><span class="size-1.5 bg-accent-light" aria-hidden="true"></span>[ {(i + 1).toString().padStart(2, "0")} ]</span>
                 <div class="text-xl/8 sm:text-2xl/9">
                   <h3 class="text-mauve-950 dark:text-white">{item.title}</h3>
                   <div class="mt-2 flex flex-col gap-4 text-base/7 text-mauve-500"><p>{item.body}</p></div>
