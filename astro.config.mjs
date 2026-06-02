@@ -1,5 +1,5 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
+import { defineConfig, sessionDrivers } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
 
 import cloudflare from "@astrojs/cloudflare";
@@ -17,6 +17,13 @@ export default defineConfig({
 
   vite: {
     plugins: [tailwindcss()],
+  },
+
+  // This static site never uses sessions. Pick a non-KV (in-memory) driver so
+  // the Cloudflare adapter doesn't auto-require a "SESSION" KV namespace — that
+  // avoids committing an account-specific namespace id to a public repo.
+  session: {
+    driver: sessionDrivers.memory(),
   },
 
   adapter: cloudflare()
