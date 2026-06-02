@@ -1,0 +1,9 @@
+---
+// Changelog is deferred for now; redirect any old localized links to the docs home.
+import { langs, defaultLang } from "../../../i18n/config";
+export function getStaticPaths() {
+  return langs.filter((l) => l !== defaultLang).map((l) => ({ params: { lang: l } }));
+}
+const { lang } = Astro.params;
+return Astro.redirect(`/${lang}/docs/`, 301);
+---
