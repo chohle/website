@@ -1,0 +1,84 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Activity",
+    metaDescription: "A single newest-first stream of everything that happened in your workspace: invoices, expenses and income.",
+    h1: "Activity",
+    intro: "Activity is one stream of everything that happened in your workspace, newest first. It's composed on the fly from your invoices, expenses and salary, so there's nothing to maintain, it just reflects what you've done.",
+    kindsHeading: "What shows up",
+    kindsText:
+      "Five kinds of event flow through it: an invoice sent, an invoice paid, an invoice gone overdue, an expense logged, and salary or income received. Each entry shows the amount and how long ago it happened.",
+    filterHeading: "Filter and focus",
+    filterText:
+      "Toggle the five kinds on or off to focus on just what you care about, and switch the time range between this week, this month, last month or a custom month. A net-change summary tallies what came in against what went out for the range you're viewing.",
+    groupHeading: "Grouped by time",
+    groupText:
+      "Entries are grouped into Today, This week and Earlier, and longer histories load more on demand, so the most recent things are always right at the top.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Aktivität",
+    metaDescription: "Ein einziger Stream von allem, was in deinem Arbeitsbereich passiert ist, neueste zuerst: Rechnungen, Ausgaben und Einnahmen.",
+    h1: "Aktivität",
+    intro: "Aktivität ist ein Stream von allem, was in deinem Arbeitsbereich passiert ist, neueste zuerst. Er wird live aus deinen Rechnungen, Ausgaben und dem Lohn zusammengestellt, es gibt also nichts zu pflegen, er spiegelt einfach, was du getan hast.",
+    kindsHeading: "Was auftaucht",
+    kindsText:
+      "Fünf Arten von Ereignissen laufen durch: eine versendete Rechnung, eine bezahlte Rechnung, eine überfällig gewordene Rechnung, eine erfasste Ausgabe und erhaltener Lohn oder Einnahme. Jeder Eintrag zeigt den Betrag und wie lange es her ist.",
+    filterHeading: "Filtern und fokussieren",
+    filterText:
+      "Schalte die fünf Arten ein oder aus, um dich auf das Wesentliche zu konzentrieren, und wechsle den Zeitraum zwischen dieser Woche, diesem Monat, letztem Monat oder einem eigenen Monat. Eine Netto-Zusammenfassung verrechnet Eingänge gegen Ausgänge für den gezeigten Zeitraum.",
+    groupHeading: "Nach Zeit gruppiert",
+    groupText:
+      "Einträge sind in Heute, Diese Woche und Früher gruppiert, und längere Verläufe laden auf Wunsch nach, sodass die neuesten Dinge immer ganz oben stehen.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Activité",
+    metaDescription: "Un flux unique de tout ce qui s'est passé dans votre espace, du plus récent : factures, dépenses et revenus.",
+    h1: "Activité",
+    intro: "L'activité est un flux de tout ce qui s'est passé dans votre espace, du plus récent. Il est composé à la volée à partir de vos factures, dépenses et salaire, il n'y a donc rien à entretenir : il reflète simplement ce que vous avez fait.",
+    kindsHeading: "Ce qui apparaît",
+    kindsText:
+      "Cinq types d'événements y circulent : une facture envoyée, une facture payée, une facture en retard, une dépense enregistrée, et un salaire ou revenu reçu. Chaque entrée indique le montant et depuis combien de temps c'est arrivé.",
+    filterHeading: "Filtrer et cibler",
+    filterText:
+      "Activez ou désactivez les cinq types pour vous concentrer sur l'essentiel, et changez la période entre cette semaine, ce mois, le mois dernier ou un mois personnalisé. Un résumé du changement net compare ce qui est entré et sorti pour la période affichée.",
+    groupHeading: "Groupé par période",
+    groupText:
+      "Les entrées sont groupées en Aujourd'hui, Cette semaine et Plus tôt, et les historiques plus longs se chargent à la demande, pour que le plus récent reste toujours en haut.",
+  },
+  it: {
+    metaTitle: "Doc chohle: Attività",
+    metaDescription: "Un unico flusso di tutto ciò che è successo nel tuo spazio, dal più recente: fatture, uscite ed entrate.",
+    h1: "Attività",
+    intro: "L'attività è un flusso di tutto ciò che è successo nel tuo spazio, dal più recente. È composto al volo dalle tue fatture, uscite e dallo stipendio, quindi non c'è nulla da mantenere: riflette semplicemente ciò che hai fatto.",
+    kindsHeading: "Cosa compare",
+    kindsText:
+      "Cinque tipi di evento vi scorrono: una fattura inviata, una fattura pagata, una fattura andata in scadenza, un'uscita registrata e uno stipendio o un'entrata ricevuti. Ogni voce mostra l'importo e da quanto tempo è avvenuto.",
+    filterHeading: "Filtra e concentra",
+    filterText:
+      "Attiva o disattiva i cinque tipi per concentrarti su ciò che ti interessa, e cambia l'intervallo tra questa settimana, questo mese, il mese scorso o un mese personalizzato. Un riepilogo della variazione netta confronta ciò che è entrato con ciò che è uscito per l'intervallo mostrato.",
+    groupHeading: "Raggruppato per tempo",
+    groupText:
+      "Le voci sono raggruppate in Oggi, Questa settimana e Prima, e le cronologie più lunghe si caricano su richiesta, così le cose più recenti restano sempre in cima.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <h2 id="kinds">{c.kindsHeading}</h2>
+  <p>{c.kindsText}</p>
+
+  <h2 id="filter">{c.filterHeading}</h2>
+  <p>{c.filterText}</p>
+
+  <h2 id="grouped">{c.groupHeading}</h2>
+  <p>{c.groupText}</p>
+</DocsLayout>

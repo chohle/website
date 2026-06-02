@@ -111,4 +111,11 @@ const c = content[lang] ?? content.en;
 
   <h2 id="templates">{c.templatesHeading}</h2>
   <p>{c.templatesBefore}<a href={localize("/docs/reminders", lang)}>{c.templatesLink}</a>{c.templatesAfter}</p>
+  <h2 id="account">{({ en: "Your account", de: "Dein Konto", fr: "Votre compte", it: "Il tuo account" })[lang]}</h2>
+  <p>{({
+    en: "chohle is single-owner: one login, seeded from your environment on first launch. From your profile you can change that username and password later, and your language choice is saved to the account so the app follows you across devices.",
+    de: "chohle hat einen einzigen Owner: ein Login, beim ersten Start aus deiner Umgebung angelegt. In deinem Profil kannst du Benutzername und Passwort später ändern, und deine Sprachwahl wird im Konto gespeichert, sodass dir die App über Geräte hinweg folgt.",
+    fr: "chohle a un seul propriétaire : un identifiant, créé depuis votre environnement au premier lancement. Depuis votre profil, vous pouvez changer ce nom d'utilisateur et ce mot de passe plus tard, et votre choix de langue est enregistré sur le compte pour que l'application vous suive d'un appareil à l'autre.",
+    it: "chohle ha un unico proprietario: un login, creato dal tuo ambiente al primo avvio. Dal tuo profilo puoi cambiare nome utente e password in seguito, e la scelta della lingua viene salvata sull'account così l'app ti segue tra i dispositivi.",
+  })[lang]}</p>
 </DocsLayout>

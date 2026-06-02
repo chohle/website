@@ -103,4 +103,11 @@ const c = content[lang] ?? content.en;
 
   <h2 id="to-invoice">{c.toInvoiceHeading}</h2>
   <p>{c.toInvoiceBefore}<a href={localize("/docs/invoicing", lang)}>{c.toInvoiceLink}</a>{c.toInvoiceAfter}</p>
+  <h2 id="organise">{({ en: "Labels, budgets and ordering", de: "Labels, Budgets und Reihenfolge", fr: "Étiquettes, budgets et ordre", it: "Etichette, budget e ordine" })[lang]}</h2>
+  <p>{({
+    en: "Each card shows a short label, its budget and a due date, and you drag cards to reorder them within a stage or move them along. A project can be fixed-price, hourly or just an estimate, whichever fits the work.",
+    de: "Jede Karte zeigt ein kurzes Label, ihr Budget und ein Fälligkeitsdatum, und du ziehst Karten, um sie innerhalb einer Stufe neu zu ordnen oder weiterzuschieben. Ein Projekt kann Fixpreis, stundenbasiert oder nur eine Schätzung sein, je nachdem, was zur Arbeit passt.",
+    fr: "Chaque carte affiche une courte étiquette, son budget et une échéance, et vous glissez les cartes pour les réordonner dans une étape ou les faire avancer. Un projet peut être au forfait, à l'heure ou une simple estimation, selon ce qui convient.",
+    it: "Ogni scheda mostra una breve etichetta, il suo budget e una scadenza, e trascini le schede per riordinarle in una fase o farle avanzare. Un progetto può essere a forfait, a ore o solo una stima, a seconda di ciò che serve.",
+  })[lang]}</p>
 </DocsLayout>

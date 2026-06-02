@@ -80,6 +80,17 @@ const c = content[lang] ?? content.en;
 
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
+
+  <div class="not-prose my-6 rounded-xl border border-amber-500/30 bg-amber-400/10 px-4 py-3 text-sm/6 text-amber-800 dark:text-amber-200">
+    <strong class="font-semibold">{({ en: "Experimental", de: "Experimentell", fr: "Expérimental", it: "Sperimentale" })[lang]}.</strong>{" "}
+    {({
+      en: "Bank reconciliation currently lives in a separate branch and is not part of the stable release yet. The screens below show work in progress.",
+      de: "Der Bankabgleich liegt derzeit in einem separaten Branch und ist noch nicht Teil der stabilen Version. Die Ansichten unten zeigen Work in Progress.",
+      fr: "Le rapprochement bancaire vit actuellement dans une branche séparée et ne fait pas encore partie de la version stable. Les écrans ci-dessous montrent un travail en cours.",
+      it: "La riconciliazione bancaria vive attualmente in un branch separato e non fa ancora parte della versione stabile. Le schermate qui sotto mostrano un lavoro in corso.",
+    })[lang]}
+  </div>
+
   <p>{c.intro}</p>
 
   <img src={`/screenshots/banking-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
@@ -92,4 +103,11 @@ const c = content[lang] ?? content.en;
 
   <h2 id="feeds">{c.remindHeading}</h2>
   <p>{c.remindBefore}<a href={localize("/docs/reminders", lang)}>{c.remindLink}</a>{c.remindAfter}</p>
+  <h2 id="statuses">{({ en: "Match statuses", de: "Abgleich-Status", fr: "Statuts de rapprochement", it: "Stati di abbinamento" })[lang]}</h2>
+  <p>{({
+    en: "Each imported payment is unmatched, suggested or matched. Suggested and unmatched ones wait under “to review” for a quick confirm; matched ones are done. Re-importing an overlapping statement is safe, duplicate lines are ignored by a fingerprint.",
+    de: "Jede importierte Zahlung ist nicht zugeordnet, vorgeschlagen oder zugeordnet. Vorgeschlagene und nicht zugeordnete warten unter „zu prüfen“ auf eine schnelle Bestätigung; zugeordnete sind erledigt. Der erneute Import eines überlappenden Auszugs ist sicher, doppelte Zeilen werden per Fingerabdruck ignoriert.",
+    fr: "Chaque paiement importé est non rapproché, suggéré ou rapproché. Les suggérés et non rapprochés attendent sous « à vérifier » une confirmation rapide ; les rapprochés sont terminés. Réimporter un relevé qui se chevauche est sans risque, les lignes en double sont ignorées par une empreinte.",
+    it: "Ogni pagamento importato è non abbinato, suggerito o abbinato. Suggeriti e non abbinati attendono sotto « da verificare » una conferma rapida; gli abbinati sono fatti. Reimportare un estratto sovrapposto è sicuro, le righe duplicate vengono ignorate tramite un'impronta.",
+  })[lang]}</p>
 </DocsLayout>

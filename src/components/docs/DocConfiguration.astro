@@ -8,83 +8,115 @@ const lang = getLangFromUrl(Astro.url);
 const content = {
   en: {
     metaTitle: "chohle docs: Configuration",
-    metaDescription:
-      "Configure chohle with environment variables: port, currency, database, and email.",
+    metaDescription: "Configure chohle with environment variables: owner login, session secret, email and data location.",
     h1: "Configuration",
-    introA: "chohle is configured entirely with environment variables, drop them in a",
-    introB: "file or pass them to the container.",
-    commonHeading: "Common settings",
-    port: "the port chohle listens on (default",
-    portEnd: ")",
-    currency: "your default invoice currency, e.g.",
-    database: "where to store data (defaults to a local file)",
-    smtp: "connection string for sending email",
+    introA: "chohle is configured with environment variables. Copy",
+    introB: "to",
+    introC: "and adjust the values, then Docker Compose picks them up on the next start.",
+    accountHeading: "Owner login and secrets",
+    accountP: "On first launch chohle creates your owner account from these. Set a real password, and use long random strings for the two secrets.",
+    a1: "your owner username and password.",
+    a2: "seals the session cookie. 32 or more random characters.",
+    a3: "encrypts the credentials of any mailbox you connect. 32 or more random characters.",
     emailHeading: "Sending email",
     emailA: "Set",
-    emailB:
-      "to your provider's connection string and chohle will use it to send invoices and replies. See",
+    emailB: "and",
+    emailC: "to the mail server chohle should send invoices and reminders through. In development these point at the bundled Mailpit. See",
     emailLink: "Client email",
-    emailEnd: "for connecting an inbox as well.",
+    emailEnd: "for connecting an inbox to read and reply.",
+    dataHeading: "Where data lives",
+    dataA: "By default chohle keeps its SQLite database and uploads under",
+    dataB: ". Point",
+    dataC: "somewhere else if you need to. See",
+    dataLink: "Backups",
+    dataEnd: "for keeping it safe.",
+    fullRef: "See the full",
+    fullRefLink: "environment variables",
+    fullRefEnd: "reference for every option.",
   },
   de: {
     metaTitle: "chohle Doku: Konfiguration",
-    metaDescription:
-      "Konfiguriere chohle mit Umgebungsvariablen: Port, Währung, Datenbank und E-Mail.",
+    metaDescription: "Konfiguriere chohle mit Umgebungsvariablen: Owner-Login, Session-Secret, E-Mail und Speicherort der Daten.",
     h1: "Konfiguration",
-    introA: "chohle wird vollständig über Umgebungsvariablen konfiguriert, leg sie in eine",
-    introB: "Datei oder übergib sie dem Container.",
-    commonHeading: "Häufige Einstellungen",
-    port: "der Port, auf dem chohle lauscht (Standard",
-    portEnd: ")",
-    currency: "deine Standard-Rechnungswährung, z. B.",
-    database: "wo die Daten gespeichert werden (standardmässig eine lokale Datei)",
-    smtp: "Verbindungs-String zum Versenden von E-Mails",
+    introA: "chohle wird über Umgebungsvariablen konfiguriert. Kopiere",
+    introB: "nach",
+    introC: "und passe die Werte an. Docker Compose übernimmt sie beim nächsten Start.",
+    accountHeading: "Owner-Login und Secrets",
+    accountP: "Beim ersten Start legt chohle daraus dein Owner-Konto an. Setze ein echtes Passwort und verwende lange zufällige Zeichenfolgen für die beiden Secrets.",
+    a1: "Benutzername und Passwort des Owners.",
+    a2: "versiegelt das Session-Cookie. 32 oder mehr zufällige Zeichen.",
+    a3: "verschlüsselt die Zugangsdaten jedes verbundenen Postfachs. 32 oder mehr zufällige Zeichen.",
     emailHeading: "E-Mail versenden",
     emailA: "Setze",
-    emailB:
-      "auf den Verbindungs-String deines Anbieters, und chohle verschickt damit Rechnungen und Antworten. Siehe",
+    emailB: "und",
+    emailC: "auf den Mailserver, über den chohle Rechnungen und Mahnungen versenden soll. In der Entwicklung zeigen sie auf das mitgelieferte Mailpit. Siehe",
     emailLink: "Kunden-E-Mail",
-    emailEnd: "auch zum Anbinden eines Posteingangs.",
+    emailEnd: "zum Anbinden eines Postfachs zum Lesen und Antworten.",
+    dataHeading: "Wo die Daten liegen",
+    dataA: "Standardmässig hält chohle Datenbank und Uploads unter",
+    dataB: ". Zeig",
+    dataC: "bei Bedarf woanders hin. Siehe",
+    dataLink: "Backups",
+    dataEnd: "zum sicheren Aufbewahren.",
+    fullRef: "Siehe die vollständige Referenz der",
+    fullRefLink: "Umgebungsvariablen",
+    fullRefEnd: "für jede Option.",
   },
   fr: {
     metaTitle: "Doc chohle: Configuration",
-    metaDescription:
-      "Configurez chohle avec des variables d'environnement : port, devise, base de données et e-mail.",
+    metaDescription: "Configurez chohle avec des variables d'environnement : identifiant propriétaire, secret de session, e-mail et emplacement des données.",
     h1: "Configuration",
-    introA: "chohle se configure entièrement avec des variables d'environnement, placez-les dans un fichier",
-    introB: "ou passez-les au conteneur.",
-    commonHeading: "Réglages courants",
-    port: "le port sur lequel chohle écoute (par défaut",
-    portEnd: ")",
-    currency: "votre devise de facturation par défaut, p. ex.",
-    database: "où stocker les données (par défaut un fichier local)",
-    smtp: "chaîne de connexion pour l'envoi d'e-mails",
+    introA: "chohle se configure avec des variables d'environnement. Copiez",
+    introB: "vers",
+    introC: "et ajustez les valeurs. Docker Compose les reprend au démarrage suivant.",
+    accountHeading: "Identifiant propriétaire et secrets",
+    accountP: "Au premier lancement, chohle crée votre compte propriétaire à partir de ces valeurs. Définissez un vrai mot de passe et utilisez de longues chaînes aléatoires pour les deux secrets.",
+    a1: "votre nom d'utilisateur et mot de passe propriétaire.",
+    a2: "scelle le cookie de session. 32 caractères aléatoires ou plus.",
+    a3: "chiffre les identifiants de toute boîte que vous connectez. 32 caractères aléatoires ou plus.",
     emailHeading: "Envoi d'e-mails",
     emailA: "Définissez",
-    emailB:
-      "sur la chaîne de connexion de votre fournisseur et chohle l'utilisera pour envoyer factures et réponses. Voir",
+    emailB: "et",
+    emailC: "sur le serveur de messagerie par lequel chohle doit envoyer factures et rappels. En développement, ils pointent vers le Mailpit intégré. Voir",
     emailLink: "E-mail client",
-    emailEnd: "pour connecter aussi une boîte de réception.",
+    emailEnd: "pour connecter une boîte afin de lire et répondre.",
+    dataHeading: "Où vivent les données",
+    dataA: "Par défaut, chohle conserve sa base SQLite et les fichiers sous",
+    dataB: ". Pointez",
+    dataC: "ailleurs si nécessaire. Voir",
+    dataLink: "Sauvegardes",
+    dataEnd: "pour les garder en sécurité.",
+    fullRef: "Voir la référence complète des",
+    fullRefLink: "variables d'environnement",
+    fullRefEnd: "pour chaque option.",
   },
   it: {
     metaTitle: "Doc chohle: Configurazione",
-    metaDescription:
-      "Configura chohle con variabili d'ambiente: porta, valuta, database ed e-mail.",
+    metaDescription: "Configura chohle con variabili d'ambiente: login del proprietario, segreto di sessione, e-mail e posizione dei dati.",
     h1: "Configurazione",
-    introA: "chohle si configura interamente con variabili d'ambiente, mettile in un file",
-    introB: "oppure passale al container.",
-    commonHeading: "Impostazioni comuni",
-    port: "la porta su cui chohle è in ascolto (predefinita",
-    portEnd: ")",
-    currency: "la tua valuta di fatturazione predefinita, ad es.",
-    database: "dove memorizzare i dati (per impostazione predefinita un file locale)",
-    smtp: "stringa di connessione per l'invio delle e-mail",
+    introA: "chohle si configura con variabili d'ambiente. Copia",
+    introB: "in",
+    introC: "e regola i valori. Docker Compose li riprende al successivo avvio.",
+    accountHeading: "Login del proprietario e segreti",
+    accountP: "Al primo avvio chohle crea il tuo account proprietario da questi valori. Imposta una password vera e usa stringhe casuali lunghe per i due segreti.",
+    a1: "nome utente e password del proprietario.",
+    a2: "sigilla il cookie di sessione. 32 o più caratteri casuali.",
+    a3: "cifra le credenziali di ogni casella che colleghi. 32 o più caratteri casuali.",
     emailHeading: "Invio delle e-mail",
     emailA: "Imposta",
-    emailB:
-      "sulla stringa di connessione del tuo provider e chohle la userà per inviare fatture e risposte. Vedi",
+    emailB: "e",
+    emailC: "sul server di posta tramite cui chohle deve inviare fatture e solleciti. In sviluppo puntano al Mailpit integrato. Vedi",
     emailLink: "E-mail clienti",
-    emailEnd: "anche per collegare una casella di posta.",
+    emailEnd: "per collegare una casella e leggere e rispondere.",
+    dataHeading: "Dove vivono i dati",
+    dataA: "Per impostazione predefinita chohle tiene il database SQLite e i file in",
+    dataB: ". Punta",
+    dataC: "altrove se necessario. Vedi",
+    dataLink: "Backup",
+    dataEnd: "per tenerli al sicuro.",
+    fullRef: "Vedi il riferimento completo delle",
+    fullRefLink: "variabili d'ambiente",
+    fullRefEnd: "per ogni opzione.",
   },
 } as const;
 const c = content[lang] ?? content.en;
@@ -92,23 +124,21 @@ const c = content[lang] ?? content.en;
 
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
-  <p>{c.introA} <code>.env</code> {c.introB}</p>
+  <p>{c.introA} <code>.env.example</code> {c.introB} <code>.env</code> {c.introC}</p>
 
-  <h2 id="common">{c.commonHeading}</h2>
+  <h2 id="account">{c.accountHeading}</h2>
+  <p>{c.accountP}</p>
   <ul>
-    <li><code>PORT</code>, {c.port} <code>3000</code>{c.portEnd}</li>
-    <li><code>BASE_CURRENCY</code>, {c.currency} <code>CHF</code></li>
-    <li><code>DATABASE_URL</code>, {c.database}</li>
-    <li><code>SMTP_URL</code>, {c.smtp}</li>
+    <li><code>NUXT_ADMIN_USERNAME</code> / <code>NUXT_ADMIN_PASSWORD</code>, {c.a1}</li>
+    <li><code>NUXT_SESSION_PASSWORD</code>, {c.a2}</li>
+    <li><code>CHOHLE_SECRET</code>, {c.a3}</li>
   </ul>
 
-  <CodeBlock prompt={false} label=".env" code={`PORT=3000
-BASE_CURRENCY=CHF
-SMTP_URL=smtp://user:pass@smtp.example.com:587`} />
-
   <h2 id="email">{c.emailHeading}</h2>
-  <p>
-    {c.emailA} <code>SMTP_URL</code> {c.emailB}
-    <a href={localize("/docs/email", lang)}>{c.emailLink}</a> {c.emailEnd}
-  </p>
+  <p>{c.emailA} <code>NUXT_SMTP_HOST</code> {c.emailB} <code>NUXT_SMTP_PORT</code> {c.emailC} <a href={localize("/docs/email", lang)}>{c.emailLink}</a> {c.emailEnd}</p>
+
+  <h2 id="data">{c.dataHeading}</h2>
+  <p>{c.dataA} <code>data/</code>{c.dataB} <code>DATABASE_PATH</code> {c.dataC} <a href={localize("/docs/backups", lang)}>{c.dataLink}</a> {c.dataEnd}</p>
+
+  <p>{c.fullRef} <a href={localize("/docs/environment-variables", lang)}>{c.fullRefLink}</a> {c.fullRefEnd}</p>
 </DocsLayout>

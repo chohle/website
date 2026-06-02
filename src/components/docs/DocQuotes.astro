@@ -92,4 +92,19 @@ const c = content[lang] ?? content.en;
 
   <h2 id="articles">{c.itemsHeading}</h2>
   <p>{c.itemsBefore}<a href={localize("/docs/customers-articles", lang)}>{c.itemsLink}</a>{c.itemsAfter}</p>
+  <h2 id="validity">{({ en: "Numbers and validity", de: "Nummern und Gültigkeit", fr: "Numéros et validité", it: "Numeri e validità" })[lang]}</h2>
+  <p>{({
+    en: "Every quote gets its own number and a valid-until date, so both you and the customer know how long the offer stands. Accepting one stamps the date it was accepted; declining moves it out of the way under the Declined filter.",
+    de: "Jede Offerte erhält eine eigene Nummer und ein Gültig-bis-Datum, sodass du und der Kunde wisst, wie lange das Angebot gilt. Beim Annehmen wird das Annahmedatum gestempelt; beim Ablehnen wandert sie unter den Filter Abgelehnt aus dem Weg.",
+    fr: "Chaque devis reçoit son propre numéro et une date de validité, pour que vous et le client sachiez combien de temps l'offre tient. L'accepter horodate la date d'acceptation ; le refuser le range sous le filtre Refusés.",
+    it: "Ogni preventivo riceve un proprio numero e una data di validità, così tu e il cliente sapete per quanto regge l'offerta. Accettarlo registra la data di accettazione; rifiutarlo lo sposta sotto il filtro Rifiutati.",
+  })[lang]}</p>
+
+  <h2 id="pricing">{({ en: "Customer pricing carries over", de: "Kundenpreise werden übernommen", fr: "Les tarifs client se reportent", it: "I prezzi del cliente si riportano" })[lang]}</h2>
+  <p>{({
+    en: "A quote uses the customer's own rate, discount and MWST defaults, the same ones an invoice would, so the price you quote is the price you bill.",
+    de: "Eine Offerte nutzt die Ansätze, Rabatte und MWST-Vorgaben des Kunden, dieselben wie bei einer Rechnung, sodass der offerierte Preis dem verrechneten entspricht.",
+    fr: "Un devis utilise les tarifs, remises et valeurs de TVA propres au client, les mêmes qu'une facture, pour que le prix proposé soit le prix facturé.",
+    it: "Un preventivo usa tariffe, sconti e impostazioni IVA propri del cliente, gli stessi di una fattura, così il prezzo proposto è il prezzo fatturato.",
+  })[lang]}</p>
 </DocsLayout>

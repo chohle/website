@@ -16,14 +16,17 @@ const structure: { id: string; slugs: string[] }[] = [
   {
     id: "features",
     slugs: [
+      "/docs/dashboard",
       "/docs/invoicing",
       "/docs/quotes",
       "/docs/projects",
       "/docs/email",
       "/docs/expenses-income",
+      "/docs/payments",
       "/docs/bank-reconciliation",
       "/docs/reminders",
       "/docs/customers-articles",
+      "/docs/activity",
     ],
   },
   { id: "reference", slugs: ["/docs/settings", "/docs/docker-cli", "/docs/environment-variables", "/docs/backups"] },
@@ -37,6 +40,9 @@ const groupTitles: Record<string, Record<Lang, string>> = {
 
 const linkTitles: Record<string, Record<Lang, string>> = {
   "/docs": { en: "Introduction", de: "Einführung", fr: "Introduction", it: "Introduzione" },
+  "/docs/dashboard": { en: "Dashboard", de: "Dashboard", fr: "Tableau de bord", it: "Dashboard" },
+  "/docs/payments": { en: "Payments", de: "Zahlungen", fr: "Paiements", it: "Pagamenti" },
+  "/docs/activity": { en: "Activity", de: "Aktivität", fr: "Activité", it: "Attività" },
   "/docs/quickstart": { en: "Quick start", de: "Schnellstart", fr: "Démarrage rapide", it: "Avvio rapido" },
   "/docs/self-hosting": { en: "Self-hosting", de: "Self-Hosting", fr: "Auto-hébergement", it: "Self-hosting" },
   "/docs/configuration": { en: "Configuration", de: "Konfiguration", fr: "Configuration", it: "Configurazione" },

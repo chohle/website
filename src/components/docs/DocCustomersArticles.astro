@@ -100,4 +100,11 @@ const c = content[lang] ?? content.en;
 
   <h2 id="to-document">{c.invoiceHeading}</h2>
   <p>{c.invoiceBefore}<a href={localize("/docs/quotes", lang)}>{c.invoiceLink}</a>{c.invoiceMid}<a href={localize("/docs/invoicing", lang)}>{c.invoiceLink2}</a>{c.invoiceAfter}</p>
+  <h2 id="language-terms">{({ en: "Language and payment terms", de: "Sprache und Zahlungsfristen", fr: "Langue et délais de paiement", it: "Lingua e termini di pagamento" })[lang]}</h2>
+  <p>{({
+    en: "Each customer carries a language and a payment-term in days. The term sets the due date on their invoices automatically, and the language is there so a document can speak to the customer in theirs.",
+    de: "Jeder Kunde trägt eine Sprache und eine Zahlungsfrist in Tagen. Die Frist setzt das Fälligkeitsdatum auf seinen Rechnungen automatisch, und die Sprache ist da, damit ein Dokument den Kunden in seiner Sprache anspricht.",
+    fr: "Chaque client porte une langue et un délai de paiement en jours. Le délai fixe automatiquement l'échéance de ses factures, et la langue est là pour qu'un document s'adresse au client dans la sienne.",
+    it: "Ogni cliente porta una lingua e un termine di pagamento in giorni. Il termine imposta automaticamente la scadenza sulle sue fatture, e la lingua è lì perché un documento possa parlare al cliente nella sua.",
+  })[lang]}</p>
 </DocsLayout>
