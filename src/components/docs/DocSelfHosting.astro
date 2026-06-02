@@ -1,81 +1,78 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
 import CodeBlock from "../../components/CodeBlock.astro";
-import { getLangFromUrl } from "../../i18n/utils";
+import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
 
 const content = {
   en: {
     metaTitle: "chohle docs: Self-hosting",
-    metaDescription: "Run chohle on your own server with Docker or from source.",
+    metaDescription: "Run chohle on your own server with Docker Compose, keep your data, and put it behind HTTPS.",
     h1: "Self-hosting",
-    intro:
-      "chohle is designed to run on your own server. All you need is Docker, or Node.js 20+ if you'd rather run from source.",
-    dockerHeading: "With Docker",
-    dockerIntro: "Run it detached, and mount a volume so your data survives restarts:",
-    dockerProxy:
-      "Put it behind a reverse proxy (Caddy, nginx, Traefik) to add HTTPS and your own domain.",
-    sourceHeading: "From source",
-    sourceIntro: "chohle is a Node.js + Nuxt app, so any Node host works:",
-    updatingHeading: "Updating",
-    updatingA: "Pull the latest image (or",
-    updatingB:
-      "and rebuild) and restart. Your data in the volume is left untouched.",
+    intro: "chohle is designed to run on your own server. All you need is Docker. Clone the repo, set strong secrets, and start the stack.",
+    runHeading: "Run it",
+    runNote: "Edit .env first: set a real NUXT_ADMIN_PASSWORD and long random NUXT_SESSION_PASSWORD and CHOHLE_SECRET values before the first start.",
+    dataHeading: "Your data",
+    dataA: "Everything lives in the",
+    dataB: "folder next to the compose file, so it survives restarts and updates. Keep it safe with",
+    dataLink: "Backups",
+    dataEnd: ".",
+    httpsHeading: "HTTPS and a domain",
+    httpsP: "chohle serves plain HTTP on port 3000. Put it behind a reverse proxy such as Caddy, nginx or Traefik to add HTTPS and your own domain.",
+    updateHeading: "Updating",
+    updateP: "Pull the latest code and rebuild. Your data folder is left untouched:",
   },
   de: {
     metaTitle: "chohle Doku: Self-Hosting",
-    metaDescription: "Betreibe chohle auf deinem eigenen Server mit Docker oder aus dem Quellcode.",
+    metaDescription: "Betreibe chohle auf deinem eigenen Server mit Docker Compose, behalte deine Daten und stell es hinter HTTPS.",
     h1: "Self-Hosting",
-    intro:
-      "chohle ist für den Betrieb auf dem eigenen Server gemacht. Du brauchst nur Docker oder Node.js 20+, falls du lieber aus dem Quellcode startest.",
-    dockerHeading: "Mit Docker",
-    dockerIntro:
-      "Starte es im Hintergrund und binde ein Volume ein, damit deine Daten Neustarts überstehen:",
-    dockerProxy:
-      "Stell es hinter einen Reverse-Proxy (Caddy, nginx, Traefik) für HTTPS und deine eigene Domain.",
-    sourceHeading: "Aus dem Quellcode",
-    sourceIntro: "chohle ist eine Node.js- + Nuxt-App, also läuft jeder Node-Host:",
-    updatingHeading: "Aktualisieren",
-    updatingA: "Hol das neueste Image (oder",
-    updatingB:
-      "und neu bauen) und starte neu. Deine Daten im Volume bleiben unangetastet.",
+    intro: "chohle ist für den Betrieb auf dem eigenen Server gemacht. Du brauchst nur Docker. Klone das Repo, setze starke Secrets und starte den Stack.",
+    runHeading: "Betreiben",
+    runNote: "Bearbeite zuerst .env: setze ein echtes NUXT_ADMIN_PASSWORD und lange zufällige NUXT_SESSION_PASSWORD- und CHOHLE_SECRET-Werte vor dem ersten Start.",
+    dataHeading: "Deine Daten",
+    dataA: "Alles liegt im Ordner",
+    dataB: "neben der Compose-Datei und übersteht so Neustarts und Updates. Sichere ihn mit",
+    dataLink: "Backups",
+    dataEnd: ".",
+    httpsHeading: "HTTPS und eine Domain",
+    httpsP: "chohle liefert einfaches HTTP auf Port 3000. Stell es hinter einen Reverse-Proxy wie Caddy, nginx oder Traefik für HTTPS und deine eigene Domain.",
+    updateHeading: "Aktualisieren",
+    updateP: "Hol den neuesten Code und baue neu. Dein Datenordner bleibt unangetastet:",
   },
   fr: {
     metaTitle: "Doc chohle: Auto-hébergement",
-    metaDescription: "Faites tourner chohle sur votre propre serveur avec Docker ou depuis les sources.",
+    metaDescription: "Faites tourner chohle sur votre propre serveur avec Docker Compose, gardez vos données et passez-le derrière HTTPS.",
     h1: "Auto-hébergement",
-    intro:
-      "chohle est conçu pour tourner sur votre propre serveur. Il vous suffit de Docker, ou de Node.js 20+ si vous préférez partir des sources.",
-    dockerHeading: "Avec Docker",
-    dockerIntro:
-      "Lancez-le en arrière-plan et montez un volume pour que vos données survivent aux redémarrages :",
-    dockerProxy:
-      "Placez-le derrière un reverse proxy (Caddy, nginx, Traefik) pour ajouter HTTPS et votre propre domaine.",
-    sourceHeading: "Depuis les sources",
-    sourceIntro: "chohle est une application Node.js + Nuxt, donc n'importe quel hôte Node convient :",
-    updatingHeading: "Mise à jour",
-    updatingA: "Récupérez la dernière image (ou",
-    updatingB:
-      "et reconstruisez) puis redémarrez. Vos données dans le volume restent intactes.",
+    intro: "chohle est conçu pour tourner sur votre propre serveur. Il vous suffit de Docker. Clonez le dépôt, définissez des secrets solides et lancez la stack.",
+    runHeading: "Lancez-le",
+    runNote: "Modifiez d'abord .env : définissez un vrai NUXT_ADMIN_PASSWORD et de longues valeurs aléatoires NUXT_SESSION_PASSWORD et CHOHLE_SECRET avant le premier démarrage.",
+    dataHeading: "Vos données",
+    dataA: "Tout vit dans le dossier",
+    dataB: "à côté du fichier compose, et survit donc aux redémarrages et aux mises à jour. Gardez-le en sécurité avec les",
+    dataLink: "Sauvegardes",
+    dataEnd: ".",
+    httpsHeading: "HTTPS et un domaine",
+    httpsP: "chohle sert du HTTP simple sur le port 3000. Placez-le derrière un reverse proxy comme Caddy, nginx ou Traefik pour ajouter HTTPS et votre propre domaine.",
+    updateHeading: "Mise à jour",
+    updateP: "Récupérez le dernier code et reconstruisez. Votre dossier de données reste intact :",
   },
   it: {
     metaTitle: "Doc chohle: Auto-hosting",
-    metaDescription: "Esegui chohle sul tuo server con Docker o dai sorgenti.",
+    metaDescription: "Esegui chohle sul tuo server con Docker Compose, conserva i tuoi dati e mettilo dietro HTTPS.",
     h1: "Auto-hosting",
-    intro:
-      "chohle è progettato per girare sul tuo server. Ti serve solo Docker, oppure Node.js 20+ se preferisci partire dai sorgenti.",
-    dockerHeading: "Con Docker",
-    dockerIntro:
-      "Eseguilo in background e monta un volume affinché i tuoi dati sopravvivano ai riavvii:",
-    dockerProxy:
-      "Mettilo dietro un reverse proxy (Caddy, nginx, Traefik) per aggiungere HTTPS e il tuo dominio.",
-    sourceHeading: "Dai sorgenti",
-    sourceIntro: "chohle è un'app Node.js + Nuxt, quindi va bene qualsiasi host Node:",
-    updatingHeading: "Aggiornamento",
-    updatingA: "Scarica l'immagine più recente (oppure",
-    updatingB:
-      "e ricostruisci) e riavvia. I tuoi dati nel volume restano intatti.",
+    intro: "chohle è progettato per girare sul tuo server. Ti basta Docker. Clona il repository, imposta segreti robusti e avvia lo stack.",
+    runHeading: "Eseguilo",
+    runNote: "Modifica prima .env: imposta una NUXT_ADMIN_PASSWORD vera e valori lunghi e casuali per NUXT_SESSION_PASSWORD e CHOHLE_SECRET prima del primo avvio.",
+    dataHeading: "I tuoi dati",
+    dataA: "Tutto vive nella cartella",
+    dataB: "accanto al file compose, quindi sopravvive a riavvii e aggiornamenti. Tienila al sicuro con i",
+    dataLink: "Backup",
+    dataEnd: ".",
+    httpsHeading: "HTTPS e un dominio",
+    httpsP: "chohle serve HTTP semplice sulla porta 3000. Mettilo dietro un reverse proxy come Caddy, nginx o Traefik per aggiungere HTTPS e il tuo dominio.",
+    updateHeading: "Aggiornamento",
+    updateP: "Scarica il codice più recente e ricostruisci. La cartella dei dati resta intatta:",
   },
 } as const;
 const c = content[lang] ?? content.en;
@@ -85,19 +82,21 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <h2 id="docker">{c.dockerHeading}</h2>
-  <p>{c.dockerIntro}</p>
-  <CodeBlock code="docker run -d -p 3000:3000 -v chohle-data:/data chohle/chohle" />
-  <p>{c.dockerProxy}</p>
-
-  <h2 id="from-source">{c.sourceHeading}</h2>
-  <p>{c.sourceIntro}</p>
-  <CodeBlock prompt={false} label="bash" code={`git clone https://github.com/chohle/chohle
+  <h2 id="run">{c.runHeading}</h2>
+  <CodeBlock prompt={false} label="bash" code={`git clone https://github.com/chohle/chohle.git
 cd chohle
-npm install
-npm run build
-npm start`} />
+cp .env.example .env
+docker compose up -d`} />
+  <p>{c.runNote}</p>
 
-  <h2 id="updating">{c.updatingHeading}</h2>
-  <p>{c.updatingA} <code>git pull</code> {c.updatingB}</p>
+  <h2 id="data">{c.dataHeading}</h2>
+  <p>{c.dataA} <code>data/</code> {c.dataB} <a href={localize("/docs/backups", lang)}>{c.dataLink}</a>{c.dataEnd}</p>
+
+  <h2 id="https">{c.httpsHeading}</h2>
+  <p>{c.httpsP}</p>
+
+  <h2 id="updating">{c.updateHeading}</h2>
+  <p>{c.updateP}</p>
+  <CodeBlock prompt={false} label="bash" code={`git pull
+docker compose up -d --build`} />
 </DocsLayout>

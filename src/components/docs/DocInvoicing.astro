@@ -111,4 +111,19 @@ const c = content[lang] ?? content.en;
 
   <h2 id="reminders">{c.remindersHeading}</h2>
   <p>{c.reminders}</p>
+  <h2 id="line-items">{({ en: "Line items and totals", de: "Positionen und Summen", fr: "Lignes et totaux", it: "Voci e totali" })[lang]}</h2>
+  <p>{({
+    en: "Each line carries a quantity, a unit, an optional per-line discount and its own MWST rate. chohle adds it all up, applies VAT, and rounds the total to the nearest 5 rappen the Swiss way, so the figure on the QR-bill is always exact.",
+    de: "Jede Zeile trägt Menge, Einheit, einen optionalen Rabatt pro Zeile und ihren eigenen MWST-Satz. chohle zählt alles zusammen, rechnet die MWST und rundet das Total nach Schweizer Art auf 5 Rappen, sodass der Betrag auf der QR-Rechnung immer stimmt.",
+    fr: "Chaque ligne porte une quantité, une unité, une remise facultative par ligne et son propre taux de TVA. chohle additionne le tout, applique la TVA et arrondit le total aux 5 centimes à la suisse, pour que le montant sur la QR-facture soit toujours exact.",
+    it: "Ogni riga porta una quantità, un'unità, uno sconto facoltativo per riga e la propria aliquota IVA. chohle somma tutto, applica l'IVA e arrotonda il totale ai 5 centesimi all'uso svizzero, così l'importo sulla QR-fattura è sempre esatto.",
+  })[lang]}</p>
+
+  <h2 id="statuses">{({ en: "From draft to paid", de: "Von Entwurf bis bezahlt", fr: "Du brouillon au payé", it: "Dalla bozza al pagato" })[lang]}</h2>
+  <p>{({
+    en: "An invoice starts as a draft you can keep editing, becomes sent once you email it, and is marked paid when the money arrives. You can mark it paid by hand, or let bank reconciliation do it for you when the matching payment shows up.",
+    de: "Eine Rechnung beginnt als Entwurf, den du weiter bearbeiten kannst, wird versendet, sobald du sie mailst, und als bezahlt markiert, wenn das Geld eintrifft. Du markierst sie von Hand als bezahlt oder lässt das den Bankabgleich erledigen, sobald die passende Zahlung auftaucht.",
+    fr: "Une facture commence comme un brouillon que vous pouvez encore modifier, devient envoyée dès que vous l'envoyez par e-mail, et est marquée payée à l'arrivée de l'argent. Vous la marquez payée à la main, ou laissez le rapprochement bancaire le faire dès que le paiement correspondant apparaît.",
+    it: "Una fattura nasce come bozza che puoi continuare a modificare, diventa inviata quando la mandi via e-mail ed è segnata pagata all'arrivo del denaro. La segni pagata a mano, o lasci che lo faccia la riconciliazione bancaria quando compare il pagamento corrispondente.",
+  })[lang]}</p>
 </DocsLayout>

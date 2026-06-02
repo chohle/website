@@ -8,60 +8,80 @@ const lang = getLangFromUrl(Astro.url);
 const content = {
   en: {
     metaTitle: "chohle docs: Quick start",
-    metaDescription: "Try chohle in one command with Docker.",
+    metaDescription: "Get chohle running locally with Docker Compose in a couple of commands.",
     h1: "Quick start",
-    intro: "The fastest way to try chohle is with Docker. One command and you're running:",
-    openA: "Then open",
-    openB: "in your browser. That's it, you've got a local chohle.",
+    intro: "chohle runs in Docker. Clone the repo, copy the example environment file, and start it:",
+    envNote: "Open .env and set a password and two random secrets before the first start. The owner account is created from those values.",
+    openHeading: "Open it",
+    open1: "App:",
+    open1b: "log in with the username and password from your .env.",
+    open2: "Mailpit (development email):",
+    seedHeading: "Add demo data (optional)",
+    seedP: "Once it's running, you can fill it with a realistic example month:",
     nextHeading: "What's next",
-    next1Start: "Set it up to stay running in the",
+    next1Start: "Run it on a server in the",
     next1Link: "self-hosting guide",
-    next2Start: "Point it at your mailbox and currency in",
+    next2Start: "Set secrets, email and data location in",
     next2Link: "Configuration",
     next3Start: "Send your first",
     next3Link: "invoice",
   },
   de: {
     metaTitle: "chohle Doku: Schnellstart",
-    metaDescription: "Probier chohle mit einem einzigen Docker-Befehl aus.",
+    metaDescription: "Bring chohle mit Docker Compose in wenigen Befehlen lokal zum Laufen.",
     h1: "Schnellstart",
-    intro: "Am schnellsten probierst du chohle mit Docker aus. Ein Befehl und es läuft:",
-    openA: "Öffne dann",
-    openB: "im Browser. Das war's, du hast ein lokales chohle.",
+    intro: "chohle läuft in Docker. Klone das Repo, kopiere die Beispiel-Umgebungsdatei und starte es:",
+    envNote: "Öffne .env und setze vor dem ersten Start ein Passwort und zwei zufällige Secrets. Das Owner-Konto wird aus diesen Werten erstellt.",
+    openHeading: "Öffnen",
+    open1: "App:",
+    open1b: "melde dich mit Benutzername und Passwort aus deiner .env an.",
+    open2: "Mailpit (Entwicklungs-E-Mail):",
+    seedHeading: "Demo-Daten hinzufügen (optional)",
+    seedP: "Sobald es läuft, kannst du es mit einem realistischen Beispielmonat füllen:",
     nextHeading: "Wie geht's weiter",
-    next1Start: "Richte es für den Dauerbetrieb ein in der",
+    next1Start: "Betreibe es auf einem Server in der",
     next1Link: "Self-Hosting-Anleitung",
-    next2Start: "Verbinde Postfach und Währung unter",
+    next2Start: "Setze Secrets, E-Mail und Speicherort unter",
     next2Link: "Konfiguration",
     next3Start: "Verschick deine erste",
     next3Link: "Rechnung",
   },
   fr: {
     metaTitle: "Doc chohle: Démarrage rapide",
-    metaDescription: "Essayez chohle en une seule commande avec Docker.",
+    metaDescription: "Lancez chohle en local avec Docker Compose en quelques commandes.",
     h1: "Démarrage rapide",
-    intro: "Le plus rapide pour essayer chohle, c'est avec Docker. Une commande et c'est lancé :",
-    openA: "Ouvrez ensuite",
-    openB: "dans votre navigateur. Voilà, vous avez un chohle local.",
+    intro: "chohle tourne dans Docker. Clonez le dépôt, copiez le fichier d'environnement d'exemple et lancez-le :",
+    envNote: "Ouvrez .env et définissez un mot de passe et deux secrets aléatoires avant le premier démarrage. Le compte propriétaire est créé à partir de ces valeurs.",
+    openHeading: "Ouvrez-le",
+    open1: "Application :",
+    open1b: "connectez-vous avec le nom d'utilisateur et le mot de passe de votre .env.",
+    open2: "Mailpit (e-mail de développement) :",
+    seedHeading: "Ajouter des données de démo (optionnel)",
+    seedP: "Une fois lancé, vous pouvez le remplir avec un mois d'exemple réaliste :",
     nextHeading: "Et ensuite",
-    next1Start: "Configurez-le pour qu'il reste en service dans le",
+    next1Start: "Faites-le tourner sur un serveur dans le",
     next1Link: "guide d'auto-hébergement",
-    next2Start: "Reliez votre boîte mail et votre devise dans la",
+    next2Start: "Définissez secrets, e-mail et emplacement des données dans la",
     next2Link: "Configuration",
     next3Start: "Envoyez votre première",
     next3Link: "facture",
   },
   it: {
     metaTitle: "Doc chohle: Avvio rapido",
-    metaDescription: "Prova chohle con un solo comando Docker.",
+    metaDescription: "Avvia chohle in locale con Docker Compose in un paio di comandi.",
     h1: "Avvio rapido",
-    intro: "Il modo più rapido per provare chohle è con Docker. Un comando ed è in esecuzione:",
-    openA: "Poi apri",
-    openB: "nel browser. Tutto qui, hai un chohle locale.",
+    intro: "chohle gira in Docker. Clona il repository, copia il file di ambiente di esempio e avvialo:",
+    envNote: "Apri .env e imposta una password e due segreti casuali prima del primo avvio. L'account proprietario viene creato da questi valori.",
+    openHeading: "Aprilo",
+    open1: "App:",
+    open1b: "accedi con nome utente e password della tua .env.",
+    open2: "Mailpit (e-mail di sviluppo):",
+    seedHeading: "Aggiungi dati demo (opzionale)",
+    seedP: "Una volta in esecuzione, puoi riempirlo con un mese di esempio realistico:",
     nextHeading: "Cosa fare dopo",
-    next1Start: "Impostalo per restare in esecuzione nella",
+    next1Start: "Eseguilo su un server nella",
     next1Link: "guida all'auto-hosting",
-    next2Start: "Collega la casella di posta e la valuta in",
+    next2Start: "Imposta segreti, e-mail e posizione dei dati in",
     next2Link: "Configurazione",
     next3Start: "Invia la tua prima",
     next3Link: "fattura",
@@ -74,9 +94,22 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <CodeBlock code="docker run -p 3000:3000 chohle/chohle" />
+  <CodeBlock prompt={false} label="bash" code={`git clone https://github.com/chohle/chohle.git
+cd chohle
+cp .env.example .env
+docker compose up`} />
 
-  <p>{c.openA} <code>http://localhost:3000</code> {c.openB}</p>
+  <p>{c.envNote}</p>
+
+  <h2 id="open">{c.openHeading}</h2>
+  <ul>
+    <li>{c.open1} <code>http://localhost:3000</code>, {c.open1b}</li>
+    <li>{c.open2} <code>http://localhost:8125</code></li>
+  </ul>
+
+  <h2 id="seed">{c.seedHeading}</h2>
+  <p>{c.seedP}</p>
+  <CodeBlock prompt={false} label="bash" code={`docker compose exec app npm run seed`} />
 
   <h2 id="whats-next">{c.nextHeading}</h2>
   <ul>

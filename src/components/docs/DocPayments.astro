@@ -1,0 +1,96 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Payments",
+    metaDescription: "A single ledger of every franc received, from paid invoices and from recorded salary and income.",
+    h1: "Payments",
+    intro: "Payments is the ledger of money that actually came in. It brings together what clients paid you on invoices and the salary and income you recorded, so you can see your real cash receipts in one place.",
+    totalsHeading: "Totals at the top",
+    totalsText:
+      "Three figures sum it up: the year total, how much of it came from invoices, and how much from salary. It's the cash counterpart to the dashboard, what landed, not just what was billed.",
+    receiptsHeading: "Every receipt",
+    receiptsText:
+      "Below the totals, a table lists every receipt with its date, source and amount, newest first, so you can scan or reconcile against your bank statement line by line.",
+    fillHeading: "How it fills up",
+    fillBefore: "A receipt appears whenever you mark an ",
+    fillLink: "invoice",
+    fillMid: " as paid or record an ",
+    fillLink2: "income",
+    fillAfter: " payment. Bank reconciliation can mark invoices paid for you, so receipts can land here automatically.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Zahlungen",
+    metaDescription: "Ein einziges Verzeichnis jedes erhaltenen Frankens, aus bezahlten Rechnungen sowie erfasstem Lohn und Einnahmen.",
+    h1: "Zahlungen",
+    intro: "Zahlungen ist das Verzeichnis des Geldes, das tatsächlich eingegangen ist. Es führt zusammen, was Kunden auf Rechnungen bezahlt haben, und den Lohn und die Einnahmen, die du erfasst hast, sodass du deine echten Geldeingänge an einem Ort siehst.",
+    totalsHeading: "Summen zuoberst",
+    totalsText:
+      "Drei Zahlen fassen es zusammen: das Jahrestotal, wie viel davon aus Rechnungen kam und wie viel aus Lohn. Es ist das Gegenstück zum Dashboard in echtem Geld, was angekommen ist, nicht nur was verrechnet wurde.",
+    receiptsHeading: "Jeder Eingang",
+    receiptsText:
+      "Unter den Summen listet eine Tabelle jeden Eingang mit Datum, Quelle und Betrag, neueste zuerst, sodass du Zeile für Zeile mit deinem Kontoauszug abgleichen kannst.",
+    fillHeading: "Wie es sich füllt",
+    fillBefore: "Ein Eingang erscheint, sobald du eine ",
+    fillLink: "Rechnung",
+    fillMid: " als bezahlt markierst oder eine ",
+    fillLink2: "Einnahme",
+    fillAfter: " erfasst. Der Bankabgleich kann Rechnungen für dich als bezahlt markieren, sodass Eingänge automatisch hier landen.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Paiements",
+    metaDescription: "Un registre unique de chaque franc reçu, des factures payées et du salaire et des revenus enregistrés.",
+    h1: "Paiements",
+    intro: "Les paiements sont le registre de l'argent réellement entré. Ils réunissent ce que les clients vous ont payé sur les factures et le salaire et les revenus que vous avez enregistrés, pour voir vos vraies rentrées au même endroit.",
+    totalsHeading: "Les totaux en haut",
+    totalsText:
+      "Trois chiffres résument : le total de l'année, la part venue des factures et celle du salaire. C'est la contrepartie en argent du tableau de bord : ce qui est arrivé, pas seulement ce qui a été facturé.",
+    receiptsHeading: "Chaque encaissement",
+    receiptsText:
+      "Sous les totaux, un tableau liste chaque encaissement avec sa date, sa source et son montant, du plus récent au plus ancien, pour rapprocher ligne par ligne avec votre relevé bancaire.",
+    fillHeading: "Comment il se remplit",
+    fillBefore: "Un encaissement apparaît dès que vous marquez une ",
+    fillLink: "facture",
+    fillMid: " comme payée ou enregistrez un ",
+    fillLink2: "revenu",
+    fillAfter: ". Le rapprochement bancaire peut marquer les factures payées pour vous, donc les encaissements peuvent arriver ici automatiquement.",
+  },
+  it: {
+    metaTitle: "Doc chohle: Pagamenti",
+    metaDescription: "Un unico registro di ogni franco ricevuto, dalle fatture pagate e dallo stipendio ed entrate registrati.",
+    h1: "Pagamenti",
+    intro: "I pagamenti sono il registro del denaro effettivamente entrato. Mettono insieme ciò che i clienti ti hanno pagato sulle fatture e lo stipendio e le entrate che hai registrato, così vedi i tuoi incassi reali in un unico posto.",
+    totalsHeading: "I totali in alto",
+    totalsText:
+      "Tre cifre riassumono: il totale dell'anno, quanto è arrivato dalle fatture e quanto dallo stipendio. È la controparte in denaro della dashboard: ciò che è arrivato, non solo ciò che è stato fatturato.",
+    receiptsHeading: "Ogni incasso",
+    receiptsText:
+      "Sotto i totali, una tabella elenca ogni incasso con data, fonte e importo, dal più recente, così puoi riconciliare riga per riga con il tuo estratto conto.",
+    fillHeading: "Come si riempie",
+    fillBefore: "Un incasso compare quando segni una ",
+    fillLink: "fattura",
+    fillMid: " come pagata o registri un'",
+    fillLink2: "entrata",
+    fillAfter: ". La riconciliazione bancaria può segnare le fatture come pagate per te, così gli incassi possono arrivare qui automaticamente.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <h2 id="totals">{c.totalsHeading}</h2>
+  <p>{c.totalsText}</p>
+
+  <h2 id="receipts">{c.receiptsHeading}</h2>
+  <p>{c.receiptsText}</p>
+
+  <h2 id="fill">{c.fillHeading}</h2>
+  <p>{c.fillBefore}<a href={localize("/docs/invoicing", lang)}>{c.fillLink}</a>{c.fillMid}<a href={localize("/docs/expenses-income", lang)}>{c.fillLink2}</a>{c.fillAfter}</p>
+</DocsLayout>

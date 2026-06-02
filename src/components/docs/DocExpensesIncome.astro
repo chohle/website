@@ -92,4 +92,11 @@ const c = content[lang] ?? content.en;
   <p>{c.categoriesText}</p>
 
   <img src={`/screenshots/categories-${lang}.jpg`} alt={c.categoriesHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <h2 id="filters">{({ en: "Filters and where the numbers go", de: "Filter und wohin die Zahlen fliessen", fr: "Filtres et où vont les chiffres", it: "Filtri e dove vanno i numeri" })[lang]}</h2>
+  <p>{({
+    en: "Filter expenses by category or by month to find anything fast. Whatever you record flows straight into the dashboard's month-at-a-glance and the Payments ledger, so the books stay in sync without extra steps.",
+    de: "Filtere Ausgaben nach Kategorie oder Monat, um alles schnell zu finden. Was du erfasst, fliesst direkt in den Monatsüberblick des Dashboards und in das Zahlungs-Verzeichnis, sodass die Buchhaltung ohne Zusatzschritte stimmig bleibt.",
+    fr: "Filtrez les dépenses par catégorie ou par mois pour tout retrouver vite. Ce que vous enregistrez alimente directement l'aperçu du mois du tableau de bord et le registre des Paiements, pour que la comptabilité reste à jour sans étape de plus.",
+    it: "Filtra le uscite per categoria o per mese per trovare tutto in fretta. Ciò che registri confluisce direttamente nel riepilogo del mese della dashboard e nel registro dei Pagamenti, così i conti restano allineati senza passaggi in più.",
+  })[lang]}</p>
 </DocsLayout>
