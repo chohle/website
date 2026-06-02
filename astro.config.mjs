@@ -10,7 +10,10 @@ export default defineConfig({
   // Canonical production domain — used for sitemap.xml, canonical URLs and
   // Open Graph / social tags.
   site: 'https://chohle.ch',
-  integrations: [sitemap()],
+  // @astrojs/sitemap auto-discovers all pages into sitemap-0.xml (indexed by
+  // sitemap-index.xml). A small /sitemap.xml endpoint exposes that under the
+  // conventional name; filter it out so it doesn't list itself.
+  integrations: [sitemap({ filter: (page) => !page.endsWith("/sitemap.xml") })],
   i18n: {
     locales: ['en', 'de', 'fr', 'it'],
     defaultLocale: 'en',
