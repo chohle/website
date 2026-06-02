@@ -4,6 +4,7 @@ import DocsNav from "../components/DocsNav.astro";
 import HeroPattern from "../components/HeroPattern.astro";
 import Lightbox from "../components/Lightbox.astro";
 import Logo from "../components/Logo.astro";
+import Seo from "../components/Seo.astro";
 import { getDocsFlat } from "../lib/docs-nav";
 import { type Lang } from "../i18n/config";
 import { getLangFromUrl, stripLang, localize } from "../i18n/utils";
@@ -41,9 +42,8 @@ const prose =
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="icon" href="data:," />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <Seo title={title} description={description} lang={lang} />
   </head>
   <body class="font-sans">
 

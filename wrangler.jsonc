@@ -12,6 +12,9 @@
   ],
   "assets": {
     "binding": "ASSETS",
-    "directory": "dist"
+    "directory": "dist",
+    // Serve the prerendered 404.html (with a 404 status) for any unmatched path
+    // instead of falling through to the Worker, which 500s on unknown routes.
+    "not_found_handling": "404-page"
   }
 }

@@ -3,6 +3,7 @@ import "../styles/global.css";
 import Navbar from "../components/Navbar.astro";
 import Footer from "../components/Footer.astro";
 import Lightbox from "../components/Lightbox.astro";
+import Seo from "../components/Seo.astro";
 import { defaultLang, type Lang } from "../i18n/config";
 
 interface Props {
@@ -11,11 +12,9 @@ interface Props {
   lang?: Lang;
 }
 
-const {
-  title = "chohle",
-  description = "chohle",
-  lang = defaultLang,
-} = Astro.props;
+// `description` is intentionally left undefined when unset so <Seo> applies its
+// rich default; `title` undefined renders the bare brand.
+const { title, description, lang = defaultLang } = Astro.props;
 ---
 
 <!doctype html>
@@ -24,8 +23,7 @@ const {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
-    <meta name="description" content={description} />
+    <Seo title={title} description={description} lang={lang} />
     <script is:inline>document.documentElement.classList.add("reveal-ready");</script>
   </head>
   <body class="font-sans">

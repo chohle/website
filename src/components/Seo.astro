@@ -1,0 +1,85 @@
+---
+import { langs, defaultLang, type Lang } from "../i18n/config";
+import { localize, stripLang } from "../i18n/utils";
+
+interface Props {
+  /** Page-specific title. Rendered as "chohle | <title>". */
+  title?: string;
+  description?: string;
+  lang?: Lang;
+  /** Absolute-from-root path to the social share image. */
+  image?: string;
+}
+
+const DEFAULT_DESCRIPTION =
+  "chohle is open-source invoicing, projects and client email for Swiss freelancers and small teams. Send Swiss QR-bills in seconds, track payments and VAT, run a drag-and-drop deal pipeline, and keep client conversations in one calm place. Self-host it with Docker in one command — your data stays in open formats, free and yours to keep.";
+
+const {
+  title,
+  description = DEFAULT_DESCRIPTION,
+  lang = defaultLang,
+  image = "/screenshots/invoice-pdf-en.jpg",
+} = Astro.props;
+
+const site = Astro.site ?? new URL("https://chohle.ch");
+
+// Compose "chohle | <page>". Strip any leading "chohle"/"docs" + separator the
+// page may already carry, so we never double the brand.
+function pageTitle(raw?: string): string {
+  return (raw ?? "")
+    .trim()
+    .replace(/^chohle\s*/i, "")
+    .replace(/^docs\b\s*/i, "")
+    .replace(/^[\s:|–—-]+/, "")
+    .trim();
+}
+const pt = pageTitle(title);
+const fullTitle = pt && pt.toLowerCase() !== "chohle" ? `chohle | ${pt}` : "chohle";
+
+// Canonical and alternates are built from the bare (language-stripped) path.
+const base = stripLang(Astro.url.pathname);
+const canonical = new URL(localize(base, lang), site).href;
+const ogImage = new URL(image, site).href;
+
+const ogLocale: Record<Lang, string> = { en: "en_US", de: "de_CH", fr: "fr_CH", it: "it_CH" };
+const alternates = langs.map((l) => ({ lang: l, href: new URL(localize(base, l), site).href }));
+const xDefault = new URL(localize(base, defaultLang), site).href;
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "chohle",
+  url: site.href,
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web, Docker",
+  description: DEFAULT_DESCRIPTION,
+  offers: { "@type": "Offer", price: "0", priceCurrency: "CHF" },
+};
+---
+
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<meta name="robots" content="index, follow" />
+<meta name="generator" content={Astro.generator} />
+<link rel="canonical" href={canonical} />
+
+{alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={a.href} />)}
+<link rel="alternate" hreflang="x-default" href={xDefault} />
+
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="chohle" />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:locale" content={ogLocale[lang]} />
+{langs.filter((l) => l !== lang).map((l) => <meta property="og:locale:alternate" content={ogLocale[l]} />)}
+<meta property="og:image" content={ogImage} />
+<meta property="og:image:width" content="1456" />
+<meta property="og:image:height" content="1080" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />

@@ -1,12 +1,16 @@
 // @ts-check
 import { defineConfig, sessionDrivers } from 'astro/config';
 import tailwindcss from '@tailwindcss/vite';
+import sitemap from '@astrojs/sitemap';
 
 import cloudflare from "@astrojs/cloudflare";
 
 // https://astro.build/config
 export default defineConfig({
-  // No production domain yet — set `site` once one exists.
+  // Canonical production domain — used for sitemap.xml, canonical URLs and
+  // Open Graph / social tags.
+  site: 'https://chohle.ch',
+  integrations: [sitemap()],
   i18n: {
     locales: ['en', 'de', 'fr', 'it'],
     defaultLocale: 'en',
