@@ -22,14 +22,11 @@ const serverIcon = `<path stroke-linecap="round" stroke-linejoin="round" d="M5.2
 ---
 
 <Layout title={c.meta.title} description={c.meta.description} lang={lang}>
-  <!-- Gradient hero -->
-  <section class="py-16">
-    <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <div class="relative isolate overflow-hidden rounded-4xl px-6 py-24 text-center sm:px-16">
-        <div class="absolute inset-0 -z-10 rounded-4xl bg-linear-130 from-mauve-100 from-10% via-[#e0b9ea] via-65% to-[#b78ae6] ring-1 ring-black/5 ring-inset"></div>
-        <h1 class="font-display mx-auto max-w-3xl text-4xl font-medium tracking-tighter text-balance text-mauve-950 sm:text-6xl">{c.hero.headline}</h1>
-        <p class="mx-auto mt-6 max-w-xl text-lg/8 text-mauve-800">{c.hero.sub}</p>
-      </div>
+  <!-- Hero -->
+  <section class="py-16 sm:py-24">
+    <div class="mx-auto w-full max-w-2xl px-6 text-center md:max-w-3xl lg:max-w-7xl lg:px-10">
+      <h1 class="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-[-0.03em] text-balance text-white sm:text-6xl">{c.hero.headline}</h1>
+      <p class="mx-auto mt-6 max-w-xl text-lg/8 text-mauve-400">{c.hero.sub}</p>
     </div>
   </section>
 
