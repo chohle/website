@@ -1,0 +1,50 @@
+---
+// Click-to-zoom overlay. Any <img data-zoomable> (or any image inside a
+// [data-doc-content] region) opens full-size on click. Images inside a link
+// are left alone so they keep navigating.
+---
+
+<div
+  id="lightbox"
+  class="fixed inset-0 z-[100] hidden cursor-zoom-out items-center justify-center bg-black/80 p-4 backdrop-blur-sm sm:p-10"
+  aria-hidden="true"
+>
+  <img id="lightbox-img" src="" alt="" class="max-h-full max-w-full rounded-lg shadow-2xl ring-1 ring-white/10" />
+</div>
+
+<script>
+  (() => {
+    const box = document.getElementById("lightbox");
+    const img = document.getElementById("lightbox-img") as HTMLImageElement | null;
+    if (!box || !img) return;
+
+    const open = (src: string, alt: string) => {
+      img.src = src;
+      img.alt = alt;
+      box.classList.remove("hidden");
+      box.classList.add("flex");
+      box.setAttribute("aria-hidden", "false");
+      document.documentElement.style.overflow = "hidden";
+    };
+    const close = () => {
+      box.classList.add("hidden");
+      box.classList.remove("flex");
+      box.setAttribute("aria-hidden", "true");
+      img.src = "";
+      document.documentElement.style.overflow = "";
+    };
+
+    document.addEventListener("click", (e) => {
+      const t = e.target as HTMLElement;
+      if (t instanceof HTMLImageElement && !t.closest("a") && (t.hasAttribute("data-zoomable") || t.closest("[data-doc-content]"))) {
+        e.preventDefault();
+        open(t.currentSrc || t.src, t.alt);
+        return;
+      }
+      if (t === box || box.contains(t)) close();
+    });
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") close();
+    });
+  })();
+</script>

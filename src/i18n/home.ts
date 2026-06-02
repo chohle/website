@@ -2,7 +2,7 @@ import { defaultLang, type Lang } from "./config";
 
 export interface HomeContent {
   meta: { title: string; description: string };
-  hero: { headline: string; sub: string };
+  hero: { headline: string; sub: string; keywords: string[] };
   features: { headline: string; sub: string; items: { title: string; body: string }[] };
   why: { heading: string; body: string; values: { stat: string; text: string }[] };
   open: { eyebrow: string; headline: string; body: string };
@@ -19,8 +19,9 @@ const home: Partial<Record<Lang, HomeContent>> = {
       description: "chohle brings billing, your project pipeline and client email together for Swiss freelancers and small teams. Open source and free to try.",
     },
     hero: {
-      headline: "Invoicing, projects and email in one calm place.",
+      headline: 'Invoicing, projects and email in one <span class="text-accent dark:text-accent-light">calm</span> place.',
       sub: "chohle brings billing, your project pipeline and client email together for Swiss freelancers and small teams. Open source and free to try, with no account required.",
+      keywords: ["Swiss QR-bills", "VAT", "Invoicing", "Quotes", "Projects & pipeline", "Client email", "Payments", "Reminders", "Open source", "Self-hosted"],
     },
     features: {
       headline: "From the first quote to the final payment.",
@@ -64,8 +65,9 @@ const home: Partial<Record<Lang, HomeContent>> = {
       description: "chohle vereint Rechnungsstellung, Projekt-Pipeline und Kunden-E-Mails für Schweizer Freelancer und kleine Teams. Open Source und kostenlos zum Ausprobieren.",
     },
     hero: {
-      headline: "Rechnungen, Projekte und E-Mails an einem ruhigen Ort.",
+      headline: 'Rechnungen, Projekte und E-Mails an einem <span class="text-accent dark:text-accent-light">ruhigen</span> Ort.',
       sub: "chohle vereint Rechnungsstellung, Projekt-Pipeline und Kunden-E-Mails für Schweizer Freelancer und kleine Teams. Open Source und kostenlos zum Ausprobieren, ganz ohne Konto.",
+      keywords: ["Schweizer QR-Rechnungen", "MWST", "Rechnungen", "Offerten", "Projekte & Pipeline", "Kunden-E-Mail", "Zahlungen", "Mahnungen", "Open Source", "Self-hosted"],
     },
     features: {
       headline: "Von der ersten Offerte bis zur letzten Zahlung.",
@@ -109,8 +111,9 @@ const home: Partial<Record<Lang, HomeContent>> = {
       description: "chohle réunit la facturation, le pipeline de projets et les e-mails clients pour les indépendants et petites équipes en Suisse. Open source et gratuit à l'essai.",
     },
     hero: {
-      headline: "Factures, projets et e-mails, réunis dans un espace serein.",
+      headline: 'Factures, projets et e-mails, réunis dans un espace <span class="text-accent dark:text-accent-light">serein</span>.',
       sub: "chohle réunit la facturation, le pipeline de projets et les e-mails clients pour les indépendants et petites équipes en Suisse. Open source et gratuit à l'essai, sans compte.",
+      keywords: ["QR-factures suisses", "TVA", "Facturation", "Devis", "Projets & pipeline", "E-mail clients", "Paiements", "Rappels", "Open source", "Auto-hébergé"],
     },
     features: {
       headline: "Du premier devis au dernier paiement.",
@@ -154,8 +157,9 @@ const home: Partial<Record<Lang, HomeContent>> = {
       description: "chohle unisce fatturazione, pipeline dei progetti ed e-mail dei clienti per freelance e piccoli team svizzeri. Open source e gratis da provare.",
     },
     hero: {
-      headline: "Fatture, progetti ed e-mail in un unico spazio sereno.",
+      headline: 'Fatture, progetti ed e-mail in un unico spazio <span class="text-accent dark:text-accent-light">sereno</span>.',
       sub: "chohle unisce fatturazione, pipeline dei progetti ed e-mail dei clienti per freelance e piccoli team svizzeri. Open source e gratis da provare, senza account.",
+      keywords: ["QR-fatture svizzere", "IVA", "Fatturazione", "Preventivi", "Progetti & pipeline", "E-mail clienti", "Pagamenti", "Solleciti", "Open source", "Self-hosting"],
     },
     features: {
       headline: "Dal primo preventivo all'ultimo pagamento.",
