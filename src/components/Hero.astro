@@ -14,49 +14,44 @@ const githubUrl = "https://github.com/chohle/chohle";
 ---
 
 <section id="hero" class="relative isolate py-16 sm:py-24">
-  <!-- soft branded glow behind the hero -->
-  <div
-    class="pointer-events-none absolute top-[-8%] left-1/2 -z-10 h-[36rem] w-[72rem] max-w-none -translate-x-1/2 opacity-70 blur-2xl dark:opacity-40"
-    style="background-image: radial-gradient(45% 50% at 50% 40%, rgba(143,105,118,0.35) 0%, rgba(123,98,125,0.16) 45%, transparent 72%);"
-    aria-hidden="true"
-  ></div>
+  <div class="mx-auto flex w-full max-w-2xl flex-col gap-12 px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
+    <div class="flex flex-col items-center gap-6" data-reveal>
+      <!-- terminal-prompt motif → links to the repo -->
+      <a href={githubUrl} target="_blank" rel="noopener" class="group inline-flex max-w-full items-center gap-2.5 rounded-full bg-white/5 px-4 py-1.5 font-mono text-[0.8rem]/6 inset-ring-1 inset-ring-white/10 transition-colors hover:bg-white/10">
+        <span class="text-accent-light" aria-hidden="true">$</span>
+        <span class="truncate text-mauve-300">chohle <span class="text-mauve-500">new</span> --invoice</span>
+        <span class="caret-blink ml-0.5 inline-block h-3.5 w-1.5 bg-accent-light align-middle motion-reduce:animate-none" aria-hidden="true"></span>
+        <span class="ml-1 hidden border-l border-white/10 pl-2.5 text-mauve-400 transition-colors group-hover:text-white sm:inline">{t("badge.openSource")}</span>
+      </a>
 
-  <!-- subtle dot-grid texture, faded toward the edges -->
-  <div
-    class="pointer-events-none absolute inset-0 -z-10 opacity-[0.2] dark:opacity-[0.14] [background-image:radial-gradient(var(--color-mauve-500)_1px,transparent_1px)] [background-size:24px_24px] [mask-image:radial-gradient(ellipse_55%_45%_at_50%_38%,black,transparent_75%)] [-webkit-mask-image:radial-gradient(ellipse_55%_45%_at_50%_38%,black,transparent_75%)]"
-    aria-hidden="true"
-  ></div>
+      <h1 set:html={c.headline} class="font-display max-w-5xl text-center text-[3.5rem]/[0.98] font-extrabold tracking-[-0.04em] text-balance text-white sm:text-[5.5rem]/[0.95]"></h1>
 
-  <div class="mx-auto flex w-full max-w-2xl flex-col gap-16 px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
-    <div class="flex flex-col items-center gap-16 sm:gap-24">
-      <div class="flex flex-col items-center gap-6" data-reveal>
-        <a href={githubUrl} target="_blank" rel="noopener" class="group relative inline-flex max-w-full gap-x-3 overflow-hidden rounded-md px-3.5 py-2 text-sm/6 max-sm:flex-col sm:items-center sm:rounded-full sm:px-3 sm:py-0.5 bg-mauve-950/5 text-mauve-950 hover:bg-mauve-950/10 dark:bg-white/5 dark:text-white dark:inset-ring-1 dark:inset-ring-white/5 dark:hover:bg-white/10">
-          <span class="inline-flex items-center gap-2 text-pretty sm:truncate">
-            {t("badge.openSource")}
-            <svg class="inline-block shrink-0 opacity-60 transition-transform group-hover:translate-x-0.5" width="5" height="8" viewBox="0 0 5 8" fill="currentColor" role="image"><path fill-rule="evenodd" clip-rule="evenodd" d="M.22.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06L1.28 7.78A.75.75 0 01.22 6.72L2.94 4 .22 1.28a.75.75 0 010-1.06z" /></svg>
-          </span>
+      <div class="flex max-w-3xl flex-col gap-4 text-center text-lg/8 text-mauve-400">
+        <p>{c.sub}</p>
+      </div>
+
+      <div class="flex flex-col items-center gap-3 sm:flex-row">
+        <a href={demoUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full bg-accent px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-mauve-950 hover:bg-accent-light">{t("cta.tryDemo")}</a>
+        <a href={githubUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-white inset-ring-1 inset-ring-white/15 hover:bg-white/5">
+          <svg class="inline-block size-4" viewBox="0 0 24 24" fill="currentColor" role="image"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
+          {t("cta.viewOnGitHub")}
         </a>
-
-        <h1 set:html={c.headline} class="font-display max-w-5xl text-center text-[3.25rem]/[1.05] font-semibold tracking-tighter text-balance sm:text-7xl/[1.03] text-mauve-950 dark:text-white"></h1>
-
-        <div class="flex max-w-3xl flex-col gap-4 text-center text-lg/8 text-mauve-700 dark:text-mauve-400">
-          <p>{c.sub}</p>
-        </div>
-
-        <div class="flex flex-col items-center gap-3 sm:flex-row">
-          <a href={demoUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">{t("cta.tryDemo")}</a>
-          <a href={githubUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-mauve-950 ring-1 ring-inset ring-mauve-950/15 hover:bg-mauve-950/5 dark:text-white dark:ring-white/15 dark:hover:bg-white/5">
-            <svg class="inline-block size-4" viewBox="0 0 24 24" fill="currentColor" role="image"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg>
-            {t("cta.viewOnGitHub")}
-          </a>
-        </div>
       </div>
+    </div>
 
-      <div class="w-full" data-reveal>
-        <Screenshot class="rounded-lg" color="purple" placement="bottom">
-          <img src={`/screenshots/dashboard-${lang}.jpg`} alt="chohle dashboard" width="1456" height="1080" loading="eager" data-zoomable class="cursor-zoom-in bg-white" />
-        </Screenshot>
-      </div>
+    <!-- rig-style spec bar: hairline-divided monospace tags -->
+    <div class="grid w-full grid-cols-2 border-t border-l border-white/10 sm:grid-cols-4" data-reveal>
+      {["OPEN SOURCE", "SWISS QR-BILL", "SELF-HOSTABLE", "NO ACCOUNT"].map((spec) => (
+        <div class="flex items-center justify-center gap-2 border-r border-b border-white/10 px-4 py-3 font-mono text-[0.7rem] tracking-[0.15em] text-mauve-400 uppercase">
+          <span class="size-1.5 bg-accent-light" aria-hidden="true"></span>{spec}
+        </div>
+      ))}
+    </div>
+
+    <div class="w-full" data-reveal>
+      <Screenshot class="rounded-lg" color="green" placement="bottom">
+        <img src={`/screenshots/dashboard-${lang}.jpg`} alt="chohle dashboard" width="1456" height="1080" loading="eager" data-zoomable class="cursor-zoom-in bg-white" />
+      </Screenshot>
     </div>
   </div>
 </section>
