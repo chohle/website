@@ -27,7 +27,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         "How chohle handles your data: when you self-host, it stays on your server. This site collects very little.",
     },
     title: "Privacy",
-    lastUpdated: { label: "Last updated", date: "1 June 2026" },
+    lastUpdated: { label: "Last updated", date: "2 June 2026" },
     intro:
       "chohle is open source and built to be <strong>self-hosted</strong>. That shapes everything below: most of the time, your data isn't ours to handle at all. This page explains the little we do collect through this website, and how the chohle software treats your data.",
     sections: [
@@ -69,7 +69,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "A fully managed <strong>chohle Cloud</strong> is on the way. When it launches it will handle data on your behalf, and this policy will be updated to cover exactly how, before you're asked to put anything real into it.",
+            text: "There's no <strong>chohle Cloud</strong> today, and I can't promise there ever will be one. chohle is currently built to be self-hosted, run by you on your own server. If a managed Cloud ever happens, it would handle data on your behalf, and this policy will be updated to explain exactly how before you're asked to put anything real into it.",
           },
         ],
       },
@@ -87,7 +87,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: 'Questions about privacy? Since chohle is built in the open, the best place to reach us is by opening an issue on the <a href="#">project\'s GitHub repository</a>.',
+            text: 'Questions about privacy? Since chohle is built in the open, the best place to reach me is by opening an issue on the <a href="https://github.com/chohle/chohle" target="_blank" rel="noopener">project\'s GitHub repository</a>, or by email at <a href="mailto:emanuell@ademi.me">emanuell@ademi.me</a>.',
           },
         ],
       },
@@ -100,7 +100,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         "Wie chohle mit deinen Daten umgeht: Wenn du selbst hostest, bleiben sie auf deinem Server. Diese Website erfasst sehr wenig.",
     },
     title: "Datenschutz",
-    lastUpdated: { label: "Zuletzt aktualisiert", date: "1 June 2026" },
+    lastUpdated: { label: "Zuletzt aktualisiert", date: "2. Juni 2026" },
     intro:
       "chohle ist Open Source und dafür gebaut, <strong>selbst gehostet</strong> zu werden. Das prägt alles Folgende: Meistens haben wir deine Daten gar nicht in der Hand. Diese Seite erklärt das Wenige, das wir über diese Website erfassen, und wie die chohle-Software mit deinen Daten umgeht.",
     sections: [
@@ -142,7 +142,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Eine vollständig verwaltete <strong>chohle Cloud</strong> ist in Arbeit. Beim Start wird sie Daten in deinem Auftrag verarbeiten, und diese Erklärung wird genau dazu aktualisiert, bevor du gebeten wirst, etwas Echtes hineinzugeben.",
+            text: "Es gibt heute keine <strong>chohle Cloud</strong>, und ich kann nicht versprechen, dass es je eine geben wird. chohle ist derzeit darauf ausgelegt, selbst gehostet zu werden, von dir auf deinem eigenen Server betrieben. Sollte es je eine verwaltete Cloud geben, würde sie Daten in deinem Auftrag verarbeiten, und diese Erklärung würde genau dazu aktualisiert, bevor du gebeten wirst, etwas Echtes hineinzugeben.",
           },
         ],
       },
@@ -160,7 +160,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: 'Fragen zum Datenschutz? Da chohle offen entwickelt wird, erreichst du uns am besten, indem du ein Issue im <a href="#">GitHub-Repository des Projekts</a> eröffnest.',
+            text: 'Fragen zum Datenschutz? Da chohle offen entwickelt wird, erreichst du mich am besten, indem du ein Issue im <a href="https://github.com/chohle/chohle" target="_blank" rel="noopener">GitHub-Repository des Projekts</a> eröffnest, oder per E-Mail an <a href="mailto:emanuell@ademi.me">emanuell@ademi.me</a>.',
           },
         ],
       },
@@ -173,7 +173,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         "Comment chohle gère vos données : en auto-hébergement, elles restent sur votre serveur. Ce site collecte très peu de choses.",
     },
     title: "Confidentialité",
-    lastUpdated: { label: "Dernière mise à jour", date: "1 June 2026" },
+    lastUpdated: { label: "Dernière mise à jour", date: "2 juin 2026" },
     intro:
       "chohle est open source et conçu pour être <strong>auto-hébergé</strong>. Cela explique tout ce qui suit : la plupart du temps, vos données ne passent pas du tout par nous. Cette page détaille le peu que nous collectons via ce site, et la manière dont le logiciel chohle traite vos données.",
     sections: [
@@ -215,7 +215,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Un <strong>chohle Cloud</strong> entièrement géré est en préparation. À son lancement, il traitera des données pour votre compte, et cette politique sera mise à jour pour expliquer précisément comment, avant qu'on vous demande d'y saisir quoi que ce soit de réel.",
+            text: "Il n'y a pas de <strong>chohle Cloud</strong> aujourd'hui, et je ne peux pas promettre qu'il y en aura un. chohle est pour l'instant conçu pour être auto-hébergé, géré par vous sur votre propre serveur. Si un Cloud managé voit le jour un jour, il traiterait des données pour votre compte, et cette politique sera mise à jour pour expliquer précisément comment, avant qu'on vous demande d'y saisir quoi que ce soit de réel.",
           },
         ],
       },
@@ -233,7 +233,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: 'Des questions sur la confidentialité ? Comme chohle est développé de manière ouverte, le mieux est de nous contacter en ouvrant une issue sur le <a href="#">dépôt GitHub du projet</a>.',
+            text: 'Des questions sur la confidentialité ? Comme chohle est développé de manière ouverte, le mieux est de me contacter en ouvrant une issue sur le <a href="https://github.com/chohle/chohle" target="_blank" rel="noopener">dépôt GitHub du projet</a>, ou par e-mail à <a href="mailto:emanuell@ademi.me">emanuell@ademi.me</a>.',
           },
         ],
       },
@@ -246,7 +246,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         "Come chohle gestisce i tuoi dati: in self-hosting restano sul tuo server. Questo sito raccoglie pochissimo.",
     },
     title: "Privacy",
-    lastUpdated: { label: "Ultimo aggiornamento", date: "1 June 2026" },
+    lastUpdated: { label: "Ultimo aggiornamento", date: "2 giugno 2026" },
     intro:
       "chohle è open source ed è fatto per essere <strong>ospitato autonomamente</strong>. Questo determina tutto ciò che segue: nella maggior parte dei casi i tuoi dati non passano affatto da noi. Questa pagina spiega il poco che raccogliamo tramite questo sito e come il software chohle tratta i tuoi dati.",
     sections: [
@@ -288,7 +288,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: "Un <strong>chohle Cloud</strong> completamente gestito è in arrivo. Al lancio tratterà i dati per tuo conto e questa informativa verrà aggiornata per spiegare esattamente come, prima che ti venga chiesto di inserire qualcosa di reale.",
+            text: "Oggi non esiste un <strong>chohle Cloud</strong>, e non posso promettere che esisterà mai. Al momento chohle è pensato per essere ospitato autonomamente, gestito da te sul tuo server. Se mai arriverà un Cloud gestito, tratterebbe i dati per tuo conto e questa informativa verrebbe aggiornata per spiegare esattamente come, prima che ti venga chiesto di inserire qualcosa di reale.",
           },
         ],
       },
@@ -306,7 +306,7 @@ const privacy: Partial<Record<Lang, PrivacyContent>> = {
         blocks: [
           {
             type: "p",
-            text: 'Domande sulla privacy? Dato che chohle è sviluppato in modo aperto, il modo migliore per contattarci è aprire una issue nel <a href="#">repository GitHub del progetto</a>.',
+            text: 'Domande sulla privacy? Dato che chohle è sviluppato in modo aperto, il modo migliore per contattarmi è aprire una issue nel <a href="https://github.com/chohle/chohle" target="_blank" rel="noopener">repository GitHub del progetto</a>, oppure scrivermi a <a href="mailto:emanuell@ademi.me">emanuell@ademi.me</a>.',
           },
         ],
       },
