@@ -25,7 +25,6 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
 ---
 
 <Layout title={c.meta.title} description={c.meta.description} lang={lang}>
-  <!-- Hero: two-column with photo -->
   <section id="hero" class="py-16">
     <div class="mx-auto flex w-full max-w-2xl gap-16 px-6 max-xl:flex-col md:max-w-3xl lg:max-w-7xl lg:px-10">
       <div class="flex flex-1 flex-col items-start justify-center gap-6" data-reveal>
@@ -48,14 +47,12 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
     </div>
   </section>
 
-  <!-- Story -->
   <section id="story" class="py-16">
     <div class="mx-auto flex w-full max-w-2xl flex-col gap-6 px-6 text-base/8 text-mauve-700 md:max-w-3xl lg:px-10 dark:text-mauve-400 [&_strong]:font-semibold [&_strong]:text-mauve-950 dark:[&_strong]:text-white" data-reveal>
       {c.story.map((p) => <p set:html={p} />)}
     </div>
   </section>
 
-  <!-- Principles -->
   <section id="principles" class="py-16">
     <div class="mx-auto flex w-full max-w-2xl flex-col gap-10 px-6 sm:gap-16 md:max-w-3xl lg:max-w-7xl lg:px-10">
       <div class="flex max-w-2xl flex-col gap-6" data-reveal>
@@ -80,7 +77,6 @@ const principles = c.principles.map((p, i) => ({ ...p, icon: principleIcons[i] }
     </div>
   </section>
 
-  <!-- Mission: a quiet, signed closing line that leads into the CTA below -->
   <section id="open" class="pt-16 sm:pt-24">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
       <figure class="mx-auto flex max-w-3xl flex-col items-center gap-7 text-center" data-reveal>

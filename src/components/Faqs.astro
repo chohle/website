@@ -15,7 +15,6 @@ const docsUrl = localize("/docs", lang);
 
 <section id="faqs" class="py-16 sm:py-24">
   <div class="mx-auto grid w-full max-w-2xl grid-cols-1 gap-x-16 gap-y-10 px-6 md:max-w-3xl lg:max-w-7xl lg:grid-cols-[minmax(0,1fr)_1.4fr] lg:px-10">
-    <!-- Left: heading, supporting copy, helper link (sticky on desktop) -->
     <div class="flex flex-col gap-6 lg:sticky lg:top-28 lg:self-start" data-reveal>
       <div class="flex flex-col gap-3">
         <Eyebrow>{t("eyebrow.faq")}</Eyebrow>
@@ -31,7 +30,6 @@ const docsUrl = localize("/docs", lang);
       </div>
     </div>
 
-    <!-- Right: accordion cards -->
     <Accordion items={c.faqs} idPrefix="home-faq" />
   </div>
 </section>

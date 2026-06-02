@@ -31,7 +31,6 @@ const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length
 ---
 
 <Layout title={c.meta.title} description={c.meta.description} lang={lang}>
-  <!-- Hero -->
   <section class="py-16 sm:py-24">
     <div class="mx-auto w-full max-w-2xl px-6 text-center md:max-w-3xl lg:max-w-7xl lg:px-10" data-reveal>
       <h1 class="font-display mx-auto max-w-3xl text-4xl font-extrabold tracking-[-0.03em] text-balance text-white sm:text-6xl">{c.hero.headline}</h1>
@@ -43,7 +42,6 @@ const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length
     </div>
   </section>
 
-  <!-- Alternating feature walkthrough -->
   <section id="walkthrough" class="py-16 sm:py-24">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
       <div class="flex max-w-3xl flex-col gap-3" data-reveal>
@@ -82,7 +80,6 @@ const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length
     </div>
   </section>
 
-  <!-- Dark "open by design" panel -->
   <div class="mx-2 mt-2 rounded-4xl bg-mauve-950 py-24 sm:py-32 dark:ring-1 dark:ring-white/10">
     <div class="mx-auto w-full max-w-2xl px-6 md:max-w-3xl lg:max-w-7xl lg:px-10">
       <div class="flex max-w-3xl flex-col gap-3" data-reveal>
