@@ -17,12 +17,12 @@ const links = [
   { href: "/docs", label: t("nav.docs"), blank: true },
 ];
 
-const demoUrl = "#";
+const demoUrl = "https://app.chohle.ch";
 
 const linkClass =
   "group inline-flex items-center justify-between gap-2 text-3xl/10 font-medium text-mauve-950 lg:text-sm/7 dark:text-white";
 const demoBtn =
-  "inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-3 py-1 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200";
+  "inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-3.5 py-1.5 font-mono text-[0.72rem]/6 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200";
 ---
 
 <header class="sticky top-0 z-10 bg-mauve-100 dark:bg-mauve-950">
@@ -47,7 +47,7 @@ const demoBtn =
       </div>
 
       <div class="flex flex-1 items-center justify-end gap-4">
-        <a href={demoUrl} class={`${demoBtn} max-lg:hidden`}>{t("cta.tryDemo")}</a>
+        <a href={demoUrl} target="_blank" rel="noopener" class={`${demoBtn} max-lg:hidden`}>{t("cta.tryDemo")}</a>
 
         <div class="max-lg:hidden">
           <LanguageSwitcher lang={lang} />
@@ -90,7 +90,7 @@ const demoBtn =
                 </span>
               </a>
             ))}
-            <a href={demoUrl} class={`${demoBtn} mt-2 self-start`}>{t("cta.tryDemo")}</a>
+            <a href={demoUrl} target="_blank" rel="noopener" class={`${demoBtn} mt-2 self-start`}>{t("cta.tryDemo")}</a>
             <div class="mt-2 flex items-center gap-4 text-sm font-medium" aria-label={t("lang.label")}>
               {langs.map((l) => (
                 <a

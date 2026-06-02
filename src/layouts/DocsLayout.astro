@@ -3,6 +3,8 @@ import "../styles/global.css";
 import DocsNav from "../components/DocsNav.astro";
 import DocsSearch from "../components/DocsSearch.astro";
 import HeroPattern from "../components/HeroPattern.astro";
+import Lightbox from "../components/Lightbox.astro";
+import Logo from "../components/Logo.astro";
 import { getDocsFlat } from "../lib/docs-nav";
 import { type Lang } from "../i18n/config";
 import { getLangFromUrl, stripLang, localize } from "../i18n/utils";
@@ -51,7 +53,7 @@ const prose =
       <dialog id="docs-menu" class="backdrop:bg-mauve-950/30">
         <el-dialog-panel class="fixed inset-y-0 left-0 w-80 max-w-[80%] overflow-y-auto bg-mauve-100 px-6 py-6 dark:bg-mauve-950">
           <div class="flex items-center justify-between">
-            <a href={localize("/", lang)} class="font-display text-xl font-semibold tracking-tight text-mauve-950 dark:text-white">chohle <span class="text-mauve-500">docs</span></a>
+            <a href={localize("/", lang)} aria-label="chohle docs" class="inline-flex items-center gap-2 text-mauve-950 dark:text-white"><Logo class="h-6 w-auto" /><span class="font-display text-lg font-semibold tracking-tight text-mauve-500">docs</span></a>
             <button command="close" commandfor="docs-menu" aria-label="Close docs menu" class="inline-flex rounded-full p-1.5 text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10">
               <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" /></svg>
             </button>
@@ -63,7 +65,7 @@ const prose =
 
     <!-- Desktop fixed sidebar -->
     <div class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-72 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-mauve-950/10 lg:bg-mauve-100 lg:px-6 lg:py-8 dark:lg:border-white/10 dark:lg:bg-mauve-950">
-      <a href={localize("/", lang)} aria-label="chohle" class="font-display text-2xl font-semibold tracking-tight text-mauve-950 dark:text-white">chohle <span class="text-mauve-500">docs</span></a>
+      <a href={localize("/", lang)} aria-label="chohle docs" class="inline-flex items-center gap-2.5 text-mauve-950 dark:text-white"><Logo class="h-7 w-auto" /><span class="font-display text-xl font-semibold tracking-tight text-mauve-500">docs</span></a>
       <nav class="mt-8"><DocsNav lang={lang} current={current} /></nav>
     </div>
 
@@ -74,14 +76,14 @@ const prose =
         <button command="show-modal" commandfor="docs-menu" aria-label="Open docs menu" class="inline-flex shrink-0 rounded-md p-1.5 text-mauve-700 hover:bg-mauve-950/10 lg:hidden dark:text-mauve-300 dark:hover:bg-white/10">
           <svg viewBox="0 0 24 24" fill="currentColor" class="size-5"><path fill-rule="evenodd" d="M3.748 8.248a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.748 15.75a.75.75 0 0 1 .75-.751h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" /></svg>
         </button>
-        <a href={localize("/", lang)} class="font-display shrink-0 text-lg font-semibold tracking-tight text-mauve-950 lg:hidden dark:text-white">chohle <span class="text-mauve-500">docs</span></a>
+        <a href={localize("/", lang)} aria-label="chohle docs" class="inline-flex shrink-0 items-center gap-2 text-mauve-950 lg:hidden dark:text-white"><Logo class="h-5 w-auto" /><span class="font-display text-base font-semibold tracking-tight text-mauve-500">docs</span></a>
         <DocsSearch class="max-w-xs flex-1 max-lg:hidden" />
         <div class="ml-auto flex items-center gap-3 sm:gap-5">
           <button type="button" data-open-search aria-label="Search the docs" class="inline-flex shrink-0 rounded-md p-1.5 text-mauve-700 hover:bg-mauve-950/10 lg:hidden dark:text-mauve-300 dark:hover:bg-white/10">
             <svg class="size-5 stroke-current" fill="none" viewBox="0 0 20 20" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m17 17-3.5-3.5M15 9a6 6 0 1 1-12 0 6 6 0 0 1 12 0Z" /></svg>
           </button>
-          <a href="#" aria-label="GitHub" class="text-mauve-700 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white"><svg class="size-5" viewBox="0 0 24 24" fill="currentColor" role="image"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg></a>
-          <a href="#" class="inline-flex shrink-0 items-center justify-center rounded-full px-3 py-1 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">{t("cta.tryDemo")}</a>
+          <a href="https://github.com/chohle/chohle" target="_blank" rel="noopener" aria-label="GitHub" class="text-mauve-700 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white"><svg class="size-5" viewBox="0 0 24 24" fill="currentColor" role="image"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg></a>
+          <a href="https://app.chohle.ch" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center rounded-full px-3.5 py-1.5 font-mono text-[0.72rem]/6 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">{t("cta.tryDemo")}</a>
         </div>
       </header>
 
@@ -90,7 +92,7 @@ const prose =
         <div class="mx-auto flex w-full max-w-6xl gap-12 px-6 pt-24 pb-16 lg:px-12">
         <main class="min-w-0 flex-1">
           <div class="max-w-3xl">
-        <article class={prose} data-pagefind-body>
+        <article class={`${prose} [&_img]:cursor-zoom-in`} data-pagefind-body data-doc-content>
           <slot />
         </article>
 
@@ -121,7 +123,7 @@ const prose =
           <span>© {year} chohle</span>
           <div class="flex items-center gap-6">
             <a href="/" class="hover:text-mauve-950 dark:hover:text-white">{t("docs.home")}</a>
-            <a href="#" class="hover:text-mauve-950 dark:hover:text-white">GitHub</a>
+            <a href="https://github.com/chohle/chohle" target="_blank" rel="noopener" class="hover:text-mauve-950 dark:hover:text-white">GitHub</a>
           </div>
         </footer>
           </div>
@@ -137,6 +139,7 @@ const prose =
       </div>
     </div>
 
+    <Lightbox />
     <script>
       import "@tailwindplus/elements";
     </script>
@@ -182,18 +185,22 @@ const prose =
               a.classList.toggle("dark:text-mauve-400", !on);
             }
           };
-          const offset = 100;
-          const onScroll = () => {
+          // Highlight the heading currently nearest the top of the viewport.
+          // Recomputed on scroll/resize so it always tracks the right section,
+          // even on short pages or with anchor jumps.
+          const offset = 96; // fixed header height + a little breathing room
+          const update = () => {
             let current = headings[0].id;
             for (const h of headings) {
-              if (h.getBoundingClientRect().top - offset <= 0) current = h.id;
+              if (h.getBoundingClientRect().top - offset <= 1) current = h.id;
               else break;
             }
             setActive(current);
           };
-          document.addEventListener("scroll", onScroll, { passive: true });
-          window.addEventListener("resize", onScroll, { passive: true });
-          onScroll();
+          document.addEventListener("scroll", update, { passive: true });
+          window.addEventListener("resize", update, { passive: true });
+          window.addEventListener("hashchange", update);
+          update();
         }
       }
     </script>

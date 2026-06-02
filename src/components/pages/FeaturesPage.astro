@@ -12,7 +12,7 @@ const { lang = defaultLang } = Astro.props;
 const c = getFeatures(lang);
 const t = useTranslations(lang);
 
-const demoUrl = "#";
+const demoUrl = "https://app.chohle.ch";
 const docsUrl = localize("/docs", lang);
 
 // Real app screenshots captured per locale from the running app, stored under
@@ -39,8 +39,8 @@ const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length
         <h1 class="font-display mx-auto max-w-3xl text-4xl font-medium tracking-tighter text-balance text-mauve-950 sm:text-6xl">{c.hero.headline}</h1>
         <p class="mx-auto mt-6 max-w-xl text-lg/8 text-mauve-800">{c.hero.sub}</p>
         <div class="mt-10 flex flex-col items-center justify-center gap-3 sm:flex-row">
-          <a href={demoUrl} class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-5 py-2.5 text-sm/7 font-medium bg-mauve-950 text-white hover:bg-mauve-800">{t("cta.tryDemo")}</a>
-          <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-5 py-2.5 text-sm/7 font-medium text-mauve-950 ring-1 ring-inset ring-mauve-950/15 hover:bg-mauve-950/5">{t("cta.readDocs")}</a>
+          <a href={demoUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800">{t("cta.tryDemo")}</a>
+          <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-1 rounded-full px-6 py-2.5 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-mauve-950 ring-1 ring-inset ring-mauve-950/15 hover:bg-mauve-950/5">{t("cta.readDocs")}</a>
         </div>
       </div>
     </div>
@@ -58,11 +58,16 @@ const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length
         {rows.map((card, i) => (
           <div class="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-16" data-reveal>
             <div class={`flex flex-col gap-5 ${i % 2 === 1 ? "lg:order-2" : ""}`}>
-              <span class="font-mono text-xs/6 font-semibold tracking-widest text-accent uppercase dark:text-accent-light">{card.eyebrow}</span>
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="font-mono text-xs/6 font-semibold tracking-widest text-accent uppercase dark:text-accent-light">{card.eyebrow}</span>
+                {card.tag && (
+                  <span class="inline-flex items-center rounded-full bg-amber-400/15 px-2.5 py-0.5 font-mono text-[0.65rem] font-semibold tracking-widest text-amber-700 uppercase ring-1 ring-amber-500/30 ring-inset dark:text-amber-300">{card.tag}</span>
+                )}
+              </div>
               <h3 class="font-display text-2xl/9 font-medium tracking-tight text-pretty text-mauve-950 sm:text-3xl/10 dark:text-white">{card.title}</h3>
               <p class="max-w-xl text-base/7 text-pretty text-mauve-700 dark:text-mauve-400">{card.description}</p>
               <div class="mt-1 flex items-center gap-5">
-                <a href={demoUrl} class="group/link inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950 dark:text-white">
+                <a href={demoUrl} target="_blank" rel="noopener" class="group/link inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950 dark:text-white">
                   {t("cta.tryDemo")}
                   <svg class="inline-block transition-transform group-hover/link:translate-x-0.5" width="13" height="7" viewBox="0 0 13 7" fill="none" stroke-width="1" role="image"><path d="M12.5049 3.49512L0.504883 3.49512" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /><path d="M9.5 6.5L12.5 3.5L9.5 0.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" /></svg>
                 </a>
@@ -71,7 +76,7 @@ const rows = c.lightCards.map((card, i) => ({ ...card, ...frame[i % frame.length
             </div>
             <div class={`relative overflow-hidden rounded-xl dark:after:absolute dark:after:inset-0 dark:after:rounded-xl dark:after:outline-1 dark:after:-outline-offset-1 dark:after:outline-white/10 ${i % 2 === 1 ? "lg:order-1" : ""}`}>
               <Screenshot color={card.color} placement={card.placement}>
-                <img src={shotSrc(card.shot)} alt={card.title} width="1456" height="1080" loading="lazy" class="bg-white" />
+                <img src={shotSrc(card.shot)} alt={card.title} width="1456" height="1080" loading="lazy" data-zoomable class="cursor-zoom-in bg-white" />
               </Screenshot>
             </div>
           </div>
