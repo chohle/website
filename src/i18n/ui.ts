@@ -33,6 +33,11 @@ export const ui = {
     "docs.onThisPage": "On this page",
     "docs.home": "Home",
     "lang.label": "Language",
+    "error.eyebrow": "Error 404",
+    "error.title": "Page not found",
+    "error.body": "The page you were looking for doesn't exist or has moved. Let's get you back on track.",
+    "error.backHome": "Back home",
+    "error.notFound": "no such page",
   },
   de: {
     "nav.pricing": "Preise",
@@ -65,6 +70,11 @@ export const ui = {
     "docs.onThisPage": "Auf dieser Seite",
     "docs.home": "Startseite",
     "lang.label": "Sprache",
+    "error.eyebrow": "Fehler 404",
+    "error.title": "Seite nicht gefunden",
+    "error.body": "Die gesuchte Seite existiert nicht oder wurde verschoben. Bringen wir dich zurück auf den richtigen Weg.",
+    "error.backHome": "Zur Startseite",
+    "error.notFound": "keine solche Seite",
   },
   fr: {
     "nav.pricing": "Tarifs",
@@ -97,6 +107,11 @@ export const ui = {
     "docs.onThisPage": "Sur cette page",
     "docs.home": "Accueil",
     "lang.label": "Langue",
+    "error.eyebrow": "Erreur 404",
+    "error.title": "Page introuvable",
+    "error.body": "La page que vous cherchez n'existe pas ou a été déplacée. Remettons-vous sur la bonne voie.",
+    "error.backHome": "Retour à l'accueil",
+    "error.notFound": "page inexistante",
   },
   it: {
     "nav.pricing": "Prezzi",
@@ -129,6 +144,11 @@ export const ui = {
     "docs.onThisPage": "In questa pagina",
     "docs.home": "Home",
     "lang.label": "Lingua",
+    "error.eyebrow": "Errore 404",
+    "error.title": "Pagina non trovata",
+    "error.body": "La pagina che cercavi non esiste o è stata spostata. Rimettiamoti sulla strada giusta.",
+    "error.backHome": "Torna alla home",
+    "error.notFound": "pagina inesistente",
   },
 } as const;
 
