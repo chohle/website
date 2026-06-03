@@ -1,0 +1,78 @@
+---
+import { langs, defaultLang, type Lang } from "../../i18n/config";
+import { LOCALIZED_PATHS, localizePath } from "../../i18n/routes";
+
+import AboutPage from "../../components/pages/AboutPage.astro";
+import FeaturesPage from "../../components/pages/FeaturesPage.astro";
+import PricingPage from "../../components/pages/PricingPage.astro";
+import PrivacyPage from "../../components/pages/PrivacyPage.astro";
+
+import DocIntroduction from "../../components/docs/DocIntroduction.astro";
+import DocQuickstart from "../../components/docs/DocQuickstart.astro";
+import DocSelfHosting from "../../components/docs/DocSelfHosting.astro";
+import DocConfiguration from "../../components/docs/DocConfiguration.astro";
+import DocDashboard from "../../components/docs/DocDashboard.astro";
+import DocInvoicing from "../../components/docs/DocInvoicing.astro";
+import DocQuotes from "../../components/docs/DocQuotes.astro";
+import DocProjects from "../../components/docs/DocProjects.astro";
+import DocEmail from "../../components/docs/DocEmail.astro";
+import DocExpensesIncome from "../../components/docs/DocExpensesIncome.astro";
+import DocPayments from "../../components/docs/DocPayments.astro";
+import DocBankReconciliation from "../../components/docs/DocBankReconciliation.astro";
+import DocReminders from "../../components/docs/DocReminders.astro";
+import DocCustomersArticles from "../../components/docs/DocCustomersArticles.astro";
+import DocActivity from "../../components/docs/DocActivity.astro";
+import DocSettings from "../../components/docs/DocSettings.astro";
+import DocDockerCli from "../../components/docs/DocDockerCli.astro";
+import DocEnvironmentVariables from "../../components/docs/DocEnvironmentVariables.astro";
+import DocBackups from "../../components/docs/DocBackups.astro";
+import DocDemoMode from "../../components/docs/DocDemoMode.astro";
+
+// One catch-all route renders every localized non-home page. getStaticPaths
+// emits the language-translated slug for each canonical path; the matching
+// component is picked from the map below. English pages keep their own files.
+export function getStaticPaths() {
+  const paths = [];
+  for (const lang of langs.filter((l) => l !== defaultLang)) {
+    for (const canonical of LOCALIZED_PATHS) {
+      paths.push({
+        params: { lang, slug: localizePath(canonical, lang).replace(/^\//, "") },
+        props: { canonical, lang },
+      });
+    }
+  }
+  return paths;
+}
+
+const COMPONENTS: Record<string, any> = {
+  "/about": AboutPage,
+  "/features": FeaturesPage,
+  "/pricing": PricingPage,
+  "/privacy": PrivacyPage,
+  "/docs": DocIntroduction,
+  "/docs/quickstart": DocQuickstart,
+  "/docs/self-hosting": DocSelfHosting,
+  "/docs/configuration": DocConfiguration,
+  "/docs/dashboard": DocDashboard,
+  "/docs/invoicing": DocInvoicing,
+  "/docs/quotes": DocQuotes,
+  "/docs/projects": DocProjects,
+  "/docs/email": DocEmail,
+  "/docs/expenses-income": DocExpensesIncome,
+  "/docs/payments": DocPayments,
+  "/docs/bank-reconciliation": DocBankReconciliation,
+  "/docs/reminders": DocReminders,
+  "/docs/customers-articles": DocCustomersArticles,
+  "/docs/activity": DocActivity,
+  "/docs/settings": DocSettings,
+  "/docs/docker-cli": DocDockerCli,
+  "/docs/environment-variables": DocEnvironmentVariables,
+  "/docs/backups": DocBackups,
+  "/docs/demo-mode": DocDemoMode,
+};
+
+const { canonical, lang } = Astro.props as { canonical: string; lang: Lang };
+const Component = COMPONENTS[canonical];
+---
+
+<Component lang={lang} />

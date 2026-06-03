@@ -29,7 +29,7 @@ const structure: { id: string; slugs: string[] }[] = [
       "/docs/activity",
     ],
   },
-  { id: "reference", slugs: ["/docs/settings", "/docs/docker-cli", "/docs/environment-variables", "/docs/backups"] },
+  { id: "reference", slugs: ["/docs/settings", "/docs/docker-cli", "/docs/environment-variables", "/docs/backups", "/docs/demo-mode"] },
 ];
 
 const groupTitles: Record<string, Record<Lang, string>> = {
@@ -58,6 +58,7 @@ const linkTitles: Record<string, Record<Lang, string>> = {
   "/docs/docker-cli": { en: "Docker & CLI", de: "Docker & CLI", fr: "Docker & CLI", it: "Docker & CLI" },
   "/docs/environment-variables": { en: "Environment variables", de: "Umgebungsvariablen", fr: "Variables d'environnement", it: "Variabili d'ambiente" },
   "/docs/backups": { en: "Backups", de: "Backups", fr: "Sauvegardes", it: "Backup" },
+  "/docs/demo-mode": { en: "Demo mode", de: "Demo-Modus", fr: "Mode démo", it: "Modalità demo" },
 };
 
 export function getDocsNav(lang: Lang): DocsGroup[] {

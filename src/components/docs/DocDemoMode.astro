@@ -1,0 +1,276 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import CodeBlock from "../../components/CodeBlock.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Demo mode",
+    metaDescription:
+      "Turn one chohle instance into a public playground where every visitor gets their own isolated, seeded sandbox.",
+    h1: "Demo mode",
+    intro:
+      "chohle is single-tenant by default. Demo mode turns one instance into a public playground where every visitor gets their own isolated, seeded sandbox. They can click around, create invoices, drag projects, and only ever see their own changes. One visitor can't affect another, and nobody can break it for everyone.",
+    enableH2: "Enable it",
+    enableP: "Set the environment variable and restart (or redeploy):",
+    enableNote:
+      "Demo mode is off by default. When off, chohle is the normal single-tenant app and none of the demo code runs.",
+    whatH2: "What it does",
+    whatItems: [
+      { t: "Per-visitor sandbox", d: "a demo_sid cookie maps to a private SQLite copy of a pristine, seeded template. One visitor's writes never reach another's." },
+      { t: "No login wall", d: "a guest session is created automatically on first visit." },
+      { t: "Seeded in the visitor's language", d: "the sandbox is seeded from the browser's Accept-Language; a Reset button in the top banner re-seeds a fresh copy." },
+      { t: "Sandboxed side effects", d: "outbound email is swallowed, background mail sync is skipped, and the mailbox connect/sync endpoints return 403, so a public visitor can't make the app reach real external services." },
+      { t: "Self-cleaning", d: "idle sandboxes (default 2 h) and anything past the 500-session cap are evicted automatically, so disk stays bounded." },
+    ],
+    configH2: "Configuration",
+    colVariable: "Variable",
+    colDefault: "Default",
+    colPurpose: "Purpose",
+    purposes: [
+      "true enables demo mode.",
+      "Where templates and sandboxes live. Use a fast local disk or a Docker named volume, not a macOS bind mount (SQLite corrupts there).",
+      "Idle time before a sandbox is evicted.",
+      "Cap on live sandboxes; the oldest is evicted past this.",
+    ],
+    internalsH2: "How it works",
+    internalsP: "For contributors, the moving parts:",
+    colFile: "File",
+    colRole: "Role",
+    roles: [
+      "The session-to-database manager: builds one seeded template per locale, copies it per session, caches open handles, and evicts idle or over-cap ones.",
+      "Per request: assigns the demo_sid cookie, binds the session database to event.context, auto-logins a guest, and blocks the external-service endpoints.",
+      "useDb() resolves the request's sandbox via Nitro's async context, so every existing query is sandboxed with no changes to the rest of the app.",
+      "The bundled, localized demo seed, shared by the dev CLI (yarn seed) and the demo template builder, so it ships in the production build.",
+      "The “your changes are private” banner with its Reset button, shown only when CHOHLE_DEMO is on.",
+    ],
+    internalsNote:
+      "The boot plugins (migrate, seed-owner, mail-sync) all early-return in demo mode: there is no shared database; each sandbox is migrated and seeded when its template is built.",
+    deployH2: "Run a demo publicly",
+    deployA: "Follow",
+    deployLink: "Self-hosting",
+    deployB: "and set CHOHLE_DEMO=true. Point DEMO_DATA_PATH at a Docker named volume so the per-session databases live on fast local disk.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Demo-Modus",
+    metaDescription:
+      "Mach aus einer chohle-Instanz einen öffentlichen Spielplatz, in dem jeder Besucher seine eigene isolierte, befüllte Sandbox erhält.",
+    h1: "Demo-Modus",
+    intro:
+      "chohle ist standardmässig single-tenant. Der Demo-Modus macht aus einer Instanz einen öffentlichen Spielplatz, in dem jeder Besucher seine eigene isolierte, befüllte Sandbox erhält. Er kann herumklicken, Rechnungen erstellen, Projekte verschieben und sieht dabei immer nur seine eigenen Änderungen. Ein Besucher kann keinen anderen beeinflussen, und niemand kann es für alle kaputtmachen.",
+    enableH2: "Aktivieren",
+    enableP: "Setze die Umgebungsvariable und starte neu (oder deploye neu):",
+    enableNote:
+      "Der Demo-Modus ist standardmässig aus. Wenn aus, ist chohle die normale Single-Tenant-App und kein Demo-Code läuft.",
+    whatH2: "Was er macht",
+    whatItems: [
+      { t: "Sandbox pro Besucher", d: "ein demo_sid-Cookie verweist auf eine private SQLite-Kopie einer frischen, befüllten Vorlage. Die Schreibvorgänge eines Besuchers erreichen nie die eines anderen." },
+      { t: "Keine Login-Schranke", d: "beim ersten Besuch wird automatisch eine Gast-Session angelegt." },
+      { t: "Befüllt in der Sprache des Besuchers", d: "die Sandbox wird anhand des Accept-Language des Browsers befüllt; ein Reset-Button im oberen Banner erstellt eine frische Kopie." },
+      { t: "Abgeschottete Nebenwirkungen", d: "ausgehende E-Mails werden verworfen, der Hintergrund-Mailabgleich wird übersprungen und die Postfach-Connect-/Sync-Endpunkte liefern 403, damit ein öffentlicher Besucher die App nicht echte externe Dienste ansprechen lässt." },
+      { t: "Selbstreinigend", d: "ungenutzte Sandboxes (standardmässig 2 h) und alles über dem Limit von 500 Sessions werden automatisch entfernt, sodass der Speicher begrenzt bleibt." },
+    ],
+    configH2: "Konfiguration",
+    colVariable: "Variable",
+    colDefault: "Standard",
+    colPurpose: "Zweck",
+    purposes: [
+      "true aktiviert den Demo-Modus.",
+      "Wo Vorlagen und Sandboxes liegen. Verwende eine schnelle lokale Disk oder ein Docker-Named-Volume, kein macOS-Bind-Mount (SQLite wird dort beschädigt).",
+      "Leerlaufzeit, bevor eine Sandbox entfernt wird.",
+      "Obergrenze aktiver Sandboxes; darüber wird die älteste entfernt.",
+    ],
+    internalsH2: "Wie es funktioniert",
+    internalsP: "Für Mitwirkende, die beweglichen Teile:",
+    colFile: "Datei",
+    colRole: "Rolle",
+    roles: [
+      "Der Session-zu-Datenbank-Manager: baut eine befüllte Vorlage pro Sprache, kopiert sie pro Session, cacht offene Handles und entfernt ungenutzte oder überzählige.",
+      "Pro Anfrage: vergibt das demo_sid-Cookie, bindet die Session-Datenbank an event.context, loggt einen Gast automatisch ein und blockiert die externen Dienst-Endpunkte.",
+      "useDb() löst die Sandbox der Anfrage über Nitros Async-Kontext auf, sodass jede bestehende Abfrage abgeschottet ist, ohne Änderungen am Rest der App.",
+      "Der gebündelte, lokalisierte Demo-Seed, geteilt zwischen dem Dev-CLI (yarn seed) und dem Demo-Vorlagen-Builder, damit er im Production-Build mitgeliefert wird.",
+      "Das Banner „deine Änderungen sind privat“ mit seinem Reset-Knopf, das nur erscheint, wenn CHOHLE_DEMO an ist.",
+    ],
+    internalsNote:
+      "Die Boot-Plugins (migrate, seed-owner, mail-sync) kehren im Demo-Modus alle früh zurück: es gibt keine geteilte Datenbank; jede Sandbox wird migriert und befüllt, wenn ihre Vorlage gebaut wird.",
+    deployH2: "Eine Demo öffentlich betreiben",
+    deployA: "Folge",
+    deployLink: "Self-Hosting",
+    deployB: "und setze CHOHLE_DEMO=true. Richte DEMO_DATA_PATH auf ein Docker-Named-Volume, damit die Sessions-Datenbanken auf schneller lokaler Disk liegen.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Mode démo",
+    metaDescription:
+      "Transformez une instance chohle en terrain de jeu public où chaque visiteur obtient son propre bac à sable isolé et pré-rempli.",
+    h1: "Mode démo",
+    intro:
+      "chohle est mono-locataire par défaut. Le mode démo transforme une instance en terrain de jeu public où chaque visiteur obtient son propre bac à sable isolé et pré-rempli. Il peut cliquer partout, créer des factures, déplacer des projets et ne voit jamais que ses propres modifications. Un visiteur ne peut pas en affecter un autre, et personne ne peut tout casser pour les autres.",
+    enableH2: "Activez-le",
+    enableP: "Définissez la variable d'environnement et redémarrez (ou redéployez) :",
+    enableNote:
+      "Le mode démo est désactivé par défaut. Désactivé, chohle est l'application mono-locataire normale et aucun code de démo ne s'exécute.",
+    whatH2: "Ce qu'il fait",
+    whatItems: [
+      { t: "Un bac à sable par visiteur", d: "un cookie demo_sid pointe vers une copie SQLite privée d'un modèle vierge et pré-rempli. Les écritures d'un visiteur n'atteignent jamais celles d'un autre." },
+      { t: "Aucune barrière de connexion", d: "une session invité est créée automatiquement à la première visite." },
+      { t: "Pré-rempli dans la langue du visiteur", d: "le bac à sable est rempli selon l'Accept-Language du navigateur ; un bouton Réinitialiser dans la bannière supérieure recrée une copie neuve." },
+      { t: "Effets de bord cloisonnés", d: "les e-mails sortants sont absorbés, la synchro de courrier en arrière-plan est ignorée et les points de terminaison de connexion/synchro des boîtes renvoient 403, pour qu'un visiteur public ne puisse pas faire joindre de vrais services externes à l'application." },
+      { t: "Auto-nettoyant", d: "les bacs à sable inactifs (2 h par défaut) et tout ce qui dépasse le plafond de 500 sessions sont supprimés automatiquement, pour borner l'espace disque." },
+    ],
+    configH2: "Configuration",
+    colVariable: "Variable",
+    colDefault: "Valeur par défaut",
+    colPurpose: "Rôle",
+    purposes: [
+      "true active le mode démo.",
+      "Où vivent les modèles et les bacs à sable. Utilisez un disque local rapide ou un volume nommé Docker, pas un bind mount macOS (SQLite s'y corrompt).",
+      "Durée d'inactivité avant qu'un bac à sable soit supprimé.",
+      "Plafond de bacs à sable actifs ; au-delà, le plus ancien est supprimé.",
+    ],
+    internalsH2: "Comment ça marche",
+    internalsP: "Pour les contributeurs, les rouages :",
+    colFile: "Fichier",
+    colRole: "Rôle",
+    roles: [
+      "Le gestionnaire session-vers-base : construit un modèle pré-rempli par langue, le copie par session, met en cache les handles ouverts et supprime les inactifs ou en excès.",
+      "Par requête : attribue le cookie demo_sid, lie la base de la session à event.context, connecte automatiquement un invité et bloque les points de terminaison de services externes.",
+      "useDb() résout le bac à sable de la requête via le contexte asynchrone de Nitro, si bien que chaque requête existante est cloisonnée sans modifier le reste de l'application.",
+      "Le seed de démo localisé et intégré, partagé entre le CLI de dev (yarn seed) et le constructeur de modèles de démo, pour qu'il soit livré dans le build de production.",
+      "La bannière « vos modifications sont privées » avec son bouton Réinitialiser, affichée uniquement quand CHOHLE_DEMO est actif.",
+    ],
+    internalsNote:
+      "Les plugins de démarrage (migrate, seed-owner, mail-sync) reviennent tous tôt en mode démo. Il n'y a pas de base partagée ; chaque bac à sable est migré et rempli lors de la construction de son modèle.",
+    deployH2: "Faire tourner une démo en public",
+    deployA: "Suivez",
+    deployLink: "Auto-hébergement",
+    deployB: "et définissez CHOHLE_DEMO=true. Pointez DEMO_DATA_PATH vers un volume nommé Docker pour que les bases de session vivent sur un disque local rapide.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Modalità demo",
+    metaDescription:
+      "Trasforma un'istanza chohle in un parco giochi pubblico in cui ogni visitatore ottiene la propria sandbox isolata e pre-popolata.",
+    h1: "Modalità demo",
+    intro:
+      "chohle è single-tenant per impostazione predefinita. La modalità demo trasforma un'istanza in un parco giochi pubblico in cui ogni visitatore ottiene la propria sandbox isolata e pre-popolata. Può cliccare ovunque, creare fatture, trascinare progetti e vede sempre solo le proprie modifiche. Un visitatore non può influenzarne un altro e nessuno può romperla per tutti.",
+    enableH2: "Attivala",
+    enableP: "Imposta la variabile d'ambiente e riavvia (o ridistribuisci):",
+    enableNote:
+      "La modalità demo è disattivata per impostazione predefinita. Quando è disattivata, chohle è la normale app single-tenant e nessun codice demo viene eseguito.",
+    whatH2: "Cosa fa",
+    whatItems: [
+      { t: "Sandbox per visitatore", d: "un cookie demo_sid punta a una copia SQLite privata di un modello pulito e pre-popolato. Le scritture di un visitatore non raggiungono mai quelle di un altro." },
+      { t: "Nessuna barriera di login", d: "alla prima visita viene creata automaticamente una sessione ospite." },
+      { t: "Pre-popolata nella lingua del visitatore", d: "la sandbox viene popolata in base all'Accept-Language del browser; un pulsante Reset nel banner in alto ricrea una copia nuova." },
+      { t: "Effetti collaterali isolati", d: "le e-mail in uscita vengono scartate, la sincronizzazione della posta in background viene saltata e gli endpoint di connessione/sincronizzazione delle caselle restituiscono 403, così un visitatore pubblico non può far raggiungere all'app servizi esterni reali." },
+      { t: "Auto-pulente", d: "le sandbox inattive (2 h di default) e tutto ciò che supera il limite di 500 sessioni vengono rimosse automaticamente, mantenendo limitato lo spazio su disco." },
+    ],
+    configH2: "Configurazione",
+    colVariable: "Variabile",
+    colDefault: "Predefinito",
+    colPurpose: "Scopo",
+    purposes: [
+      "true attiva la modalità demo.",
+      "Dove vivono modelli e sandbox. Usa un disco locale veloce o un volume nominato Docker, non un bind mount macOS (SQLite si corrompe lì).",
+      "Tempo di inattività prima che una sandbox venga rimossa.",
+      "Limite di sandbox attive; oltre questo, la più vecchia viene rimossa.",
+    ],
+    internalsH2: "Come funziona",
+    internalsP: "Per i contributori, gli ingranaggi:",
+    colFile: "File",
+    colRole: "Ruolo",
+    roles: [
+      "Il gestore sessione-verso-database: costruisce un modello pre-popolato per lingua, lo copia per sessione, mette in cache gli handle aperti e rimuove quelli inattivi o in eccesso.",
+      "Per ogni richiesta: assegna il cookie demo_sid, collega il database di sessione a event.context, effettua l'auto-login di un ospite e blocca gli endpoint dei servizi esterni.",
+      "useDb() risolve la sandbox della richiesta tramite il contesto asincrono di Nitro, così ogni query esistente è isolata senza modifiche al resto dell'app.",
+      "Il seed demo localizzato e incluso, condiviso tra la CLI di sviluppo (yarn seed) e il costruttore di modelli demo, così da essere distribuito nel build di produzione.",
+      "Il banner “le tue modifiche sono private” con il suo pulsante Reset, mostrato solo quando CHOHLE_DEMO è attivo.",
+    ],
+    internalsNote:
+      "I plugin di avvio (migrate, seed-owner, mail-sync) ritornano tutti subito in modalità demo: non c'è un database condiviso; ogni sandbox viene migrata e popolata quando si costruisce il suo modello.",
+    deployH2: "Esegui una demo in pubblico",
+    deployA: "Segui",
+    deployLink: "Auto-hosting",
+    deployB: "e imposta CHOHLE_DEMO=true. Punta DEMO_DATA_PATH a un volume nominato Docker, così i database di sessione vivono su disco locale veloce.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+
+const names = ["CHOHLE_DEMO", "DEMO_DATA_PATH", "DEMO_SESSION_TTL_MS", "DEMO_MAX_SESSIONS"];
+const defaults = ["(off)", "data/demo", "7200000 (2 h)", "500"];
+const vars = names.map((name, i) => ({ name, default: defaults[i], purpose: c.purposes[i] }));
+
+const files = [
+  "server/utils/demo.ts",
+  "server/middleware/00.demo.ts",
+  "server/utils/db.ts",
+  "server/utils/seedDemo.ts",
+  "app/components/DemoBanner.vue",
+];
+const internals = files.map((file, i) => ({ file, role: c.roles[i] }));
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <h2 id="enable">{c.enableH2}</h2>
+  <p>{c.enableP}</p>
+  <CodeBlock prompt={false} label=".env" code={`CHOHLE_DEMO=true`} />
+  <p>{c.enableNote}</p>
+
+  <h2 id="what-it-does">{c.whatH2}</h2>
+  <ul>
+    {c.whatItems.map((item) => (
+      <li><strong>{item.t}:</strong> {item.d}</li>
+    ))}
+  </ul>
+
+  <h2 id="configuration">{c.configH2}</h2>
+  <div class="not-prose mt-6 overflow-x-auto rounded-2xl ring-1 ring-mauve-950/10 dark:ring-white/10">
+    <table class="w-full border-collapse text-left text-sm/6">
+      <thead>
+        <tr class="border-b border-mauve-950/10 text-mauve-950 dark:border-white/10 dark:text-white">
+          <th class="px-4 py-3 font-medium">{c.colVariable}</th>
+          <th class="px-4 py-3 font-medium">{c.colDefault}</th>
+          <th class="px-4 py-3 font-medium">{c.colPurpose}</th>
+        </tr>
+      </thead>
+      <tbody class="text-mauve-700 dark:text-mauve-400">
+        {vars.map((v) => (
+          <tr class="border-b border-mauve-950/5 last:border-0 dark:border-white/5">
+            <td class="px-4 py-3 align-top"><code class="rounded bg-mauve-950/5 px-1.5 py-0.5 font-mono text-[0.85em] text-mauve-950 dark:bg-white/10 dark:text-white">{v.name}</code></td>
+            <td class="px-4 py-3 align-top font-mono text-[0.85em]">{v.default}</td>
+            <td class="px-4 py-3 align-top">{v.purpose}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="how-it-works">{c.internalsH2}</h2>
+  <p>{c.internalsP}</p>
+  <div class="not-prose mt-6 overflow-x-auto rounded-2xl ring-1 ring-mauve-950/10 dark:ring-white/10">
+    <table class="w-full border-collapse text-left text-sm/6">
+      <thead>
+        <tr class="border-b border-mauve-950/10 text-mauve-950 dark:border-white/10 dark:text-white">
+          <th class="px-4 py-3 font-medium">{c.colFile}</th>
+          <th class="px-4 py-3 font-medium">{c.colRole}</th>
+        </tr>
+      </thead>
+      <tbody class="text-mauve-700 dark:text-mauve-400">
+        {internals.map((f) => (
+          <tr class="border-b border-mauve-950/5 last:border-0 dark:border-white/5">
+            <td class="px-4 py-3 align-top"><code class="rounded bg-mauve-950/5 px-1.5 py-0.5 font-mono text-[0.85em] text-mauve-950 dark:bg-white/10 dark:text-white">{f.file}</code></td>
+            <td class="px-4 py-3 align-top">{f.role}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p>{c.internalsNote}</p>
+
+  <h2 id="deploy">{c.deployH2}</h2>
+  <p>{c.deployA} <a href={localize("/docs/self-hosting", lang)}>{c.deployLink}</a> {c.deployB}</p>
+</DocsLayout>

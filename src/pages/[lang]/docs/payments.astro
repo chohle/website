@@ -1,8 +1,0 @@
----
-import DocPayments from "../../../components/docs/DocPayments.astro";
-import { langs, defaultLang, type Lang } from "../../../i18n/config";
-export function getStaticPaths() {
-  return langs.filter((l) => l !== defaultLang).map((l) => ({ params: { lang: l } }));
-}
----
-<DocPayments />

@@ -1,4 +1,5 @@
 import { defaultLang, langs, type Lang } from "./config";
+import { localizePath, canonicalizePath } from "./routes";
 
 /** Detect the current language from a URL pathname (/de/... -> "de"). */
 export function getLangFromUrl(url: URL): Lang {
@@ -6,19 +7,24 @@ export function getLangFromUrl(url: URL): Lang {
   return (langs as string[]).includes(seg) ? (seg as Lang) : defaultLang;
 }
 
-/** Localize a root-relative href ("/pricing") for a language. */
+/** Localize a canonical root-relative href ("/pricing") for a language,
+ *  translating the slug and adding the language prefix ("/de/preise"). */
 export function localize(href: string, lang: Lang): string {
-  if (lang === defaultLang) return href;
-  if (href === "/") return `/${lang}`;
-  return `/${lang}${href}`;
+  const path = localizePath(href, lang);
+  if (lang === defaultLang) return path;
+  if (path === "/") return `/${lang}`;
+  return `/${lang}${path}`;
 }
 
-/** Strip any language prefix from a pathname, returning the bare path ("/pricing"). */
+/** Strip any language prefix and de-localize the slug, returning the bare
+ *  canonical path ("/de/preise" -> "/pricing"). */
 export function stripLang(pathname: string): string {
   const parts = pathname.split("/");
   if ((langs as string[]).includes(parts[1]) && parts[1] !== defaultLang) {
+    const lang = parts[1] as Lang;
     const rest = "/" + parts.slice(2).join("/");
-    return rest === "/" ? "/" : rest.replace(/\/$/, "");
+    const cleaned = rest === "/" ? "/" : rest.replace(/\/$/, "");
+    return canonicalizePath(cleaned, lang);
   }
   return pathname.replace(/\/$/, "") || "/";
 }
