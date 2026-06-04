@@ -95,7 +95,7 @@ const pricing: Partial<Record<Lang, PricingContent>> = {
     cloud: {
       badge: "Vielleicht irgendwann",
       headline: "Eine gehostete Cloud, vielleicht irgendwann.",
-      body: "Ehrlich gesagt weiß ich nicht, ob chohle Cloud je kommt. Im Moment ist das ein Soloprojekt, das ich zum Spaß baue, vor allem fürs Selbsthosten gedacht, und der Code ist noch nicht sicher genug, dass ich ihn für andere Leute betreiben würde. Bevor ich fremde Daten hoste, will ich eine stabile Version und das Ganze sauber über eine GmbH machen. Sieh die Cloud also als Vielleicht-irgendwann, nicht als Versprechen.",
+      body: "Ehrlich gesagt weiss ich nicht, ob chohle Cloud je kommt. Im Moment ist das ein Soloprojekt, das ich zum Spass baue, vor allem fürs Selbsthosten gedacht, und der Code ist noch nicht sicher genug, dass ich ihn für andere Leute betreiben würde. Bevor ich fremde Daten hoste, will ich eine stabile Version und das Ganze sauber über eine GmbH machen. Sieh die Cloud also als Vielleicht-irgendwann, nicht als Versprechen.",
       note: "Keine Warteliste, keine Anmeldung. Wenn dich das interessiert, schreib mir einfach.",
       cta: "Schreib mir dazu",
       email: "emanuell@ademi.me",
@@ -104,8 +104,8 @@ const pricing: Partial<Record<Lang, PricingContent>> = {
     faqsIntro: "Die ehrlichen Antworten auf das, was Leute fragen, bevor sie sich entscheiden.",
     faqs: [
       { q: "Ist chohle wirklich kostenlos?", a: "Ja. Self-Hosting ist kostenlos und bleibt es auch, das Ganze ist Open Source (MIT). Keine Testphase, keine Platzbeschränkung, kein Upselling." },
-      { q: "Wo ist der Haken beim Self-Hosting?", a: "Du betreibst chohle auf deinem eigenen Server und kümmerst dich um das gelegentliche Update. Es ist außerdem in Arbeit, größtenteils mit lokalen LLMs gebaut, während ich lerne, also rechne mit Ecken und Kanten und sieh es noch nicht als kugelsicher an." },
-      { q: "Wird es je eine gehostete Cloud geben?", a: "Vielleicht, aber versprechen kann ich es nicht. chohle ist gerade ein Solo-Spaßprojekt und fürs Selbsthosten gebaut. Eine verwaltete Cloud bräuchte zuerst eine stabile, sichere Version und eine richtige Firma (eine GmbH) dahinter. Wenn es dich interessiert, schreib mir an emanuell@ademi.me." },
+      { q: "Wo ist der Haken beim Self-Hosting?", a: "Du betreibst chohle auf deinem eigenen Server und kümmerst dich um das gelegentliche Update. Es ist ausserdem in Arbeit, grösstenteils mit lokalen LLMs gebaut, während ich lerne, also rechne mit Ecken und Kanten und sieh es noch nicht als kugelsicher an." },
+      { q: "Wird es je eine gehostete Cloud geben?", a: "Vielleicht, aber versprechen kann ich es nicht. chohle ist gerade ein Solo-Spassprojekt und fürs Selbsthosten gebaut. Eine verwaltete Cloud bräuchte zuerst eine stabile, sichere Version und eine richtige Firma (eine GmbH) dahinter. Wenn es dich interessiert, schreib mir an emanuell@ademi.me." },
       { q: "Kann ich später zwischen Self-hosted und Cloud wechseln?", a: "Ja. Deine Daten gehören dir und lassen sich vollständig exportieren, du kannst also jederzeit in beide Richtungen migrieren." },
     ],
   },

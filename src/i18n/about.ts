@@ -42,16 +42,16 @@ const about: Partial<Record<Lang, AboutContent>> = {
   de: {
     meta: {
       title: "chohle: Über uns",
-      description: "chohle begann als Weg, Node.js und Nuxt zum Spaß zu lernen, ein privates Nebenprojekt eines Backend-Entwicklers, der sonst mit PHP und TYPO3 arbeitet, und wurde zu einem ruhigen, quelloffenen Tool für Rechnungen und Projekte, das jeder nutzen kann.",
+      description: "chohle begann als Weg, Node.js und Nuxt zum Spass zu lernen, ein privates Nebenprojekt eines Backend-Entwicklers, der sonst mit PHP und TYPO3 arbeitet, und wurde zu einem ruhigen, quelloffenen Tool für Rechnungen und Projekte, das jeder nutzen kann.",
     },
     hero: {
       eyebrow: "Über uns",
       headline: "Gebaut, um zu lernen, und genutzt zu werden.",
-      intro: "Hoi, ich bin Emanuell. Im Hauptberuf bin ich Backend-Entwickler und arbeite vor allem mit PHP und TYPO3. chohle ist ein privates Nebenprojekt, das ich zum Spaß baue, um Node.js und Nuxt zu lernen, indem ich etwas Echtes mache statt noch einem Tutorial zu folgen. Es ist Open Source, also kann es jeder nutzen.",
+      intro: "Hoi, ich bin Emanuell. Im Hauptberuf bin ich Backend-Entwickler und arbeite vor allem mit PHP und TYPO3. chohle ist ein privates Nebenprojekt, das ich zum Spass baue, um Node.js und Nuxt zu lernen, indem ich etwas Echtes mache statt noch einem Tutorial zu folgen. Es ist Open Source, also kann es jeder nutzen.",
     },
     story: [
       "Am besten lerne ich, indem ich baue. Im Hauptberuf bin ich Backend-Entwickler, meist mit <strong>PHP und TYPO3</strong>, also waren <strong>Node.js und Nuxt</strong> für mich neues Terrain, das ich in meiner Freizeit erkunden wollte.",
-      "Statt mich durch noch ein Wegwerf-Tutorial zu quälen, habe ich mir ein echtes Problem zum Dranbleiben ausgesucht: die Rechnungen, Projekte und Kunden-E-Mails, mit denen sich kleine Firmen herumschlagen. chohle ist mein Versuch, das in meiner Freizeit zu bauen, zum Spaß, und nebenbei einen neuen Stack zu lernen.",
+      "Statt mich durch noch ein Wegwerf-Tutorial zu quälen, habe ich mir ein echtes Problem zum Dranbleiben ausgesucht: die Rechnungen, Projekte und Kunden-E-Mails, mit denen sich kleine Firmen herumschlagen. chohle ist mein Versuch, das in meiner Freizeit zu bauen, zum Spass, und nebenbei einen neuen Stack zu lernen.",
       "Es ist aus demselben Grund <strong>Open Source</strong>, aus dem ich angefangen habe, um offen zu lernen. Lies den Code, finde Schwachstellen, schlag Verbesserungen vor, oder hoste es einfach selbst und nutze es. Genau darum geht es.",
       "Eine ehrliche Anmerkung: Das hier ist klar <strong>in Arbeit</strong>, und ich baue vieles davon mit <strong>lokalen LLMs</strong>, während ich mir gleichzeitig beibringe, Modelle zu Hause selbst zu hosten. Der Code ist also nicht kugelsicher, die Sicherheit ist nicht zu 100 Prozent durchdacht, und es gibt Bugs, die ich noch nicht gefunden habe. Wenn dir etwas auffällt, öffne bitte ein Issue oder schreib mir freundlich. Kein Beschimpfen. Ich lerne in der Öffentlichkeit, und ein bisschen Freundlichkeit hilft enorm.",
     ],
