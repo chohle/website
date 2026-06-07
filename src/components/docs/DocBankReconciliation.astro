@@ -7,16 +7,25 @@ const lang = getLangFromUrl(Astro.url);
 const content = {
   en: {
     metaTitle: "chohle docs: Bank reconciliation",
-    metaDescription: "Import a camt.053 bank statement and let chohle match incoming payments to open invoices by their QR reference.",
+    metaDescription: "Import a camt.053 bank statement (or let a connected bank feed them) and chohle matches incoming payments to open invoices by their QR reference, marking exact matches paid.",
     h1: "Bank reconciliation",
     intro:
-      "Reconciliation closes the loop between “I sent the invoice” and “I got paid.” Import a camt.053 statement from your e-banking and chohle matches each incoming payment to the open invoice it pays, then marks it paid.",
+      "Reconciliation closes the loop between “I sent the invoice” and “I got paid.” Import a camt.053 statement from your e-banking, or let a connected bank feed them automatically, and chohle matches each incoming payment to the invoice it pays by its Swiss QR reference. When the reference and amount line up exactly, the invoice is marked paid on import; anything less certain waits in a review queue.",
     importHeading: "Importing a statement",
     importText:
-      "Drop a camt.053 XML file onto the page, or click to choose one. The statement's account number is checked against your sender IBAN, so a statement for the wrong account is rejected before anything is stored. Re-importing an overlapping period is safe, duplicate transactions are ignored.",
+      "Drop a camt.053 XML file onto the banking page, or click to choose one (both the 2022 and 2021 Swiss variants are accepted). The statement's account is checked against your sender IBAN, so a statement for the wrong account is rejected before anything is stored. Re-importing an overlapping period is safe: duplicate transactions are ignored.",
+    autoHeading: "Marked paid automatically",
+    autoText:
+      "Every QR-bill chohle prints carries a reference derived from your IBAN and the invoice, so a payment made by scanning it points back to the exact invoice. When that reference resolves and the amount equals the invoice total, the invoice flips to paid on import, with the bank's booking date as the payment date. It is safe to do automatically precisely because the reference is unambiguous.",
     matchHeading: "Suggestions, not silent writes",
     matchText:
-      "Payments are matched to invoices by their structured Swiss QR reference, with the end-to-end ID as a fallback. chohle suggests a match rather than writing it blindly: confirmed matches mark the invoice paid, while anything it can't place stays in “to review” for you to handle.",
+      "Anything less certain, an amount that does not match, a missing or garbled reference, or a payment that predates the invoice being sent, goes to a review queue instead. There chohle suggests the most likely invoice (by amount and debtor) and you confirm it, pick another, or ignore the line (for bank fees and other non-invoice income) in one click. Partial and collective payments are surfaced as suggestions to resolve by hand.",
+    syncHeading: "Connected bank (automatic sync)",
+    syncText:
+      "Instead of exporting files by hand, a connection can pull statements on a schedule and feed them through the exact same matching. The folder provider watches a directory, for example an SFTP share your bank drops camt.053 files into, imports each new file and moves it aside. The job runs hourly during a morning window (06:00 to 13:00 Europe/Zurich by default, configurable), since banks post statements in the morning, and a Sync now button forces an immediate pull.",
+    ebicsHeading: "EBICS",
+    ebicsText:
+      "EBICS is a standardized bank protocol for fetching statements without manual export. chohle builds the onboarding: creating an EBICS connection generates the required key pairs, stores them encrypted, and renders a printable initialization (INI) letter with the public-key fingerprints that you print, sign, and send to the bank to activate the subscriber. The live statement download is pending a bank contract, so until activation the connection stays pending and manual camt.053 upload remains the universal fallback.",
     remindHeading: "What it feeds",
     remindBefore: "Once a payment is matched the invoice drops off your outstanding list and out of ",
     remindLink: "reminders",
@@ -24,50 +33,77 @@ const content = {
   },
   de: {
     metaTitle: "chohle Doku: Bankabgleich",
-    metaDescription: "Importiere einen camt.053-Kontoauszug und lass chohle eingehende Zahlungen über die QR-Referenz offenen Rechnungen zuordnen.",
+    metaDescription: "Importiere einen camt.053-Kontoauszug (oder lass eine verbundene Bank ihn einspeisen), und chohle ordnet eingehende Zahlungen über die QR-Referenz offenen Rechnungen zu und markiert exakte Treffer als bezahlt.",
     h1: "Bankabgleich",
     intro:
-      "Der Abgleich schliesst die Lücke zwischen „Rechnung versendet“ und „Geld erhalten“. Importiere einen camt.053-Auszug aus deinem E-Banking, und chohle ordnet jede eingehende Zahlung der offenen Rechnung zu, die sie bezahlt, und markiert sie als bezahlt.",
+      "Der Abgleich schliesst die Lücke zwischen „Rechnung versendet“ und „Geld erhalten“. Importiere einen camt.053-Auszug aus deinem E-Banking, oder lass eine verbundene Bank ihn automatisch einspeisen, und chohle ordnet jede eingehende Zahlung über die Schweizer QR-Referenz der Rechnung zu, die sie bezahlt. Stimmen Referenz und Betrag exakt überein, wird die Rechnung beim Import als bezahlt markiert; alles Unsicherere wartet in einer Prüf-Warteschlange.",
     importHeading: "Einen Auszug importieren",
     importText:
-      "Zieh eine camt.053-XML-Datei auf die Seite oder wähle eine aus. Die Kontonummer des Auszugs wird gegen deine Sender-IBAN geprüft, sodass ein Auszug für das falsche Konto abgewiesen wird, bevor etwas gespeichert wird. Der erneute Import einer überlappenden Periode ist sicher, doppelte Transaktionen werden ignoriert.",
+      "Zieh eine camt.053-XML-Datei auf die Banking-Seite oder wähle eine aus (sowohl die Schweizer Varianten von 2022 als auch 2021 werden akzeptiert). Das Konto des Auszugs wird gegen deine Sender-IBAN geprüft, sodass ein Auszug für das falsche Konto abgewiesen wird, bevor etwas gespeichert wird. Der erneute Import einer überlappenden Periode ist sicher: doppelte Transaktionen werden ignoriert.",
+    autoHeading: "Automatisch als bezahlt markiert",
+    autoText:
+      "Jede QR-Rechnung, die chohle druckt, trägt eine aus deiner IBAN und der Rechnung abgeleitete Referenz, sodass eine durch Scannen ausgelöste Zahlung genau auf diese Rechnung zurückweist. Löst sich diese Referenz auf und entspricht der Betrag dem Rechnungstotal, wird die Rechnung beim Import auf bezahlt gesetzt, mit dem Buchungsdatum der Bank als Zahldatum. Das ist gerade deshalb gefahrlos automatisierbar, weil die Referenz eindeutig ist.",
     matchHeading: "Vorschläge statt stiller Buchungen",
     matchText:
-      "Zahlungen werden über die strukturierte Schweizer QR-Referenz den Rechnungen zugeordnet, ersatzweise über die End-to-End-ID. chohle schlägt eine Zuordnung vor, statt sie blind zu buchen: bestätigte Treffer markieren die Rechnung als bezahlt, alles Unklare bleibt zur Prüfung liegen.",
+      "Alles Unsicherere, ein Betrag, der nicht passt, eine fehlende oder verstümmelte Referenz oder eine Zahlung vor dem Versand der Rechnung, landet stattdessen in einer Prüf-Warteschlange. Dort schlägt chohle die wahrscheinlichste Rechnung vor (nach Betrag und Zahler), und du bestätigst sie, wählst eine andere oder ignorierst die Zeile (für Bankgebühren und andere Nicht-Rechnungs-Einnahmen) mit einem Klick. Teil- und Sammelzahlungen werden als Vorschläge zur manuellen Klärung angezeigt.",
+    syncHeading: "Verbundene Bank (automatischer Sync)",
+    syncText:
+      "Statt Dateien von Hand zu exportieren, kann eine Verbindung Auszüge nach Zeitplan abrufen und durch denselben Abgleich speisen. Der Folder-Provider überwacht ein Verzeichnis, zum Beispiel eine SFTP-Freigabe, in die deine Bank camt.053-Dateien legt, importiert jede neue Datei und legt sie beiseite. Der Job läuft stündlich in einem Morgenfenster (standardmässig 06:00 bis 13:00 Europe/Zurich, konfigurierbar), da Banken Auszüge am Morgen bereitstellen, und ein „Jetzt synchronisieren“-Knopf erzwingt einen sofortigen Abruf.",
+    ebicsHeading: "EBICS",
+    ebicsText:
+      "EBICS ist ein standardisiertes Bankprotokoll zum Abrufen von Auszügen ohne manuellen Export. chohle baut das Onboarding: Beim Anlegen einer EBICS-Verbindung werden die nötigen Schlüsselpaare erzeugt, verschlüsselt gespeichert und ein druckbarer Initialisierungs-Brief (INI) mit den Fingerabdrücken der öffentlichen Schlüssel erstellt, den du druckst, unterschreibst und an die Bank schickst, um den Teilnehmer zu aktivieren. Der eigentliche Auszugs-Download steht noch unter Vorbehalt eines Bankvertrags, daher bleibt die Verbindung bis zur Aktivierung im Status „ausstehend“, und der manuelle camt.053-Upload bleibt der universelle Rückfallweg.",
     remindHeading: "Was es speist",
     remindBefore: "Sobald eine Zahlung zugeordnet ist, verschwindet die Rechnung aus deiner Liste offener Posten und aus den ",
     remindLink: "Mahnungen",
     remindAfter: ", kein Nachfassen mehr bei jemandem, der längst bezahlt hat.",
   },
   fr: {
-    metaTitle: "chohle docs: Rapprochement bancaire",
-    metaDescription: "Importez un relevé camt.053 et laissez chohle rapprocher les paiements entrants des factures ouvertes via leur référence QR.",
+    metaTitle: "Doc chohle: Rapprochement bancaire",
+    metaDescription: "Importez un relevé camt.053 (ou laissez une banque connectée les alimenter) et chohle rapproche les paiements entrants des factures ouvertes via leur référence QR, marquant payées les correspondances exactes.",
     h1: "Rapprochement bancaire",
     intro:
-      "Le rapprochement boucle la boucle entre « j'ai envoyé la facture » et « j'ai été payé ». Importez un relevé camt.053 depuis votre e-banking et chohle rapproche chaque paiement entrant de la facture ouverte qu'il règle, puis la marque payée.",
+      "Le rapprochement boucle la boucle entre « j'ai envoyé la facture » et « j'ai été payé ». Importez un relevé camt.053 depuis votre e-banking, ou laissez une banque connectée les alimenter automatiquement, et chohle rapproche chaque paiement entrant de la facture qu'il règle via la référence QR suisse. Quand la référence et le montant coïncident exactement, la facture est marquée payée à l'import ; tout ce qui est moins certain attend dans une file de vérification.",
     importHeading: "Importer un relevé",
     importText:
-      "Déposez un fichier XML camt.053 sur la page, ou cliquez pour en choisir un. Le numéro de compte du relevé est vérifié par rapport à votre IBAN d'expéditeur, donc un relevé pour le mauvais compte est rejeté avant tout enregistrement. Réimporter une période qui se chevauche est sans risque, les transactions en double sont ignorées.",
+      "Déposez un fichier XML camt.053 sur la page de banque, ou cliquez pour en choisir un (les variantes suisses 2022 et 2021 sont acceptées). Le compte du relevé est vérifié par rapport à votre IBAN d'expéditeur, donc un relevé pour le mauvais compte est rejeté avant tout enregistrement. Réimporter une période qui se chevauche est sans risque : les transactions en double sont ignorées.",
+    autoHeading: "Marquée payée automatiquement",
+    autoText:
+      "Chaque QR-facture imprimée par chohle porte une référence dérivée de votre IBAN et de la facture, de sorte qu'un paiement effectué en la scannant pointe vers la facture exacte. Quand cette référence se résout et que le montant égale le total de la facture, la facture passe à payée à l'import, avec la date de comptabilisation de la banque comme date de paiement. C'est automatisable sans risque précisément parce que la référence est sans ambiguïté.",
     matchHeading: "Des suggestions, pas des écritures silencieuses",
     matchText:
-      "Les paiements sont rapprochés des factures via la référence QR suisse structurée, avec l'identifiant de bout en bout en secours. chohle propose un rapprochement plutôt que de l'inscrire aveuglément : les correspondances confirmées marquent la facture payée, tout ce qui reste incertain attend dans « à vérifier ».",
+      "Tout ce qui est moins certain, un montant qui ne correspond pas, une référence manquante ou abîmée, ou un paiement antérieur à l'envoi de la facture, va plutôt dans une file de vérification. Là, chohle suggère la facture la plus probable (par montant et débiteur) et vous la confirmez, en choisissez une autre, ou ignorez la ligne (pour les frais bancaires et autres revenus hors facture) en un clic. Les paiements partiels et collectifs sont présentés comme suggestions à résoudre à la main.",
+    syncHeading: "Banque connectée (sync automatique)",
+    syncText:
+      "Au lieu d'exporter des fichiers à la main, une connexion peut récupérer les relevés selon un calendrier et les passer par le même rapprochement. Le fournisseur de type dossier surveille un répertoire, par exemple un partage SFTP où votre banque dépose des fichiers camt.053, importe chaque nouveau fichier et le met de côté. La tâche s'exécute toutes les heures pendant une fenêtre matinale (06:00 à 13:00 Europe/Zurich par défaut, configurable), puisque les banques publient les relevés le matin, et un bouton « Synchroniser maintenant » force une récupération immédiate.",
+    ebicsHeading: "EBICS",
+    ebicsText:
+      "EBICS est un protocole bancaire standardisé pour récupérer des relevés sans export manuel. chohle construit l'onboarding : créer une connexion EBICS génère les paires de clés requises, les stocke chiffrées et produit une lettre d'initialisation (INI) imprimable avec les empreintes des clés publiques, que vous imprimez, signez et envoyez à la banque pour activer l'abonné. Le téléchargement des relevés en direct dépend encore d'un contrat bancaire, donc jusqu'à l'activation la connexion reste en attente et l'import manuel camt.053 demeure le recours universel.",
     remindHeading: "Ce qu'il alimente",
     remindBefore: "Dès qu'un paiement est rapproché, la facture sort de votre liste d'impayés et des ",
     remindLink: "rappels",
     remindAfter: " automatiquement, fini de relancer quelqu'un qui a déjà payé.",
   },
   it: {
-    metaTitle: "chohle docs: Riconciliazione bancaria",
-    metaDescription: "Importa un estratto camt.053 e lascia che chohle abbini i pagamenti in entrata alle fatture aperte tramite il riferimento QR.",
+    metaTitle: "Documentazione chohle: Riconciliazione bancaria",
+    metaDescription: "Importa un estratto camt.053 (o lascia che una banca collegata li alimenti) e chohle abbina i pagamenti in entrata alle fatture aperte tramite il riferimento QR, segnando come pagati gli abbinamenti esatti.",
     h1: "Riconciliazione bancaria",
     intro:
-      "La riconciliazione chiude il cerchio tra « ho inviato la fattura » e « sono stato pagato ». Importa un estratto camt.053 dal tuo e-banking e chohle abbina ogni pagamento in entrata alla fattura aperta che salda, poi la segna come pagata.",
+      "La riconciliazione chiude il cerchio tra « ho inviato la fattura » e « sono stato pagato ». Importa un estratto camt.053 dal tuo e-banking, oppure lascia che una banca collegata li alimenti automaticamente, e chohle abbina ogni pagamento in entrata alla fattura che salda tramite il riferimento QR svizzero. Quando riferimento e importo coincidono esattamente, la fattura viene segnata come pagata all'import; tutto ciò che è meno certo attende in una coda di verifica.",
     importHeading: "Importare un estratto",
     importText:
-      "Trascina un file XML camt.053 sulla pagina, oppure clicca per sceglierlo. Il numero di conto dell'estratto viene confrontato con l'IBAN del mittente, così un estratto del conto sbagliato viene rifiutato prima di memorizzare qualsiasi cosa. Reimportare un periodo sovrapposto è sicuro, le transazioni duplicate vengono ignorate.",
+      "Trascina un file XML camt.053 sulla pagina banca, oppure clicca per sceglierlo (sono accettate sia la variante svizzera 2022 sia la 2021). Il conto dell'estratto viene confrontato con l'IBAN del mittente, così un estratto del conto sbagliato viene rifiutato prima di memorizzare qualsiasi cosa. Reimportare un periodo sovrapposto è sicuro: le transazioni duplicate vengono ignorate.",
+    autoHeading: "Segnata come pagata automaticamente",
+    autoText:
+      "Ogni QR-fattura stampata da chohle porta un riferimento derivato dal tuo IBAN e dalla fattura, così un pagamento effettuato scansionandola punta alla fattura esatta. Quando quel riferimento si risolve e l'importo è pari al totale della fattura, la fattura passa a pagata all'import, con la data di contabilizzazione della banca come data di pagamento. È automatizzabile in sicurezza proprio perché il riferimento è univoco.",
     matchHeading: "Suggerimenti, non scritture silenziose",
     matchText:
-      "I pagamenti vengono abbinati alle fatture tramite il riferimento QR svizzero strutturato, con l'ID end-to-end come riserva. chohle propone un abbinamento invece di registrarlo alla cieca: gli abbinamenti confermati segnano la fattura come pagata, tutto ciò che resta incerto rimane in « da verificare ».",
+      "Tutto ciò che è meno certo, un importo che non corrisponde, un riferimento mancante o corrotto, o un pagamento antecedente all'invio della fattura, finisce invece in una coda di verifica. Lì chohle suggerisce la fattura più probabile (per importo e debitore) e tu la confermi, ne scegli un'altra, o ignori la riga (per commissioni bancarie e altri ricavi non fatturati) con un clic. Pagamenti parziali e collettivi sono mostrati come suggerimenti da risolvere a mano.",
+    syncHeading: "Banca collegata (sync automatico)",
+    syncText:
+      "Invece di esportare file a mano, una connessione può scaricare gli estratti secondo una pianificazione e passarli per lo stesso abbinamento. Il provider di tipo cartella sorveglia una directory, per esempio una condivisione SFTP in cui la tua banca deposita file camt.053, importa ogni nuovo file e lo sposta da parte. Il job gira ogni ora in una finestra mattutina (06:00 alle 13:00 Europe/Zurich di default, configurabile), poiché le banche pubblicano gli estratti al mattino, e un pulsante « Sincronizza ora » forza un recupero immediato.",
+    ebicsHeading: "EBICS",
+    ebicsText:
+      "EBICS è un protocollo bancario standardizzato per recuperare estratti senza export manuale. chohle costruisce l'onboarding: creare una connessione EBICS genera le coppie di chiavi richieste, le memorizza cifrate e produce una lettera di inizializzazione (INI) stampabile con le impronte delle chiavi pubbliche, che stampi, firmi e invii alla banca per attivare il sottoscrittore. Il download degli estratti in tempo reale dipende ancora da un contratto bancario, quindi fino all'attivazione la connessione resta in sospeso e l'upload manuale camt.053 rimane il ripiego universale.",
     remindHeading: "Cosa alimenta",
     remindBefore: "Una volta abbinato un pagamento, la fattura esce dal tuo elenco di insoluti e dai ",
     remindLink: "solleciti",
@@ -80,17 +116,6 @@ const c = content[lang] ?? content.en;
 
 <DocsLayout title={c.metaTitle} description={c.metaDescription}>
   <h1>{c.h1}</h1>
-
-  <div class="not-prose my-6 rounded-xl border border-amber-500/30 bg-amber-400/10 px-4 py-3 text-sm/6 text-amber-800 dark:text-amber-200">
-    <strong class="font-semibold">{({ en: "Experimental", de: "Experimentell", fr: "Expérimental", it: "Sperimentale" })[lang]}.</strong>{" "}
-    {({
-      en: "Bank reconciliation currently lives in a separate branch and is not part of the stable release yet. The screens below show work in progress.",
-      de: "Der Bankabgleich liegt derzeit in einem separaten Branch und ist noch nicht Teil der stabilen Version. Die Ansichten unten zeigen Work in Progress.",
-      fr: "Le rapprochement bancaire vit actuellement dans une branche séparée et ne fait pas encore partie de la version stable. Les écrans ci-dessous montrent un travail en cours.",
-      it: "La riconciliazione bancaria vive attualmente in un branch separato e non fa ancora parte della versione stabile. Le schermate qui sotto mostrano un lavoro in corso.",
-    })[lang]}
-  </div>
-
   <p>{c.intro}</p>
 
   <img src={`/screenshots/banking-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
@@ -98,16 +123,18 @@ const c = content[lang] ?? content.en;
   <h2 id="import">{c.importHeading}</h2>
   <p>{c.importText}</p>
 
-  <h2 id="matching">{c.matchHeading}</h2>
+  <h2 id="auto">{c.autoHeading}</h2>
+  <p>{c.autoText}</p>
+
+  <h2 id="review">{c.matchHeading}</h2>
   <p>{c.matchText}</p>
+
+  <h2 id="sync">{c.syncHeading}</h2>
+  <p>{c.syncText}</p>
+
+  <h2 id="ebics">{c.ebicsHeading}</h2>
+  <p>{c.ebicsText}</p>
 
   <h2 id="feeds">{c.remindHeading}</h2>
   <p>{c.remindBefore}<a href={localize("/docs/reminders", lang)}>{c.remindLink}</a>{c.remindAfter}</p>
-  <h2 id="statuses">{({ en: "Match statuses", de: "Abgleich-Status", fr: "Statuts de rapprochement", it: "Stati di abbinamento" })[lang]}</h2>
-  <p>{({
-    en: "Each imported payment is unmatched, suggested or matched. Suggested and unmatched ones wait under “to review” for a quick confirm; matched ones are done. Re-importing an overlapping statement is safe, duplicate lines are ignored by a fingerprint.",
-    de: "Jede importierte Zahlung ist nicht zugeordnet, vorgeschlagen oder zugeordnet. Vorgeschlagene und nicht zugeordnete warten unter „zu prüfen“ auf eine schnelle Bestätigung; zugeordnete sind erledigt. Der erneute Import eines überlappenden Auszugs ist sicher, doppelte Zeilen werden per Fingerabdruck ignoriert.",
-    fr: "Chaque paiement importé est non rapproché, suggéré ou rapproché. Les suggérés et non rapprochés attendent sous « à vérifier » une confirmation rapide ; les rapprochés sont terminés. Réimporter un relevé qui se chevauche est sans risque, les lignes en double sont ignorées par une empreinte.",
-    it: "Ogni pagamento importato è non abbinato, suggerito o abbinato. Suggeriti e non abbinati attendono sotto « da verificare » una conferma rapida; gli abbinati sono fatti. Reimportare un estratto sovrapposto è sicuro, le righe duplicate vengono ignorate tramite un'impronta.",
-  })[lang]}</p>
 </DocsLayout>
