@@ -77,7 +77,7 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <img src={`/screenshots/dashboard-${lang}.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={`/screenshots/dashboard-en.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <h2 id="month">{c.monthHeading}</h2>
   <p>{c.monthText}</p>
@@ -87,4 +87,14 @@ const c = content[lang] ?? content.en;
 
   <h2 id="recurring">{c.recurringHeading}</h2>
   <p>{c.recurringBefore}<a href={localize("/docs/expenses-income", lang)}>{c.recurringLink}</a>{c.recurringAfter}</p>
+
+  <h2 id="search">{({ en: "Search everything", de: "Alles durchsuchen", fr: "Tout rechercher", it: "Cerca ovunque" })[lang]}</h2>
+  <p>{({
+    en: "The search bar at the top (or Cmd K) opens a command palette that searches across everything at once, customers, invoices, quotes, articles, expenses and projects. Start typing and results group by type; pick one to jump straight to it, or filter to a single kind with the tabs.",
+    de: "Die Suchleiste oben (oder Cmd K) öffnet eine Befehlspalette, die alles auf einmal durchsucht, Kunden, Rechnungen, Offerten, Artikel, Ausgaben und Projekte. Tippe los, und die Ergebnisse gruppieren sich nach Typ; wähle eines, um direkt dorthin zu springen, oder filtere mit den Tabs auf eine einzige Art.",
+    fr: "La barre de recherche en haut (ou Cmd K) ouvre une palette de commandes qui cherche dans tout à la fois, clients, factures, devis, articles, dépenses et projets. Commencez à taper et les résultats se regroupent par type ; choisissez-en un pour y aller directement, ou filtrez sur un seul type avec les onglets.",
+    it: "La barra di ricerca in alto (o Cmd K) apre una palette di comandi che cerca in tutto insieme, clienti, fatture, preventivi, articoli, uscite e progetti. Inizia a digitare e i risultati si raggruppano per tipo; scegline uno per saltarci dritto, o filtra su un solo tipo con le schede.",
+  })[lang]}</p>
+
+  <img src={`/screenshots/search-en.jpg`} alt={({ en: "Global search", de: "Globale Suche", fr: "Recherche globale", it: "Ricerca globale" })[lang]} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 </DocsLayout>

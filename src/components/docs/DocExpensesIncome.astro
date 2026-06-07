@@ -78,7 +78,7 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <img src={`/screenshots/expenses-${lang}.jpg`} alt={c.expensesHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={`/screenshots/expenses-en.jpg`} alt={c.expensesHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <h2 id="expenses">{c.expensesHeading}</h2>
   <p>{c.expensesText}</p>
@@ -86,12 +86,12 @@ const c = content[lang] ?? content.en;
   <h2 id="income">{c.incomeHeading}</h2>
   <p>{c.incomeText}</p>
 
-  <img src={`/screenshots/income-${lang}.jpg`} alt={c.incomeHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={`/screenshots/income-en.jpg`} alt={c.incomeHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <h2 id="categories">{c.categoriesHeading}</h2>
   <p>{c.categoriesText}</p>
 
-  <img src={`/screenshots/categories-${lang}.jpg`} alt={c.categoriesHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={`/screenshots/categories-en.jpg`} alt={c.categoriesHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
   <h2 id="filters">{({ en: "Filters and where the numbers go", de: "Filter und wohin die Zahlen fliessen", fr: "Filtres et où vont les chiffres", it: "Filtri e dove vanno i numeri" })[lang]}</h2>
   <p>{({
     en: "Filter expenses by category or by month to find anything fast. Whatever you record flows straight into the dashboard's month-at-a-glance and the Payments ledger, so the books stay in sync without extra steps.",

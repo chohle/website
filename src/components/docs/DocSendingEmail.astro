@@ -154,6 +154,8 @@ const c = content[lang] ?? content.en;
   <p>{c.sigP2}</p>
   <p>{c.previewNote}</p>
 
+  <img src={`/screenshots/signatures-en.jpg`} alt={c.sigH2} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
   <h2 id="smtp">{c.smtpH2}</h2>
   <p>{c.smtpP1}</p>
   <p>{c.smtpLinkBefore}<a href={localize("/docs/environment-variables", lang)}>{c.smtpLink}</a>{c.smtpLinkAfter}</p>
