@@ -131,6 +131,12 @@ const c = content[lang] ?? content.en;
 
   <h2 id="templates">{c.templatesHeading}</h2>
   <p>{c.templatesBefore}<a href={localize("/docs/configuration", lang)}>{c.templatesLink}</a>{c.templatesAfter}</p>
+  <p>{({
+    en: "For the outbound side in full, the branded template, reusable signatures and SMTP setup, see ",
+    de: "Für die Versandseite im Detail, die gebrandete Vorlage, wiederverwendbare Signaturen und SMTP-Einrichtung, siehe ",
+    fr: "Pour le côté envoi en détail, le modèle de marque, les signatures réutilisables et la configuration SMTP, voir ",
+    it: "Per il lato invio nel dettaglio, il modello brandizzato, le firme riutilizzabili e la configurazione SMTP, vedi ",
+  })[lang]}<a href={localize("/docs/sending-email", lang)}>{({ en: "Sending email", de: "E-Mail-Versand", fr: "Envoi d'e-mails", it: "Invio di e-mail" })[lang]}</a>.</p>
   <h2 id="security">{({ en: "Kept private", de: "Privat gehalten", fr: "Gardé privé", it: "Tenuto privato" })[lang]}</h2>
   <p>{({
     en: "Mailbox credentials, OAuth tokens and IMAP passwords, are stored encrypted, never in plain text. By default chohle won't connect to an IMAP server on a private or LAN address; flip one setting only if you self-host your own mail server.",

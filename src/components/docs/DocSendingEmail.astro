@@ -1,0 +1,164 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Sending email",
+    metaDescription:
+      "How chohle sends invoices, quotes, reminders and replies: one branded template, reusable signatures, and SMTP setup with a From-domain guard.",
+    h1: "Sending email",
+    intro:
+      "chohle sends every outbound message, invoices, quotes, payment reminders and project replies, through one SMTP transport and one branded template. This page covers the template, signatures and how to point chohle at your mail provider.",
+    introLinkBefore: "For pulling client replies back into a project (the receive side), see ",
+    introLink: "Client email",
+    introLinkAfter: ".",
+    templateH2: "One branded template",
+    templateP:
+      "Every send wraps your message in a single shared template: a branded header band with your company logo, a clean body, and a contact footer. Restyle it in one place and every email updates. The logo is your uploaded PNG, served from a public URL and capped to a sensible size so even Outlook cannot blow it up, and images pasted into the editor are kept within the card instead of overflowing it.",
+    sigH2: "Signatures",
+    sigP1:
+      "Signatures are reusable sign-off blocks you manage under Settings. Each one is named, written in rich text, and can embed an uploaded photo; mark one as the default and edit or preview it any time.",
+    sigP2:
+      "When you compose an invoice, quote or project reply, pick a signature (the default is preselected) and it renders into the template's signature slot at send. Because the signature is added at send time, the stored message body stays clean and the conversation thread shows just your message.",
+    previewNote:
+      "Every send surface has a write then preview step, so you see the exact email, body plus signature inside the branded shell, before it goes out.",
+    smtpH2: "Connecting your mail provider",
+    smtpP1:
+      "There is one switch: whether an SMTP username is set. With none set, chohle runs in a local capture mode where nothing leaves your machine, which is ideal for trying things out. Set the four SMTP values (host, port, username, password) and chohle authenticates with your provider and sends for real, deriving TLS from the port.",
+    smtpLinkBefore: "The values live in your ",
+    smtpLink: "environment variables",
+    smtpLinkAfter: ".",
+    fromH2: "The From address and domain guard",
+    fromP:
+      "The visible From address is the sender email set in Billing, and every send uses it. For deliverability it must be on the same domain as your SMTP username: a provider rejects a From it does not own, and the recipient's SPF and DKIM checks fail. chohle enforces this with a From-domain guard that refuses a mismatched send before it reaches the provider, so the simple working rule is to keep the Billing sender email on the same domain as the SMTP account.",
+    demoBefore: "In ",
+    demoLink: "demo mode",
+    demoAfter: " all outbound email is intentionally suppressed, so a public visitor can never make the app send real mail.",
+  },
+  de: {
+    metaTitle: "chohle Doku: E-Mail-Versand",
+    metaDescription:
+      "Wie chohle Rechnungen, Offerten, Mahnungen und Antworten versendet: eine gebrandete Vorlage, wiederverwendbare Signaturen und SMTP-Einrichtung mit From-Domain-Schutz.",
+    h1: "E-Mail-Versand",
+    intro:
+      "chohle versendet jede ausgehende Nachricht, Rechnungen, Offerten, Zahlungserinnerungen und Projektantworten, über einen SMTP-Transport und eine gebrandete Vorlage. Diese Seite behandelt die Vorlage, Signaturen und wie du chohle auf deinen Mail-Anbieter richtest.",
+    introLinkBefore: "Für das Zurückholen von Kundenantworten in ein Projekt (die Empfangsseite) siehe ",
+    introLink: "Kunden-E-Mail",
+    introLinkAfter: ".",
+    templateH2: "Eine gebrandete Vorlage",
+    templateP:
+      "Jeder Versand verpackt deine Nachricht in eine einzige gemeinsame Vorlage: ein gebrandetes Kopfband mit deinem Firmenlogo, ein sauberer Textkörper und eine Kontakt-Fusszeile. Gestalte sie an einer Stelle um, und jede E-Mail wird aktualisiert. Das Logo ist dein hochgeladenes PNG, ausgeliefert über eine öffentliche URL und auf eine sinnvolle Grösse begrenzt, sodass selbst Outlook es nicht aufblähen kann; in den Editor eingefügte Bilder bleiben innerhalb der Karte, statt überzulaufen.",
+    sigH2: "Signaturen",
+    sigP1:
+      "Signaturen sind wiederverwendbare Abschluss-Blöcke, die du unter Einstellungen verwaltest. Jede ist benannt, in Rich-Text verfasst und kann ein hochgeladenes Foto einbetten; markiere eine als Standard und bearbeite oder zeige sie jederzeit als Vorschau an.",
+    sigP2:
+      "Wenn du eine Rechnung, Offerte oder Projektantwort verfasst, wählst du eine Signatur (die Standard-Signatur ist vorausgewählt), und sie wird beim Versand in den Signatur-Slot der Vorlage gerendert. Da die Signatur erst beim Versand hinzugefügt wird, bleibt der gespeicherte Nachrichtentext sauber und der Gesprächsverlauf zeigt nur deine Nachricht.",
+    previewNote:
+      "Jede Versandoberfläche hat einen Schritt Schreiben, dann Vorschau, sodass du die exakte E-Mail, Text plus Signatur in der gebrandeten Hülle, vor dem Versand siehst.",
+    smtpH2: "Mail-Anbieter verbinden",
+    smtpP1:
+      "Es gibt einen Schalter: ob ein SMTP-Benutzername gesetzt ist. Ohne gesetzten Benutzernamen läuft chohle in einem lokalen Auffang-Modus, in dem nichts deine Maschine verlässt, ideal zum Ausprobieren. Setzt du die vier SMTP-Werte (Host, Port, Benutzername, Passwort), authentifiziert sich chohle bei deinem Anbieter und versendet echt, wobei TLS aus dem Port abgeleitet wird.",
+    smtpLinkBefore: "Die Werte liegen in deinen ",
+    smtpLink: "Umgebungsvariablen",
+    smtpLinkAfter: ".",
+    fromH2: "Die From-Adresse und der Domain-Schutz",
+    fromP:
+      "Die sichtbare From-Adresse ist die Absender-E-Mail aus der Abrechnung, und jeder Versand nutzt sie. Für die Zustellbarkeit muss sie auf derselben Domain wie dein SMTP-Benutzername liegen: ein Anbieter weist ein From ab, das ihm nicht gehört, und die SPF- und DKIM-Prüfungen des Empfängers schlagen fehl. chohle erzwingt das mit einem From-Domain-Schutz, der einen abweichenden Versand ablehnt, bevor er den Anbieter erreicht; die einfache Regel lautet daher, die Absender-E-Mail der Abrechnung auf derselben Domain wie das SMTP-Konto zu halten.",
+    demoBefore: "Im ",
+    demoLink: "Demo-Modus",
+    demoAfter: " wird jede ausgehende E-Mail bewusst unterdrückt, sodass ein öffentlicher Besucher die App nie echte Mail versenden lassen kann.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Envoi d'e-mails",
+    metaDescription:
+      "Comment chohle envoie factures, devis, rappels et réponses : un modèle de marque, des signatures réutilisables et une configuration SMTP avec garde de domaine From.",
+    h1: "Envoi d'e-mails",
+    intro:
+      "chohle envoie chaque message sortant, factures, devis, rappels de paiement et réponses de projet, via un transport SMTP et un modèle de marque. Cette page couvre le modèle, les signatures et comment pointer chohle vers votre fournisseur de messagerie.",
+    introLinkBefore: "Pour ramener les réponses des clients dans un projet (le côté réception), voir ",
+    introLink: "E-mails clients",
+    introLinkAfter: ".",
+    templateH2: "Un seul modèle de marque",
+    templateP:
+      "Chaque envoi enveloppe votre message dans un modèle partagé unique : un bandeau d'en-tête de marque avec le logo de votre entreprise, un corps épuré et un pied de page de contact. Restylez-le à un seul endroit et chaque e-mail se met à jour. Le logo est votre PNG téléversé, servi depuis une URL publique et plafonné à une taille raisonnable pour que même Outlook ne puisse pas l'agrandir ; les images collées dans l'éditeur restent dans la carte au lieu de déborder.",
+    sigH2: "Signatures",
+    sigP1:
+      "Les signatures sont des blocs de fin de message réutilisables que vous gérez dans les Paramètres. Chacune est nommée, rédigée en texte enrichi et peut intégrer une photo téléversée ; marquez-en une par défaut et modifiez-la ou prévisualisez-la à tout moment.",
+    sigP2:
+      "Lorsque vous composez une facture, un devis ou une réponse de projet, choisissez une signature (celle par défaut est présélectionnée) et elle s'insère dans l'emplacement de signature du modèle à l'envoi. Comme la signature est ajoutée au moment de l'envoi, le corps du message stocké reste propre et le fil de conversation n'affiche que votre message.",
+    previewNote:
+      "Chaque surface d'envoi comporte une étape écrire puis prévisualiser, de sorte que vous voyez l'e-mail exact, corps plus signature dans l'habillage de marque, avant qu'il ne parte.",
+    smtpH2: "Connecter votre fournisseur de messagerie",
+    smtpP1:
+      "Il n'y a qu'un seul interrupteur : un nom d'utilisateur SMTP est-il défini. Sans nom défini, chohle fonctionne dans un mode de capture local où rien ne quitte votre machine, idéal pour faire des essais. Renseignez les quatre valeurs SMTP (hôte, port, nom d'utilisateur, mot de passe) et chohle s'authentifie auprès de votre fournisseur et envoie pour de vrai, en déduisant le TLS du port.",
+    smtpLinkBefore: "Les valeurs vivent dans vos ",
+    smtpLink: "variables d'environnement",
+    smtpLinkAfter: ".",
+    fromH2: "L'adresse From et la garde de domaine",
+    fromP:
+      "L'adresse From visible est l'e-mail d'expéditeur défini dans la Facturation, et chaque envoi l'utilise. Pour la délivrabilité, elle doit être sur le même domaine que votre nom d'utilisateur SMTP : un fournisseur rejette un From qu'il ne possède pas, et les vérifications SPF et DKIM du destinataire échouent. chohle l'impose avec une garde de domaine From qui refuse un envoi divergent avant qu'il n'atteigne le fournisseur ; la règle simple est donc de garder l'e-mail d'expéditeur de la Facturation sur le même domaine que le compte SMTP.",
+    demoBefore: "En ",
+    demoLink: "mode démo",
+    demoAfter: ", tout e-mail sortant est volontairement supprimé, de sorte qu'un visiteur public ne peut jamais faire envoyer de vrais e-mails à l'application.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Invio di e-mail",
+    metaDescription:
+      "Come chohle invia fatture, preventivi, solleciti e risposte: un modello brandizzato, firme riutilizzabili e configurazione SMTP con protezione del dominio From.",
+    h1: "Invio di e-mail",
+    intro:
+      "chohle invia ogni messaggio in uscita, fatture, preventivi, solleciti di pagamento e risposte di progetto, tramite un trasporto SMTP e un modello brandizzato. Questa pagina copre il modello, le firme e come puntare chohle al tuo provider di posta.",
+    introLinkBefore: "Per riportare le risposte dei clienti in un progetto (il lato ricezione), vedi ",
+    introLink: "E-mail dei clienti",
+    introLinkAfter: ".",
+    templateH2: "Un unico modello brandizzato",
+    templateP:
+      "Ogni invio avvolge il tuo messaggio in un unico modello condiviso: una fascia di intestazione brandizzata con il logo della tua azienda, un corpo pulito e un piè di pagina di contatto. Ridisegnalo in un solo punto e ogni e-mail si aggiorna. Il logo è il tuo PNG caricato, servito da un URL pubblico e limitato a una dimensione sensata così che nemmeno Outlook possa ingrandirlo; le immagini incollate nell'editor restano dentro la card invece di traboccare.",
+    sigH2: "Firme",
+    sigP1:
+      "Le firme sono blocchi di chiusura riutilizzabili che gestisci in Impostazioni. Ognuna ha un nome, è scritta in testo formattato e può incorporare una foto caricata; impostane una come predefinita e modificala o visualizzala in anteprima quando vuoi.",
+    sigP2:
+      "Quando componi una fattura, un preventivo o una risposta di progetto, scegli una firma (quella predefinita è preselezionata) e viene inserita nello slot firma del modello all'invio. Poiché la firma viene aggiunta al momento dell'invio, il corpo del messaggio salvato resta pulito e il filo della conversazione mostra solo il tuo messaggio.",
+    previewNote:
+      "Ogni superficie di invio ha un passaggio scrivi e poi anteprima, così vedi l'e-mail esatta, corpo più firma dentro la cornice brandizzata, prima che parta.",
+    smtpH2: "Collegare il tuo provider di posta",
+    smtpP1:
+      "C'è un solo interruttore: se è impostato un nome utente SMTP. Senza nome impostato, chohle funziona in una modalità di cattura locale in cui nulla lascia la tua macchina, ideale per fare prove. Imposta i quattro valori SMTP (host, porta, nome utente, password) e chohle si autentica con il tuo provider e invia davvero, deducendo il TLS dalla porta.",
+    smtpLinkBefore: "I valori vivono nelle tue ",
+    smtpLink: "variabili d'ambiente",
+    smtpLinkAfter: ".",
+    fromH2: "L'indirizzo From e la protezione del dominio",
+    fromP:
+      "L'indirizzo From visibile è l'e-mail mittente impostata in Fatturazione, e ogni invio la usa. Per la recapitabilità deve essere sullo stesso dominio del tuo nome utente SMTP: un provider rifiuta un From che non possiede, e i controlli SPF e DKIM del destinatario falliscono. chohle lo impone con una protezione del dominio From che rifiuta un invio non corrispondente prima che raggiunga il provider; la regola semplice è quindi mantenere l'e-mail mittente della Fatturazione sullo stesso dominio dell'account SMTP.",
+    demoBefore: "In ",
+    demoLink: "modalità demo",
+    demoAfter: " ogni e-mail in uscita viene intenzionalmente soppressa, così un visitatore pubblico non può mai far inviare e-mail reali all'app.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+  <p>{c.introLinkBefore}<a href={localize("/docs/email", lang)}>{c.introLink}</a>{c.introLinkAfter}</p>
+
+  <h2 id="template">{c.templateH2}</h2>
+  <p>{c.templateP}</p>
+
+  <h2 id="signatures">{c.sigH2}</h2>
+  <p>{c.sigP1}</p>
+  <p>{c.sigP2}</p>
+  <p>{c.previewNote}</p>
+
+  <h2 id="smtp">{c.smtpH2}</h2>
+  <p>{c.smtpP1}</p>
+  <p>{c.smtpLinkBefore}<a href={localize("/docs/environment-variables", lang)}>{c.smtpLink}</a>{c.smtpLinkAfter}</p>
+
+  <h2 id="from">{c.fromH2}</h2>
+  <p>{c.fromP}</p>
+  <p>{c.demoBefore}<a href={localize("/docs/demo-mode", lang)}>{c.demoLink}</a>{c.demoAfter}</p>
+</DocsLayout>
