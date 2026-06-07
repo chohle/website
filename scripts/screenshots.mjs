@@ -14,13 +14,13 @@
 //   npm i -D playwright
 //   npx playwright install chromium
 //
-// RUN (against the public demo — no login needed):
+// RUN (against the public demo, no login needed):
 //   node scripts/screenshots.mjs
 //
 // Env vars:
 //   BASE_URL  demo base url        (default https://app.chohle.ch)
 //   OUT_DIR   output folder        (default ./public/screenshots)
-//   SCALE     device scale 1|2     (default 2 — crisp/retina; 1 = smaller files)
+//   SCALE     device scale 1|2     (default 2, crisp/retina; 1 = smaller files)
 //   LANGS     langs to capture     (default en,de,fr,it)
 //   ONLY      shot names to do     (e.g. ONLY=dashboard,quotes)
 
@@ -31,7 +31,9 @@ import path from 'node:path';
 const BASE = (process.env.BASE_URL || 'https://app.chohle.ch').replace(/\/$/, '');
 const OUT = path.resolve(process.env.OUT_DIR || 'public/screenshots');
 const SCALE = Number(process.env.SCALE || 2);
-const LANGS = (process.env.LANGS || 'en,de,fr,it').split(',').map((s) => s.trim());
+// English only by default: the live app is English, and the site shows the same
+// English screenshots on every language. Set LANGS=en,de,fr,it to capture more.
+const LANGS = (process.env.LANGS || 'en').split(',').map((s) => s.trim());
 const ONLY = process.env.ONLY ? new Set(process.env.ONLY.split(',').map((s) => s.trim())) : null;
 const W = 1456;
 const H = 1080;
@@ -44,25 +46,32 @@ const OPTION = { de: 'Deutsch', fr: 'Français', it: 'Italiano' };
 //   row       click the first table row (opens a detail/editor page)
 //   saveIdAs  remember the numeric id from the resulting URL (for invoice-pdf)
 //   fromId    build the url from a remembered id + suffix
-//   tab       after loading /settings, click the Nth .inner-nav tab
-//             (0 Appearance · 1 General · 2 Mail sync · 3 Reminders · 4 Email template)
+//   tabText   after loading /settings, click the .inner-nav tab whose label
+//             matches this regex (robust to tab order and to language)
+//   click     a CSS selector to click before the shot (e.g. the search button)
+//   keys      a keyboard shortcut to press before the shot (e.g. "Meta+k")
+//   type      text to type after click/keys (e.g. a search query)
 const SHOTS = [
   { name: 'dashboard', path: '/' },
+  { name: 'search', path: '/', click: 'button.search', type: 'Studio' }, // command palette / global search
   { name: 'customers', path: '/customers' },
   { name: 'customer-detail', path: '/customers', row: true },
   { name: 'quotes', path: '/quotes' },
   { name: 'invoices', path: '/invoices' },
   { name: 'invoice-editor', path: '/invoices', row: true, saveIdAs: 'inv' },
   { name: 'invoice-pdf', fromId: 'inv', suffix: '/print' },
-  { name: 'pipeline', path: '/sales' }, // sales pipeline; swap to /procurement if you prefer
+  { name: 'pipeline', path: '/sales' }, // sales pipeline board (kanban)
+  { name: 'project-detail', path: '/sales', openFirst: '.deal-card' }, // a project's tabbed detail page
   { name: 'expenses', path: '/expenses' },
   { name: 'income', path: '/income' },
   { name: 'categories', path: '/categories' },
-  { name: 'banking', path: '/payments' }, // bank reconciliation lives in Payments
+  { name: 'banking', path: '/banking' }, // bank reconciliation page (Finance)
+  { name: 'triage', path: '/triage' }, // unmatched inbound review queue
   { name: 'reminders', path: '/reminders' },
   { name: 'conversations', path: '/conversations' },
   { name: 'settings', path: '/settings' },
-  { name: 'email-setup', path: '/settings', tab: 2 }, // Mail sync tab
+  { name: 'signatures', path: '/settings', tabText: /signatur|firme/i }, // Settings -> Signatures
+  { name: 'email-setup', path: '/settings', tabText: /sync/i }, // Settings -> Mail sync
 ];
 
 const HIDE = `document.querySelectorAll('.demo-banner').forEach(e => e.style.display = 'none');`;
@@ -117,16 +126,43 @@ for (const lang of LANGS) {
       await settle(page);
 
       if (s.row) {
-        await page.locator('tbody tr').first().click({ timeout: 8000 });
+        // Open the first row's detail. Some lists make the whole <tr> clickable
+        // (invoices); others put the link on the name only (customers), so click
+        // an inner link when there is one, else the row itself.
+        const firstRow = page.locator('tbody tr').first();
+        const rowLink = firstRow.locator('a[href]').first();
+        if (await rowLink.count()) await rowLink.click({ timeout: 8000 });
+        else await firstRow.click({ timeout: 8000 });
         await settle(page);
         if (s.saveIdAs) {
           const m = page.url().match(/\/(\d+)(?:\/|$)/);
           ids[s.saveIdAs] = m ? m[1] : '1';
         }
       }
+      if (s.openFirst) {
+        // Open the first item of a non-table view (e.g. a pipeline kanban card).
+        await page.locator(s.openFirst).first().click({ timeout: 8000 }).catch(() => {});
+        await settle(page);
+      }
       if (s.tab != null) {
         await page.locator('.inner-nav .nav-item').nth(s.tab).click().catch(() => {});
         await page.waitForTimeout(700);
+      }
+      if (s.tabText) {
+        await page.locator('.inner-nav .nav-item').filter({ hasText: s.tabText }).first().click().catch(() => {});
+        await page.waitForTimeout(700);
+      }
+      if (s.click) {
+        await page.locator(s.click).first().click().catch(() => {});
+        await page.waitForTimeout(600);
+      }
+      if (s.keys) {
+        await page.keyboard.press(s.keys);
+        await page.waitForTimeout(500);
+      }
+      if (s.type) {
+        await page.keyboard.type(s.type);
+        await page.waitForTimeout(900);
       }
 
       const file = path.join(OUT, `${s.name}-${lang}.jpg`);
