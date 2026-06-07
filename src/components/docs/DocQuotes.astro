@@ -92,6 +92,21 @@ const c = content[lang] ?? content.en;
 
   <h2 id="articles">{c.itemsHeading}</h2>
   <p>{c.itemsBefore}<a href={localize("/docs/customers-articles", lang)}>{c.itemsLink}</a>{c.itemsAfter}</p>
+  <p>{({
+    en: "Not every line has to come from the catalog. Add a free-text line and type the description, quantity and price directly for a one-off item, while still pulling in saved articles for the things you quote often.",
+    de: "Nicht jede Position muss aus dem Katalog stammen. Füge eine Freitext-Position hinzu und tippe Beschreibung, Menge und Preis direkt für einen einmaligen Posten, während du für Häufiges weiterhin gespeicherte Artikel verwendest.",
+    fr: "Toutes les lignes ne doivent pas venir du catalogue. Ajoutez une ligne en texte libre et saisissez directement description, quantité et prix pour un poste ponctuel, tout en réutilisant les articles enregistrés pour ce que vous chiffrez souvent.",
+    it: "Non ogni voce deve venire dal catalogo. Aggiungi una voce a testo libero e digita direttamente descrizione, quantità e prezzo per un articolo una tantum, continuando a richiamare gli articoli salvati per ciò che preventivi spesso.",
+  })[lang]}</p>
+
+  <h2 id="documents">{({ en: "Documents & references", de: "Dokumente & Referenzen", fr: "Documents & références", it: "Documenti & riferimenti" })[lang]}</h2>
+  <p>{({
+    en: "Beyond the line items, a quote can carry richer content. Attach written documents, a cover letter or a detailed proposal, and they go out as PDFs alongside the quote email. Add reference links to past work or examples, and they appear on the quote PDF so the customer sees proof next to the price.",
+    de: "Über die Positionen hinaus kann eine Offerte reichere Inhalte tragen. Hänge geschriebene Dokumente an, ein Anschreiben oder eine ausführliche Offerte, und sie gehen als PDFs zusammen mit der Offerten-E-Mail raus. Füge Referenz-Links zu früheren Arbeiten oder Beispielen hinzu, und sie erscheinen auf dem Offerten-PDF, sodass der Kunde Belege neben dem Preis sieht.",
+    fr: "Au-delà des lignes, un devis peut porter un contenu plus riche. Joignez des documents rédigés, une lettre d'accompagnement ou une proposition détaillée, et ils partent en PDF avec l'e-mail du devis. Ajoutez des liens de référence vers des travaux passés ou des exemples, et ils apparaissent sur le PDF du devis, pour que le client voie des preuves à côté du prix.",
+    it: "Oltre alle voci, un preventivo può portare contenuti più ricchi. Allega documenti scritti, una lettera di accompagnamento o una proposta dettagliata, e partono come PDF insieme all'e-mail del preventivo. Aggiungi link di riferimento a lavori passati o esempi, e compaiono sul PDF del preventivo, così il cliente vede prove accanto al prezzo.",
+  })[lang]}</p>
+
   <h2 id="validity">{({ en: "Numbers and validity", de: "Nummern und Gültigkeit", fr: "Numéros et validité", it: "Numeri e validità" })[lang]}</h2>
   <p>{({
     en: "Every quote gets its own number and a valid-until date, so both you and the customer know how long the offer stands. Accepting one stamps the date it was accepted; declining moves it out of the way under the Declined filter.",
