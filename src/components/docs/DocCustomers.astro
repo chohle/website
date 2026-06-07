@@ -1,0 +1,114 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Customers",
+    metaDescription: "Keep companies and individuals with their own rates, language and payment terms, and a detail page that gathers each customer's projects, quotes and invoices.",
+    h1: "Customers",
+    intro:
+      "Customers are the companies and individuals you bill. Each one carries its own defaults, and those defaults flow onto every quote and invoice so you set them once.",
+    listHeading: "Your customer book",
+    listText:
+      "Store companies or individuals with their address, VAT/UID, contact, language, customer number, payment term and an optional discount and price category. The list groups everyone into companies and people, sorts and filters, and a quick add button opens a new customer in seconds.",
+    termsHeading: "Language and payment terms",
+    termsText:
+      "Each customer carries a language and a payment-term in days. The term sets the due date on their invoices automatically, and the language is there so a document can speak to the customer in theirs, a Geneva client sees a French quote even when your interface is German.",
+    detailHeading: "The customer detail page",
+    detailText:
+      "Open a customer and their page gathers everything about them: totals for billed, paid and outstanding plus the invoice count up top, quick Email and New invoice actions, and tabs for Details, Articles and Projects. It is the one place to see a customer's whole history and start the next document.",
+    nextBefore: "From a customer it is a short hop to a ",
+    nextLink: "quote",
+    nextMid: " or an ",
+    nextLink2: "invoice",
+    nextAfter: ": pick the customer, drop in a few articles, and the totals price themselves.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Kunden",
+    metaDescription: "Firmen und Personen mit eigenen Ansätzen, Sprache und Zahlungsfristen führen, dazu eine Detailseite, die Projekte, Offerten und Rechnungen jedes Kunden bündelt.",
+    h1: "Kunden",
+    intro:
+      "Kunden sind die Firmen und Personen, die du verrechnest. Jeder trägt eigene Vorgaben, und diese fliessen auf jede Offerte und Rechnung, sodass du sie nur einmal setzt.",
+    listHeading: "Dein Kundenbuch",
+    listText:
+      "Erfasse Firmen oder Personen mit Adresse, MWST/UID, Kontakt, Sprache, Kundennummer, Zahlungsfrist sowie optionalem Rabatt und Preiskategorie. Die Liste gruppiert alle in Firmen und Personen, sortiert und filtert, und ein Schnell-Hinzufügen-Knopf legt in Sekunden einen neuen Kunden an.",
+    termsHeading: "Sprache und Zahlungsfristen",
+    termsText:
+      "Jeder Kunde trägt eine Sprache und eine Zahlungsfrist in Tagen. Die Frist setzt das Fälligkeitsdatum auf seinen Rechnungen automatisch, und die Sprache ist da, damit ein Dokument den Kunden in seiner anspricht, ein Genfer Kunde sieht eine französische Offerte, auch wenn deine Oberfläche Deutsch ist.",
+    detailHeading: "Die Kunden-Detailseite",
+    detailText:
+      "Öffne einen Kunden, und seine Seite bündelt alles über ihn: oben die Summen für verrechnet, bezahlt und offen sowie die Anzahl Rechnungen, schnelle Aktionen E-Mail und Neue Rechnung, und Tabs für Details, Artikel und Projekte. Es ist der eine Ort, um die ganze Historie eines Kunden zu sehen und das nächste Dokument zu starten.",
+    nextBefore: "Von einem Kunden ist es nur ein kurzer Schritt zu einer ",
+    nextLink: "Offerte",
+    nextMid: " oder einer ",
+    nextLink2: "Rechnung",
+    nextAfter: ": Kunde wählen, ein paar Artikel einsetzen, und die Summen bepreisen sich von selbst.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Clients",
+    metaDescription: "Gérez entreprises et particuliers avec leurs tarifs, langue et délais de paiement, et une fiche qui réunit projets, devis et factures de chaque client.",
+    h1: "Clients",
+    intro:
+      "Les clients sont les entreprises et particuliers que vous facturez. Chacun porte ses propres valeurs par défaut, qui se reportent sur chaque devis et facture, vous les définissez donc une seule fois.",
+    listHeading: "Votre carnet de clients",
+    listText:
+      "Enregistrez entreprises ou particuliers avec adresse, TVA/IDE, contact, langue, numéro de client, délai de paiement et une remise et catégorie de prix optionnelles. La liste regroupe tout le monde en entreprises et personnes, trie et filtre, et un bouton d'ajout rapide ouvre un nouveau client en quelques secondes.",
+    termsHeading: "Langue et délais de paiement",
+    termsText:
+      "Chaque client porte une langue et un délai de paiement en jours. Le délai fixe automatiquement l'échéance de ses factures, et la langue est là pour qu'un document s'adresse au client dans la sienne, un client genevois voit un devis en français même si votre interface est en allemand.",
+    detailHeading: "La fiche client",
+    detailText:
+      "Ouvrez un client et sa fiche réunit tout à son sujet : en haut les totaux facturé, payé et impayé ainsi que le nombre de factures, des actions rapides E-mail et Nouvelle facture, et des onglets Détails, Articles et Projets. C'est l'endroit unique pour voir tout l'historique d'un client et démarrer le prochain document.",
+    nextBefore: "Depuis un client, il n'y a qu'un pas vers un ",
+    nextLink: "devis",
+    nextMid: " ou une ",
+    nextLink2: "facture",
+    nextAfter: " : choisissez le client, ajoutez quelques articles, et les totaux se chiffrent tout seuls.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Clienti",
+    metaDescription: "Gestisci aziende e persone con tariffe, lingua e termini di pagamento propri, e una scheda che raccoglie progetti, preventivi e fatture di ogni cliente.",
+    h1: "Clienti",
+    intro:
+      "I clienti sono le aziende e le persone che fatturi. Ognuno porta i propri valori predefiniti, che confluiscono su ogni preventivo e fattura, così li imposti una volta sola.",
+    listHeading: "La tua rubrica clienti",
+    listText:
+      "Memorizza aziende o persone con indirizzo, IVA/IDI, contatto, lingua, numero cliente, termine di pagamento e uno sconto e categoria di prezzo opzionali. L'elenco raggruppa tutti in aziende e persone, ordina e filtra, e un pulsante di aggiunta rapida apre un nuovo cliente in pochi secondi.",
+    termsHeading: "Lingua e termini di pagamento",
+    termsText:
+      "Ogni cliente porta una lingua e un termine di pagamento in giorni. Il termine imposta automaticamente la scadenza sulle sue fatture, e la lingua è lì perché un documento possa parlare al cliente nella sua, un cliente ginevrino vede un preventivo in francese anche se la tua interfaccia è in tedesco.",
+    detailHeading: "La scheda del cliente",
+    detailText:
+      "Apri un cliente e la sua scheda raccoglie tutto su di lui: in alto i totali fatturato, pagato e insoluto e il numero di fatture, azioni rapide E-mail e Nuova fattura, e schede Dettagli, Articoli e Progetti. È l'unico posto per vedere l'intera storia di un cliente e avviare il prossimo documento.",
+    nextBefore: "Da un cliente è un attimo arrivare a un ",
+    nextLink: "preventivo",
+    nextMid: " o a una ",
+    nextLink2: "fattura",
+    nextAfter: ": scegli il cliente, inserisci qualche articolo, e i totali si prezzano da soli.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/customers-en.jpg`} alt={c.listHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="list">{c.listHeading}</h2>
+  <p>{c.listText}</p>
+
+  <h2 id="terms">{c.termsHeading}</h2>
+  <p>{c.termsText}</p>
+
+  <h2 id="detail">{c.detailHeading}</h2>
+  <p>{c.detailText}</p>
+
+  <img src={`/screenshots/customer-detail-en.jpg`} alt={c.detailHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <p>{c.nextBefore}<a href={localize("/docs/quotes", lang)}>{c.nextLink}</a>{c.nextMid}<a href={localize("/docs/invoicing", lang)}>{c.nextLink2}</a>{c.nextAfter}</p>
+</DocsLayout>

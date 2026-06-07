@@ -114,15 +114,12 @@ const c = content[lang] ?? content.en;
 
   <img src={`/screenshots/project-detail-en.jpg`} alt={({ en: "A project's detail page", de: "Die Detailseite eines Projekts", fr: "La page de détail d'un projet", it: "La pagina di dettaglio di un progetto" })[lang]} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
-  <h2 id="triage">{({ en: "Triage: unmatched inbound", de: "Triage: nicht zugeordnete eingehende Mail", fr: "Triage : entrants non rattachés", it: "Triage: posta in entrata non abbinata" })[lang]}</h2>
   <p>{({
-    en: "A reply that threads to a project lands in that project automatically. Inbound mail that does not thread, a cold lead or a header-stripped reply, is parked in a triage queue instead of being dropped, so nothing is lost and nothing is misfiled. Each item shows the sender, subject and a snippet with a suggested project; you assign it to a project (which moves the whole thread) or dismiss it in one click. A Triage entry in the sidebar carries a live count of what is waiting.",
-    de: "Eine Antwort, die zu einem Projekt threadet, landet automatisch in diesem Projekt. Eingehende Mail, die nicht threadet, ein kalter Lead oder eine Antwort ohne Header, wird stattdessen in einer Triage-Warteschlange geparkt, statt verworfen zu werden, sodass nichts verloren geht und nichts falsch abgelegt wird. Jeder Eintrag zeigt Absender, Betreff und einen Ausschnitt mit einem vorgeschlagenen Projekt; du weist ihn einem Projekt zu (was den ganzen Thread verschiebt) oder verwirfst ihn mit einem Klick. Ein Triage-Eintrag in der Seitenleiste trägt eine Live-Zählung der wartenden Einträge.",
-    fr: "Une réponse qui se rattache à un projet y arrive automatiquement. Le courrier entrant qui ne se rattache pas, un prospect froid ou une réponse sans en-têtes, est mis de côté dans une file de triage plutôt que supprimé, ainsi rien n'est perdu ni mal classé. Chaque élément montre l'expéditeur, l'objet et un extrait avec un projet suggéré ; vous l'affectez à un projet (ce qui déplace tout le fil) ou l'écartez d'un clic. Une entrée Triage dans la barre latérale porte un compteur en direct de ce qui attend.",
-    it: "Una risposta che si aggancia a un progetto vi arriva automaticamente. La posta in entrata che non si aggancia, un lead freddo o una risposta senza intestazioni, viene messa da parte in una coda di triage invece di essere scartata, così nulla va perso e nulla viene archiviato male. Ogni elemento mostra mittente, oggetto e un estratto con un progetto suggerito; lo assegni a un progetto (spostando l'intero filo) o lo scarti con un clic. Una voce Triage nella barra laterale porta un conteggio in tempo reale di ciò che attende.",
-  })[lang]}</p>
-
-  <img src={`/screenshots/triage-en.jpg`} alt={({ en: "Triage queue", de: "Triage-Warteschlange", fr: "File de triage", it: "Coda di triage" })[lang]} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+    en: "Inbound email that does not thread to a project is caught in a review queue rather than dropped or misfiled. See ",
+    de: "Eingehende E-Mail, die zu keinem Projekt threadet, wird in einer Prüf-Warteschlange aufgefangen, statt verworfen oder falsch abgelegt zu werden. Siehe ",
+    fr: "Le courrier entrant qui ne se rattache à aucun projet est récupéré dans une file de vérification plutôt que supprimé ou mal classé. Voir ",
+    it: "La posta in entrata che non si aggancia a un progetto viene raccolta in una coda di verifica invece di essere scartata o archiviata male. Vedi ",
+  })[lang]}<a href={localize("/docs/triage", lang)}>Triage</a>.</p>
 
   <h2 id="organise">{({ en: "Labels, budgets and ordering", de: "Labels, Budgets und Reihenfolge", fr: "Étiquettes, budgets et ordre", it: "Etichette, budget e ordine" })[lang]}</h2>
   <p>{({

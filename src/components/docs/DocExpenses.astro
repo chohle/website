@@ -1,0 +1,91 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Expenses",
+    metaDescription: "Log expenses with their amount, date, vendor and category, attach the receipt, and watch the totals roll into your dashboard.",
+    h1: "Expenses",
+    intro:
+      "Expenses are the money going out. Logging them keeps the other half of your books and feeds the dashboard's month-at-a-glance and the income-versus-expenses trend.",
+    logHeading: "Logging an expense",
+    logText:
+      "Record an expense with its amount, date, vendor and category, and attach the receipt as a PDF or image so the proof lives with the entry. Filter by category or month to find anything fast.",
+    catHeading: "Categories",
+    catText:
+      "Categories give every expense a colour and an icon and power the breakdowns on the dashboard. They are yours to rename, recolour and reorganise as your business changes, the same categories also classify your income.",
+    feedsBefore: "Whatever you record flows straight into the dashboard's month-at-a-glance and the ",
+    feedsLink: "payments",
+    feedsAfter: " ledger, so the books stay in sync without extra steps.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Ausgaben",
+    metaDescription: "Ausgaben mit Betrag, Datum, Lieferant und Kategorie erfassen, den Beleg anhängen und zusehen, wie die Summen ins Dashboard fliessen.",
+    h1: "Ausgaben",
+    intro:
+      "Ausgaben sind das Geld, das rausgeht. Sie zu erfassen führt die andere Hälfte deiner Buchhaltung und speist den Monatsüberblick im Dashboard sowie den Trend Einnahmen gegen Ausgaben.",
+    logHeading: "Eine Ausgabe erfassen",
+    logText:
+      "Erfasse eine Ausgabe mit Betrag, Datum, Lieferant und Kategorie und häng den Beleg als PDF oder Bild an, sodass der Nachweis bei der Buchung liegt. Filtere nach Kategorie oder Monat, um alles schnell zu finden.",
+    catHeading: "Kategorien",
+    catText:
+      "Kategorien geben jeder Ausgabe eine Farbe und ein Icon und treiben die Auswertungen im Dashboard an. Du kannst sie umbenennen, umfärben und neu ordnen, wie sich dein Geschäft entwickelt, dieselben Kategorien klassifizieren auch deine Einnahmen.",
+    feedsBefore: "Was du erfasst, fliesst direkt in den Monatsüberblick des Dashboards und in das ",
+    feedsLink: "Zahlungs",
+    feedsAfter: "-Verzeichnis, sodass die Buchhaltung ohne Zusatzschritte stimmig bleibt.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Dépenses",
+    metaDescription: "Enregistrez les dépenses avec montant, date, fournisseur et catégorie, joignez le justificatif et voyez les totaux remonter dans le tableau de bord.",
+    h1: "Dépenses",
+    intro:
+      "Les dépenses sont l'argent qui sort. Les enregistrer tient l'autre moitié de votre comptabilité et alimente l'aperçu du mois du tableau de bord et la tendance revenus contre dépenses.",
+    logHeading: "Enregistrer une dépense",
+    logText:
+      "Enregistrez une dépense avec son montant, sa date, son fournisseur et sa catégorie, et joignez le justificatif en PDF ou en image pour que la preuve vive avec l'écriture. Filtrez par catégorie ou par mois pour tout retrouver vite.",
+    catHeading: "Catégories",
+    catText:
+      "Les catégories donnent à chaque dépense une couleur et une icône et alimentent les répartitions du tableau de bord. À vous de les renommer, recolorer et réorganiser au fil de votre activité, les mêmes catégories classent aussi vos revenus.",
+    feedsBefore: "Ce que vous enregistrez alimente directement l'aperçu du mois du tableau de bord et le registre des ",
+    feedsLink: "paiements",
+    feedsAfter: ", pour que la comptabilité reste à jour sans étape de plus.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Uscite",
+    metaDescription: "Registra le uscite con importo, data, fornitore e categoria, allega la ricevuta e guarda i totali confluire nella dashboard.",
+    h1: "Uscite",
+    intro:
+      "Le uscite sono il denaro che esce. Registrarle tiene l'altra metà della tua contabilità e alimenta il riepilogo del mese della dashboard e l'andamento entrate contro uscite.",
+    logHeading: "Registrare un'uscita",
+    logText:
+      "Registra un'uscita con importo, data, fornitore e categoria, e allega la ricevuta come PDF o immagine così la prova vive con la registrazione. Filtra per categoria o mese per trovare tutto in fretta.",
+    catHeading: "Categorie",
+    catText:
+      "Le categorie danno a ogni uscita un colore e un'icona e alimentano le suddivisioni nella dashboard. Sta a te rinominarle, ricolorarle e riorganizzarle man mano che la tua attività cambia, le stesse categorie classificano anche le tue entrate.",
+    feedsBefore: "Ciò che registri confluisce direttamente nel riepilogo del mese della dashboard e nel registro dei ",
+    feedsLink: "pagamenti",
+    feedsAfter: ", così i conti restano allineati senza passaggi in più.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/expenses-en.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="log">{c.logHeading}</h2>
+  <p>{c.logText}</p>
+
+  <h2 id="categories">{c.catHeading}</h2>
+  <p>{c.catText}</p>
+
+  <img src={`/screenshots/categories-en.jpg`} alt={c.catHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <p>{c.feedsBefore}<a href={localize("/docs/payments", lang)}>{c.feedsLink}</a>{c.feedsAfter}</p>
+</DocsLayout>

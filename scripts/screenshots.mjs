@@ -65,10 +65,12 @@ const SHOTS = [
   { name: 'expenses', path: '/expenses' },
   { name: 'income', path: '/income' },
   { name: 'categories', path: '/categories' },
+  { name: 'articles', path: '/articles' },
   { name: 'banking', path: '/banking' }, // bank reconciliation page (Finance)
   { name: 'triage', path: '/triage' }, // unmatched inbound review queue
   { name: 'reminders', path: '/reminders' },
   { name: 'conversations', path: '/conversations' },
+  { name: 'activity', path: '/activity' },
   { name: 'settings', path: '/settings' },
   { name: 'signatures', path: '/settings', tabText: /signatur|firme/i }, // Settings -> Signatures
   { name: 'email-setup', path: '/settings', tabText: /sync/i }, // Settings -> Mail sync

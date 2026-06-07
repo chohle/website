@@ -1,0 +1,93 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Triage",
+    metaDescription: "Inbound email that does not thread to a project waits in a triage queue with a suggested project, so nothing is lost and nothing is misfiled.",
+    h1: "Triage",
+    intro:
+      "A reply that threads to a project lands in that project automatically. Everything else, a cold lead or a reply whose headers were stripped, would otherwise be lost. Triage is the safety net that catches it.",
+    whyHeading: "Nothing lost, nothing misfiled",
+    whyText:
+      "Inbound mail that does not thread is parked in a review queue instead of being dropped or guessed into the wrong project. Nothing attaches to a project automatically except a real header-threaded reply, so the queue preserves the zero-misfile guarantee.",
+    reviewHeading: "Reviewing the queue",
+    reviewBefore: "Each item shows the sender, subject and a snippet, with a suggested project where chohle recognises the sender. In one click you assign it to a ",
+    reviewLink: "project",
+    reviewAfter: " (which moves the whole thread into that conversation) or dismiss it. A Triage entry in the sidebar carries a live count of what is waiting.",
+    relatedBefore: "Triage is the inbound counterpart to ",
+    relatedLink: "Client email",
+    relatedAfter: ", which threads recognised replies straight onto their project.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Triage",
+    metaDescription: "Eingehende E-Mail, die zu keinem Projekt threadet, wartet in einer Triage-Warteschlange mit einem Projektvorschlag, sodass nichts verloren geht und nichts falsch abgelegt wird.",
+    h1: "Triage",
+    intro:
+      "Eine Antwort, die zu einem Projekt threadet, landet automatisch in diesem Projekt. Alles andere, ein kalter Lead oder eine Antwort ohne Header, ginge sonst verloren. Triage ist das Sicherheitsnetz, das es auffängt.",
+    whyHeading: "Nichts verloren, nichts falsch abgelegt",
+    whyText:
+      "Eingehende Mail, die nicht threadet, wird in einer Prüf-Warteschlange geparkt, statt verworfen oder ins falsche Projekt geraten zu werden. Nichts wird automatisch einem Projekt zugeordnet ausser einer echten header-gethreadeten Antwort, sodass die Warteschlange die Null-Fehlablage-Garantie wahrt.",
+    reviewHeading: "Die Warteschlange prüfen",
+    reviewBefore: "Jeder Eintrag zeigt Absender, Betreff und einen Ausschnitt, mit einem Projektvorschlag, wo chohle den Absender erkennt. Mit einem Klick weist du ihn einem ",
+    reviewLink: "Projekt",
+    reviewAfter: " zu (was den ganzen Thread in diese Konversation verschiebt) oder verwirfst ihn. Ein Triage-Eintrag in der Seitenleiste trägt eine Live-Zählung der wartenden Einträge.",
+    relatedBefore: "Triage ist das Eingangs-Gegenstück zur ",
+    relatedLink: "Kunden-E-Mail",
+    relatedAfter: ", die erkannte Antworten direkt ihrem Projekt zuordnet.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Triage",
+    metaDescription: "Le courrier entrant qui ne se rattache à aucun projet attend dans une file de triage avec un projet suggéré, ainsi rien n'est perdu ni mal classé.",
+    h1: "Triage",
+    intro:
+      "Une réponse qui se rattache à un projet y arrive automatiquement. Tout le reste, un prospect froid ou une réponse dont les en-têtes ont été retirés, serait sinon perdu. Le triage est le filet de sécurité qui l'attrape.",
+    whyHeading: "Rien de perdu, rien de mal classé",
+    whyText:
+      "Le courrier entrant qui ne se rattache pas est mis de côté dans une file de vérification plutôt que supprimé ou rangé par devinette dans le mauvais projet. Rien ne s'attache automatiquement à un projet sauf une vraie réponse rattachée par en-têtes, la file préserve donc la garantie zéro mauvais classement.",
+    reviewHeading: "Vérifier la file",
+    reviewBefore: "Chaque élément montre l'expéditeur, l'objet et un extrait, avec un projet suggéré là où chohle reconnaît l'expéditeur. En un clic vous l'affectez à un ",
+    reviewLink: "projet",
+    reviewAfter: " (ce qui déplace tout le fil dans cette conversation) ou l'écartez. Une entrée Triage dans la barre latérale porte un compteur en direct de ce qui attend.",
+    relatedBefore: "Le triage est le pendant entrant des ",
+    relatedLink: "e-mails clients",
+    relatedAfter: ", qui rattachent les réponses reconnues directement à leur projet.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Triage",
+    metaDescription: "La posta in entrata che non si aggancia a un progetto attende in una coda di triage con un progetto suggerito, così nulla va perso e nulla viene archiviato male.",
+    h1: "Triage",
+    intro:
+      "Una risposta che si aggancia a un progetto vi arriva automaticamente. Tutto il resto, un lead freddo o una risposta a cui sono state tolte le intestazioni, andrebbe altrimenti perso. Il triage è la rete di sicurezza che lo cattura.",
+    whyHeading: "Niente perso, niente archiviato male",
+    whyText:
+      "La posta in entrata che non si aggancia viene messa da parte in una coda di verifica invece di essere scartata o indovinata nel progetto sbagliato. Nulla si aggancia automaticamente a un progetto tranne una vera risposta agganciata dalle intestazioni, così la coda preserva la garanzia di zero archiviazioni errate.",
+    reviewHeading: "Verificare la coda",
+    reviewBefore: "Ogni elemento mostra mittente, oggetto e un estratto, con un progetto suggerito dove chohle riconosce il mittente. Con un clic lo assegni a un ",
+    reviewLink: "progetto",
+    reviewAfter: " (spostando l'intero filo in quella conversazione) o lo scarti. Una voce Triage nella barra laterale porta un conteggio in tempo reale di ciò che attende.",
+    relatedBefore: "Il triage è la controparte in entrata delle ",
+    relatedLink: "e-mail dei clienti",
+    relatedAfter: ", che agganciano le risposte riconosciute direttamente al loro progetto.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/triage-en.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="why">{c.whyHeading}</h2>
+  <p>{c.whyText}</p>
+
+  <h2 id="review">{c.reviewHeading}</h2>
+  <p>{c.reviewBefore}<a href={localize("/docs/projects", lang)}>{c.reviewLink}</a>{c.reviewAfter}</p>
+
+  <p>{c.relatedBefore}<a href={localize("/docs/email", lang)}>{c.relatedLink}</a>{c.relatedAfter}</p>
+</DocsLayout>

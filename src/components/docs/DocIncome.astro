@@ -1,0 +1,89 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Income",
+    metaDescription: "Record salary and client income as recurring sources, with Swiss pay-date calculation around weekends and cantonal holidays.",
+    h1: "Income",
+    intro:
+      "Income is the money coming in. Recording it lets the dashboard show what is expected this month and what has already landed, next to your expenses.",
+    recurringHeading: "Recurring sources",
+    recurringText:
+      "Record salary and client income as recurring sources with their amount and pay day. The dashboard lists them, marks each one received or still pending, and rolls them into the month-at-a-glance, so you always know what is on the way.",
+    payHeading: "Swiss pay dates",
+    payText:
+      "chohle calculates the actual pay date the Swiss way, shifting around weekends and cantonal public holidays, so “expected this month” reflects when the money really lands, not just the nominal payout day.",
+    catBefore: "Like expenses, every income entry takes a ",
+    catLink: "category",
+    catAfter: " for a colour, an icon and the dashboard breakdowns.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Einnahmen",
+    metaDescription: "Lohn und Kundeneinnahmen als wiederkehrende Quellen erfassen, mit Schweizer Zahltagsberechnung um Wochenenden und kantonale Feiertage herum.",
+    h1: "Einnahmen",
+    intro:
+      "Einnahmen sind das Geld, das reinkommt. Sie zu erfassen lässt das Dashboard zeigen, was diesen Monat erwartet wird und was schon gelandet ist, neben deinen Ausgaben.",
+    recurringHeading: "Wiederkehrende Quellen",
+    recurringText:
+      "Erfasse Lohn und Kundeneinnahmen als wiederkehrende Quellen mit Betrag und Zahltag. Das Dashboard listet sie, markiert jede als erhalten oder noch ausstehend und rechnet sie in den Monatsüberblick ein, sodass du immer weisst, was unterwegs ist.",
+    payHeading: "Schweizer Zahltage",
+    payText:
+      "chohle berechnet das tatsächliche Zahldatum nach Schweizer Art, verschoben um Wochenenden und kantonale Feiertage, sodass „erwartet diesen Monat“ widerspiegelt, wann das Geld wirklich kommt, nicht nur den nominalen Auszahlungstag.",
+    catBefore: "Wie Ausgaben trägt jede Einnahme eine ",
+    catLink: "Kategorie",
+    catAfter: " für Farbe, Icon und die Dashboard-Auswertungen.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Revenus",
+    metaDescription: "Enregistrez salaire et revenus clients comme sources récurrentes, avec calcul de la date de paie suisse autour des week-ends et jours fériés cantonaux.",
+    h1: "Revenus",
+    intro:
+      "Les revenus sont l'argent qui entre. Les enregistrer permet au tableau de bord de montrer ce qui est attendu ce mois-ci et ce qui est déjà arrivé, à côté de vos dépenses.",
+    recurringHeading: "Sources récurrentes",
+    recurringText:
+      "Enregistrez salaire et revenus clients comme sources récurrentes avec leur montant et leur jour de paie. Le tableau de bord les liste, marque chacune reçue ou encore en attente, et les intègre à l'aperçu du mois, pour toujours savoir ce qui arrive.",
+    payHeading: "Dates de paie suisses",
+    payText:
+      "chohle calcule la date de paiement réelle à la suisse, en tenant compte des week-ends et des jours fériés cantonaux, pour que « attendu ce mois-ci » reflète quand l'argent arrive vraiment, pas seulement le jour de versement nominal.",
+    catBefore: "Comme les dépenses, chaque revenu prend une ",
+    catLink: "catégorie",
+    catAfter: " pour une couleur, une icône et les répartitions du tableau de bord.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Entrate",
+    metaDescription: "Registra stipendio ed entrate dei clienti come fonti ricorrenti, con calcolo della data di paga svizzera attorno a weekend e festività cantonali.",
+    h1: "Entrate",
+    intro:
+      "Le entrate sono il denaro che entra. Registrarle permette alla dashboard di mostrare cosa è previsto questo mese e cosa è già arrivato, accanto alle tue uscite.",
+    recurringHeading: "Fonti ricorrenti",
+    recurringText:
+      "Registra stipendio ed entrate dei clienti come fonti ricorrenti con importo e giorno di paga. La dashboard le elenca, segna ciascuna come ricevuta o ancora in attesa, e le integra nel riepilogo del mese, così sai sempre cosa sta arrivando.",
+    payHeading: "Date di paga svizzere",
+    payText:
+      "chohle calcola la data di pagamento effettiva all'uso svizzero, spostandola attorno a fine settimana e festività cantonali, così « previsto questo mese » riflette quando i soldi arrivano davvero, non solo il giorno di pagamento nominale.",
+    catBefore: "Come le uscite, ogni entrata prende una ",
+    catLink: "categoria",
+    catAfter: " per un colore, un'icona e le suddivisioni della dashboard.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/income-en.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="recurring">{c.recurringHeading}</h2>
+  <p>{c.recurringText}</p>
+
+  <h2 id="pay-dates">{c.payHeading}</h2>
+  <p>{c.payText}</p>
+
+  <p>{c.catBefore}<a href={localize("/docs/expenses", lang)}>{c.catLink}</a>{c.catAfter}</p>
+</DocsLayout>

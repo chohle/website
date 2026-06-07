@@ -1,0 +1,102 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: Articles",
+    metaDescription: "Save reusable line items, a name, unit, default price and MWST rate, and drop them into quotes and invoices so documents price themselves.",
+    h1: "Articles",
+    intro:
+      "Articles are your saved line items: the things you sell over and over. Define one once and it prices every quote and invoice you add it to.",
+    whatHeading: "What an article holds",
+    whatText:
+      "Each article has a name, a unit (hours, flat rate, month, …), a default price and an MWST rate. Add it to a document and the description, unit, price and tax fill in automatically, you only adjust the quantity.",
+    createHeading: "Creating one",
+    createText:
+      "Open Articles from the sidebar and add an article with its name, unit, price and tax rate. An article can be global, available on every document, or tied to a specific customer for a bespoke rate. You can also create a free-text line directly on a quote or invoice for a one-off, without saving it to the library.",
+    useHeading: "Where they are used",
+    useBefore: "Articles power the line items on every ",
+    useLink: "quote",
+    useMid: " and ",
+    useLink2: "invoice",
+    useAfter: ". Pick one from the row's article picker and the price and tax drop in; per-customer rates and discounts still apply on top, so the same article can bill differently per client.",
+  },
+  de: {
+    metaTitle: "chohle Doku: Artikel",
+    metaDescription: "Wiederverwendbare Positionen speichern, Name, Einheit, Standardpreis und MWST-Satz, und in Offerten und Rechnungen einsetzen, damit sich Dokumente selbst bepreisen.",
+    h1: "Artikel",
+    intro:
+      "Artikel sind deine gespeicherten Positionen: die Dinge, die du immer wieder verkaufst. Einmal definiert, bepreisen sie jede Offerte und Rechnung, der du sie hinzufügst.",
+    whatHeading: "Was ein Artikel enthält",
+    whatText:
+      "Jeder Artikel hat einen Namen, eine Einheit (Stunden, Pauschale, Monat, …), einen Standardpreis und einen MWST-Satz. Füge ihn einem Dokument hinzu, und Beschreibung, Einheit, Preis und Steuer werden automatisch eingesetzt, du passt nur die Menge an.",
+    createHeading: "Einen anlegen",
+    createText:
+      "Öffne Artikel in der Seitenleiste und lege einen Artikel mit Name, Einheit, Preis und Steuersatz an. Ein Artikel kann global sein, auf jedem Dokument verfügbar, oder an einen bestimmten Kunden für einen massgeschneiderten Ansatz gebunden. Du kannst auch direkt auf einer Offerte oder Rechnung eine Freitext-Position für einen einmaligen Posten anlegen, ohne ihn in der Bibliothek zu speichern.",
+    useHeading: "Wo sie verwendet werden",
+    useBefore: "Artikel treiben die Positionen auf jeder ",
+    useLink: "Offerte",
+    useMid: " und ",
+    useLink2: "Rechnung",
+    useAfter: " an. Wähle einen im Artikel-Picker der Zeile, und Preis und Steuer werden eingesetzt; kundenspezifische Ansätze und Rabatte kommen obendrauf, sodass derselbe Artikel je Kunde anders verrechnet wird.",
+  },
+  fr: {
+    metaTitle: "Doc chohle: Articles",
+    metaDescription: "Enregistrez des lignes réutilisables, nom, unité, prix par défaut et taux de TVA, et insérez-les dans devis et factures pour qu'ils se chiffrent tout seuls.",
+    h1: "Articles",
+    intro:
+      "Les articles sont vos lignes enregistrées : ce que vous vendez encore et encore. Définissez-en un une fois et il chiffre chaque devis et facture où vous l'ajoutez.",
+    whatHeading: "Ce que contient un article",
+    whatText:
+      "Chaque article a un nom, une unité (heures, forfait, mois, …), un prix par défaut et un taux de TVA. Ajoutez-le à un document et la description, l'unité, le prix et la taxe se remplissent automatiquement, vous n'ajustez que la quantité.",
+    createHeading: "En créer un",
+    createText:
+      "Ouvrez Articles depuis la barre latérale et ajoutez un article avec son nom, son unité, son prix et son taux de taxe. Un article peut être global, disponible sur chaque document, ou lié à un client précis pour un tarif sur mesure. Vous pouvez aussi créer une ligne en texte libre directement sur un devis ou une facture pour un poste ponctuel, sans l'enregistrer dans la bibliothèque.",
+    useHeading: "Où ils servent",
+    useBefore: "Les articles alimentent les lignes de chaque ",
+    useLink: "devis",
+    useMid: " et ",
+    useLink2: "facture",
+    useAfter: ". Choisissez-en un dans le sélecteur d'article de la ligne et le prix et la taxe s'insèrent ; les tarifs et remises par client s'appliquent en plus, le même article peut donc se facturer différemment selon le client.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Articoli",
+    metaDescription: "Salva voci riutilizzabili, nome, unità, prezzo predefinito e aliquota IVA, e inseriscile in preventivi e fatture così i documenti si prezzano da soli.",
+    h1: "Articoli",
+    intro:
+      "Gli articoli sono le tue voci salvate: le cose che vendi di continuo. Definiscine uno una volta e prezza ogni preventivo e fattura a cui lo aggiungi.",
+    whatHeading: "Cosa contiene un articolo",
+    whatText:
+      "Ogni articolo ha un nome, un'unità (ore, forfait, mese, …), un prezzo predefinito e un'aliquota IVA. Aggiungilo a un documento e descrizione, unità, prezzo e imposta si compilano da soli, regoli solo la quantità.",
+    createHeading: "Crearne uno",
+    createText:
+      "Apri Articoli dalla barra laterale e aggiungi un articolo con nome, unità, prezzo e aliquota. Un articolo può essere globale, disponibile su ogni documento, oppure legato a un cliente specifico per una tariffa su misura. Puoi anche creare una voce a testo libero direttamente su un preventivo o una fattura per un articolo una tantum, senza salvarlo nella libreria.",
+    useHeading: "Dove si usano",
+    useBefore: "Gli articoli alimentano le voci di ogni ",
+    useLink: "preventivo",
+    useMid: " e ",
+    useLink2: "fattura",
+    useAfter: ". Scegline uno dal selettore di articoli della riga e prezzo e imposta si inseriscono; tariffe e sconti per cliente si applicano in aggiunta, così lo stesso articolo può essere fatturato in modo diverso per cliente.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <img src={`/screenshots/articles-en.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="what">{c.whatHeading}</h2>
+  <p>{c.whatText}</p>
+
+  <h2 id="create">{c.createHeading}</h2>
+  <p>{c.createText}</p>
+
+  <h2 id="use">{c.useHeading}</h2>
+  <p>{c.useBefore}<a href={localize("/docs/quotes", lang)}>{c.useLink}</a>{c.useMid}<a href={localize("/docs/invoicing", lang)}>{c.useLink2}</a>{c.useAfter}</p>
+</DocsLayout>

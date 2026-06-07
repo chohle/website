@@ -86,7 +86,7 @@ const c = content[lang] ?? content.en;
   <p>{c.breakdownText}</p>
 
   <h2 id="recurring">{c.recurringHeading}</h2>
-  <p>{c.recurringBefore}<a href={localize("/docs/expenses-income", lang)}>{c.recurringLink}</a>{c.recurringAfter}</p>
+  <p>{c.recurringBefore}<a href={localize("/docs/income", lang)}>{c.recurringLink}</a>{c.recurringAfter}</p>
 
   <h2 id="search">{({ en: "Search everything", de: "Alles durchsuchen", fr: "Tout rechercher", it: "Cerca ovunque" })[lang]}</h2>
   <p>{({
