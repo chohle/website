@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { shot } from "../../lib/screenshots";
 import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -27,6 +28,9 @@ const content = {
     what3: "Client",
     what3Strong: "email",
     what3End: ", kept right next to the work it relates to",
+    what4: "An optional",
+    what4Strong: "AI assistant",
+    what4End: ", on a local LLM you host, that drafts customers and invoices for your approval",
     statusHeading: "Project status",
     status:
       "chohle is a work in progress: usable day to day, but still evolving. A few features (like bank reconciliation) are experimental and live in a branch rather than the main release, so expect rough edges in places.",
@@ -53,6 +57,9 @@ const content = {
     what3: "Kunden-",
     what3Strong: "E-Mail",
     what3End: ", direkt bei der zugehörigen Arbeit abgelegt",
+    what4: "Ein optionaler",
+    what4Strong: "KI-Assistent",
+    what4End: ", auf einem lokalen LLM, das du selbst betreibst, der Kunden und Rechnungen zu deiner Bestätigung entwirft",
     statusHeading: "Projektstatus",
     status:
       "chohle ist in Arbeit: im Alltag nutzbar, aber noch in Bewegung. Einige Funktionen (etwa der Bankabgleich) sind experimentell und liegen in einem Branch statt in der Hauptversion, also rechne stellenweise mit Ecken und Kanten.",
@@ -79,6 +86,9 @@ const content = {
     what3: "E-mail",
     what3Strong: "client",
     what3End: ", gardé juste à côté du travail concerné",
+    what4: "Un",
+    what4Strong: "assistant IA",
+    what4End: " optionnel, sur un LLM local que tu héberges, qui prépare clients et factures à ta validation",
     statusHeading: "État du projet",
     status:
       "chohle est un travail en cours : utilisable au quotidien, mais encore en évolution. Quelques fonctionnalités (comme le rapprochement bancaire) sont expérimentales et vivent dans une branche plutôt que dans la version principale, attendez-vous donc à quelques aspérités par endroits.",
@@ -105,6 +115,9 @@ const content = {
     what3: "E-mail",
     what3Strong: "clienti",
     what3End: ", tenuta proprio accanto al lavoro a cui si riferisce",
+    what4: "Un",
+    what4Strong: "assistente IA",
+    what4End: " opzionale, su un LLM locale che ospiti tu, che prepara clienti e fatture da confermare",
     statusHeading: "Stato del progetto",
     status:
       "chohle è un lavoro in corso: usabile ogni giorno, ma ancora in evoluzione. Alcune funzioni (come la riconciliazione bancaria) sono sperimentali e vivono in un branch invece che nella versione principale, quindi aspettati qualche imperfezione qua e là.",
@@ -124,7 +137,7 @@ const c = content[lang] ?? content.en;
   </p>
 
   <img
-    src={`/screenshots/dashboard-en.jpg`}
+    src={shot("dashboard", lang)}
     alt="chohle dashboard"
     width="1456"
     height="1080"
@@ -137,6 +150,7 @@ const c = content[lang] ?? content.en;
     <li>{c.what1} <strong>{c.what1Strong}</strong> {c.what1End}</li>
     <li><strong>{c.what2Strong}</strong> {c.what2End}</li>
     <li>{c.what3} <strong>{c.what3Strong}</strong>{c.what3End}</li>
+    <li>{c.what4} <a href={localize("/docs/assistant", lang)}><strong>{c.what4Strong}</strong></a>{c.what4End}</li>
   </ul>
 
   <h2 id="status">{c.statusHeading}</h2>

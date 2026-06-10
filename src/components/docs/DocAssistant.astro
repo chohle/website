@@ -1,0 +1,452 @@
+---
+import DocsLayout from "../../layouts/DocsLayout.astro";
+import CodeBlock from "../../components/CodeBlock.astro";
+import { shot } from "../../lib/screenshots";
+import { getLangFromUrl, localize } from "../../i18n/utils";
+
+const lang = getLangFromUrl(Astro.url);
+
+const content = {
+  en: {
+    metaTitle: "chohle docs: AI assistant",
+    metaDescription:
+      "An optional in-app chat assistant that reads your data and drafts customers and invoices from plain language, running against a local LLM you host yourself.",
+    h1: "AI assistant",
+    intro:
+      "chohle has an optional chat assistant. You can ask it to look something up, or describe a customer or an invoice in plain language and let it draft the record for you. It runs against a local LLM that you host yourself, so none of your data leaves your server. It is off by default; turn it on only if you want it.",
+    wipTitle: "Work in progress",
+    wipText:
+      "The assistant is new and still being refined. It is reliable with a capable model, but it can occasionally misread a complex, multi step request. Treat it as a helpful draft tool, not as something that acts on its own. The best thing you can do is turn it on, ask it real questions, watch how it proposes changes, and adjust the prompts or the code to taste. Every change it suggests is yours to approve or cancel, so it is safe to experiment.",
+    screenshotAlt: "The assistant proposing a new customer and a draft invoice for approval",
+    canH2: "What it can do",
+    canRead:
+      "It can read your customers, invoices, quotes, articles, signatures, expenses, categories and a short overview, so you can simply ask it questions about your own data.",
+    canWrite:
+      "With your approval it can also create and edit records. Every write is shown as an Approve or Cancel card first, with a clear summary, and an edit shows a before and after view so you can double check it. Nothing is saved until you approve.",
+    matrixCols: { entity: "Entity", read: "Read", create: "Create", edit: "Edit" },
+    entityNames: {
+      customer: "Customer",
+      invoice: "Invoice",
+      quote: "Quote",
+      article: "Article",
+      signature: "Signature",
+      expense: "Expense",
+      income: "Income source",
+    },
+    matrixNote:
+      "Created invoices and quotes are drafts with no number, exactly like the normal flow, and you assign the number later. The assistant can never delete a record and never send an email; there is simply no tool for either, so it is impossible by design.",
+    safetyH2: "How it stays safe",
+    safetyItems: [
+      { t: "Propose, then approve, then commit", d: "the model can only propose changes. Writing happens in a separate step that runs only after you click Approve, and it re validates everything before saving in one atomic transaction." },
+      { t: "It can never delete or send", d: "there is no delete tool and no send tool in the assistant, so it can neither remove your data nor email your customers. Edits change fields only and never remove a record." },
+      { t: "Off in the public demo", d: "the assistant is disabled in demo mode, so a public visitor can never reach it." },
+      { t: "Audited and saved", d: "every approved batch is recorded, and your chats are saved so your history is there when you come back. Use New chat to start fresh, or the trash icon to remove one." },
+    ],
+    enableH2: "Turn it on",
+    enableIntro:
+      "The assistant speaks the OpenAI compatible chat protocol, so you can use the bundled Ollama or point it at any other endpoint. After setting the variables, restart the app.",
+    optionAH3: "Option A: the bundled Ollama",
+    optionAText:
+      "chohle ships an optional Ollama service. It only starts with the llm profile, so a normal start ignores it entirely. Start it and pull a model:",
+    optionAEnvText: "Then set these in your .env and restart:",
+    optionBH3: "Option B: an external endpoint",
+    optionBText:
+      "Point the base URL at LM Studio, the llama.cpp server, vLLM or a hosted OpenAI compatible API. Set an API key if the endpoint needs one. No Docker profile is required.",
+    configH2: "Configuration",
+    configCols: { variable: "Variable", default: "Default", purpose: "Purpose" },
+    purposes: [
+      "Set to true to enable the assistant and show it in the sidebar.",
+      "OpenAI compatible base URL of your model server.",
+      "Name of the model to request.",
+      "Bearer token, only for hosted endpoints that require one.",
+    ],
+    modelH2: "Choosing a model",
+    modelText:
+      "The model must support tool calling, otherwise it can chat but will not create records reliably. Known good local choices:",
+    models: [
+      { n: "qwen2.5:7b", d: "the default. Good tool calling, needs roughly 8 GB of RAM." },
+      { n: "llama3.1:8b or llama3.2", d: "also solid." },
+      { n: "mistral", d: "works well." },
+      { n: "a 3B model on a small box", d: "for example qwen2.5:3b. Faster, but flakier on multi step requests." },
+    ],
+    hardwareNote:
+      "An 8B model needs around 8 GB of free RAM and is CPU bound without a GPU, so a reply can take seconds to tens of seconds. On a very small server, point at an external endpoint instead.",
+    tryH2: "Give it a try",
+    tryText: "Open the assistant from the sidebar and try a few prompts to get a feel for it:",
+    tryExamples: [
+      "List my customers",
+      "Create a customer: Müller Bau, Zürich",
+      "Invoice Café Zentral 8h consulting at 150",
+    ],
+    moreH2: "Related",
+    moreText: "See",
+    moreLinkEnv: "Environment variables",
+    moreAnd: "and",
+    moreLinkHost: "Self-hosting",
+    moreEnd: "for the full configuration and deployment details.",
+  },
+  de: {
+    metaTitle: "chohle Doku: KI-Assistent",
+    metaDescription:
+      "Ein optionaler Chat-Assistent in der App, der deine Daten liest und Kunden und Rechnungen aus normaler Sprache entwirft, gegen ein lokales LLM, das du selbst betreibst.",
+    h1: "KI-Assistent",
+    intro:
+      "chohle hat einen optionalen Chat-Assistenten. Du kannst ihn etwas nachschlagen lassen oder einen Kunden oder eine Rechnung in normaler Sprache beschreiben und den Datensatz für dich entwerfen lassen. Er läuft gegen ein lokales LLM, das du selbst betreibst, sodass keine deiner Daten deinen Server verlässt. Er ist standardmässig aus; aktiviere ihn nur, wenn du ihn willst.",
+    wipTitle: "In Arbeit",
+    wipText:
+      "Der Assistent ist neu und wird noch verfeinert. Mit einem fähigen Modell ist er zuverlässig, doch bei einer komplexen, mehrstufigen Anfrage kann er sich gelegentlich verlesen. Sieh ihn als hilfreiches Entwurfswerkzeug, nicht als etwas, das eigenständig handelt. Das Beste, was du tun kannst: schalte ihn ein, stelle ihm echte Fragen, beobachte, wie er Änderungen vorschlägt, und passe die Prompts oder den Code nach Geschmack an. Jede vorgeschlagene Änderung bestätigst oder verwirfst du, also kannst du gefahrlos ausprobieren.",
+    screenshotAlt: "Der Assistent schlägt einen neuen Kunden und eine Rechnung im Entwurf zur Bestätigung vor",
+    canH2: "Was er kann",
+    canRead:
+      "Er kann deine Kunden, Rechnungen, Offerten, Artikel, Signaturen, Ausgaben, Kategorien und eine kurze Übersicht lesen, sodass du ihm einfach Fragen zu deinen eigenen Daten stellen kannst.",
+    canWrite:
+      "Mit deiner Bestätigung kann er auch Datensätze erstellen und bearbeiten. Jeder Schreibvorgang erscheint zuerst als Bestätigen- oder Abbrechen-Karte mit klarer Zusammenfassung, und eine Bearbeitung zeigt eine Vorher-Nachher-Ansicht zum Gegenprüfen. Nichts wird gespeichert, bevor du bestätigst.",
+    matrixCols: { entity: "Objekt", read: "Lesen", create: "Erstellen", edit: "Bearbeiten" },
+    entityNames: {
+      customer: "Kunde",
+      invoice: "Rechnung",
+      quote: "Offerte",
+      article: "Artikel",
+      signature: "Signatur",
+      expense: "Ausgabe",
+      income: "Einnahmequelle",
+    },
+    matrixNote:
+      "Erstellte Rechnungen und Offerten sind Entwürfe ohne Nummer, genau wie im normalen Ablauf, und die Nummer vergibst du später. Der Assistent kann nie einen Datensatz löschen und nie eine E-Mail senden; für beides gibt es schlicht kein Werkzeug, es ist also von Grund auf unmöglich.",
+    safetyH2: "Wie er sicher bleibt",
+    safetyItems: [
+      { t: "Vorschlagen, dann bestätigen, dann schreiben", d: "das Modell kann nur Änderungen vorschlagen. Geschrieben wird in einem getrennten Schritt, der erst nach deinem Klick auf Bestätigen läuft und alles erneut prüft, bevor in einer atomaren Transaktion gespeichert wird." },
+      { t: "Er kann nie löschen oder senden", d: "der Assistent hat kein Lösch- und kein Sende-Werkzeug, kann also weder deine Daten entfernen noch deinen Kunden E-Mails schicken. Bearbeitungen ändern nur Felder und entfernen nie einen Datensatz." },
+      { t: "Aus in der öffentlichen Demo", d: "im Demo-Modus ist der Assistent deaktiviert, ein öffentlicher Besucher erreicht ihn also nie." },
+      { t: "Protokolliert und gespeichert", d: "jeder bestätigte Vorgang wird festgehalten, und deine Chats werden gespeichert, sodass dein Verlauf da ist, wenn du zurückkommst. Mit Neuer Chat fängst du frisch an, mit dem Papierkorb-Symbol entfernst du einen." },
+    ],
+    enableH2: "Aktivieren",
+    enableIntro:
+      "Der Assistent spricht das OpenAI-kompatible Chat-Protokoll, du kannst also das mitgelieferte Ollama nutzen oder ihn auf einen beliebigen anderen Endpunkt richten. Nach dem Setzen der Variablen startest du die App neu.",
+    optionAH3: "Variante A: das mitgelieferte Ollama",
+    optionAText:
+      "chohle bringt einen optionalen Ollama-Dienst mit. Er startet nur mit dem llm-Profil, ein normaler Start ignoriert ihn also vollständig. Starte ihn und lade ein Modell:",
+    optionAEnvText: "Setze dann diese Werte in deiner .env und starte neu:",
+    optionBH3: "Variante B: ein externer Endpunkt",
+    optionBText:
+      "Richte die Basis-URL auf LM Studio, den llama.cpp-Server, vLLM oder eine gehostete OpenAI-kompatible API. Setze einen API-Schlüssel, falls der Endpunkt einen braucht. Kein Docker-Profil nötig.",
+    configH2: "Konfiguration",
+    configCols: { variable: "Variable", default: "Standard", purpose: "Zweck" },
+    purposes: [
+      "Auf true setzen, um den Assistenten zu aktivieren und in der Seitenleiste zu zeigen.",
+      "OpenAI-kompatible Basis-URL deines Modell-Servers.",
+      "Name des anzufragenden Modells.",
+      "Bearer-Token, nur für gehostete Endpunkte, die einen verlangen.",
+    ],
+    modelH2: "Ein Modell wählen",
+    modelText:
+      "Das Modell muss Tool-Calling unterstützen, sonst kann es chatten, aber keine Datensätze zuverlässig erstellen. Bewährte lokale Optionen:",
+    models: [
+      { n: "qwen2.5:7b", d: "die Voreinstellung. Gutes Tool-Calling, braucht etwa 8 GB RAM." },
+      { n: "llama3.1:8b oder llama3.2", d: "ebenfalls solide." },
+      { n: "mistral", d: "funktioniert gut." },
+      { n: "ein 3B-Modell auf kleiner Hardware", d: "zum Beispiel qwen2.5:3b. Schneller, aber wackliger bei mehrstufigen Anfragen." },
+    ],
+    hardwareNote:
+      "Ein 8B-Modell braucht rund 8 GB freien RAM und ist ohne GPU CPU-gebunden, eine Antwort kann also Sekunden bis Dutzende Sekunden dauern. Auf einem sehr kleinen Server richtest du ihn besser auf einen externen Endpunkt.",
+    tryH2: "Probier es aus",
+    tryText: "Öffne den Assistenten in der Seitenleiste und probiere ein paar Eingaben, um ein Gefühl dafür zu bekommen:",
+    tryExamples: [
+      "Zeig meine Kunden",
+      "Erstelle einen Kunden: Müller Bau, Zürich",
+      "Rechne Café Zentral 8 Std. Beratung à 150",
+    ],
+    moreH2: "Verwandt",
+    moreText: "Siehe",
+    moreLinkEnv: "Umgebungsvariablen",
+    moreAnd: "und",
+    moreLinkHost: "Self-Hosting",
+    moreEnd: "für alle Konfigurations- und Deployment-Details.",
+  },
+  fr: {
+    metaTitle: "Doc chohle : Assistant IA",
+    metaDescription:
+      "Un assistant de discussion optionnel dans l'application qui lit tes données et prépare des clients et des factures en langage naturel, sur un LLM local que tu héberges toi-même.",
+    h1: "Assistant IA",
+    intro:
+      "chohle propose un assistant de discussion optionnel. Tu peux lui demander de chercher une information, ou décrire un client ou une facture en langage naturel et le laisser préparer l'enregistrement. Il fonctionne sur un LLM local que tu héberges toi-même, donc aucune de tes données ne quitte ton serveur. Il est désactivé par défaut ; active-le seulement si tu le souhaites.",
+    wipTitle: "En cours de développement",
+    wipText:
+      "L'assistant est récent et encore en cours d'affinage. Avec un bon modèle il est fiable, mais il peut parfois mal interpréter une demande complexe en plusieurs étapes. Vois-le comme un outil de brouillon utile, pas comme quelque chose qui agit seul. Le mieux à faire : active-le, pose-lui de vraies questions, observe comment il propose les changements, et ajuste les invites ou le code à ta convenance. Chaque changement proposé reste à valider ou à annuler, donc tu peux expérimenter sans risque.",
+    screenshotAlt: "L'assistant propose un nouveau client et une facture en brouillon à valider",
+    canH2: "Ce qu'il peut faire",
+    canRead:
+      "Il peut lire tes clients, factures, devis, articles, signatures, dépenses, catégories et un court aperçu, pour que tu puisses simplement lui poser des questions sur tes propres données.",
+    canWrite:
+      "Avec ta validation, il peut aussi créer et modifier des enregistrements. Chaque écriture apparaît d'abord comme une carte Valider ou Annuler, avec un résumé clair, et une modification montre une vue avant et après pour vérifier. Rien n'est enregistré tant que tu n'as pas validé.",
+    matrixCols: { entity: "Objet", read: "Lecture", create: "Création", edit: "Modification" },
+    entityNames: {
+      customer: "Client",
+      invoice: "Facture",
+      quote: "Devis",
+      article: "Article",
+      signature: "Signature",
+      expense: "Dépense",
+      income: "Source de revenu",
+    },
+    matrixNote:
+      "Les factures et devis créés sont des brouillons sans numéro, exactement comme dans le flux normal, et tu attribues le numéro plus tard. L'assistant ne peut jamais supprimer un enregistrement ni envoyer d'e-mail ; il n'existe tout simplement aucun outil pour cela, c'est donc impossible par conception.",
+    safetyH2: "Comment il reste sûr",
+    safetyItems: [
+      { t: "Proposer, puis valider, puis écrire", d: "le modèle ne peut que proposer des changements. L'écriture se fait dans une étape distincte qui ne s'exécute qu'après ton clic sur Valider, et qui revérifie tout avant d'enregistrer dans une seule transaction atomique." },
+      { t: "Il ne peut jamais supprimer ni envoyer", d: "l'assistant n'a aucun outil de suppression ni d'envoi, il ne peut donc ni effacer tes données ni écrire à tes clients. Les modifications changent seulement des champs et ne suppriment jamais un enregistrement." },
+      { t: "Désactivé dans la démo publique", d: "en mode démo l'assistant est désactivé, un visiteur public ne peut donc jamais l'atteindre." },
+      { t: "Tracé et enregistré", d: "chaque lot validé est consigné, et tes discussions sont enregistrées pour retrouver ton historique à ton retour. Utilise Nouveau chat pour repartir de zéro, ou l'icône corbeille pour en supprimer une." },
+    ],
+    enableH2: "Activer",
+    enableIntro:
+      "L'assistant parle le protocole de discussion compatible OpenAI, tu peux donc utiliser l'Ollama fourni ou le pointer vers n'importe quel autre point de terminaison. Après avoir défini les variables, redémarre l'application.",
+    optionAH3: "Option A : l'Ollama fourni",
+    optionAText:
+      "chohle livre un service Ollama optionnel. Il ne démarre qu'avec le profil llm, un démarrage normal l'ignore donc totalement. Démarre-le et télécharge un modèle :",
+    optionAEnvText: "Définis ensuite ceci dans ton .env et redémarre :",
+    optionBH3: "Option B : un point de terminaison externe",
+    optionBText:
+      "Pointe l'URL de base vers LM Studio, le serveur llama.cpp, vLLM ou une API hébergée compatible OpenAI. Définis une clé d'API si le point de terminaison en exige une. Aucun profil Docker requis.",
+    configH2: "Configuration",
+    configCols: { variable: "Variable", default: "Par défaut", purpose: "Rôle" },
+    purposes: [
+      "Mets à true pour activer l'assistant et l'afficher dans la barre latérale.",
+      "URL de base compatible OpenAI de ton serveur de modèle.",
+      "Nom du modèle à demander.",
+      "Jeton Bearer, uniquement pour les points de terminaison hébergés qui en exigent un.",
+    ],
+    modelH2: "Choisir un modèle",
+    modelText:
+      "Le modèle doit prendre en charge l'appel d'outils, sinon il peut discuter mais ne créera pas d'enregistrements de façon fiable. Bons choix locaux connus :",
+    models: [
+      { n: "qwen2.5:7b", d: "le choix par défaut. Bon appel d'outils, demande environ 8 Go de RAM." },
+      { n: "llama3.1:8b ou llama3.2", d: "solides eux aussi." },
+      { n: "mistral", d: "fonctionne bien." },
+      { n: "un modèle 3B sur une petite machine", d: "par exemple qwen2.5:3b. Plus rapide, mais moins sûr sur les demandes en plusieurs étapes." },
+    ],
+    hardwareNote:
+      "Un modèle 8B demande environ 8 Go de RAM libre et dépend du CPU sans GPU, une réponse peut donc prendre de quelques secondes à des dizaines de secondes. Sur un très petit serveur, pointe plutôt vers un point de terminaison externe.",
+    tryH2: "Essaie-le",
+    tryText: "Ouvre l'assistant depuis la barre latérale et essaie quelques invites pour le prendre en main :",
+    tryExamples: [
+      "Liste mes clients",
+      "Crée un client : Müller Bau, Zurich",
+      "Facture Café Zentral 8h de conseil à 150",
+    ],
+    moreH2: "Liens utiles",
+    moreText: "Voir",
+    moreLinkEnv: "Variables d'environnement",
+    moreAnd: "et",
+    moreLinkHost: "Auto-hébergement",
+    moreEnd: "pour tous les détails de configuration et de déploiement.",
+  },
+  it: {
+    metaTitle: "Documentazione chohle: Assistente IA",
+    metaDescription:
+      "Un assistente di chat opzionale nell'app che legge i tuoi dati e prepara clienti e fatture dal linguaggio naturale, su un LLM locale che ospiti tu stesso.",
+    h1: "Assistente IA",
+    intro:
+      "chohle offre un assistente di chat opzionale. Puoi chiedergli di cercare un'informazione, oppure descrivere un cliente o una fattura in linguaggio naturale e lasciare che prepari il record per te. Funziona su un LLM locale che ospiti tu stesso, così nessuno dei tuoi dati lascia il tuo server. È disattivato per impostazione predefinita; attivalo solo se lo desideri.",
+    wipTitle: "In lavorazione",
+    wipText:
+      "L'assistente è nuovo e ancora in fase di rifinitura. Con un buon modello è affidabile, ma a volte può interpretare male una richiesta complessa in più passaggi. Consideralo uno strumento utile per le bozze, non qualcosa che agisce da solo. La cosa migliore da fare: attivalo, ponigli domande vere, osserva come propone le modifiche e adatta i prompt o il codice come preferisci. Ogni modifica proposta sta a te confermarla o annullarla, quindi puoi sperimentare senza rischi.",
+    screenshotAlt: "L'assistente propone un nuovo cliente e una fattura in bozza da confermare",
+    canH2: "Cosa può fare",
+    canRead:
+      "Può leggere i tuoi clienti, fatture, offerte, articoli, firme, spese, categorie e una breve panoramica, così puoi semplicemente fargli domande sui tuoi dati.",
+    canWrite:
+      "Con la tua conferma può anche creare e modificare record. Ogni scrittura appare prima come una scheda Conferma o Annulla, con un riepilogo chiaro, e una modifica mostra una vista prima e dopo per ricontrollare. Nulla viene salvato finché non confermi.",
+    matrixCols: { entity: "Oggetto", read: "Lettura", create: "Creazione", edit: "Modifica" },
+    entityNames: {
+      customer: "Cliente",
+      invoice: "Fattura",
+      quote: "Offerta",
+      article: "Articolo",
+      signature: "Firma",
+      expense: "Spesa",
+      income: "Fonte di reddito",
+    },
+    matrixNote:
+      "Le fatture e le offerte create sono bozze senza numero, esattamente come nel flusso normale, e il numero lo assegni più tardi. L'assistente non può mai eliminare un record né inviare un'e-mail; semplicemente non esiste alcuno strumento per farlo, quindi è impossibile per progettazione.",
+    safetyH2: "Come resta sicuro",
+    safetyItems: [
+      { t: "Proporre, poi confermare, poi scrivere", d: "il modello può solo proporre modifiche. La scrittura avviene in un passaggio separato che parte solo dopo che hai cliccato Conferma, e ricontrolla tutto prima di salvare in un'unica transazione atomica." },
+      { t: "Non può mai eliminare o inviare", d: "l'assistente non ha alcuno strumento di eliminazione né di invio, quindi non può né rimuovere i tuoi dati né scrivere ai tuoi clienti. Le modifiche cambiano solo i campi e non rimuovono mai un record." },
+      { t: "Spento nella demo pubblica", d: "in modalità demo l'assistente è disattivato, così un visitatore pubblico non può mai raggiungerlo." },
+      { t: "Tracciato e salvato", d: "ogni lotto confermato viene registrato, e le tue chat vengono salvate così ritrovi la cronologia al ritorno. Usa Nuova chat per ripartire da capo, o l'icona cestino per rimuoverne una." },
+    ],
+    enableH2: "Attivalo",
+    enableIntro:
+      "L'assistente parla il protocollo di chat compatibile con OpenAI, quindi puoi usare l'Ollama incluso o puntarlo a qualsiasi altro endpoint. Dopo aver impostato le variabili, riavvia l'app.",
+    optionAH3: "Opzione A: l'Ollama incluso",
+    optionAText:
+      "chohle include un servizio Ollama opzionale. Si avvia solo con il profilo llm, quindi un avvio normale lo ignora del tutto. Avvialo e scarica un modello:",
+    optionAEnvText: "Poi imposta questi valori nel tuo .env e riavvia:",
+    optionBH3: "Opzione B: un endpoint esterno",
+    optionBText:
+      "Punta l'URL di base a LM Studio, al server llama.cpp, a vLLM o a un'API ospitata compatibile con OpenAI. Imposta una chiave API se l'endpoint la richiede. Nessun profilo Docker necessario.",
+    configH2: "Configurazione",
+    configCols: { variable: "Variabile", default: "Predefinito", purpose: "Scopo" },
+    purposes: [
+      "Imposta true per attivare l'assistente e mostrarlo nella barra laterale.",
+      "URL di base compatibile con OpenAI del tuo server del modello.",
+      "Nome del modello da richiedere.",
+      "Token Bearer, solo per gli endpoint ospitati che ne richiedono uno.",
+    ],
+    modelH2: "Scegliere un modello",
+    modelText:
+      "Il modello deve supportare la chiamata di strumenti, altrimenti può chattare ma non crea record in modo affidabile. Buone scelte locali note:",
+    models: [
+      { n: "qwen2.5:7b", d: "il valore predefinito. Buona chiamata di strumenti, richiede circa 8 GB di RAM." },
+      { n: "llama3.1:8b o llama3.2", d: "anch'essi validi." },
+      { n: "mistral", d: "funziona bene." },
+      { n: "un modello 3B su una macchina piccola", d: "ad esempio qwen2.5:3b. Più veloce, ma meno affidabile sulle richieste in più passaggi." },
+    ],
+    hardwareNote:
+      "Un modello 8B richiede circa 8 GB di RAM libera ed è legato alla CPU senza una GPU, quindi una risposta può richiedere da secondi a decine di secondi. Su un server molto piccolo, punta invece a un endpoint esterno.",
+    tryH2: "Provalo",
+    tryText: "Apri l'assistente dalla barra laterale e prova qualche richiesta per prenderci la mano:",
+    tryExamples: [
+      "Mostra i miei clienti",
+      "Crea un cliente: Müller Bau, Zurigo",
+      "Fattura Café Zentral 8h di consulenza a 150",
+    ],
+    moreH2: "Correlati",
+    moreText: "Vedi",
+    moreLinkEnv: "Variabili d'ambiente",
+    moreAnd: "e",
+    moreLinkHost: "Self-hosting",
+    moreEnd: "per tutti i dettagli di configurazione e distribuzione.",
+  },
+} as const;
+const c = content[lang] ?? content.en;
+
+// Read / Create / Edit capability per entity, in display order.
+const matrix: { key: keyof (typeof content)["en"]["entityNames"]; read: boolean; create: boolean; edit: boolean }[] = [
+  { key: "customer", read: true, create: true, edit: true },
+  { key: "invoice", read: true, create: true, edit: true },
+  { key: "quote", read: true, create: true, edit: true },
+  { key: "article", read: true, create: true, edit: true },
+  { key: "signature", read: true, create: true, edit: true },
+  { key: "expense", read: true, create: true, edit: false },
+  { key: "income", read: false, create: true, edit: false },
+];
+
+const envNames = ["CHOHLE_ASSISTANT", "NUXT_LLM_BASE_URL", "NUXT_LLM_MODEL", "NUXT_LLM_API_KEY"];
+const envDefaults = ["(off)", "http://ollama:11434/v1", "qwen2.5:7b", "(empty)"];
+const vars = envNames.map((name, i) => ({ name, default: envDefaults[i], purpose: c.purposes[i] }));
+
+const cell = (on: boolean) => (on ? "✓" : "");
+---
+
+<DocsLayout title={c.metaTitle} description={c.metaDescription}>
+  <h1>{c.h1}</h1>
+  <p>{c.intro}</p>
+
+  <div class="not-prose my-6 flex gap-3 rounded-2xl bg-amber-50 p-4 text-sm/6 text-amber-900 ring-1 ring-amber-500/20 dark:bg-amber-400/10 dark:text-amber-200 dark:ring-amber-400/20">
+    <svg class="mt-0.5 size-5 shrink-0" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" /></svg>
+    <p><strong class="font-semibold">{c.wipTitle}.</strong> {c.wipText}</p>
+  </div>
+
+  <img src={shot("assistant", lang)} alt={c.screenshotAlt} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+
+  <h2 id="what-it-can-do">{c.canH2}</h2>
+  <p>{c.canRead}</p>
+  <p>{c.canWrite}</p>
+
+  <div class="not-prose mt-6 overflow-x-auto rounded-2xl ring-1 ring-mauve-950/10 dark:ring-white/10">
+    <table class="w-full border-collapse text-left text-sm/6">
+      <thead>
+        <tr class="border-b border-mauve-950/10 text-mauve-950 dark:border-white/10 dark:text-white">
+          <th class="px-4 py-3 font-medium">{c.matrixCols.entity}</th>
+          <th class="px-4 py-3 text-center font-medium">{c.matrixCols.read}</th>
+          <th class="px-4 py-3 text-center font-medium">{c.matrixCols.create}</th>
+          <th class="px-4 py-3 text-center font-medium">{c.matrixCols.edit}</th>
+        </tr>
+      </thead>
+      <tbody class="text-mauve-700 dark:text-mauve-400">
+        {matrix.map((row) => (
+          <tr class="border-b border-mauve-950/5 last:border-0 dark:border-white/5">
+            <td class="px-4 py-3">{c.entityNames[row.key]}</td>
+            <td class="px-4 py-3 text-center text-mauve-950 dark:text-white">{cell(row.read)}</td>
+            <td class="px-4 py-3 text-center text-mauve-950 dark:text-white">{cell(row.create)}</td>
+            <td class="px-4 py-3 text-center text-mauve-950 dark:text-white">{cell(row.edit)}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <p>{c.matrixNote}</p>
+
+  <h2 id="how-it-stays-safe">{c.safetyH2}</h2>
+  <ul>
+    {c.safetyItems.map((item) => (
+      <li><strong>{item.t}:</strong> {item.d}</li>
+    ))}
+  </ul>
+
+  <h2 id="turn-it-on">{c.enableH2}</h2>
+  <p>{c.enableIntro}</p>
+
+  <h3 id="option-a">{c.optionAH3}</h3>
+  <p>{c.optionAText}</p>
+  <CodeBlock prompt={false} label="bash" code={`docker compose --profile llm up
+docker compose exec ollama ollama pull qwen2.5:7b`} />
+  <p>{c.optionAEnvText}</p>
+  <CodeBlock prompt={false} label=".env" code={`CHOHLE_ASSISTANT=true
+NUXT_LLM_BASE_URL=http://ollama:11434/v1
+NUXT_LLM_MODEL=qwen2.5:7b`} />
+
+  <h3 id="option-b">{c.optionBH3}</h3>
+  <p>{c.optionBText}</p>
+  <CodeBlock prompt={false} label=".env" code={`CHOHLE_ASSISTANT=true
+NUXT_LLM_BASE_URL=http://your-endpoint:1234/v1
+NUXT_LLM_MODEL=your-model
+NUXT_LLM_API_KEY=your-key-if-needed`} />
+
+  <h2 id="configuration">{c.configH2}</h2>
+  <div class="not-prose mt-6 overflow-x-auto rounded-2xl ring-1 ring-mauve-950/10 dark:ring-white/10">
+    <table class="w-full border-collapse text-left text-sm/6">
+      <thead>
+        <tr class="border-b border-mauve-950/10 text-mauve-950 dark:border-white/10 dark:text-white">
+          <th class="px-4 py-3 font-medium">{c.configCols.variable}</th>
+          <th class="px-4 py-3 font-medium">{c.configCols.default}</th>
+          <th class="px-4 py-3 font-medium">{c.configCols.purpose}</th>
+        </tr>
+      </thead>
+      <tbody class="text-mauve-700 dark:text-mauve-400">
+        {vars.map((v) => (
+          <tr class="border-b border-mauve-950/5 last:border-0 dark:border-white/5">
+            <td class="px-4 py-3 align-top"><code class="rounded bg-mauve-950/5 px-1.5 py-0.5 font-mono text-[0.85em] text-mauve-950 dark:bg-white/10 dark:text-white">{v.name}</code></td>
+            <td class="px-4 py-3 align-top font-mono text-[0.85em]">{v.default}</td>
+            <td class="px-4 py-3 align-top">{v.purpose}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <h2 id="choosing-a-model">{c.modelH2}</h2>
+  <p>{c.modelText}</p>
+  <ul>
+    {c.models.map((m) => (
+      <li><strong>{m.n}:</strong> {m.d}</li>
+    ))}
+  </ul>
+  <p>{c.hardwareNote}</p>
+
+  <h2 id="give-it-a-try">{c.tryH2}</h2>
+  <p>{c.tryText}</p>
+  <ul>
+    {c.tryExamples.map((ex) => (
+      <li><em>{ex}</em></li>
+    ))}
+  </ul>
+
+  <h2 id="related">{c.moreH2}</h2>
+  <p>
+    {c.moreText} <a href={localize("/docs/environment-variables", lang)}>{c.moreLinkEnv}</a> {c.moreAnd}
+    <a href={localize("/docs/self-hosting", lang)}>{c.moreLinkHost}</a> {c.moreEnd}
+  </p>
+</DocsLayout>

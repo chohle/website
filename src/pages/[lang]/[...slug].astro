@@ -31,6 +31,7 @@ import DocDockerCli from "../../components/docs/DocDockerCli.astro";
 import DocEnvironmentVariables from "../../components/docs/DocEnvironmentVariables.astro";
 import DocBackups from "../../components/docs/DocBackups.astro";
 import DocDemoMode from "../../components/docs/DocDemoMode.astro";
+import DocAssistant from "../../components/docs/DocAssistant.astro";
 
 // One catch-all route renders every localized non-home page. getStaticPaths
 // emits the language-translated slug for each canonical path; the matching
@@ -77,6 +78,7 @@ const COMPONENTS: Record<string, any> = {
   "/docs/environment-variables": DocEnvironmentVariables,
   "/docs/backups": DocBackups,
   "/docs/demo-mode": DocDemoMode,
+  "/docs/assistant": DocAssistant,
 };
 
 const { canonical, lang } = Astro.props as { canonical: string; lang: Lang };

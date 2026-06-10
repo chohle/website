@@ -35,6 +35,7 @@ const SEGMENTS: Record<string, Partial<Record<Lang, string>>> = {
   "environment-variables": { de: "umgebungsvariablen", fr: "variables-environnement", it: "variabili-ambiente" },
   backups: { de: "backups", fr: "sauvegardes", it: "backup" },
   "demo-mode": { de: "demo-modus", fr: "mode-demo", it: "modalita-demo" },
+  assistant: { de: "assistent", fr: "assistant", it: "assistente" },
 };
 
 // Reverse lookup per language: localized segment -> canonical segment.
@@ -93,4 +94,5 @@ export const LOCALIZED_PATHS = [
   "/docs/environment-variables",
   "/docs/backups",
   "/docs/demo-mode",
+  "/docs/assistant",
 ];
