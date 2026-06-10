@@ -6,6 +6,7 @@ import { defaultLang, type Lang } from "../../i18n/config";
 import { getFeatures } from "../../i18n/features";
 import { useTranslations } from "../../i18n/ui";
 import { localize } from "../../i18n/utils";
+import { shot } from "../../lib/screenshots";
 
 interface Props { lang?: Lang }
 const { lang = defaultLang } = Astro.props;
@@ -17,7 +18,7 @@ const docsUrl = localize("/docs", lang);
 
 // Real app screenshots captured per locale from the running app, stored under
 // /public/screenshots as `<shot>-<lang>.jpg`.
-const shotSrc = (shot: string) => `/screenshots/${shot}-en.jpg`;
+const shotSrc = (s: string) => shot(s, lang);
 
 const frame = [
   { color: "green", placement: "bottom-right" },

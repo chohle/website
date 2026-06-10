@@ -5,6 +5,7 @@ import { useTranslations } from "../i18n/ui";
 import { localize } from "../i18n/utils";
 import { getHome } from "../i18n/home";
 import Eyebrow from "./Eyebrow.astro";
+import { shot } from "../lib/screenshots";
 
 interface Props { lang?: Lang }
 const { lang = defaultLang } = Astro.props;
@@ -18,7 +19,7 @@ const style = [
 ] as const;
 // Real per-locale screenshots, matched to the three home feature items.
 const shots = ["invoice-pdf", "pipeline", "conversations"] as const;
-const shotSrc = (s: string) => `/screenshots/${s}-en.jpg`;
+const shotSrc = (s: string) => shot(s, lang);
 const featuresPage = localize("/features", lang);
 ---
 
