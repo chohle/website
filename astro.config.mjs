@@ -22,6 +22,14 @@ export default defineConfig({
     },
   },
 
+  // The About page was removed; send any indexed links to the home page.
+  redirects: {
+    '/about': '/',
+    '/de/ueber-uns': '/de',
+    '/fr/a-propos': '/fr',
+    '/it/chi-siamo': '/it',
+  },
+
   vite: {
     plugins: [tailwindcss()],
   },

@@ -6,7 +6,6 @@ import { defaultLang, langs, type Lang } from "./config";
 // lowercase, ASCII and hyphenated so the URLs stay clean.
 const SEGMENTS: Record<string, Partial<Record<Lang, string>>> = {
   // top level
-  about: { de: "ueber-uns", fr: "a-propos", it: "chi-siamo" },
   features: { de: "funktionen", fr: "fonctionnalites", it: "funzionalita" },
   pricing: { de: "preise", fr: "tarifs", it: "prezzi" },
   privacy: { de: "datenschutz", fr: "confidentialite", it: "privacy" },
@@ -66,7 +65,6 @@ export function canonicalizePath(path: string, lang: Lang): string {
 
 /** Every canonical path that needs a localized route generated (home excluded). */
 export const LOCALIZED_PATHS = [
-  "/about",
   "/features",
   "/pricing",
   "/privacy",

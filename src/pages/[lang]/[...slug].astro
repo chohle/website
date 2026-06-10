@@ -2,7 +2,6 @@
 import { langs, defaultLang, type Lang } from "../../i18n/config";
 import { LOCALIZED_PATHS, localizePath } from "../../i18n/routes";
 
-import AboutPage from "../../components/pages/AboutPage.astro";
 import FeaturesPage from "../../components/pages/FeaturesPage.astro";
 import PricingPage from "../../components/pages/PricingPage.astro";
 import PrivacyPage from "../../components/pages/PrivacyPage.astro";
@@ -50,7 +49,6 @@ export function getStaticPaths() {
 }
 
 const COMPONENTS: Record<string, any> = {
-  "/about": AboutPage,
   "/features": FeaturesPage,
   "/pricing": PricingPage,
   "/privacy": PrivacyPage,
