@@ -4,8 +4,7 @@ export interface HomeContent {
   meta: { title: string; description: string };
   hero: { headline: string; sub: string; keywords: string[] };
   features: { headline: string; sub: string; items: { title: string; body: string }[] };
-  why: { heading: string; body: string; values: { stat: string; text: string }[] };
-  open: { eyebrow: string; headline: string; body: string; items: { tag: string; title: string; desc: string }[] };
+  why: { heading: string; body: string; items: { tag: string; title: string; desc: string }[] };
   pricing: { headline: string; body: string };
   faqsTitle: string;
   faqsSub: string;
@@ -21,7 +20,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
     hero: {
       headline: 'Invoicing, projects and email in one <span class="text-accent dark:text-accent-light">calm</span> place.',
       sub: "chohle brings billing, your project pipeline and client email together for Swiss freelancers and small teams. Open source and free to try, with no account required.",
-      keywords: ["Swiss QR-bills", "VAT", "Invoicing", "Quotes", "Projects & pipeline", "Client email", "Payments", "Reminders", "Open source", "Self-hosted"],
+      keywords: ["Swiss QR-bills", "VAT", "Invoicing", "Quotes", "Projects & pipeline", "Client email", "Payments", "Reminders", "Open source", "Self-hosted", "AI assistant"],
     },
     features: {
       headline: "From the first quote to the final payment.",
@@ -34,21 +33,11 @@ const home: Partial<Record<Lang, HomeContent>> = {
     },
     why: {
       heading: "Built to stay out of your way.",
-      body: "chohle gets the boring fundamentals right. It is open, Swiss-ready and yours to run, so you can get back to the work that actually pays.",
-      values: [
-        { stat: "Swiss-ready", text: "QR-bills and VAT handled the way Switzerland expects, right out of the box." },
-        { stat: "Self-hostable", text: "Run chohle on your own server in minutes. Your data never has to leave it." },
-        { stat: "No lock-in", text: "Open formats and full exports. Your invoices and clients are always yours." },
-      ],
-    },
-    open: {
-      eyebrow: "Open by design",
-      headline: "Yours to run, end to end.",
-      body: "chohle is open source. Use the hosted demo, or self-host the whole thing on your own server so your data stays with you. No lock-in, no black boxes, no surprises.",
+      body: "chohle gets the boring fundamentals right: open source, Swiss-ready and yours to run, so your data stays with you and you can get back to the work that actually pays.",
       items: [
-        { tag: "Self-hostable", title: "Run it on your own server", desc: "chohle is built to self-host. Spin it up with Docker in a single command and keep everything in-house." },
+        { tag: "Swiss-ready", title: "QR-bills and VAT, done right", desc: "Invoices follow the Swiss QR-bill standard and handle VAT the way Switzerland expects, right out of the box." },
+        { tag: "Self-hostable", title: "Run it on your own server", desc: "Spin it up with Docker in a single command and keep everything in-house. Nothing ever leaves your infrastructure." },
         { tag: "No lock-in", title: "Open formats", desc: "Your data lives in a plain SQLite file you can back up or export. Your invoices and clients are always yours to take." },
-        { tag: "Private", title: "Your data stays put", desc: "When you self-host, nothing ever leaves your infrastructure. No third parties, no subscription, no surprises." },
         { tag: "Open source", title: "Read every line", desc: "The whole codebase is public under the MIT licence. Audit it, extend it, or contribute back. It's yours to shape." },
       ],
     },
@@ -63,6 +52,8 @@ const home: Partial<Record<Lang, HomeContent>> = {
       { q: "Can I self-host it?", a: "Absolutely. chohle is built to run on your own server, and the self-hosting guide walks you through it. Your data never has to leave your infrastructure." },
       { q: "Does it do Swiss QR-bills?", a: "Yes. chohle generates invoices with a QR-bill that follows the Swiss QR-bill standard, ready for your clients to scan and pay." },
       { q: "Who owns my data?", a: "You do. When you self-host, your data stays entirely on your server. On the hosted plan it is still yours, and you can export everything at any time." },
+      { q: "Does it have an AI assistant?", a: "Optionally, yes. You can connect a local LLM you host yourself and ask it to look things up or draft customers and invoices in plain language. You approve every change before anything is saved, and the docs explain how to set it up." },
+      { q: "How mature is chohle?", a: "It is an honest work in progress: a side project built in the open, partly with the help of local LLMs. It works day to day, but there are rough edges and bugs still to find. If you spot something off, please open an issue on GitHub; a friendly note goes a long way." },
     ],
   },
   de: {
@@ -73,7 +64,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
     hero: {
       headline: 'Rechnungen, Projekte und E-Mails an einem <span class="text-accent dark:text-accent-light">ruhigen</span> Ort.',
       sub: "chohle vereint Rechnungsstellung, Projekt-Pipeline und Kunden-E-Mails für Schweizer Freelancer und kleine Teams. Open Source und kostenlos zum Ausprobieren, ganz ohne Konto.",
-      keywords: ["Schweizer QR-Rechnungen", "MWST", "Rechnungen", "Offerten", "Projekte & Pipeline", "Kunden-E-Mail", "Zahlungen", "Mahnungen", "Open Source", "Self-hosted"],
+      keywords: ["Schweizer QR-Rechnungen", "MWST", "Rechnungen", "Offerten", "Projekte & Pipeline", "Kunden-E-Mail", "Zahlungen", "Mahnungen", "Open Source", "Self-hosted", "KI-Assistent"],
     },
     features: {
       headline: "Von der ersten Offerte bis zur letzten Zahlung.",
@@ -86,21 +77,11 @@ const home: Partial<Record<Lang, HomeContent>> = {
     },
     why: {
       heading: "Entwickelt, um dir nicht im Weg zu stehen.",
-      body: "chohle macht die langweiligen Grundlagen richtig. Es ist offen, Schweiz-tauglich und selbst betreibbar, damit du zurück zur Arbeit kannst, die wirklich Geld bringt.",
-      values: [
-        { stat: "Schweiz-tauglich", text: "QR-Rechnungen und MWST so, wie es die Schweiz erwartet, von Anfang an." },
-        { stat: "Selbst hostbar", text: "Betreibe chohle in Minuten auf deinem eigenen Server. Deine Daten müssen ihn nie verlassen." },
-        { stat: "Kein Lock-in", text: "Offene Formate und vollständige Exporte. Deine Rechnungen und Kunden gehören immer dir." },
-      ],
-    },
-    open: {
-      eyebrow: "Offen konzipiert",
-      headline: "Deins, von A bis Z selbst betreibbar.",
-      body: "chohle ist Open Source. Nutze die gehostete Demo oder betreibe alles selbst auf deinem Server, damit deine Daten bei dir bleiben. Kein Lock-in, keine Blackbox, keine Überraschungen.",
+      body: "chohle macht die langweiligen Grundlagen richtig: Open Source, Schweiz-tauglich und selbst betreibbar, damit deine Daten bei dir bleiben und du zurück zur Arbeit kannst, die wirklich Geld bringt.",
       items: [
-        { tag: "Selbst hostbar", title: "Auf deinem eigenen Server", desc: "chohle ist fürs Self-Hosting gebaut. Starte es mit Docker in einem einzigen Befehl und behalte alles im Haus." },
+        { tag: "Schweiz-tauglich", title: "QR-Rechnungen und MWST, richtig gemacht", desc: "Rechnungen folgen dem Schweizer QR-Rechnungs-Standard und behandeln die MWST so, wie es die Schweiz erwartet, von Anfang an." },
+        { tag: "Selbst hostbar", title: "Auf deinem eigenen Server", desc: "Starte es mit Docker in einem einzigen Befehl und behalte alles im Haus. Nichts verlässt je deine Infrastruktur." },
         { tag: "Kein Lock-in", title: "Offene Formate", desc: "Deine Daten liegen in einer einfachen SQLite-Datei, die du sichern oder exportieren kannst. Deine Rechnungen und Kunden gehören immer dir." },
-        { tag: "Privat", title: "Deine Daten bleiben, wo sie sind", desc: "Beim Self-Hosting verlässt nichts je deine Infrastruktur. Keine Dritten, kein Abo, keine Überraschungen." },
         { tag: "Open Source", title: "Lies jede Zeile", desc: "Der gesamte Code ist öffentlich unter der MIT-Lizenz. Prüfe ihn, erweitere ihn oder trag etwas bei. Er gehört dir zum Gestalten." },
       ],
     },
@@ -115,6 +96,8 @@ const home: Partial<Record<Lang, HomeContent>> = {
       { q: "Kann ich es selbst hosten?", a: "Auf jeden Fall. chohle ist dafür gebaut, auf deinem eigenen Server zu laufen, und die Self-Hosting-Anleitung führt dich Schritt für Schritt durch. Deine Daten müssen deine Infrastruktur nie verlassen." },
       { q: "Kann es Schweizer QR-Rechnungen?", a: "Ja. chohle erstellt Rechnungen mit einer QR-Rechnung nach dem Schweizer QR-Rechnungs-Standard, bereit zum Scannen und Bezahlen für deine Kunden." },
       { q: "Wem gehören meine Daten?", a: "Dir. Beim Self-Hosting bleiben deine Daten vollständig auf deinem Server. Auch im gehosteten Plan gehören sie dir, und du kannst jederzeit alles exportieren." },
+      { q: "Hat es einen KI-Assistenten?", a: "Optional, ja. Du kannst ein lokales LLM anbinden, das du selbst betreibst, und es Dinge nachschlagen oder Kunden und Rechnungen in normaler Sprache entwerfen lassen. Du bestätigst jede Änderung, bevor etwas gespeichert wird, und die Doku erklärt die Einrichtung." },
+      { q: "Wie ausgereift ist chohle?", a: "Es ist ehrlich gesagt in Arbeit: ein Nebenprojekt, offen entwickelt, teils mit Hilfe lokaler LLMs. Es funktioniert im Alltag, aber es gibt noch Ecken, Kanten und unentdeckte Bugs. Fällt dir etwas auf, eröffne bitte ein Issue auf GitHub; ein freundlicher Hinweis hilft enorm." },
     ],
   },
   fr: {
@@ -125,7 +108,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
     hero: {
       headline: 'Factures, projets et e-mails, réunis dans un espace <span class="text-accent dark:text-accent-light">serein</span>.',
       sub: "chohle réunit la facturation, le pipeline de projets et les e-mails clients pour les indépendants et petites équipes en Suisse. Open source et gratuit à l'essai, sans compte.",
-      keywords: ["QR-factures suisses", "TVA", "Facturation", "Devis", "Projets & pipeline", "E-mail clients", "Paiements", "Rappels", "Open source", "Auto-hébergé"],
+      keywords: ["QR-factures suisses", "TVA", "Facturation", "Devis", "Projets & pipeline", "E-mail clients", "Paiements", "Rappels", "Open source", "Auto-hébergé", "Assistant IA"],
     },
     features: {
       headline: "Du premier devis au dernier paiement.",
@@ -138,21 +121,11 @@ const home: Partial<Record<Lang, HomeContent>> = {
     },
     why: {
       heading: "Conçu pour se faire oublier.",
-      body: "chohle soigne les fondamentaux ennuyeux. Il est ouvert, prêt pour la Suisse et hébergeable par vous, pour que vous reveniez au travail qui paie vraiment.",
-      values: [
-        { stat: "Prêt pour la Suisse", text: "QR-factures et TVA gérées comme la Suisse l'attend, dès le départ." },
-        { stat: "Auto-hébergeable", text: "Hébergez chohle sur votre propre serveur en quelques minutes. Vos données n'ont jamais à le quitter." },
-        { stat: "Aucun verrouillage", text: "Formats ouverts et exports complets. Vos factures et vos clients restent toujours les vôtres." },
-      ],
-    },
-    open: {
-      eyebrow: "Ouvert par conception",
-      headline: "À vous de l'exécuter, de bout en bout.",
-      body: "chohle est open source. Utilisez la démo hébergée, ou hébergez le tout sur votre propre serveur pour que vos données restent chez vous. Aucun verrouillage, aucune boîte noire, aucune surprise.",
+      body: "chohle soigne les fondamentaux ennuyeux : open source, prêt pour la Suisse et hébergeable par vous, pour que vos données restent chez vous et que vous reveniez au travail qui paie vraiment.",
       items: [
-        { tag: "Auto-hébergeable", title: "Sur votre propre serveur", desc: "chohle est conçu pour l'auto-hébergement. Lancez-le avec Docker en une seule commande et gardez tout en interne." },
+        { tag: "Prêt pour la Suisse", title: "QR-factures et TVA, bien gérées", desc: "Les factures suivent la norme suisse de la QR-facture et gèrent la TVA comme la Suisse l'attend, dès le départ." },
+        { tag: "Auto-hébergeable", title: "Sur votre propre serveur", desc: "Lancez-le avec Docker en une seule commande et gardez tout en interne. Rien ne quitte jamais votre infrastructure." },
         { tag: "Aucun verrouillage", title: "Formats ouverts", desc: "Vos données vivent dans un simple fichier SQLite que vous pouvez sauvegarder ou exporter. Vos factures et vos clients sont toujours à vous." },
-        { tag: "Privé", title: "Vos données restent chez vous", desc: "Quand vous auto-hébergez, rien ne quitte jamais votre infrastructure. Pas de tiers, pas d'abonnement, pas de surprises." },
         { tag: "Open source", title: "Lisez chaque ligne", desc: "Tout le code est public sous licence MIT. Auditez-le, étendez-le ou contribuez. Il est à vous de le façonner." },
       ],
     },
@@ -167,6 +140,8 @@ const home: Partial<Record<Lang, HomeContent>> = {
       { q: "Puis-je l'auto-héberger ?", a: "Tout à fait. chohle est conçu pour tourner sur votre propre serveur, et le guide d'auto-hébergement vous accompagne pas à pas. Vos données n'ont jamais à quitter votre infrastructure." },
       { q: "Gère-t-il les QR-factures suisses ?", a: "Oui. chohle génère des factures avec une QR-facture conforme à la norme suisse, prêtes à être scannées et payées par vos clients." },
       { q: "À qui appartiennent mes données ?", a: "À vous. En auto-hébergement, vos données restent entièrement sur votre serveur. Avec l'offre hébergée, elles vous appartiennent toujours, et vous pouvez tout exporter à tout moment." },
+      { q: "A-t-il un assistant IA ?", a: "En option, oui. Vous pouvez connecter un LLM local que vous hébergez vous-même et lui demander de chercher une information ou de préparer des clients et des factures en langage naturel. Vous validez chaque changement avant qu'il soit enregistré, et la documentation explique la mise en place." },
+      { q: "Quelle est la maturité de chohle ?", a: "C'est honnêtement un travail en cours : un projet personnel, développé au grand jour, en partie avec l'aide de LLM locaux. Il fonctionne au quotidien, mais il reste des aspérités et des bugs à trouver. Si quelque chose cloche, ouvrez une issue sur GitHub ; un mot bienveillant aide beaucoup." },
     ],
   },
   it: {
@@ -177,7 +152,7 @@ const home: Partial<Record<Lang, HomeContent>> = {
     hero: {
       headline: 'Fatture, progetti ed e-mail in un unico spazio <span class="text-accent dark:text-accent-light">sereno</span>.',
       sub: "chohle unisce fatturazione, pipeline dei progetti ed e-mail dei clienti per freelance e piccoli team svizzeri. Open source e gratis da provare, senza account.",
-      keywords: ["QR-fatture svizzere", "IVA", "Fatturazione", "Preventivi", "Progetti & pipeline", "E-mail clienti", "Pagamenti", "Solleciti", "Open source", "Self-hosting"],
+      keywords: ["QR-fatture svizzere", "IVA", "Fatturazione", "Preventivi", "Progetti & pipeline", "E-mail clienti", "Pagamenti", "Solleciti", "Open source", "Self-hosting", "Assistente IA"],
     },
     features: {
       headline: "Dal primo preventivo all'ultimo pagamento.",
@@ -190,21 +165,11 @@ const home: Partial<Record<Lang, HomeContent>> = {
     },
     why: {
       heading: "Progettato per non intralciarti.",
-      body: "chohle cura le basi noiose. È aperto, pronto per la Svizzera e gestibile da te, così puoi tornare al lavoro che paga davvero.",
-      values: [
-        { stat: "Pronto per la Svizzera", text: "QR-fatture e IVA gestite come si aspetta la Svizzera, fin da subito." },
-        { stat: "Self-hosting", text: "Esegui chohle sul tuo server in pochi minuti. I tuoi dati non devono mai uscirne." },
-        { stat: "Nessun lock-in", text: "Formati aperti ed esportazioni complete. Le tue fatture e i tuoi clienti restano sempre tuoi." },
-      ],
-    },
-    open: {
-      eyebrow: "Aperto per scelta",
-      headline: "Tuo da gestire, dall'inizio alla fine.",
-      body: "chohle è open source. Usa la demo ospitata oppure esegui tutto sul tuo server, così i tuoi dati restano con te. Nessun lock-in, nessuna scatola nera, nessuna sorpresa.",
+      body: "chohle cura le basi noiose: open source, pronto per la Svizzera e gestibile da te, così i tuoi dati restano con te e puoi tornare al lavoro che paga davvero.",
       items: [
-        { tag: "Auto-ospitabile", title: "Sul tuo server", desc: "chohle è pensato per il self-hosting. Avvialo con Docker in un solo comando e tieni tutto in casa." },
+        { tag: "Pronto per la Svizzera", title: "QR-fatture e IVA, fatte bene", desc: "Le fatture seguono lo standard svizzero della QR-fattura e gestiscono l'IVA come si aspetta la Svizzera, fin da subito." },
+        { tag: "Auto-ospitabile", title: "Sul tuo server", desc: "Avvialo con Docker in un solo comando e tieni tutto in casa. Nulla lascia mai la tua infrastruttura." },
         { tag: "Nessun lock-in", title: "Formati aperti", desc: "I tuoi dati vivono in un semplice file SQLite che puoi salvare o esportare. Le tue fatture e i tuoi clienti restano sempre tuoi." },
-        { tag: "Privato", title: "I tuoi dati restano al loro posto", desc: "Quando fai self-hosting, nulla lascia mai la tua infrastruttura. Nessun terzo, nessun abbonamento, nessuna sorpresa." },
         { tag: "Open source", title: "Leggi ogni riga", desc: "L'intero codice è pubblico sotto licenza MIT. Verificalo, estendilo o contribuisci. È tuo da plasmare." },
       ],
     },
@@ -219,6 +184,8 @@ const home: Partial<Record<Lang, HomeContent>> = {
       { q: "Posso ospitarlo da solo?", a: "Assolutamente. chohle è fatto per girare sul tuo server e la guida al self-hosting ti accompagna passo dopo passo. I tuoi dati non devono mai lasciare la tua infrastruttura." },
       { q: "Gestisce le QR-fatture svizzere?", a: "Sì. chohle genera fatture con una QR-fattura conforme allo standard svizzero, pronte per essere scansionate e pagate dai tuoi clienti." },
       { q: "A chi appartengono i miei dati?", a: "A te. In self-hosting i tuoi dati restano interamente sul tuo server. Anche con il piano ospitato sono tuoi, e puoi esportare tutto in qualsiasi momento." },
+      { q: "Ha un assistente IA?", a: "Opzionale, sì. Puoi collegare un LLM locale che ospiti tu stesso e chiedergli di cercare informazioni o preparare clienti e fatture in linguaggio naturale. Confermi ogni modifica prima che venga salvata, e la documentazione spiega come configurarlo." },
+      { q: "Quanto è maturo chohle?", a: "È onestamente un lavoro in corso: un progetto personale, sviluppato alla luce del sole, in parte con l'aiuto di LLM locali. Funziona ogni giorno, ma ci sono ancora spigoli e bug da scovare. Se noti qualcosa che non va, apri una issue su GitHub; una segnalazione gentile aiuta molto." },
     ],
   },
 };
