@@ -32,7 +32,7 @@ const docsUrl = localize("/docs", lang);
 
       <div class="grid w-full grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {c.items.map((item) => (
-          <div class="flex flex-col gap-3 rounded-3xl bg-mauve-950/2.5 p-8 ring-1 ring-mauve-950/10 dark:bg-white/5 dark:ring-white/15" data-reveal>
+          <div class="shape flex flex-col gap-3 overflow-hidden bg-mauve-50 p-8 ring-1 ring-mauve-950/10 transition-shadow hover:ring-mauve-950/30" data-reveal>
             <span class="w-fit bg-accent/15 px-2.5 py-1 font-mono text-[0.7rem]/6 font-medium tracking-wider text-accent uppercase dark:bg-accent/25 dark:text-accent-light">{item.tag}</span>
             <h3 class="text-base/7 font-medium text-mauve-950 dark:text-white">{item.title}</h3>
             <p class="text-sm/7 text-mauve-700 dark:text-mauve-400">{item.desc}</p>
@@ -41,10 +41,10 @@ const docsUrl = localize("/docs", lang);
       </div>
 
       <div class="flex items-center justify-center gap-4" data-reveal>
-        <a href={githubUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-5 py-2 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">
+        <a href={githubUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-5 py-2 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider btn-ink bg-mauve-950 text-white dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">
           {t("cta.viewOnGitHub")}
         </a>
-        <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-5 py-2 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider text-mauve-950 hover:bg-mauve-950/10 dark:text-white dark:hover:bg-white/10">{t("cta.readDocs")}</a>
+        <a href={docsUrl} target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center gap-2 rounded-full px-5 py-2 font-mono text-[0.8rem]/7 font-medium uppercase tracking-wider btn-outline text-mauve-950 dark:text-white dark:hover:bg-white/10">{t("cta.readDocs")}</a>
       </div>
     </div>
   </div>

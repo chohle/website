@@ -1,11 +1,11 @@
 ---
-// Consistent section label: small uppercase mono, accent color.
+// Consistent section label: small uppercase mono with a leading dash, the same
+// motif the app uses for its sidebar groups ("— WORKSPACE").
 interface Props { class?: string }
 const { class: className = "" } = Astro.props;
 ---
 
-<span class={`inline-flex items-center gap-1.5 font-mono text-[0.7rem]/6 font-medium tracking-[0.25em] text-accent-light uppercase ${className}`}>
-  <span aria-hidden="true" class="text-accent-light/50">[</span>
+<span class={`inline-flex items-center gap-2.5 font-mono text-[0.7rem]/6 font-medium tracking-[0.25em] text-mauve-500 uppercase ${className}`}>
+  <span aria-hidden="true" class="h-px w-5 bg-mauve-400"></span>
   <slot />
-  <span aria-hidden="true" class="text-accent-light/50">]</span>
 </span>
