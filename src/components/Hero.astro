@@ -3,6 +3,7 @@ import Screenshot from "./Screenshot.astro";
 import { defaultLang, type Lang } from "../i18n/config";
 import { useTranslations } from "../i18n/ui";
 import { getHome } from "../i18n/home";
+import { shot } from "../lib/screenshots";
 
 interface Props { lang?: Lang }
 const { lang = defaultLang } = Astro.props;
@@ -31,17 +32,42 @@ const githubUrl = "https://github.com/chohle/chohle";
       </div>
     </div>
 
-    <div class="grid w-full grid-cols-2 border-t border-l border-white/10 sm:grid-cols-4" data-reveal>
-      {["OPEN SOURCE", "SWISS QR-BILL", "SELF-HOSTABLE", "NO ACCOUNT"].map((spec) => (
-        <div class="flex items-center justify-center gap-2 border-r border-b border-white/10 px-4 py-3 font-mono text-[0.7rem] tracking-[0.15em] text-mauve-400 uppercase">
-          <span class="size-1.5 bg-accent-light" aria-hidden="true"></span>{spec}
-        </div>
-      ))}
+    <!-- Localized keyword ticker: an endless, slow drift instead of a static
+         chip grid. The list is rendered twice so a -50% translate loops
+         seamlessly; the copy is aria-hidden and reduced-motion gets a still,
+         edge-faded line. -->
+    <div class="hero-ticker w-full overflow-hidden" data-reveal>
+      <div class="hero-ticker__track flex w-max items-center">
+        {[0, 1].map((dup) => (
+          <ul class="flex items-center" aria-hidden={dup === 1 ? "true" : undefined}>
+            {c.keywords.map((k) => (
+              <li class="flex items-center whitespace-nowrap py-3 font-mono text-[0.7rem] tracking-[0.15em] text-mauve-400 uppercase">
+                <span class="px-5 text-accent-light" aria-hidden="true">✦</span>{k}
+              </li>
+            ))}
+          </ul>
+        ))}
+      </div>
     </div>
+    <style>
+      .hero-ticker {
+        mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+      }
+      .hero-ticker__track {
+        animation: hero-ticker-scroll 45s linear infinite;
+      }
+      @keyframes hero-ticker-scroll {
+        to { transform: translateX(-50%); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .hero-ticker__track { animation: none; }
+      }
+    </style>
 
     <div class="w-full" data-reveal>
       <Screenshot class="rounded-lg" color="green" placement="bottom">
-        <img src={`/screenshots/dashboard-en.jpg`} alt="chohle dashboard" width="1456" height="1080" loading="eager" data-zoomable class="cursor-zoom-in bg-white" />
+        <img src={shot("dashboard", lang)} alt="chohle dashboard" width="1456" height="1080" loading="eager" data-zoomable class="cursor-zoom-in bg-white" />
       </Screenshot>
     </div>
   </div>
