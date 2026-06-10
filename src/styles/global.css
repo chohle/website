@@ -1,56 +1,217 @@
 @import "tailwindcss";
 
-/* Self-hosted fonts (no Google Fonts) */
-@import "@fontsource-variable/inter/index.css";
-@import "@fontsource-variable/mona-sans/wdth.css";
+/* ----------------------------------------------------------------------------
+   Editorial theme — the site shares the app's design language: paper surfaces,
+   warm-gray ink, hairline rules, sharp corners, Geist + Geist Mono for text and
+   labels, Instrument Serif italic for the accent words. Fonts are self-hosted
+   (same woff2 files the app ships; latin + latin-ext only).
+---------------------------------------------------------------------------- */
 
-/* Dark-first: drive the `dark:` variant from a class on <html>, not the OS.
-   Layout adds `class="dark"`, so the whole site renders its dark styles. */
+/* --- Geist (sans) --------------------------------------------------------- */
+@font-face {
+  font-family: Geist;
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/geist-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: Geist;
+  font-style: normal;
+  font-weight: 300 700;
+  font-display: swap;
+  src: url("/fonts/geist-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- Geist Mono ------------------------------------------------------------ */
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 400 500;
+  font-display: swap;
+  src: url("/fonts/geist-mono-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* --- Instrument Serif (regular + italic) ----------------------------------- */
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-italic-latin-ext.woff2") format("woff2");
+  unicode-range:
+    U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+    U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F,
+    U+A720-A7FF;
+}
+@font-face {
+  font-family: "Instrument Serif";
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url("/fonts/instrument-serif-italic-latin.woff2") format("woff2");
+  unicode-range:
+    U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* The `dark:` variant stays class-driven and the class is never applied: the
+   site is paper-light by design, like the app. Keeping the variant defined
+   means remaining dark: utilities in templates stay inert instead of erroring. */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-display: "Mona Sans Variable", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+  --font-serif: "Instrument Serif", "Times New Roman", serif;
 
-  --color-mauve-50: oklch(98.5% 0 0);
-  --color-mauve-100: oklch(96% 0.003 325.6);
-  --color-mauve-200: oklch(92.2% 0.005 325.62);
-  --color-mauve-300: oklch(86.5% 0.012 325.68);
-  --color-mauve-400: oklch(71.1% 0.019 323.02);
-  --color-mauve-500: oklch(54.2% 0.034 322.5);
-  --color-mauve-600: oklch(43.5% 0.029 321.78);
-  --color-mauve-700: oklch(36.4% 0.029 323.89);
-  --color-mauve-800: oklch(26.3% 0.024 320.12);
-  --color-mauve-900: oklch(21.2% 0.019 322.12);
-  --color-mauve-950: oklch(14.5% 0.008 326);
+  /* The app's warm-gray ink scale (see chohle's _tokens.scss). The site keeps
+     the `mauve` utility name so every component picks the new values up. */
+  --color-mauve-50: #fafaf9; /* surface-2 */
+  --color-mauve-100: #f2f2f0; /* surface-3 */
+  --color-mauve-200: #ededea; /* inset */
+  --color-mauve-300: #dcdcd9; /* border-strong */
+  --color-mauve-400: #bcbcb8; /* ink-4 */
+  --color-mauve-500: #8e8e8a; /* ink-3 */
+  --color-mauve-600: #6e6e6e;
+  --color-mauve-700: #525250; /* ink-2 */
+  --color-mauve-800: #2a2a2a;
+  --color-mauve-900: #1b1b1b;
+  --color-mauve-950: #0a0a0a; /* ink */
 
-  /* Strategic accent: a calm emerald (mindmarket-style). Lower chroma than the
-     old electric violet so the solid blocks read confident, not loud. */
-  --color-accent: oklch(72% 0.15 162);
-  --color-accent-light: oklch(83% 0.13 164);
+  /* Editorial accent is ink itself; "accent-light" maps to the secondary ink
+     so existing utilities resolve to something sensible on paper. */
+  --color-accent: #0a0a0a;
+  --color-accent-light: #525250;
 }
 
 .font-display {
   font-family: var(--font-display);
-  font-variation-settings: "wdth" 112.5;
+  letter-spacing: -0.01em;
+}
+
+/* The accent word inside display headings ("one calm place") renders in
+   Instrument Serif italic — the same voice as the app's greeting. */
+h1 .text-accent,
+h2 .text-accent,
+.font-display .text-accent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: 0;
 }
 
 @layer base {
   html {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    /* Dark-first — no light fallback flash. */
-    background-color: var(--color-mauve-950);
-    color-scheme: dark;
+    background-color: #ffffff;
+    color-scheme: light;
     --scroll-padding-top: 0;
     scroll-padding-top: var(--scroll-padding-top);
   }
 
-  :focus-visible {
-    outline: 2px solid var(--color-accent);
-    outline-offset: 2px;
-    border-radius: 3px;
+  body {
+    color: var(--color-mauve-950);
   }
+
+  :focus-visible {
+    outline: 2px solid var(--color-mauve-950);
+    outline-offset: 2px;
+  }
+
+  ::selection {
+    background: var(--color-mauve-950);
+    color: #ffffff;
+  }
+}
+
+/* Directional underline for text links: draws in from the left on hover and
+   retracts to the right on leave. The trick: the line is a background image
+   anchored right at rest, so the size animation shrinks it rightwards; on
+   hover the anchor jumps (not animated) to the left and the growth runs
+   left-to-right. `.group` lets a whole card drive an inner link's line. */
+.link-line {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 0% 1px;
+  padding-bottom: 2px;
+  transition: background-size 0.35s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+.link-line:hover,
+a:hover .link-line,
+.group:hover .link-line {
+  background-position: left bottom;
+  background-size: 100% 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-line { transition: none; }
+}
+
+/* The button system — three colors, calm hovers, no full inverts:
+   .btn-ink     solid ink, white text         → hover lightens a step
+   .btn-paper   solid white, ink text         → hover tints a step
+   .btn-outline transparent, hairline ring    → hover gets a faint wash
+   Sizing/typography stay per-instance Tailwind; these own color + hover. */
+.btn-ink,
+.btn-paper,
+.btn-outline {
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.btn-ink:hover { background-color: var(--color-mauve-800); }
+.btn-paper:hover { background-color: var(--color-mauve-100); }
+.btn-outline {
+  box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--color-mauve-950) 20%, transparent);
+}
+.btn-outline:hover {
+  background-color: color-mix(in oklab, var(--color-mauve-950) 5%, transparent);
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-ink, .btn-paper, .btn-outline { transition: none; }
 }
 
 /* Scroll reveal — elements fade + rise into view. Reduced-motion users skip it.
@@ -69,7 +230,6 @@
   }
 }
 
-/* Drifting aurora background — slow, calm motion behind all content. */
 /* Square corners everywhere — matches the web app. No rounded UI. */
 *,
 ::before,
@@ -77,12 +237,39 @@
   border-radius: 0 !important;
 }
 
-/* Exception: the decorative background glow stays round (it's a soft glow, not a cornered UI element). */
-.aurora-blob {
-  border-radius: 9999px !important;
+/* The one exception: the signature shape. Asymmetric corners (16px on two
+   diagonal corners, 4px on the others) mark every interactive or framed
+   surface — buttons, cards, accordions, dropdowns — against the otherwise
+   sharp editorial grid. Apply via the button classes or `.shape`. */
+.btn-ink,
+.btn-paper,
+.btn-outline,
+.shape,
+[data-doc-content] img,
+[data-doc-content] .not-prose {
+  border-radius: 16px 4px 16px 4px !important;
 }
 
-/* Terminal caret blink for the hero prompt motif. */
+/* Smooth <details> expansion where the platform supports animating to auto
+   (Chromium). Elsewhere it simply snaps open — graceful degradation. */
+:root {
+  interpolate-size: allow-keywords;
+}
+details.acc::details-content {
+  block-size: 0;
+  overflow: hidden;
+  transition:
+    block-size 0.3s ease,
+    content-visibility 0.3s allow-discrete;
+}
+details.acc[open]::details-content {
+  block-size: auto;
+}
+@media (prefers-reduced-motion: reduce) {
+  details.acc::details-content { transition: none; }
+}
+
+/* Terminal caret blink for the 404 prompt motif. */
 @media (prefers-reduced-motion: no-preference) {
   .caret-blink {
     animation: caret-blink 1.1s steps(1) infinite;
@@ -91,17 +278,4 @@
 @keyframes caret-blink {
   0%, 50% { opacity: 1; }
   50.01%, 100% { opacity: 0; }
-}
-
-@keyframes aurora-drift-1 {
-  0%, 100% { transform: translate(-8%, -4%) scale(1); }
-  50% { transform: translate(10%, 8%) scale(1.18); }
-}
-@keyframes aurora-drift-2 {
-  0%, 100% { transform: translate(6%, 5%) scale(1.12); }
-  50% { transform: translate(-8%, -7%) scale(1); }
-}
-@keyframes aurora-drift-3 {
-  0%, 100% { transform: translate(0%, 8%) scale(1.05); }
-  50% { transform: translate(-6%, -5%) scale(1.22); }
 }
