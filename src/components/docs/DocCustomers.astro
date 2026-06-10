@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { shot } from "../../lib/screenshots";
 import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -97,7 +98,7 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <img src={`/screenshots/customers-en.jpg`} alt={c.listHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={shot("customers", lang)} alt={c.listHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <h2 id="list">{c.listHeading}</h2>
   <p>{c.listText}</p>
@@ -108,7 +109,7 @@ const c = content[lang] ?? content.en;
   <h2 id="detail">{c.detailHeading}</h2>
   <p>{c.detailText}</p>
 
-  <img src={`/screenshots/customer-detail-en.jpg`} alt={c.detailHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={shot("customer-detail", lang)} alt={c.detailHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <p>{c.nextBefore}<a href={localize("/docs/quotes", lang)}>{c.nextLink}</a>{c.nextMid}<a href={localize("/docs/invoicing", lang)}>{c.nextLink2}</a>{c.nextAfter}</p>
 </DocsLayout>

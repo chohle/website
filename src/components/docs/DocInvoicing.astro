@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { shot } from "../../lib/screenshots";
 import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -91,7 +92,7 @@ const c = content[lang] ?? content.en;
   <p>{c.intro}</p>
 
   <img
-    src={`/screenshots/invoice-pdf-en.jpg`}
+    src={shot("invoice-pdf", lang)}
     alt="chohle invoice with Swiss QR-bill"
     width="1456"
     height="1182"

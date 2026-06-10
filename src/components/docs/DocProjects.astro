@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { shot } from "../../lib/screenshots";
 import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -87,7 +88,7 @@ const c = content[lang] ?? content.en;
   <p>{c.intro}</p>
 
   <img
-    src={`/screenshots/pipeline-en.jpg`}
+    src={shot("pipeline", lang)}
     alt={c.pipelineHeading}
     width="1456"
     height="1080"
@@ -112,7 +113,7 @@ const c = content[lang] ?? content.en;
     it: "Apri un progetto e la sua pagina di dettaglio è organizzata in schede, panoramica, preventivi, fatture e la conversazione, così un progetto pieno resta leggibile. La scheda conversazione è un filo in stile chat: le e-mail del cliente e le tue risposte si susseguono in ordine come un'app di messaggistica, e componi e invii direttamente da lì.",
   })[lang]}</p>
 
-  <img src={`/screenshots/project-detail-en.jpg`} alt={({ en: "A project's detail page", de: "Die Detailseite eines Projekts", fr: "La page de détail d'un projet", it: "La pagina di dettaglio di un progetto" })[lang]} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={shot("project-detail", lang)} alt={({ en: "A project's detail page", de: "Die Detailseite eines Projekts", fr: "La page de détail d'un projet", it: "La pagina di dettaglio di un progetto" })[lang]} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <p>{({
     en: "Inbound email that does not thread to a project is caught in a review queue rather than dropped or misfiled. See ",

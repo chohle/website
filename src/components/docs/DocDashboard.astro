@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { shot } from "../../lib/screenshots";
 import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -77,7 +78,7 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <img src={`/screenshots/dashboard-en.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={shot("dashboard", lang)} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <h2 id="month">{c.monthHeading}</h2>
   <p>{c.monthText}</p>
@@ -96,5 +97,5 @@ const c = content[lang] ?? content.en;
     it: "La barra di ricerca in alto (o Cmd K) apre una palette di comandi che cerca in tutto insieme, clienti, fatture, preventivi, articoli, uscite e progetti. Inizia a digitare e i risultati si raggruppano per tipo; scegline uno per saltarci dritto, o filtra su un solo tipo con le schede.",
   })[lang]}</p>
 
-  <img src={`/screenshots/search-en.jpg`} alt={({ en: "Global search", de: "Globale Suche", fr: "Recherche globale", it: "Ricerca globale" })[lang]} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={shot("search", lang)} alt={({ en: "Global search", de: "Globale Suche", fr: "Recherche globale", it: "Ricerca globale" })[lang]} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 </DocsLayout>

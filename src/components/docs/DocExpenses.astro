@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { shot } from "../../lib/screenshots";
 import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -77,7 +78,7 @@ const c = content[lang] ?? content.en;
   <h1>{c.h1}</h1>
   <p>{c.intro}</p>
 
-  <img src={`/screenshots/expenses-en.jpg`} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={shot("expenses", lang)} alt={c.h1} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <h2 id="log">{c.logHeading}</h2>
   <p>{c.logText}</p>
@@ -85,7 +86,7 @@ const c = content[lang] ?? content.en;
   <h2 id="categories">{c.catHeading}</h2>
   <p>{c.catText}</p>
 
-  <img src={`/screenshots/categories-en.jpg`} alt={c.catHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
+  <img src={shot("categories", lang)} alt={c.catHeading} width="1456" height="1080" loading="lazy" class="my-8 w-full rounded-xl ring-1 ring-black/10 dark:ring-white/10" />
 
   <p>{c.feedsBefore}<a href={localize("/docs/payments", lang)}>{c.feedsLink}</a>{c.feedsAfter}</p>
 </DocsLayout>

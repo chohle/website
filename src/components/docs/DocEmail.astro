@@ -1,5 +1,6 @@
 ---
 import DocsLayout from "../../layouts/DocsLayout.astro";
+import { shot } from "../../lib/screenshots";
 import { getLangFromUrl, localize } from "../../i18n/utils";
 
 const lang = getLangFromUrl(Astro.url);
@@ -99,7 +100,7 @@ const c = content[lang] ?? content.en;
   <p>{c.intro}</p>
 
   <img
-    src={`/screenshots/conversations-en.jpg`}
+    src={shot("conversations", lang)}
     alt="chohle client email conversations"
     width="1456"
     height="1080"
@@ -116,7 +117,7 @@ const c = content[lang] ?? content.en;
   </ul>
 
   <img
-    src={`/screenshots/email-setup-en.jpg`}
+    src={shot("email-setup", lang)}
     alt="Connect a Gmail, Outlook or IMAP mailbox in chohle"
     width="1456"
     height="1080"
