@@ -10,70 +10,20 @@ interface Props {
 const { lang = defaultLang } = Astro.props;
 const t = useTranslations(lang);
 
-// Grouped link columns (decimal.app-style footer).
-const columns = [
-  {
-    heading: t("footer.product"),
-    links: [
-      { href: localize("/features", lang), label: t("label.features") },
-      { href: localize("/pricing", lang), label: t("nav.pricing") },
-    ],
-  },
-  {
-    heading: t("footer.resources"),
-    links: [
-      { href: localize("/docs", lang), label: t("nav.docs"), blank: true },
-      { href: "https://github.com/chohle/chohle", label: "GitHub", blank: true },
-    ],
-  },
-];
-
-// Placeholders until the accounts exist.
 const githubUrl = "https://github.com/chohle/chohle";
-const xUrl = "https://x.com/zeaiso";
 
 const year = new Date().getFullYear();
 ---
 
 <footer id="footer" class="pt-16">
   <div class="border-t border-mauve-950/10 bg-white text-mauve-950">
-    <div class="mx-auto w-full max-w-2xl px-6 pt-16 md:max-w-3xl lg:max-w-7xl lg:px-10">
-      <div class="flex flex-col gap-12 lg:flex-row lg:justify-between">
-        <div class="flex max-w-sm flex-col gap-6">
-          <a href={localize("/", lang)} class="inline-flex w-fit items-center text-mauve-950 dark:text-white" aria-label="chohle home">
-            <Logo class="h-6 w-auto" />
-          </a>
-          <p class="text-sm/7 text-mauve-600 dark:text-mauve-400">{t("footer.tagline")}</p>
-          <div class="flex items-center gap-5">
-            <a href={githubUrl} target="_blank" rel="noopener" aria-label="GitHub" class="text-mauve-500 transition-colors hover:text-mauve-950 *:size-5 dark:text-mauve-400 dark:hover:text-white"><svg class="inline-block" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" role="image"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg></a>
-            <a href={xUrl} target="_blank" rel="noopener" aria-label="X" class="text-mauve-500 transition-colors hover:text-mauve-950 *:size-5 dark:text-mauve-400 dark:hover:text-white"><svg class="inline-block" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" role="image"><path d="M13.6833 10.6218L20.2401 3H18.6864L12.9931 9.61788L8.44583 3H3.20117L10.0775 13.0074L3.20117 21H4.75501L10.7673 14.0113L15.5695 21H20.8141L13.6833 10.6218ZM11.5551 13.0956L10.8584 12.0991L5.31488 4.16971H7.7015L12.1752 10.5689L12.8719 11.5655L18.6871 19.8835H16.3005L11.5551 13.0956Z" /></svg></a>
-          </div>
-        </div>
-
-        <nav class="grid grid-cols-2 gap-10 lg:gap-16">
-          {columns.map((col) => (
-            <div class="flex flex-col gap-4">
-              <h2 class="text-sm/6 font-semibold text-mauve-950 dark:text-white">{col.heading}</h2>
-              <ul class="flex flex-col gap-3">
-                {col.links.map((link) => (
-                  <li>
-                    <a
-                      href={link.href}
-                      target={link.blank ? "_blank" : undefined}
-                      rel={link.blank ? "noopener" : undefined}
-                      class="link-line text-sm/6 text-mauve-600 transition-colors hover:text-mauve-950"
-                    >{link.label}</a>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </nav>
-      </div>
-
-      <div class="mt-16 flex items-center justify-between gap-6 border-t border-mauve-950/10 pt-8 dark:border-white/10">
+    <div class="mx-auto w-full max-w-2xl px-6 pt-8 md:max-w-3xl lg:max-w-7xl lg:px-10">
+      <div class="flex items-center justify-between gap-6">
         <p class="text-sm/6 text-mauve-600 dark:text-mauve-500">© {year} chohle</p>
-        <a href={localize("/privacy", lang)} class="link-line text-sm/6 text-mauve-600 transition-colors hover:text-mauve-950">{t("label.privacy")}</a>
+        <div class="flex items-center gap-6">
+          <a href={githubUrl} target="_blank" rel="noopener" class="link-line text-sm/6 text-mauve-600 transition-colors hover:text-mauve-950">GitHub</a>
+          <a href={localize("/privacy", lang)} class="link-line text-sm/6 text-mauve-600 transition-colors hover:text-mauve-950">{t("label.privacy")}</a>
+        </div>
       </div>
     </div>
 
