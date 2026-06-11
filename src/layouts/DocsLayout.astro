@@ -38,7 +38,7 @@ const prose =
 ---
 
 <!doctype html>
-<html lang={lang} class="dark">
+<html lang={lang}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -65,20 +65,20 @@ const prose =
       </dialog>
     </el-dialog>
 
-    <div class="hidden lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:w-72 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-mauve-950/10 lg:bg-mauve-100 lg:px-6 lg:py-8 dark:lg:border-white/10 dark:lg:bg-mauve-950">
-      <a href={localize("/", lang)} aria-label="chohle docs" class="inline-flex items-center gap-2.5 text-mauve-950 dark:text-white"><Logo class="h-7 w-auto" /><span class="font-display text-xl font-semibold tracking-tight text-mauve-500">docs</span></a>
-      <nav class="mt-8"><DocsNav lang={lang} current={current} /></nav>
+    <div class="hidden lg:fixed lg:top-14 lg:bottom-0 lg:left-0 lg:z-30 lg:flex lg:w-72 lg:flex-col lg:overflow-y-auto lg:border-r lg:border-mauve-950/10 lg:bg-mauve-100 lg:px-6 lg:py-6 dark:lg:border-white/10 dark:lg:bg-mauve-950">
+      <nav><DocsNav lang={lang} current={current} /></nav>
     </div>
 
     <div class="lg:pl-72">
-      <header class="fixed inset-x-0 top-0 z-30 flex h-14 items-center gap-4 border-b border-mauve-950/10 bg-mauve-100/80 px-4 backdrop-blur-md sm:px-6 lg:left-72 lg:px-8 dark:border-white/10 dark:bg-mauve-950/80">
+      <header class="fixed inset-x-0 top-0 z-30 flex h-14 items-center gap-4 border-b border-mauve-950/10 bg-mauve-100/80 px-4 backdrop-blur-md sm:px-6 dark:border-white/10 dark:bg-mauve-950/80">
         <button command="show-modal" commandfor="docs-menu" aria-label="Open docs menu" class="inline-flex shrink-0 rounded-md p-1.5 text-mauve-700 hover:bg-mauve-950/10 lg:hidden dark:text-mauve-300 dark:hover:bg-white/10">
           <svg viewBox="0 0 24 24" fill="currentColor" class="size-5"><path fill-rule="evenodd" d="M3.748 8.248a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75ZM3.748 15.75a.75.75 0 0 1 .75-.751h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75Z" clip-rule="evenodd" /></svg>
         </button>
-        <a href={localize("/", lang)} aria-label="chohle docs" class="inline-flex shrink-0 items-center gap-2 text-mauve-950 lg:hidden dark:text-white"><Logo class="h-5 w-auto" /><span class="font-display text-base font-semibold tracking-tight text-mauve-500">docs</span></a>
+        <!-- Brand lives in the header bar itself: one line, sidebar below. -->
+        <a href={localize("/", lang)} aria-label="chohle docs" class="inline-flex shrink-0 items-center gap-2 whitespace-nowrap text-mauve-950 dark:text-white"><Logo class="h-5 w-auto" /><span class="font-display text-base font-semibold tracking-tight text-mauve-500">docs</span></a>
         <div class="ml-auto flex items-center gap-3 sm:gap-5">
           <a href="https://github.com/chohle/chohle" target="_blank" rel="noopener" aria-label="GitHub" class="text-mauve-700 hover:text-mauve-950 dark:text-mauve-400 dark:hover:text-white"><svg class="size-5" viewBox="0 0 24 24" fill="currentColor" role="image"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clip-rule="evenodd" /></svg></a>
-          <a href="https://app.chohle.ch" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center rounded-full px-3.5 py-1.5 font-mono text-[0.72rem]/6 font-medium uppercase tracking-wider bg-mauve-950 text-white hover:bg-mauve-800 dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">{t("cta.tryDemo")}</a>
+          <a href="https://app.chohle.ch" target="_blank" rel="noopener" class="inline-flex shrink-0 items-center justify-center rounded-full px-3.5 py-1.5 font-mono text-[0.72rem]/6 font-medium uppercase tracking-wider btn-ink bg-mauve-950 text-white dark:bg-mauve-300 dark:text-mauve-950 dark:hover:bg-mauve-200">{t("cta.tryDemo")}</a>
         </div>
       </header>
 
@@ -92,22 +92,22 @@ const prose =
         </article>
 
         {(prev || next) && (
-          <div class="mt-16 flex justify-between gap-6 border-t border-mauve-950/10 pt-8 dark:border-white/10">
+          <div class="mt-16 grid grid-cols-1 gap-4 sm:grid-cols-2">
             {prev ? (
-              <a href={prev.href} class="group flex flex-col gap-1">
-                <span class="text-xs/5 text-mauve-500">{t("docs.previous")}</span>
-                <span class="inline-flex items-center gap-2 text-sm/6 font-medium text-mauve-950 dark:text-white">
-                  <svg class="size-4 transition group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
+              <a href={prev.href} class="shape group flex flex-col gap-1.5 border border-mauve-950/10 bg-white p-5 transition-colors hover:border-mauve-950/30 hover:bg-mauve-50">
+                <span class="font-mono text-[0.65rem]/5 tracking-[0.2em] text-mauve-500 uppercase">{t("docs.previous")}</span>
+                <span class="inline-flex items-center gap-2 text-sm/6 font-medium text-mauve-950">
+                  <svg class="size-4 shrink-0 transition group-hover:-translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18" /></svg>
                   {prev.title}
                 </span>
               </a>
-            ) : <span />}
+            ) : <span class="hidden sm:block" />}
             {next && (
-              <a href={next.href} class="group flex flex-col items-end gap-1 text-right">
-                <span class="text-xs/5 text-mauve-500">{t("docs.next")}</span>
-                <span class="inline-flex items-center gap-2 text-sm/6 font-medium text-mauve-950 dark:text-white">
+              <a href={next.href} class="shape group flex flex-col items-end gap-1.5 border border-mauve-950/10 bg-white p-5 text-right transition-colors hover:border-mauve-950/30 hover:bg-mauve-50 sm:col-start-2">
+                <span class="font-mono text-[0.65rem]/5 tracking-[0.2em] text-mauve-500 uppercase">{t("docs.next")}</span>
+                <span class="inline-flex items-center gap-2 text-sm/6 font-medium text-mauve-950">
                   {next.title}
-                  <svg class="size-4 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
+                  <svg class="size-4 shrink-0 transition group-hover:translate-x-0.5" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" /></svg>
                 </span>
               </a>
             )}
@@ -180,11 +180,22 @@ const prose =
               a.classList.toggle("dark:text-mauve-400", !on);
             }
           };
+          // Clicking a TOC entry activates it immediately and locks the
+          // scroll-tracker briefly. Without the lock, a target near the page
+          // bottom can never reach the top of the viewport, so the tracker
+          // would instantly hand the highlight back to an earlier section.
+          let lockUntil = 0;
+          for (const a of links) {
+            a.addEventListener("click", () => {
+              setActive(a.dataset.id!);
+              lockUntil = Date.now() + 900;
+            });
+          }
           // Highlight the heading currently nearest the top of the viewport.
-          // Recomputed on scroll/resize so it always tracks the right section,
-          // even on short pages or with anchor jumps.
+          // Recomputed on scroll/resize so it always tracks the right section.
           const offset = 96; // fixed header height + a little breathing room
           const update = () => {
+            if (Date.now() < lockUntil) return;
             let current = headings[0].id;
             for (const h of headings) {
               if (h.getBoundingClientRect().top - offset <= 1) current = h.id;
