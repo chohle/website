@@ -34,31 +34,37 @@ const featuresPage = localize("/features", lang);
         <p>{c.sub}</p>
       </div>
     </div>
-    <div>
-      <div class="grid grid-cols-1 gap-6">
-        {c.items.map((item, i) => (
-          <a href={featuresPage} class="group grid grid-flow-dense grid-cols-1 gap-2 rounded-lg bg-mauve-950/2.5 p-2 no-underline ring-1 ring-inset ring-transparent transition-colors hover:bg-mauve-950/4 hover:ring-mauve-950/5 lg:grid-cols-2 dark:bg-white/5 dark:hover:bg-white/8 dark:hover:ring-white/10" data-reveal>
-            <div class="flex flex-col justify-between gap-6 p-6 sm:gap-10 sm:p-10 lg:p-6 lg:group-even:col-start-2">
-              <div class="flex flex-col gap-4">
-                <span class="inline-flex items-center gap-2 font-mono text-xs/6 font-medium tracking-[0.2em] text-accent-light"><span class="size-1.5 bg-accent-light" aria-hidden="true"></span>[ {(i + 1).toString().padStart(2, "0")} ]</span>
-                <div class="text-xl/8 sm:text-2xl/9">
-                  <h3 class="text-mauve-950 dark:text-white">{item.title}</h3>
-                  <div class="mt-2 flex flex-col gap-4 text-base/7 text-mauve-500"><p>{item.body}</p></div>
-                </div>
+    <!-- Stacking cards: each card is sticky, so on scroll the next one slides
+         up and pins on top of the previous — a deck being leafed through.
+         Cards are opaque (paper on paper needs a border + soft shadow) and the
+         pin offset grows per card so the stacked edges stay visible. -->
+    <div class="flex flex-col gap-10">
+      {c.items.map((item, i) => (
+        <a
+          href={featuresPage}
+          class="group shape sticky grid grid-flow-dense grid-cols-1 gap-2 overflow-hidden border border-mauve-950/10 bg-white p-2 no-underline shadow-[0_-12px_32px_rgba(10,10,10,0.06)] transition-colors hover:border-mauve-950/30 lg:grid-cols-2"
+          style={`top: calc(var(--scroll-padding-top, 5.25rem) + ${i * 2.5}rem)`}
+        >
+          <div class="flex flex-col justify-between gap-6 p-6 sm:gap-10 sm:p-10 lg:p-6 lg:group-even:col-start-2">
+            <div class="flex flex-col gap-4">
+              <span class="inline-flex items-center gap-2.5 font-mono text-xs/6 font-medium tracking-[0.2em] text-mauve-500"><span class="h-px w-5 bg-mauve-400" aria-hidden="true"></span>{(i + 1).toString().padStart(2, "0")}</span>
+              <div class="text-xl/8 sm:text-2xl/9">
+                <h3 class="text-mauve-950 dark:text-white">{item.title}</h3>
+                <div class="mt-2 flex flex-col gap-4 text-base/7 text-mauve-500"><p>{item.body}</p></div>
               </div>
-              <span class="group/link inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950 dark:text-white">
-                {t("cta.learnMore")}
-                <svg class="inline-block transition-transform group-hover:translate-x-0.5" width="5" height="8" viewBox="0 0 5 8" fill="currentColor" role="image"><path fill-rule="evenodd" clip-rule="evenodd" d="M.22.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06L1.28 7.78A.75.75 0 01.22 6.72L2.94 4 .22 1.28a.75.75 0 010-1.06z" /></svg>
-              </span>
             </div>
-            <div class="relative overflow-hidden rounded-sm lg:group-even:col-start-1 dark:after:absolute dark:after:inset-0 dark:after:rounded-sm dark:after:outline-1 dark:after:-outline-offset-1 dark:after:outline-white/10">
-              <Screenshot color={style[i % style.length].color} placement={style[i % style.length].placement}>
-                <img src={shotSrc(shots[i % shots.length])} alt={item.title} width="1456" height="1080" loading="lazy" class="bg-white" />
-              </Screenshot>
-            </div>
-          </a>
-        ))}
-      </div>
+            <span class="group/link inline-flex items-center gap-2 text-sm/7 font-medium text-mauve-950">
+              <span class="link-line">{t("cta.learnMore")}</span>
+              <svg class="inline-block transition-transform group-hover:translate-x-0.5" width="5" height="8" viewBox="0 0 5 8" fill="currentColor" role="image"><path fill-rule="evenodd" clip-rule="evenodd" d="M.22.22a.75.75 0 011.06 0l3.25 3.25a.75.75 0 010 1.06L1.28 7.78A.75.75 0 01.22 6.72L2.94 4 .22 1.28a.75.75 0 010-1.06z" /></svg>
+            </span>
+          </div>
+          <div class="relative overflow-hidden lg:group-even:col-start-1">
+            <Screenshot color={style[i % style.length].color} placement={style[i % style.length].placement}>
+              <img src={shotSrc(shots[i % shots.length])} alt={item.title} width="1456" height="1080" loading="lazy" class="bg-white" />
+            </Screenshot>
+          </div>
+        </a>
+      ))}
     </div>
   </div>
 </section>

@@ -3,7 +3,7 @@ import { defaultLang, type Lang } from "./config";
 export interface FeaturesContent {
   meta: { title: string; description: string };
   hero: { headline: string; sub: string };
-  lightSection: { eyebrow: string; heading: string };
+  lightSection: { eyebrow: string; heading: string; sub: string };
   // `shot` is the screenshot key under /public/screenshots; the page appends
   // `-<lang>.jpg` so each locale shows the app in its own language.
   lightCards: Array<{ shot: string; eyebrow: string; title: string; description: string; tag?: string }>;
@@ -25,6 +25,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
     lightSection: {
       eyebrow: "Features",
       heading: "One tool for the whole job.",
+      sub: "A few highlights to give you the idea, not the whole list. Quotes, reminders, bank import, tax export, the AI assistant and more are covered in depth in the docs.",
     },
     lightCards: [
       {
@@ -129,6 +130,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
     lightSection: {
       eyebrow: "Funktionen",
       heading: "Ein Tool für die ganze Arbeit.",
+      sub: "Ein paar Highlights, damit du ein Bild bekommst, nicht die ganze Liste. Offerten, Mahnungen, Bankimport, Steuerexport, der KI-Assistent und mehr sind in der Doku ausführlich beschrieben.",
     },
     lightCards: [
       {
@@ -233,6 +235,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
     lightSection: {
       eyebrow: "Fonctionnalités",
       heading: "Un seul outil pour tout le travail.",
+      sub: "Quelques points forts pour donner une idée, pas la liste complète. Devis, rappels, import bancaire, export fiscal, assistant IA et plus encore sont détaillés dans la documentation.",
     },
     lightCards: [
       {
@@ -337,6 +340,7 @@ const features: Partial<Record<Lang, FeaturesContent>> = {
     lightSection: {
       eyebrow: "Funzionalità",
       heading: "Un solo strumento per tutto il lavoro.",
+      sub: "Alcuni punti salienti per farsi un'idea, non l'elenco completo. Offerte, solleciti, import bancario, export fiscale, assistente IA e altro sono descritti in dettaglio nella documentazione.",
     },
     lightCards: [
       {

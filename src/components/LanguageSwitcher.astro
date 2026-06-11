@@ -11,7 +11,7 @@ const t = useTranslations(lang);
 <el-dropdown class="relative inline-block">
   <button
     aria-label={t("lang.label")}
-    class="inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-sm/6 font-semibold text-mauve-950 ring-1 ring-mauve-950/15 transition hover:bg-mauve-950/5 dark:text-white dark:ring-white/15 dark:hover:bg-white/10"
+    class="shape inline-flex items-center gap-1.5 px-2.5 py-1.5 text-sm/6 font-semibold text-mauve-950 ring-1 ring-mauve-950/15 transition hover:bg-mauve-950/5"
   >
     {lang.toUpperCase()}
     <svg class="size-4 transition in-aria-expanded:rotate-180" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" /></svg>
@@ -20,7 +20,7 @@ const t = useTranslations(lang);
   <el-menu
     anchor="bottom end"
     popover
-    class="w-48 rounded-xl bg-white p-1 text-sm shadow-lg ring-1 ring-mauve-950/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:opacity-0 dark:bg-mauve-900 dark:ring-white/10"
+    class="shape w-48 overflow-hidden bg-white p-1 text-sm shadow-lg ring-1 ring-mauve-950/10 transition transition-discrete [--anchor-gap:--spacing(2)] data-closed:opacity-0 dark:bg-mauve-900 dark:ring-white/10"
   >
     {langs.map((l) => (
       <a
